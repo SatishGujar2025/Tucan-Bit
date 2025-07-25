@@ -104,25 +104,25 @@ const HomePage = ({ onNavigate, language }) => {
     {
       id: 'metamask',
       name: 'MetaMask',
-      icon: '../assets/g1.jpg',
+      icon: 'https://upload.wikimedia.org/wikipedia/commons/3/36/MetaMask_Fox.svg',
       description: 'Connect using your MetaMask wallet'
     },
     {
       id: 'walletconnect',
       name: 'WalletConnect',
-      icon: 'https://altcoinsbox.com/wp-content/uploads/2023/03/wallet-connect-logo.png',
+      icon: 'https://images.seeklogo.com/logo-png/43/2/walletconnect-logo-png_seeklogo-430923.png',
       description: 'Scan QR code with mobile wallet'
     },
     {
       id: 'coinbase',
       name: 'Coinbase Wallet',
-      icon: 'https://altcoinsbox.com/wp-content/uploads/2023/03/coinbase-wallet-logo.png',
+      icon: 'https://altcoinsbox.com/wp-content/uploads/2022/12/coinbase-logo-300x300.webp',
       description: 'Connect with Coinbase extension'
     },
     {
       id: 'phantom',
       name: 'Phantom',
-      icon: 'https://phantom.app/favicon.ico',
+      icon: 'https://logowik.com/content/uploads/images/phantom3506.jpg',
       description: 'Solana & Ethereum compatible'
     },
     {
@@ -134,7 +134,7 @@ const HomePage = ({ onNavigate, language }) => {
     {
       id: 'ledger',
       name: 'Ledger',
-      icon: 'https://www.ledger.com/wp-content/uploads/2021/09/Ledger-favicon-1.png',
+      icon: 'https://cdn.prod.website-files.com/60f008ba9757da0940af288e/60fbcaf3bd0478862b605203_ledger.jpg',
       description: 'Connect your hardware wallet'
     }
   ];
