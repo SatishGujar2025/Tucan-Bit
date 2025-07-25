@@ -17,10 +17,13 @@ import HelpCenter from './components/support/HelpCenter';
 import ContactUs from './components/support/ContactUs';
 import ResponsibleGaming from './components/support/ResponsibleGaming';
 import Fairness from './components/support/Fairness';
+// --- CORRECTED IMPORTS ---
 import LoginModal from './components/auth/LoginModal';
+import OTPPopup from './components/auth/OTPModal'; // Corrected path if needed
+import VerificationPopup from './components/auth/VerificationModal'; // Corrected path if needed
 import { Wallet, Home, Gamepad2, Trophy, Settings, User, Globe, Gift, Users } from 'lucide-react';
 
-// Footer Component
+// Footer Component (remains the same)
 const Footer: React.FC<{ onNavigate: (page: string) => void }> = ({ onNavigate }) => {
   return (
     <footer className="bg-black/40 border-t border-[#3C1A4F]/20">
@@ -117,7 +120,7 @@ function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home');
   const [gameFilter, setGameFilter] = useState<string>('all');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [modalView, setModalView] = useState<'login' | 'otp' | 'verification'| null>(null);
   const [user, setUser] = useState<{ username: string } | null>(null);
   const [balance, setBalance] = useState(10000);
   const [userLevel, setUserLevel] = useState(42);
@@ -126,15 +129,27 @@ function App() {
   const [language, setLanguage] = useState<'en' | 'es'>('en');
   const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
 
-  // Convert BTC to USD (example rate)
   const btcToUsd = 45000;
   const balanceUSD = balance * btcToUsd;
   const xpProgress = (userXP / nextLevelXP) * 100;
 
+  // --- CLEANED UP HANDLERS ---
+  const handleShowOtp = () => {
+    setModalView('otp');
+  };
+
+  const handleShowVerification = () => {
+    setModalView('verification');
+  };
+
+  const handleLoginSuccess = () => {
+    setIsAuthenticated(true);
+    setUser({ username: 'test' });
+    setModalView(null);
+  };
+
   const handleNavigation = (page: string) => {
-    // Scroll to top when navigating to a new page
     window.scrollTo(0, 0);
-    
     if (page.includes('?filter=')) {
       const [pageName, filterParam] = page.split('?filter=');
       setGameFilter(filterParam);
@@ -150,35 +165,24 @@ function App() {
     setShowLanguageDropdown(false);
   };
 
-  const handleLogin = (username: string, password: string) => {
-    // Simple test authentication
-    if (username === 'test' && password === 'test') {
-      setIsAuthenticated(true);
-      setUser({ username });
-      setShowLoginModal(false);
-      return true;
-    }
-    return false;
-  };
-
   const handleLogout = () => {
     setIsAuthenticated(false);
     setUser(null);
     setCurrentPage('home');
   };
 
-const navigation = [
-  { id: 'home', label: 'Home', icon: Home },
-  { id: 'lootboxes', label: 'LootBoxes', icon: Gift },
-  { id: 'games', label: 'Games', icon: Gamepad2 },
-];
+  const navigation = [
+    { id: 'home', label: 'Home', icon: Home },
+    { id: 'lootboxes', label: 'LootBoxes', icon: Gift },
+    { id: 'games', label: 'Games', icon: Gamepad2 },
+  ];
 
-  // Add profile to navigation only if authenticated
   if (isAuthenticated) {
     navigation.push({ id: 'profile', label: 'Profile', icon: User });
   }
 
   const renderPage = () => {
+    // This function remains the same
     switch (currentPage) {
       case 'home':
         return (
@@ -300,41 +304,38 @@ const navigation = [
       <nav className="fixed top-0 left-0 right-0 z-50 bg-black/20 backdrop-blur-md border-b border-[#3C1A4F]/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            
-            
             <div className="flex items-center space-x-6">
-         {navigation.map((item) => {
-  const Icon = item.icon;
-  const translatedLabel = getTranslation(language, item.id as keyof typeof translations.en);
-  return (
-    <button
-      key={item.id}
-      onClick={() => {
-        window.scrollTo(0, 0);
-        if (item.id === 'games') {
-          setCurrentPage('lobby');
-        } else if (item.id === 'live-casino') {
-          setCurrentPage('lobby');
-          setGameFilter('live');
-        } else {
-          setCurrentPage(item.id as Page);
-        }
-      }}
-      className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-200 ${
-        (item.id === 'games' && currentPage === 'lobby') || 
-        (item.id === 'live-casino' && currentPage === 'lobby' && gameFilter === 'live') || 
-        currentPage === item.id
-          ? 'bg-[#3C1A4F]/20 text-[#F25287] border border-[#3C1A4F]/30'
-          : 'text-gray-400 hover:text-white hover:bg-white/10'
-      }`}
-    >
-      <Icon className="w-5 h-5" />
-      <span className="hidden sm:inline">{translatedLabel}</span>
-    </button>
-  );
-})}
+              {navigation.map((item) => {
+                const Icon = item.icon;
+                const translatedLabel = getTranslation(language, item.id as keyof typeof translations.en);
+                return (
+                  <button
+                    key={item.id}
+                    onClick={() => {
+                      window.scrollTo(0, 0);
+                      if (item.id === 'games') {
+                        setCurrentPage('lobby');
+                      } else if (item.id === 'live-casino') {
+                        setCurrentPage('lobby');
+                        setGameFilter('live');
+                      } else {
+                        setCurrentPage(item.id as Page);
+                      }
+                    }}
+                    className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-200 ${
+                      (item.id === 'games' && currentPage === 'lobby') || 
+                      (item.id === 'live-casino' && currentPage === 'lobby' && gameFilter === 'live') || 
+                      currentPage === item.id
+                        ? 'bg-[#3C1A4F]/20 text-[#F25287] border border-[#3C1A4F]/30'
+                        : 'text-gray-400 hover:text-white hover:bg-white/10'
+                    }`}
+                  >
+                    <Icon className="w-5 h-5" />
+                    <span className="hidden sm:inline">{translatedLabel}</span>
+                  </button>
+                );
+              })}
               
-              {/* Show wallet balance only if authenticated */}
               {isAuthenticated && (
                 <button
                   onClick={() => {
@@ -353,31 +354,9 @@ const navigation = [
                   </span>
                 </button>
               )}
-
-              {/* Login/Signup or User Menu */}
-              {!isAuthenticated ? (
-                <button
-                  onClick={() => setShowLoginModal(true)}
-                  className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-[#3C1A4F] to-[#36CFC9] text-white rounded-lg font-semibold hover:from-[#3C1A4F]/80 hover:to-[#36CFC9]/80 transition-all duration-200"
-                >
-                  <User className="w-5 h-5" />
-                  <span className="hidden sm:inline">Login / Sign Up</span>
-                </button>
-              ) : (
-                <div className="flex items-center space-x-3">
-                  <span className="text-white font-medium">Welcome, {user?.username}</span>
-                  <button
-                    onClick={handleLogout}
-                    className="px-3 py-2 bg-red-500/20 hover:bg-red-500/30 border border-red-500/30 text-red-400 rounded-lg font-semibold transition-colors text-sm"
-                  >
-                    Logout
-                  </button>
-                </div>
-              )}
             </div>
             
             <div className="flex items-center space-x-4">
-              {/* Language Selector */}
               <div className="relative">
                 <button
                   onClick={() => setShowLanguageDropdown(!showLanguageDropdown)}
@@ -413,7 +392,6 @@ const navigation = [
                 )}
               </div>
 
-              {/* Level and XP Bar - only show if authenticated */}
               {isAuthenticated && (
                 <div className="hidden md:flex items-center space-x-3">
                   <div className="bg-black/20 backdrop-blur-sm border border-purple-500/20 rounded-lg px-3 py-2">
@@ -438,28 +416,60 @@ const navigation = [
                 </div>
               )}
               
+              {!isAuthenticated ? (
+                <button
+                  onClick={() => setModalView('login')}
+                  className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-[#3C1A4F] to-[#36CFC9] text-white rounded-lg font-semibold hover:from-[#3C1A4F]/80 hover:to-[#36CFC9]/80 transition-all duration-200"
+                >
+                  <User className="w-5 h-5" />
+                  <span className="hidden sm:inline">Login / Sign Up</span>
+                </button>
+              ) : (
+                <div className="flex items-center space-x-3">
+                  <span className="text-white font-medium">Welcome, {user?.username}</span>
+                  <button
+                    onClick={handleLogout}
+                    className="px-3 py-2 bg-red-500/20 hover:bg-red-500/30 border border-red-500/30 text-red-400 rounded-lg font-semibold transition-colors text-sm"
+                  >
+                    Logout
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </div>
       </nav>
 
-      {/* Click outside to close language dropdown */}
       {showLanguageDropdown && (
         <div 
           className="fixed inset-0 z-40" 
           onClick={() => setShowLanguageDropdown(false)}
         />
       )}
-      {/* Main Content */}
+      
       <main className="pt-16">
         {renderPage()}
       </main>
 
-      {/* Login Modal */}
-      {showLoginModal && (
+      {/* --- MODAL RENDERING LOGIC --- */}
+      {modalView === 'login' && (
         <LoginModal
-          onClose={() => setShowLoginModal(false)}
-          onLogin={handleLogin}
+          onClose={() => setModalView(null)}
+          onShowOtp={handleShowOtp}
+        />
+      )}
+
+      {modalView === 'otp' && (
+        <OTPPopup
+          onClose={() => setModalView(null)}
+          onLoginSuccess={handleShowVerification}
+        />
+      )}
+      
+      {modalView === 'verification' && (
+        <VerificationPopup
+          onClose={() => setModalView(null)}
+          onVerificationComplete={handleLoginSuccess}
         />
       )}
     </div>
