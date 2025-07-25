@@ -218,11 +218,10 @@
 
 
 
-/* Add these new styles to your existing LoginPopup.css */
 
 .verification-container {
   /* The verification popup is wider and has only one column */
-  width: 600px;
+  width: 400px;
   height: auto;
   max-height: 90vh;
   display: block; /* Overrides the flex display */
@@ -239,7 +238,7 @@
 }
 
 .form-row {
-  display: flex;
+  display: inline;;
   gap: 1rem;
 }
 

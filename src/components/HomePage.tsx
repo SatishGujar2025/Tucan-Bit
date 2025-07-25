@@ -8,6 +8,30 @@ import {
   Currency
 } from 'lucide-react';
 import { BsPeople } from 'react-icons/bs';
+import gameImage1 from '../assets/g1.jpg';
+import gameImage2 from '../assets/g2.jpg';
+import gameImage3 from '../assets/g3.jpg';
+import gameImage4 from '../assets/g4.jpg';
+import gameImage5 from '../assets/g5.jpeg';
+import gameImage6 from '../assets/g6.jpg';
+import gameImage7 from '../assets/g7.jpg';
+import gameImage8 from '../assets/g8.jpg';
+import gameImage9 from '../assets/g9.jpg';
+import gameImage10 from '../assets/g10.jpg';
+import gameImage11 from '../assets/g11.jpg';
+import gameImage12 from '../assets/g12.jpg';
+import gameImage13 from '../assets/g13.jpg';
+import gameImage14 from '../assets/g14.jpg';
+import gameImage15 from '../assets/g15.jpg';
+import gameImage16 from '../assets/g16.jpg';
+import gameImage17 from '../assets/g17.jpg';
+import gameImage18 from '../assets/g18.jpg';
+import gameImage19 from '../assets/g19.jpg';
+import gameImage20 from '../assets/g20.jpg';
+import gameImage21 from '../assets/g21.jpg';
+import gameImage22 from '../assets/g22.jpg';
+
+
 
 const HomePage = ({ onNavigate, language }) => {
   const [isConnecting, setIsConnecting] = useState(false);
@@ -80,7 +104,7 @@ const HomePage = ({ onNavigate, language }) => {
     {
       id: 'metamask',
       name: 'MetaMask',
-      icon: 'https://upload.wikimedia.org/wikipedia/commons/3/36/MetaMask_Fox.svg',
+      icon: '../assets/g1.jpg',
       description: 'Connect using your MetaMask wallet'
     },
     {
@@ -155,7 +179,7 @@ const HomePage = ({ onNavigate, language }) => {
       id: 1,
       name: 'Gates of Olympus',
       provider: 'Pragmatic Play',
-      image: 'https://cdn.softswiss.net/i/s3/gates-of-olympus.png',
+      image: gameImage1,
       type: 'Slot',
       volatility: 'High',
       rtp: '96.5%',
@@ -170,7 +194,7 @@ const HomePage = ({ onNavigate, language }) => {
       id: 2,
       name: 'Crazy Time',
       provider: 'Evolution',
-      image: 'https://cdn.softswiss.net/i/s3/crazy-time.png',
+      image: gameImage2,
       type: 'Live Game',
       volatility: 'Very High',
       rtp: '96.08%',
@@ -185,7 +209,7 @@ const HomePage = ({ onNavigate, language }) => {
       id: 3,
       name: 'Book of Dead',
       provider: 'Play\'n GO',
-      image: 'https://cdn.softswiss.net/i/s3/book-of-dead.png',
+      image: gameImage3,
       type: 'Slot',
       volatility: 'High',
       rtp: '96.21%',
@@ -200,7 +224,7 @@ const HomePage = ({ onNavigate, language }) => {
       id: 4,
       name: 'Mega Roulette',
       provider: 'Evolution',
-      image: 'https://cdn.softswiss.net/i/s3/mega-roulette.png',
+      image: gameImage4,
       type: 'Roulette',
       volatility: 'Medium',
       rtp: '97.30%',
@@ -215,7 +239,7 @@ const HomePage = ({ onNavigate, language }) => {
       id: 5,
       name: 'Sweet Bonanza',
       provider: 'Pragmatic Play',
-      image: 'https://cdn.softswiss.net/i/s3/sweet-bonanza.png',
+      image: gameImage5,
       type: 'Slot',
       volatility: 'High',
       rtp: '96.51%',
@@ -230,7 +254,7 @@ const HomePage = ({ onNavigate, language }) => {
       id: 6,
       name: 'Lightning Blackjack',
       provider: 'Evolution',
-      image: 'https://cdn.softswiss.net/i/s3/lightning-blackjack.png',
+      image: gameImage6,
       type: 'Blackjack',
       volatility: 'Low',
       rtp: '99.50%',
@@ -245,7 +269,7 @@ const HomePage = ({ onNavigate, language }) => {
       id: 7,
       name: 'Wolf Gold',
       provider: 'Pragmatic Play',
-      image: 'https://cdn.softswiss.net/i/s3/wolf-gold.png',
+      image: gameImage7,
       type: 'Slot',
       volatility: 'Medium',
       rtp: '96.01%',
@@ -260,7 +284,7 @@ const HomePage = ({ onNavigate, language }) => {
       id: 8,
       name: 'Monopoly Live',
       provider: 'Evolution',
-      image: 'https://cdn.softswiss.net/i/s3/monopoly-live.png',
+      image: gameImage8,
       type: 'Live Game',
       volatility: 'High',
       rtp: '96.23%',
@@ -275,7 +299,7 @@ const HomePage = ({ onNavigate, language }) => {
       id: 9,
       name: 'Starburst',
       provider: 'NetEnt',
-      image: 'https://cdn.softswiss.net/i/s3/starburst.png',
+      image: gameImage9,
       type: 'Slot',
       volatility: 'Low',
       rtp: '96.09%',
@@ -290,7 +314,7 @@ const HomePage = ({ onNavigate, language }) => {
       id: 10,
       name: 'Gonzo\'s Quest',
       provider: 'NetEnt',
-      image: 'https://cdn.softswiss.net/i/s3/gonzos-quest.png',
+      image: gameImage10,
       type: 'Slot',
       volatility: 'Medium',
       rtp: '95.77%',
@@ -305,7 +329,7 @@ const HomePage = ({ onNavigate, language }) => {
       id: 11,
       name: 'Mega Moolah',
       provider: 'Microgaming',
-      image: 'https://cdn.softswiss.net/i/s3/mega-moolah.png',
+      image: gameImage11,
       type: 'Slot',
       volatility: 'Medium',
       rtp: '88.12%',
@@ -320,7 +344,7 @@ const HomePage = ({ onNavigate, language }) => {
       id: 12,
       name: 'Lightning Roulette',
       provider: 'Evolution',
-      image: 'https://cdn.softswiss.net/i/s3/lightning-roulette.png',
+      image: gameImage13,
       type: 'Roulette',
       volatility: 'Medium',
       rtp: '97.30%',
@@ -335,7 +359,7 @@ const HomePage = ({ onNavigate, language }) => {
       id: 13,
       name: 'Dead or Alive 2',
       provider: 'NetEnt',
-      image: 'https://cdn.softswiss.net/i/s3/dead-or-alive-2.png',
+      image: gameImage14,
       type: 'Slot',
       volatility: 'Very High',
       rtp: '96.82%',
@@ -350,7 +374,7 @@ const HomePage = ({ onNavigate, language }) => {
       id: 14,
       name: 'Dragon Tiger',
       provider: 'Evolution',
-      image: 'https://cdn.softswiss.net/i/s3/dragon-tiger.png',
+      image: gameImage15,
       type: 'Card Game',
       volatility: 'Low',
       rtp: '96.27%',
@@ -365,7 +389,7 @@ const HomePage = ({ onNavigate, language }) => {
       id: 15,
       name: 'Big Bass Bonanza',
       provider: 'Pragmatic Play',
-      image: 'https://cdn.softswiss.net/i/s3/big-bass-bonanza.png',
+      image: gameImage16,
       type: 'Slot',
       volatility: 'Medium',
       rtp: '96.71%',
@@ -375,7 +399,425 @@ const HomePage = ({ onNavigate, language }) => {
       isHot: true,
       minBet: '0.20',
       maxBet: '240'
-    }
+    },
+    {
+      id: 16,
+      name: 'Monopoly Live',
+      provider: 'Evolution',
+      image: gameImage17,
+      type: 'Live Game',
+      volatility: 'High',
+      rtp: '96.23%',
+      maxWin: 'x10000',
+      theme: 'Board Game',
+      isNew: false,
+      isHot: true,
+      minBet: '0.50',
+      maxBet: '2000'
+    },
+    {
+      id: 17,
+      name: 'Starburst',
+      provider: 'NetEnt',
+      image: gameImage19,
+      type: 'Slot',
+      volatility: 'Low',
+      rtp: '96.09%',
+      maxWin: 'x500',
+      theme: 'Space',
+      isNew: false,
+      isHot: false,
+      minBet: '0.10',
+      maxBet: '100'
+    },
+    {
+      id: 18,
+      name: 'Gonzo\'s Quest',
+      provider: 'NetEnt',
+      image: gameImage18,
+      type: 'Slot',
+      volatility: 'Medium',
+      rtp: '95.77%',
+      maxWin: 'x2500',
+      theme: 'Adventure',
+      isNew: false,
+      isHot: false,
+      minBet: '0.20',
+      maxBet: '50'
+    },
+    {
+      id: 19,
+      name: 'Mega Moolah',
+      provider: 'Microgaming',
+      image: gameImage19,
+      type: 'Slot',
+      volatility: 'Medium',
+      rtp: '88.12%',
+      maxWin: 'Progressive',
+      theme: 'Jungle',
+      isNew: false,
+      isHot: true,
+      minBet: '0.25',
+      maxBet: '6.25'
+    },
+      {
+      id: 20,
+      name: 'Mega Moolah',
+      provider: 'Microgaming',
+      image: gameImage22,
+      type: 'Slot',
+      volatility: 'Medium',
+      rtp: '88.12%',
+      maxWin: 'Progressive',
+      theme: 'Jungle',
+      isNew: false,
+      isHot: true,
+      minBet: '0.25',
+      maxBet: '6.25'
+    },
+      {
+      id: 21,
+      name: 'Mega Moolah',
+      provider: 'Microgaming',
+      image: gameImage21,
+      type: 'Slot',
+      volatility: 'Medium',
+      rtp: '88.12%',
+      maxWin: 'Progressive',
+      theme: 'Jungle',
+      isNew: false,
+      isHot: true,
+      minBet: '0.25',
+      maxBet: '6.25'
+    },
+
+
+
+
+
+    {
+      id: 22,
+      name: 'Book of Dead',
+      provider: 'Play\'n GO',
+      image: gameImage3,
+      type: 'Slot',
+      volatility: 'High',
+      rtp: '96.21%',
+      maxWin: 'x5000',
+      theme: 'Ancient Egypt',
+      isNew: false,
+      isHot: true,
+      minBet: '0.10',
+      maxBet: '50'
+    },
+    {
+      id: 23,
+      name: 'Mega Roulette',
+      provider: 'Evolution',
+      image: gameImage4,
+      type: 'Roulette',
+      volatility: 'Medium',
+      rtp: '97.30%',
+      maxWin: 'x36',
+      theme: 'Classic',
+      isNew: true,
+      isHot: false,
+      minBet: '0.10',
+      maxBet: '5000'
+    },
+    {
+      id: 24,
+      name: 'Sweet Bonanza',
+      provider: 'Pragmatic Play',
+      image: gameImage5,
+      type: 'Slot',
+      volatility: 'High',
+      rtp: '96.51%',
+      maxWin: 'x21000',
+      theme: 'Candy',
+      isNew: false,
+      isHot: true,
+      minBet: '0.20',
+      maxBet: '100'
+    },
+    {
+      id: 25,
+      name: 'Lightning Blackjack',
+      provider: 'Evolution',
+      image: gameImage6,
+      type: 'Blackjack',
+      volatility: 'Low',
+      rtp: '99.50%',
+      maxWin: 'x30',
+      theme: 'Card Game',
+      isNew: false,
+      isHot: false,
+      minBet: '1',
+      maxBet: '5000'
+    },
+    {
+      id: 26,
+      name: 'Wolf Gold',
+      provider: 'Pragmatic Play',
+      image: gameImage7,
+      type: 'Slot',
+      volatility: 'Medium',
+      rtp: '96.01%',
+      maxWin: 'x2500',
+      theme: 'Wild West',
+      isNew: false,
+      isHot: false,
+      minBet: '0.25',
+      maxBet: '125'
+    },
+    {
+      id: 27,
+      name: 'Monopoly Live',
+      provider: 'Evolution',
+      image: gameImage8,
+      type: 'Live Game',
+      volatility: 'High',
+      rtp: '96.23%',
+      maxWin: 'x10000',
+      theme: 'Board Game',
+      isNew: false,
+      isHot: true,
+      minBet: '0.50',
+      maxBet: '2000'
+    },
+    {
+      id: 28,
+      name: 'Starburst',
+      provider: 'NetEnt',
+      image: gameImage9,
+      type: 'Slot',
+      volatility: 'Low',
+      rtp: '96.09%',
+      maxWin: 'x500',
+      theme: 'Space',
+      isNew: false,
+      isHot: false,
+      minBet: '0.10',
+      maxBet: '100'
+    },
+    {
+      id: 29,
+      name: 'Gonzo\'s Quest',
+      provider: 'NetEnt',
+      image: gameImage10,
+      type: 'Slot',
+      volatility: 'Medium',
+      rtp: '95.77%',
+      maxWin: 'x2500',
+      theme: 'Adventure',
+      isNew: false,
+      isHot: false,
+      minBet: '0.20',
+      maxBet: '50'
+    },
+    {
+      id: 30,
+      name: 'Mega Moolah',
+      provider: 'Microgaming',
+      image: gameImage11,
+      type: 'Slot',
+      volatility: 'Medium',
+      rtp: '88.12%',
+      maxWin: 'Progressive',
+      theme: 'Jungle',
+      isNew: false,
+      isHot: true,
+      minBet: '0.25',
+      maxBet: '6.25'
+    },
+    {
+      id: 31,
+      name: 'Lightning Roulette',
+      provider: 'Evolution',
+      image: gameImage13,
+      type: 'Roulette',
+      volatility: 'Medium',
+      rtp: '97.30%',
+      maxWin: 'x500',
+      theme: 'Classic',
+      isNew: false,
+      isHot: true,
+      minBet: '0.20',
+      maxBet: '2000'
+    },
+    {
+      id: 32,
+      name: 'Dead or Alive 2',
+      provider: 'NetEnt',
+      image: gameImage14,
+      type: 'Slot',
+      volatility: 'Very High',
+      rtp: '96.82%',
+      maxWin: 'x100000',
+      theme: 'Wild West',
+      isNew: false,
+      isHot: true,
+      minBet: '0.09',
+      maxBet: '18'
+    },
+    {
+      id: 33,
+      name: 'Dragon Tiger',
+      provider: 'Evolution',
+      image: gameImage15,
+      type: 'Card Game',
+      volatility: 'Low',
+      rtp: '96.27%',
+      maxWin: 'x11',
+      theme: 'Asian',
+      isNew: false,
+      isHot: false,
+      minBet: '1',
+      maxBet: '5000'
+    },
+    {
+      id: 34,
+      name: 'Big Bass Bonanza',
+      provider: 'Pragmatic Play',
+      image: gameImage16,
+      type: 'Slot',
+      volatility: 'Medium',
+      rtp: '96.71%',
+      maxWin: 'x2100',
+      theme: 'Fishing',
+      isNew: true,
+      isHot: true,
+      minBet: '0.20',
+      maxBet: '240'
+    },
+    {
+      id: 35,
+      name: 'Monopoly Live',
+      provider: 'Evolution',
+      image: gameImage17,
+      type: 'Live Game',
+      volatility: 'High',
+      rtp: '96.23%',
+      maxWin: 'x10000',
+      theme: 'Board Game',
+      isNew: false,
+      isHot: true,
+      minBet: '0.50',
+      maxBet: '2000'
+    },
+    {
+      id: 36,
+      name: 'Starburst',
+      provider: 'NetEnt',
+      image: gameImage19,
+      type: 'Slot',
+      volatility: 'Low',
+      rtp: '96.09%',
+      maxWin: 'x500',
+      theme: 'Space',
+      isNew: false,
+      isHot: false,
+      minBet: '0.10',
+      maxBet: '100'
+    },
+    {
+      id: 37,
+      name: 'Gonzo\'s Quest',
+      provider: 'NetEnt',
+      image: gameImage18,
+      type: 'Slot',
+      volatility: 'Medium',
+      rtp: '95.77%',
+      maxWin: 'x2500',
+      theme: 'Adventure',
+      isNew: false,
+      isHot: false,
+      minBet: '0.20',
+      maxBet: '50'
+    },
+
+
+
+    {
+      id: 36,
+      name: 'Mega Moolah',
+      provider: 'Microgaming',
+      image: gameImage19,
+      type: 'Slot',
+      volatility: 'Medium',
+      rtp: '88.12%',
+      maxWin: 'Progressive',
+      theme: 'Jungle',
+      isNew: false,
+      isHot: true,
+      minBet: '0.25',
+      maxBet: '6.25'
+    },
+      {
+      id: 37,
+      name: 'Mega Moolah',
+      provider: 'Microgaming',
+      image: gameImage22,
+      type: 'Slot',
+      volatility: 'Medium',
+      rtp: '88.12%',
+      maxWin: 'Progressive',
+      theme: 'Jungle',
+      isNew: false,
+      isHot: true,
+      minBet: '0.25',
+      maxBet: '6.25'
+    },
+      {
+      id: 38,
+      name: 'Mega Moolah',
+      provider: 'Microgaming',
+      image: gameImage21,
+      type: 'Slot',
+      volatility: 'Medium',
+      rtp: '88.12%',
+      maxWin: 'Progressive',
+      theme: 'Jungle',
+      isNew: false,
+      isHot: true,
+      minBet: '0.25',
+      maxBet: '6.25'
+    },
+
+
+
+
+
+    {
+      id: 39,
+      name: 'Book of Dead',
+      provider: 'Play\'n GO',
+      image: gameImage3,
+      type: 'Slot',
+      volatility: 'High',
+      rtp: '96.21%',
+      maxWin: 'x5000',
+      theme: 'Ancient Egypt',
+      isNew: false,
+      isHot: true,
+      minBet: '0.10',
+      maxBet: '50'
+    },
+    {
+      id: 40,
+      name: 'Mega Roulette',
+      provider: 'Evolution',
+      image: gameImage4,
+      type: 'Roulette',
+      volatility: 'Medium',
+      rtp: '97.30%',
+      maxWin: 'x36',
+      theme: 'Classic',
+      isNew: true,
+      isHot: false,
+      minBet: '0.10',
+      maxBet: '5000'
+    },
   ];
 
   // Promotions
@@ -446,7 +888,7 @@ const HomePage = ({ onNavigate, language }) => {
       )}
 
       {/* Sidebar */}
-<div className={`fixed inset-y-0 left-0 z-[60] w-64 bg-gray-900 shadow-2xl transform ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 transition-transform duration-300 border-r border-gray-800`}>
+<div className={`fixed inset-y-0 left-0 z-[60] w-54 bg-gray-900 shadow-2xl transform ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 transition-transform duration-300 border-r border-gray-800`}>
         <div className="flex flex-col h-full">
           {/* Logo */}
 
@@ -483,7 +925,7 @@ const HomePage = ({ onNavigate, language }) => {
           <nav className="flex-1 overflow-y-auto p-4 space-y-1">
            <button
     onClick={() => onNavigate('home')}
-    className="w-full flex items-center space-x-3 p-3 rounded-lg bg-gradient-to-r from-yellow-500/20 to-orange-500/20 text-white"
+    className="w-full flex items-center space-x-3 p-3 rounded-lg bg-gradient-to-r from-yellow-500/20 to-orange-500/20 text-[15px] text-white"
   >
     <Home className="w-5 h-5" />
     <span>Home</span>
@@ -767,7 +1209,7 @@ const HomePage = ({ onNavigate, language }) => {
         </section>
 
         {/* Stats Bar */}
-        <section className="bg-gradient-to-r from-gray-800 to-gray-900 py-8 border-y border-gray-800">
+        {/* <section className="bg-gradient-to-r from-gray-800 to-gray-900 py-8 border-y border-gray-800">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
               {gameCategories.map((category, index) => (
@@ -783,10 +1225,10 @@ const HomePage = ({ onNavigate, language }) => {
               ))}
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* Featured Games Section */}
-        <section className="py-16 bg-gray-900">
+        {/* <section className="py-16 bg-gray-900">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex flex-col md:flex-row items-center justify-between mb-10">
               <h2 className="text-3xl font-bold text-white flex items-center mb-4 md:mb-0">
@@ -882,10 +1324,10 @@ const HomePage = ({ onNavigate, language }) => {
               ))}
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* Promotions Section */}
-        <section className="py-16 bg-gradient-to-br from-gray-800 to-gray-900">
+        {/* <section className="py-16 bg-gradient-to-br from-gray-800 to-gray-900">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex flex-col md:flex-row items-center justify-between mb-10">
               <h2 className="text-3xl font-bold text-white flex items-center mb-4 md:mb-0">
@@ -943,16 +1385,15 @@ const HomePage = ({ onNavigate, language }) => {
               ))}
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* All Games Section */}
         <section className="py-16 bg-gray-900">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-white mb-10 text-center">
+            {/* <h2 className="text-3xl font-bold text-white mb-10 text-center">
               Explore Our Game Collection
-            </h2>
-
-            {/* Game Filters */}
+            </h2> */}
+{/* 
             <div className="flex flex-wrap gap-3 mb-8 justify-center">
               <button className="px-4 py-2 bg-gradient-to-r from-yellow-500 to-orange-500 text-white rounded-full text-sm font-medium">
                 All Games
@@ -972,14 +1413,15 @@ const HomePage = ({ onNavigate, language }) => {
               <button className="px-4 py-2 bg-gray-800 hover:bg-gray-700 text-white rounded-full text-sm font-medium">
                 New Releases
               </button>
-            </div>
+            </div> */}
 
             {/* Games Grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-4">
               {featuredGames.map((game) => (
+                
                 <div
                   key={game.id}
-                  className="group relative bg-gray-800 rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-700 hover:border-yellow-500/30"
+                  className="group relative rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-700 hover:border-yellow-500/30"
                   onClick={() => onNavigate(`game/${game.id}`)}
                 >
                   <div className="relative aspect-[3/2] overflow-hidden">
@@ -1034,10 +1476,10 @@ const HomePage = ({ onNavigate, language }) => {
             <div className="mt-10 text-center">
               <button
                 onClick={() => onNavigate('lobby')}
-                className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-8 py-3 rounded-lg font-bold hover:from-yellow-600 hover:to-orange-600 transition-all duration-200 inline-flex items-center space-x-2"
+                className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-8 py-2 rounded-lg font-bold hover:from-yellow-600 hover:to-orange-600 transition-all duration-200 inline-flex items-center space-x-2"
               >
-                <Gamepad2 className="w-5 h-5" />
-                <span>View All Games</span>
+                <Gamepad2 className="w-4 h-4" />
+                <span>see over 300+ games</span>
               </button>
             </div>
           </div>
