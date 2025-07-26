@@ -1,4 +1,16 @@
+// TypeScript declaration for Phantom wallet (EVM)
+declare global {
+  interface Window {
+    phantom?: {
+      ethereum?: any;
+      solana?: any;
+    };
+  }
+}
 import React, { useState, useEffect } from 'react';
+import { ethers } from 'ethers';
+import EthereumProvider from '@walletconnect/ethereum-provider';
+import CoinbaseWalletSDK from '@coinbase/wallet-sdk';
 import {
   Play, TrendingUp, Shield, Zap, Star, Award, Users, Clock, Trophy,
   ExternalLink, Twitter, Facebook, Instagram, Youtube, Gift, Crown,
@@ -33,25 +45,215 @@ import gameImage22 from '../assets/g22.jpg';
 
 
 
-const HomePage = ({ onNavigate, language }) => {
+type HomePageProps = {
+  onNavigate: (route: string) => void;
+  language?: string;
+};
+
+const HomePage: React.FC<HomePageProps> = ({ onNavigate, language }) => {
   const [isConnecting, setIsConnecting] = useState(false);
-  const [walletAddress, setWalletAddress] = useState(null);
+  const [walletAddress, setWalletAddress] = useState<string | null>(null);
+  const [walletBalance, setWalletBalance] = useState<string | null>(null);
   const [showWalletModal, setShowWalletModal] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [activeSubmenu, setActiveSubmenu] = useState(null);
+  const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
+  const [walletCurrency, setWalletCurrency] = useState<'ETH' | 'SOL' | null>(null);
 
   // Wallet connection functions
-  const connectWallet = async (walletType) => {
+  const connectWallet = async (walletType: string) => {
     if (walletType === 'metamask') {
+      setWalletCurrency('ETH');
+      localStorage.setItem('walletCurrency', 'ETH');
       await connectMetaMask();
+    } else if (
+      walletType === 'trustwallet' ||
+      walletType === 'walletconnect' ||
+      walletType === 'ledger'
+    ) {
+      setWalletCurrency('ETH');
+      localStorage.setItem('walletCurrency', 'ETH');
+      await connectWalletConnect();
+    } else if (walletType === 'coinbase') {
+      setWalletCurrency('ETH');
+      localStorage.setItem('walletCurrency', 'ETH');
+      await connectCoinbaseWallet();
+    } else if (walletType === 'phantom') {
+      await connectPhantom();
     } else {
       // Simulate other wallet connections
       setTimeout(() => {
         const mockAddress = `0x${Math.random().toString(16).substr(2, 40)}`;
         setWalletAddress(mockAddress);
+        setWalletCurrency('ETH');
         localStorage.setItem('walletAddress', mockAddress);
+        localStorage.setItem('walletCurrency', 'ETH');
         setShowWalletModal(false);
       }, 1000);
+    }
+  };
+
+  // Phantom wallet connection (EVM or Solana)
+  const connectPhantom = async () => {
+    try {
+      setIsConnecting(true);
+      // EVM support
+      if (window.phantom && window.phantom.ethereum) {
+        setWalletCurrency('ETH');
+        localStorage.setItem('walletCurrency', 'ETH');
+        const provider = window.phantom.ethereum;
+        await provider.request({ method: 'eth_requestAccounts' });
+        const ethersProvider = new ethers.BrowserProvider(provider);
+        const accounts = await ethersProvider.send('eth_accounts', []);
+        if (accounts.length > 0) {
+          const address = accounts[0];
+          setWalletAddress(address);
+          localStorage.setItem('walletAddress', address);
+          // Fetch balance
+          const balance = await ethersProvider.getBalance(address);
+          setWalletBalance(ethers.formatEther(balance));
+          localStorage.setItem('walletBalance', ethers.formatEther(balance));
+        }
+        setShowWalletModal(false);
+      } else if (window.phantom && window.phantom.solana) {
+        setWalletCurrency('SOL');
+        localStorage.setItem('walletCurrency', 'SOL');
+        await connectPhantomSolana();
+      } else {
+        alert('Phantom wallet is not installed. Please install Phantom.');
+        window.open('https://phantom.app/', '_blank');
+      }
+    } catch (error) {
+      console.error('Error connecting with Phantom:', error);
+      if (error instanceof Error) {
+        alert(error.message);
+      } else {
+        alert('An unknown error occurred while connecting with Phantom.');
+      }
+    } finally {
+      setIsConnecting(false);
+    }
+  };
+
+  // Phantom Solana connection
+  const connectPhantomSolana = async () => {
+    try {
+      const solanaProvider = window.phantom!.solana;
+      if (!solanaProvider) {
+        alert('Phantom Solana provider not found.');
+        return;
+      }
+      // Connect to Phantom
+      const resp = await solanaProvider.connect();
+      const publicKey = resp.publicKey?.toString();
+      if (publicKey) {
+        setWalletAddress(publicKey);
+        localStorage.setItem('walletAddress', publicKey);
+        // Fetch SOL balance
+        const solanaRpc = 'https://api.mainnet-beta.solana.com';
+        const balanceResp = await fetch(solanaRpc, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            jsonrpc: '2.0',
+            id: 1,
+            method: 'getBalance',
+            params: [publicKey]
+          })
+        });
+        const balanceJson = await balanceResp.json();
+        const lamports = balanceJson.result?.value || 0;
+        const sol = lamports / 1e9;
+        setWalletBalance(sol.toString());
+        localStorage.setItem('walletBalance', sol.toString());
+        setShowWalletModal(false);
+      } else {
+        alert('Failed to get Solana public key from Phantom.');
+      }
+    } catch (error) {
+      console.error('Error connecting with Phantom Solana:', error);
+      if (error instanceof Error) {
+        alert(error.message);
+      } else {
+        alert('An unknown error occurred while connecting with Phantom Solana.');
+      }
+    }
+  };
+
+  // Coinbase Wallet connection
+  const connectCoinbaseWallet = async () => {
+    try {
+      setIsConnecting(true);
+      const APP_NAME = 'TucanBit';
+      const APP_LOGO_URL = 'https://altcoinsbox.com/wp-content/uploads/2022/12/coinbase-logo-300x300.webp';
+      const DEFAULT_ETH_JSONRPC_URL = 'https://mainnet.infura.io/v3/';
+      const DEFAULT_CHAIN_ID = 1;
+
+      const coinbaseWallet = new CoinbaseWalletSDK({
+        appName: APP_NAME,
+        appLogoUrl: APP_LOGO_URL,
+      });
+      const provider = coinbaseWallet.makeWeb3Provider({
+        rpcUrl: DEFAULT_ETH_JSONRPC_URL,
+        chainId: DEFAULT_CHAIN_ID,
+        options: 'all'
+      });
+      await provider.request({ method: 'eth_requestAccounts' });
+      const ethersProvider = new ethers.BrowserProvider(provider);
+      const accounts = await ethersProvider.send('eth_accounts', []);
+      if (accounts.length > 0) {
+        const address = accounts[0];
+        setWalletAddress(address);
+        localStorage.setItem('walletAddress', address);
+        // Fetch balance
+        const balance = await ethersProvider.getBalance(address);
+        setWalletBalance(ethers.formatEther(balance));
+        localStorage.setItem('walletBalance', ethers.formatEther(balance));
+      }
+      setShowWalletModal(false);
+    } catch (error) {
+      console.error('Error connecting with Coinbase Wallet:', error);
+      if (error instanceof Error) {
+        alert(error.message);
+      } else {
+        alert('An unknown error occurred while connecting with Coinbase Wallet.');
+      }
+    } finally {
+      setIsConnecting(false);
+    }
+  };
+
+  // WalletConnect (Trust Wallet) connection
+  const connectWalletConnect = async () => {
+    try {
+      setIsConnecting(true);
+      // WalletConnect v2 provider
+      const provider = await EthereumProvider.init({
+        projectId: 'db721a1a35ebd983b0f9c07526cbebd7',
+        chains: [1],
+        showQrModal: true,
+      });
+      await provider.enable();
+      const ethersProvider = new ethers.BrowserProvider(provider);
+      const accounts = await ethersProvider.send('eth_accounts', []);
+      if (accounts.length > 0) {
+        const address = accounts[0];
+        setWalletAddress(address);
+        localStorage.setItem('walletAddress', address);
+        // Fetch balance
+        const balance = await ethersProvider.getBalance(address);
+        setWalletBalance(ethers.formatEther(balance));
+        localStorage.setItem('walletBalance', ethers.formatEther(balance));
+      }
+      setShowWalletModal(false);
+    } catch (error) {
+      console.error('Error connecting with WalletConnect:', error);
+      if (error instanceof Error) {
+        alert(error.message);
+      } else {
+        alert('An unknown error occurred while connecting with WalletConnect.');
+      }
+    } finally {
+      setIsConnecting(false);
     }
   };
 
@@ -59,18 +261,24 @@ const HomePage = ({ onNavigate, language }) => {
     if (typeof window.ethereum !== 'undefined') {
       try {
         setIsConnecting(true);
-        const accounts = await window.ethereum.request({
-          method: 'eth_requestAccounts',
-        });
-
+        const provider = new ethers.BrowserProvider(window.ethereum);
+        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
         if (accounts.length > 0) {
           const address = accounts[0];
           setWalletAddress(address);
           localStorage.setItem('walletAddress', address);
+          // Fetch balance
+          const balance = await provider.getBalance(address);
+          setWalletBalance(ethers.formatEther(balance));
+          localStorage.setItem('walletBalance', ethers.formatEther(balance));
         }
       } catch (error) {
         console.error('Error connecting to MetaMask:', error);
-        alert(error.message);
+        if (error instanceof Error) {
+          alert(error.message);
+        } else {
+          alert('An unknown error occurred while connecting to MetaMask.');
+        }
       } finally {
         setIsConnecting(false);
         setShowWalletModal(false);
@@ -83,19 +291,27 @@ const HomePage = ({ onNavigate, language }) => {
 
   const disconnectWallet = () => {
     setWalletAddress(null);
+    setWalletBalance(null);
+    setWalletCurrency(null);
     localStorage.removeItem('walletAddress');
+    localStorage.removeItem('walletBalance');
+    localStorage.removeItem('walletCurrency');
   };
 
   // Check for existing connection on component mount
   useEffect(() => {
     const savedAddress = localStorage.getItem('walletAddress');
+    const savedBalance = localStorage.getItem('walletBalance');
+    const savedCurrency = localStorage.getItem('walletCurrency');
     if (savedAddress) {
       setWalletAddress(savedAddress);
+      setWalletBalance(savedBalance);
+      setWalletCurrency(savedCurrency === 'SOL' ? 'SOL' : 'ETH');
     }
   }, []);
 
   // Toggle sidebar submenus
-  const toggleSubmenu = (menu) => {
+  const toggleSubmenu = (menu: string) => {
     setActiveSubmenu(activeSubmenu === menu ? null : menu);
   };
 
@@ -1106,6 +1322,61 @@ const HomePage = ({ onNavigate, language }) => {
                   <p className="text-sm font-medium text-white truncate">
                     {walletAddress.slice(0, 6)}...{walletAddress.slice(-4)}
                   </p>
+                  {walletBalance && (
+                    <div className="flex items-center gap-2 mt-1">
+                      <span className="text-base font-bold text-yellow-400">
+                        {parseFloat(walletBalance).toFixed(4)}
+                      </span>
+                      <span className="text-xs font-semibold text-gray-300">
+                        {walletCurrency === 'SOL' ? 'SOL' : 'ETH'}
+                      </span>
+                      <button
+                        onClick={async () => {
+                          // Refresh balance
+                          if (walletCurrency === 'ETH' && walletAddress) {
+                            try {
+                              let provider;
+                              if (window.ethereum) {
+                                provider = new ethers.BrowserProvider(window.ethereum);
+                              } else if (window.phantom && window.phantom.ethereum) {
+                                provider = new ethers.BrowserProvider(window.phantom.ethereum);
+                              } else {
+                                provider = null;
+                              }
+                              if (provider) {
+                                const balance = await provider.getBalance(walletAddress);
+                                setWalletBalance(ethers.formatEther(balance));
+                                localStorage.setItem('walletBalance', ethers.formatEther(balance));
+                              }
+                            } catch {}
+                          } else if (walletCurrency === 'SOL' && walletAddress) {
+                            try {
+                              const solanaRpc = 'https://api.mainnet-beta.solana.com';
+                              const balanceResp = await fetch(solanaRpc, {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({
+                                  jsonrpc: '2.0',
+                                  id: 1,
+                                  method: 'getBalance',
+                                  params: [walletAddress]
+                                })
+                              });
+                              const balanceJson = await balanceResp.json();
+                              const lamports = balanceJson.result?.value || 0;
+                              const sol = lamports / 1e9;
+                              setWalletBalance(sol.toString());
+                              localStorage.setItem('walletBalance', sol.toString());
+                            } catch {}
+                          }
+                        }}
+                        className="ml-1 px-1 py-0.5 rounded bg-gray-800 hover:bg-gray-700 text-yellow-400 text-xs font-semibold border border-yellow-400/30 transition"
+                        title="Refresh Balance"
+                      >
+                        <RotateCw className="w-3 h-3 inline" />
+                      </button>
+                    </div>
+                  )}
                   <button
                     onClick={disconnectWallet}
                     className="text-xs text-orange-400 hover:text-orange-300"
