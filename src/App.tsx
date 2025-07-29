@@ -22,10 +22,10 @@ import LoginModal from './components/auth/LoginModal';
 import OTPPopup from './components/auth/OTPModal'; 
 import VerificationPopup from './components/auth/VerificationModal'; 
 import DepositModal from './components/auth/DepositModal'; 
-import VisaPaymentModal from './components/auth/VisaPaymentModal'; // Added import for your Visa modal
+import VisaPaymentModal from './components/auth/VisaPaymentModal'; 
 
 // --- ICON IMPORTS (Unchanged) ---
-import { Wallet, Home, Gamepad2, Trophy, Settings, User, Globe, Gift, Users } from 'lucide-react';
+import { Wallet, Home, Gamepad2, Trophy, Settings, User, Globe, Gift, Users, ChevronDown , LogOut } from 'lucide-react';
 
 // --- FOOTER COMPONENT (Unchanged) ---
 const Footer: React.FC<{ onNavigate: (page: string) => void }> = ({ onNavigate }) => {
@@ -134,10 +134,18 @@ function App() {
   const [nextLevelXP, setNextLevelXP] = useState(10000);
   const [language, setLanguage] = useState<'en' | 'es'>('en');
   const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
+  const [isBalanceDropdownOpen, setIsBalanceDropdownOpen] = useState(false);
 
   const btcToUsd = 45000;
   const balanceUSD = balance * btcToUsd;
   const xpProgress = (userXP / nextLevelXP) * 100;
+
+  const currencies = [
+      { name: 'Tether', code: 'USDT', icon: '₮', balance: '12,345.67' },
+      { name: 'Bitcoin', code: 'BTC', icon: '₿', balance: '0.54321' },
+      { name: 'Ethereum', code: 'ETH', icon: 'Ξ', balance: '10.987' },
+      { name: 'Solana', code: 'SOL', icon: 'S', balance: '123.45' },
+  ]
 
   // --- HANDLERS (Unchanged) ---
   const handleShowOtp = () => setModalView('otp');
@@ -145,7 +153,7 @@ function App() {
 
   const handleLoginSuccess = () => {
     setIsAuthenticated(true);
-    setUser({ username: 'Ashu' });
+    setUser({ username: 'test' });
     setModalView('deposit'); // Show deposit modal after login
   };
 
@@ -207,7 +215,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-[#3C1A4F] to-[#000000]">
-      {/* Navigation (Unchanged) */}
+      {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-black/20 backdrop-blur-md border-b border-[#3C1A4F]/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
@@ -236,8 +244,6 @@ function App() {
             </div>
             
             <div className="flex items-center space-x-4">
-              {/* Language Dropdown etc. */}
-
               {!isAuthenticated ? (
                 <button
                   onClick={() => setModalView('login')}
@@ -247,19 +253,41 @@ function App() {
                   <span className="hidden sm:inline">Login / Sign Up</span>
                 </button>
               ) : (
-
-
-                   <div className="flex items-center space-x-4">
-                    {/* Balance Display */}
-                    <div className="hidden sm:flex items-center space-x-2 bg-gray-800/50 px-3 py-2 rounded-lg">
-                        <span className="text-yellow-400 font-bold">₿</span>
-                        <span className="text-white font-semibold">{balance.toFixed(2)}</span>
+                <div className="flex items-center space-x-8">
+                    {/* Balance Display with Dropdown */}
+                    <div className="relative">
+                        <div className="flex items-center space-x-2 bg-gray-800/50 px-3 py-2 rounded-lg">
+                            <span className="text-yellow-400 font-bold">₿</span>
+                            <span className="text-white font-semibold">{balance.toFixed(2)}</span>
+                            <button onClick={() => setIsBalanceDropdownOpen(!isBalanceDropdownOpen)}>
+                                <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform ${isBalanceDropdownOpen ? 'rotate-180' : ''}`} />
+                            </button>
+                        </div>
+                        {isBalanceDropdownOpen && (
+                            <div className="absolute top-full right-0 mt-2 w-64 bg-gray-800 border border-gray-700 rounded-lg shadow-lg z-50">
+                                <div className="p-2">
+                                    {currencies.map(currency => (
+                                        <div key={currency.code} className="flex items-center justify-between p-2 hover:bg-gray-700 rounded-md">
+                                            <div className="flex items-center space-x-2">
+                                                <span className="text-xl text-green-500 ">{currency.icon}</span>
+                                                <span className="text-white">{currency.name}</span>
+                                            </div>
+                                            <span className="text-gray-300">{currency.balance}</span>
+                                        </div>
+                                    ))}
+                                </div>
+                                <div className="border-t border-gray-700 p-2 space-y-1">
+                                    <button className="w-full text-left p-2 hover:bg-gray-700 rounded-md text-white">Buy Crypto</button>
+                                    <button className="w-full text-left p-2 hover:bg-gray-700 rounded-md text-white">Hide 0 balances</button>
+                                </div>
+                            </div>
+                        )}
                     </div>
 
                   {/* Deposit Button */}
                   <button
                     onClick={() => setModalView('deposit')}
-                    className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-blue-500 to-teal-400 text-white rounded-lg font-semibold transition-colors"
+                    className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-[#3C1A4F] to-[#36CFC9] text-white rounded-lg font-semibold transition-colors"
                   >
                     <Wallet className="w-5 h-5" />
                     <span>Deposit</span>
@@ -270,26 +298,17 @@ function App() {
                         <button className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center">
                             <User className="w-6 h-6 text-white" />
                         </button>
-                        {/* You can add a dropdown menu here later */}
                    </div>
+
+
+                    <button
+                    onClick={handleLogout}
+                    className="w-10 h-10 flex items-center justify-center bg-red-500/20 hover:bg-red-500/30 border border-red-500/30 text-red-400 rounded-full transition-colors"
+                    aria-label="Logout"
+                   >
+                    <LogOut className="w-5 h-5" />
+                  </button>
                 </div>
-                // <div className="flex items-center space-x-3">
-                  
-                //   <button
-                //     onClick={() => setModalView('deposit')}
-                //     className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-blue-500 to-teal-400 text-white rounded-lg font-semibold"
-                //   >
-                //     <Wallet className="w-5 h-5" />
-                //     <span>Deposit</span>
-                //   </button>
-                //   <span className="text-white font-medium">Welcome, {user?.username}</span>
-                //   <button
-                //     onClick={handleLogout}
-                //     className="px-3 py-2 bg-red-500/20 hover:bg-red-500/30 border border-red-500/30 text-red-400 rounded-lg font-semibold transition-colors text-sm"
-                //   >
-                //     Logout
-                //   </button>
-                // </div>
               )}
             </div>
           </div>
@@ -328,13 +347,12 @@ function App() {
       )}
       {modalView === 'visa' && (
         <VisaPaymentModal
-          onClose={() => setModalView('deposit')} 
+          onClose={() => setModalView('deposit')} // Go back to the deposit modal
         />
       )}
     </div>
   );
 }
-
 
 
 export default App;
