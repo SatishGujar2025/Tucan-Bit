@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { X, ChevronDown, AlertTriangle } from 'lucide-react';
+// Replaced: Switched to 'react-qr-code' for better module compatibility.
+import QRCode from "react-qr-code";
+import { FaCcVisa,FaBitcoin } from "react-icons/fa";
 
 
 interface DepositModalProps {
@@ -15,6 +18,13 @@ const DepositModal: React.FC<DepositModalProps> = ({ onClose, onVisaClick }) => 
   const [isNetworkOpen, setIsNetworkOpen] = useState(false);
   const [withdrawAmount, setWithdrawAmount] = useState('0.00');
   const [withdrawAddress, setWithdrawAddress] = useState('');
+
+  // A sample deposit address for the QR code to encode.
+  // In a real application, this would be dynamically fetched or passed as a prop.
+  const depositAddress = "TQ1a1y2w3z4x5c6v7b8n9m0q1w2e3r4t5y6u7i8o9p0";
+
+
+
 
   const currencies = [
     { code: 'USDT', name: 'Tether', icon: '₮' },
@@ -32,7 +42,8 @@ const DepositModal: React.FC<DepositModalProps> = ({ onClose, onVisaClick }) => 
     <div className="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
       <div className="bg-gray-800 rounded-2xl w-full max-w-md mx-auto shadow-2xl border border-gray-700">
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-gray-700">
+        <div className="flex items-ce
+        nter justify-between p-6 border-b border-gray-700">
           <h2 className="text-xl font-semibold text-white">Wallet</h2>
           <button
             onClick={onClose}
@@ -73,16 +84,22 @@ const DepositModal: React.FC<DepositModalProps> = ({ onClose, onVisaClick }) => 
           
           {/* Payment Icons */}
           <div className="flex items-center gap-2 pr-6 py-4">
-            <button 
-              onClick={onVisaClick}
-              className="bg-blue-600 text-white px-2 py-1 rounded text-xs font-bold hover:bg-blue-700 transition-colors duration-200"
-            >
-              VISA
-            </button>
-            <div className="w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center text-white text-xs font-bold">₿</div>
-            <div className="w-6 h-6 bg-gray-600 rounded-full flex items-center justify-center">
-              <div className="w-3 h-3 bg-gray-400 rounded"></div>
-            </div>
+         <button 
+  onClick={onVisaClick}
+  className=" text-white px-2 text-12 py-2 rounded text-lg font-bold transition-colors duration-200"
+>
+   <span className="text-3xl"> 
+    <FaCcVisa />
+  </span>
+</button>
+           {/* <button 
+
+  className=" text-white px-2 text-12 py-2 rounded text-lg font-bold transition-colors duration-200"
+>
+   <span className="text-3xl"> 
+    <FaBitcoin />
+  </span>
+</button> */}
           </div>
         </div>
 
@@ -177,33 +194,15 @@ const DepositModal: React.FC<DepositModalProps> = ({ onClose, onVisaClick }) => 
                   Direct deposits through blockchain can take up to 10 minutes. Please be patient!
                 </p>
 
-                {/* QR Code */}
-                <div className="bg-white p-6 rounded-lg flex items-center justify-center">
-                  <div className="w-32 h-32 bg-black rounded-lg relative overflow-hidden">
-                    {/* QR Code Pattern */}
-                    <div className="absolute inset-0 p-2">
-                      <div className="grid grid-cols-8 gap-px h-full w-full">
-                        {Array.from({ length: 64 }).map((_, i) => (
-                          <div
-                            key={i}
-                            className={`${
-                              Math.random() > 0.5 ? 'bg-black' : 'bg-white'
-                            } rounded-sm`}
-                          />
-                        ))}
-                      </div>
-                    </div>
-                    {/* Corner squares */}
-                    <div className="absolute top-2 left-2 w-6 h-6 border-2 border-black bg-white">
-                      <div className="w-2 h-2 bg-black m-1"></div>
-                    </div>
-                    <div className="absolute top-2 right-2 w-6 h-6 border-2 border-black bg-white">
-                      <div className="w-2 h-2 bg-black m-1"></div>
-                    </div>
-                    <div className="absolute bottom-2 left-2 w-6 h-6 border-2 border-black bg-white">
-                      <div className="w-2 h-2 bg-black m-1"></div>
-                    </div>
-                  </div>
+                {/* QR Code using react-qr-code */}
+                <div className="bg-white p-4 rounded-lg flex items-center justify-center">
+                  <QRCode
+                    value={depositAddress}
+                    size={160} // Adjust size as needed
+                    bgColor="#FFFFFF"
+                    fgColor="#000000"
+                    viewBox={`0 0 160 160`}
+                  />
                 </div>
 
                 {/* Warning */}

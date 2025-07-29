@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
 import { X, ChevronDown, CreditCard, Info } from 'lucide-react';
+import { FaApple, FaGooglePay, FaCcVisa, FaCreditCard, FaBuilding } from "react-icons/fa";
+import Gpay from '../../assets/gpay.png'; 
+import Visa from '../../assets/visa.png'; 
+import Paypal from '../../assets/paypal.png'
+import Mastercard from '../../assets/mastercard.png'
 
 interface VisaPaymentModalProps {
   onClose: () => void;
@@ -43,11 +48,15 @@ const VisaPaymentModal: React.FC<VisaPaymentModalProps> = ({ onClose }) => {
           
           {/* Payment Icons */}
           <div className="flex items-center gap-2 pr-6 py-4">
-            <div className="bg-blue-600 text-white px-2 py-1 rounded text-xs font-bold">VISA</div>
-            <div className="w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center text-white text-xs font-bold">₿</div>
-            <div className="w-6 h-6 bg-gray-600 rounded-full flex items-center justify-center">
-              <div className="w-3 h-3 bg-gray-400 rounded"></div>
+            <div className=" text-white px-2 py-1 rounded text-xs font-bold">
+              <span className="text-3xl">
+                <FaCcVisa />
+              </span>
             </div>
+            {/* <div className="w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center text-white text-xs font-bold">₿</div> */}
+            {/* <div className="w-6 h-6 bg-gray-600 rounded-full flex items-center justify-center">
+              <div className="w-3 h-3 bg-gray-400 rounded"></div>
+            </div> */}
           </div>
         </div>
 
@@ -137,37 +146,37 @@ const VisaPaymentModal: React.FC<VisaPaymentModalProps> = ({ onClose }) => {
             </label>
             
             <div className="flex items-center gap-2 flex-wrap">
-              <div className="bg-gray-700 px-3 py-2 rounded-lg flex items-center gap-2">
-                <div className="w-6 h-4 bg-black rounded-sm flex items-center justify-center">
-                  <span className="text-white text-xs font-bold">🍎</span>
+              {/* <div className="bg-gray-700 px-3 py-2 rounded-lg flex items-center gap-2">
+                <div className="w-6 h-4 b rounded-sm flex items-center justify-center">
+                  <span className="text-white text-xs font-bold"><FaApple /></span>
                 </div>
                 <span className="text-white text-sm font-medium">Pay</span>
+              </div> */}
+              
+              <div className=" px-3 py-2 rounded-lg flex items-center gap-2">
+              
+                  <span className="text-white text-xs font-bold"><img src={Gpay} alt='gpay' className='w-12 h-12'/>
+                  </span>
+                
+                
               </div>
               
-              <div className="bg-gray-700 px-3 py-2 rounded-lg flex items-center gap-2">
-                <div className="w-6 h-4 bg-red-600 rounded-sm flex items-center justify-center">
-                  <span className="text-white text-xs font-bold">G</span>
-                </div>
-                <span className="text-white text-sm font-medium">Pay</span>
+            
+              
+              <div className=" px-3 py-2 rounded-lg">
+                <span className="text-white text-sm font-bold"><img src={Paypal} alt='gpay' className='w-12 h-12'/></span>
               </div>
               
-              <div className="bg-gray-700 px-3 py-2 rounded-lg flex items-center gap-2">
-                <div className="w-6 h-4 bg-orange-500 rounded-sm flex items-center justify-center">
-                  <span className="text-white text-xs font-bold">R</span>
-                </div>
-              </div>
+           
               
-              <div className="bg-blue-600 px-3 py-2 rounded-lg">
-                <span className="text-white text-sm font-bold">VISA</span>
+              <div className=" px-3 py-2 rounded-lg flex items-center gap-1">
+                <span className="text-white text-xs"><img src={Mastercard} alt='gpay' className='w-12 h-12'/></span>
+               
               </div>
-              
-              <div className="bg-red-600 px-3 py-2 rounded-lg flex items-center">
-                <span className="text-white text-sm font-bold">●●</span>
-              </div>
-              
-              <div className="bg-gray-700 px-3 py-2 rounded-lg flex items-center gap-1">
-                <span className="text-white text-xs">🏦</span>
-                <span className="text-white text-sm font-medium">BANK</span>
+
+              <div className=" px-3 py-2 rounded-lg flex items-center gap-1"> 
+                <span className="text-white text-xs"><img src={Visa} alt='gpay' className='w-12 h-12'/></span>
+               
               </div>
             </div>
           </div>

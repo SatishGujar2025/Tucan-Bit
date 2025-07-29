@@ -6,7 +6,7 @@ import Header from './Header';
 
 const MainContent = () => {
   return (
-    <div className="flex-1 p-6  ml-20 pl-48 bg-gray-900">
+    <div className="flex-1 p-6   bg-gray-900">
       <Header />
       <SearchBar />
       

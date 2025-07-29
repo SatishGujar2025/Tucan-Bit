@@ -725,7 +725,8 @@ const HomePage: React.FC<HomePageProps> = ({ language }) => {
         <div className="w-6"></div>
       </header>
 
-      <main className={`lg:ml-2 pt-16 lg:pt-0 ${sidebarOpen ? 'ml-2' : ''}`}>
+      {/* // CORRECTED LINE: This className now correctly handles desktop and mobile layouts. */}
+      <main className="pt-16 lg:pt-0 lg:ml-64">
         {currentPage === 'casino' ? (
           <CasinoPage />
         ) : (
@@ -737,5 +738,3 @@ const HomePage: React.FC<HomePageProps> = ({ language }) => {
 };
 
 export default HomePage;
-
-     

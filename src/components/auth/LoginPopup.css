@@ -37,7 +37,7 @@
 /* --- Left Image Section --- */
 .popup-image-section {
   flex: 1;
-  background-image: url('../../assets/tucanbit.jpeg'), linear-gradient(to top, #6a11cb 0%, #2575fc 100%); /* Placeholder image + Gradient*/
+  background-image: url('../../assets/TB.png'), linear-gradient(to top, #6a11cb 0%, #2575fc 100%); 
   background-size: cover; 
   background-position: center;
   background-repeat: no-repeat;
@@ -304,4 +304,9 @@
   font-size: 0.8rem;
   color: #a0a0b0; /* Lighter text color */
   line-height: 1.6;
+}
+@media (max-width: 768px) {
+  .popup-image-section {
+    display: none; /* Hide the section on screens smaller than 768px */
+  }
 }
