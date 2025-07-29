@@ -1,74 +1,52 @@
 import React, { useState } from 'react';
 
-// Main App component to display and manage the popup
-export default function App() {
-  const [isPopupVisible, setIsPopupVisible] = useState(true); // Default to true to show on load
-
-  const handleVerificationComplete = () => {
-    console.log("Verification complete! Closing popup.");
-    setIsPopupVisible(false);
-    // Here you would typically navigate the user or show a success message
-  };
-
-  return (
-    <>
-      {/* This is the main application background */}
-      <div className="bg-slate-900 text-white min-h-screen flex flex-col items-center justify-center p-4">
-        <h1 className="text-3xl font-bold mb-4">Application Page</h1>
-        <p className="text-slate-400 mb-8">Click the button to open the verification popup.</p>
-        <button
-          onClick={() => setIsPopupVisible(true)}
-          className="px-6 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg font-semibold"
-        >
-          Show Verification Popup
-        </button>
-      </div>
-
-      {/* Render the popup conditionally */}
-      {isPopupVisible && (
-        <VerificationPopup
-          onClose={() => setIsPopupVisible(false)}
-          onVerificationComplete={handleVerificationComplete}
-        />
-      )}
-    </>
-  );
-}
-
-
-// The VerificationPopup component
-interface VerificationPopupProps {
+// Define the props the component expects from App.tsx
+interface VerificationModalProps {
   onClose: () => void;
   onVerificationComplete: () => void;
 }
 
-const VerificationPopup: React.FC<VerificationPopupProps> = ({ onClose, onVerificationComplete }) => {
+const VerificationModal: React.FC<VerificationModalProps> = ({ onClose, onVerificationComplete }) => {
+  // State for the form data
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
-    email: 'ashenafiemu27@gmail.com', // Pre-filled from previous step
+    email: 'ashenafiemu27@gmail.com', // This should ideally be passed as a prop
     postalAddress: '',
     postalCode: '',
     dob: '',
     country: '',
   });
+  
+  // State for the checkbox and any potential errors
   const [termsAccepted, setTermsAccepted] = useState(false);
   const [error, setError] = useState('');
 
+  // Handler for form input changes
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
+  // Handler for form submission
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Basic validation
     if (!termsAccepted) {
       setError('You must accept the terms and conditions.');
       return;
     }
+    
+    // Clear any previous errors
     setError('');
+    
     console.log('Verification Data Submitted:', formData);
-    onVerificationComplete(); // Signal to the parent component
+    
+    // *** THIS IS THE KEY STEP ***
+    // This function call tells App.tsx that the login is complete.
+    // App.tsx will then update its state to show the "Deposit" button.
+    onVerificationComplete();
   };
 
   return (
@@ -93,24 +71,23 @@ const VerificationPopup: React.FC<VerificationPopupProps> = ({ onClose, onVerifi
           border-radius: 16px;
           box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
           color: #fff;
-          overflow: hidden; /* Prevents content from spilling out */
+          overflow: hidden;
         }
 
         .verification-container {
           width: 90%;
-          max-width: 500px; /* Increased max-width for better layout */
+          max-width: 500px;
           height: auto;
-          max-height: 90vh; /* Key property: limits the height */
-          display: flex; /* Use flexbox for the main container */
+          max-height: 90vh;
+          display: flex;
           flex-direction: column;
         }
 
         .verification-form-section {
           padding: 2rem 2.5rem;
-          overflow-y: auto; /* Key property: enables scrolling on the form section */
+          overflow-y: auto;
         }
         
-        /* Custom scrollbar for webkit browsers */
         .verification-form-section::-webkit-scrollbar {
             width: 8px;
         }
@@ -123,7 +100,6 @@ const VerificationPopup: React.FC<VerificationPopupProps> = ({ onClose, onVerifi
             border: 2px solid #1e2540;
         }
 
-
         .verification-form {
           display: flex;
           flex-direction: column;
@@ -131,24 +107,19 @@ const VerificationPopup: React.FC<VerificationPopupProps> = ({ onClose, onVerifi
         }
 
         .form-row {
-          display: flex; /* Corrected from inline to flex */
-          flex-direction: column; /* Stack on small screens */
+          display: flex;
+          flex-direction: column;
           gap: 1rem;
         }
         
-        /* Use media query for larger screens */
         @media (min-width: 500px) {
             .form-row {
-                flex-direction: row; /* Side-by-side on larger screens */
+                flex-direction: row;
             }
         }
 
         .form-row .input-group {
           flex: 1;
-        }
-
-        .verification-form .input-group {
-          margin-bottom: 0;
         }
 
         .verification-form .input-group label {
@@ -335,3 +306,5 @@ const VerificationPopup: React.FC<VerificationPopupProps> = ({ onClose, onVerifi
     </>
   );
 };
+
+export default VerificationModal;
