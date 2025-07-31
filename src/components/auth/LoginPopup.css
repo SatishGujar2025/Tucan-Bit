@@ -26,6 +26,37 @@
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
   overflow: hidden;
   animation: fadeIn 0.3s ease-in-out;
+  position: relative; /* Added for close button positioning */
+}
+
+/* --- Close Button --- */
+.close-button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 32px;
+  height: 32px;
+  background-color: rgba(44, 52, 84, 0.8);
+  border: 1px solid #4a5588;
+  border-radius: 50%;
+  color: #aaa;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.close-button:hover {
+  background-color: rgba(74, 85, 136, 0.9);
+  color: #fff;
+  transform: scale(1.1);
+}
+
+.close-button svg {
+  width: 16px;
+  height: 16px;
 }
 
 @keyframes fadeIn {

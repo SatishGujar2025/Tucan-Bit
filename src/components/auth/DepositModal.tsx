@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import { X, ChevronDown, AlertTriangle } from 'lucide-react';
-// Replaced: Switched to 'react-qr-code' for better module compatibility.
 import QRCode from "react-qr-code";
-import { FaCcVisa,FaBitcoin } from "react-icons/fa";
+import { FaCcVisa } from "react-icons/fa";
+import g1 from '../../assets/g11.jpg'
 
-
+// Interface for the component props
 interface DepositModalProps {
   onClose: () => void;
   onVisaClick: () => void;
 }
 
+// The main component
 const DepositModal: React.FC<DepositModalProps> = ({ onClose, onVisaClick }) => {
+  // State management
   const [activeTab, setActiveTab] = useState<'deposit' | 'withdraw'>('deposit');
   const [selectedCurrency, setSelectedCurrency] = useState('USDT');
   const [selectedNetwork, setSelectedNetwork] = useState('TON');
@@ -19,12 +21,9 @@ const DepositModal: React.FC<DepositModalProps> = ({ onClose, onVisaClick }) => 
   const [withdrawAmount, setWithdrawAmount] = useState('0.00');
   const [withdrawAddress, setWithdrawAddress] = useState('');
 
-  // A sample deposit address for the QR code to encode.
-  // In a real application, this would be dynamically fetched or passed as a prop.
+  // Sample data. In a real app, this would come from an API or props.
   const depositAddress = "TQ1a1y2w3z4x5c6v7b8n9m0q1w2e3r4t5y6u7i8o9p0";
-
-
-
+  const logoUrl = g1; // <-- Replace with your actual logo URL
 
   const currencies = [
     { code: 'USDT', name: 'Tether', icon: '₮' },
@@ -42,8 +41,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ onClose, onVisaClick }) => 
     <div className="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
       <div className="bg-gray-800 rounded-2xl w-full max-w-md mx-auto shadow-2xl border border-gray-700">
         {/* Header */}
-        <div className="flex items-ce
-        nter justify-between p-6 border-b border-gray-700">
+        <div className="flex items-center justify-between p-6 border-b border-gray-700">
           <h2 className="text-xl font-semibold text-white">Wallet</h2>
           <button
             onClick={onClose}
@@ -84,22 +82,14 @@ const DepositModal: React.FC<DepositModalProps> = ({ onClose, onVisaClick }) => 
           
           {/* Payment Icons */}
           <div className="flex items-center gap-2 pr-6 py-4">
-         <button 
-  onClick={onVisaClick}
-  className=" text-white px-2 text-12 py-2 rounded text-lg font-bold transition-colors duration-200"
->
-   <span className="text-3xl"> 
-    <FaCcVisa />
-  </span>
-</button>
-           {/* <button 
-
-  className=" text-white px-2 text-12 py-2 rounded text-lg font-bold transition-colors duration-200"
->
-   <span className="text-3xl"> 
-    <FaBitcoin />
-  </span>
-</button> */}
+             <button 
+                onClick={onVisaClick}
+                className="text-white px-2 py-2 rounded text-lg font-bold transition-colors duration-200"
+              >
+               <span className="text-3xl"> 
+                <FaCcVisa />
+              </span>
+            </button>
           </div>
         </div>
 
@@ -194,14 +184,21 @@ const DepositModal: React.FC<DepositModalProps> = ({ onClose, onVisaClick }) => 
                   Direct deposits through blockchain can take up to 10 minutes. Please be patient!
                 </p>
 
-                {/* QR Code using react-qr-code */}
-                <div className="bg-white p-4 rounded-lg flex items-center justify-center">
+                {/* QR Code and Logo Overlay */}
+                <div className="relative bg-white p-4 rounded-lg w-fit mx-auto">
+                  {/* The QR Code itself */}
                   <QRCode
                     value={depositAddress}
-                    size={160} // Adjust size as needed
+                    size={160}
                     bgColor="#FFFFFF"
                     fgColor="#000000"
-                    viewBox={`0 0 160 160`}
+                    level="H" // Set high error correction for better scannability with logo
+                  />
+                  {/* Logo Overlay */}
+                  <img
+                    src={logoUrl}
+                    alt="logo"
+                    className="absolute top-1/2 left-1/2 h-10 w-10 -translate-x-1/2 -translate-y-1/2 bg-white p-1 rounded-md"
                   />
                 </div>
 
@@ -216,6 +213,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ onClose, onVisaClick }) => 
             </>
           ) : (
             <>
+              {/* --- WITHDRAW SECTION (UNCHANGED) --- */}
               {/* Currency Selection for Withdraw */}
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-2">
@@ -374,7 +372,6 @@ const DepositModal: React.FC<DepositModalProps> = ({ onClose, onVisaClick }) => 
                   </p>
                 </div>
               </div>
-
             </>
           )}
         </div>
