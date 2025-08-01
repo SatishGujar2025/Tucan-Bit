@@ -2,16 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { 
   ArrowLeft, Gift, Clock, Star, Trophy, Zap, Crown, Copy, Check, Calendar, Users, Target, Award,
   Home, Wallet, Coins, Dice5, HelpCircle, Mail, Settings, ChevronDown, ChevronRight, LogOut, User, CreditCard, BarChart2,
-  Gamepad2
+  Gamepad2, Bitcoin, CreditCard as CreditCardIcon, QrCode, Copy as CopyIcon, ExternalLink
 } from 'lucide-react';
 
-interface PromotionsPageProps {
+interface DepositPageProps {
   onNavigate?: (page: string) => void;
 }
 
-const PromotionsPage: React.FC<PromotionsPageProps> = ({ onNavigate }) => {
-  const [copiedCode, setCopiedCode] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState('all');
+const DepositPage: React.FC<DepositPageProps> = ({ onNavigate }) => {
+  const [copiedAddress, setCopiedAddress] = useState<string | null>(null);
+  const [selectedCurrency, setSelectedCurrency] = useState('BTC');
   const [isConnecting, setIsConnecting] = useState(false);
   const [walletAddress, setWalletAddress] = useState<string | null>(null);
   const [walletBalance, setWalletBalance] = useState<string | null>(null);
@@ -19,7 +19,7 @@ const PromotionsPage: React.FC<PromotionsPageProps> = ({ onNavigate }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
   const [walletCurrency, setWalletCurrency] = useState<'ETH' | 'SOL' | null>(null);
-  const [currentPage, setCurrentPage] = useState('promotions');
+  const [currentPage, setCurrentPage] = useState('deposit');
 
   useEffect(() => {
     const savedAddress = localStorage.getItem('walletAddress');
@@ -74,119 +74,56 @@ const PromotionsPage: React.FC<PromotionsPageProps> = ({ onNavigate }) => {
     { id: 'ledger', name: 'Ledger', icon: 'https://cdn.prod.website-files.com/60f008ba9757da0940af288e/60fbcaf3bd0478862b605203_ledger.jpg', description: 'Connect your hardware wallet' }
   ];
 
-  const copyToClipboard = (code: string) => {
-    navigator.clipboard.writeText(code);
-    setCopiedCode(code);
-    setTimeout(() => setCopiedCode(null), 2000);
+  const copyToClipboard = (text: string) => {
+    navigator.clipboard.writeText(text);
+    setCopiedAddress(text);
+    setTimeout(() => setCopiedAddress(null), 2000);
   };
 
-  const promotions = [
-    {
-      id: 1,
-      title: 'Welcome Bonus',
-      subtitle: 'New Player Special',
-      description: 'Get 100% match on your first deposit up to 5 BTC plus 100 free spins on our most popular slots',
-      image: 'https://cdn.midjourney.com/0ac3937e-6f1e-438c-b549-124318dd6b3f/0_2.png',
-      bonus: '100% Match + 100 Spins',
-      code: 'WELCOME100',
-      category: 'welcome',
-      featured: true,
-      timeLeft: '6 days',
-      requirements: ['Minimum deposit: 0.01 BTC', 'Wagering requirement: 35x', 'Valid for 30 days'],
-      maxBonus: '5 BTC',
-      games: 'All slots'
+  const cryptocurrencies = [
+    { 
+      symbol: 'BTC', 
+      name: 'Bitcoin', 
+      icon: '₿', 
+      address: 'bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh',
+      qrCode: 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh',
+      minDeposit: '0.001',
+      network: 'Bitcoin',
+      confirmations: '3'
     },
-    {
-      id: 2,
-      title: 'Daily Cashback',
-      subtitle: 'Every Day Rewards',
-      description: 'Earn 10% cashback on all losses every day. No wagering requirements, instant credit to your account',
-      image: 'https://iili.io/FwUxYcN.png',
-      bonus: '10% Daily Cashback',
-      code: 'DAILY10',
-      category: 'daily',
-      featured: true,
-      timeLeft: 'Ongoing',
-      requirements: ['Minimum loss: 0.001 BTC', 'No wagering requirements', 'Credited within 24 hours'],
-      maxBonus: '1 BTC per day',
-      games: 'All games'
+    { 
+      symbol: 'ETH', 
+      name: 'Ethereum', 
+      icon: 'Ξ', 
+      address: '0x742d35Cc6634C0532925a3b8D4C9db96C4b4d8b6',
+      qrCode: 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=0x742d35Cc6634C0532925a3b8D4C9db96C4b4d8b6',
+      minDeposit: '0.01',
+      network: 'Ethereum',
+      confirmations: '12'
     },
-    {
-      id: 3,
-      title: 'VIP Rewards Program',
-      subtitle: 'Exclusive Benefits',
-      description: 'Join our VIP program for exclusive bonuses, faster withdrawals, and personal account manager',
-      image: 'https://cdn.midjourney.com/54d71f3e-7598-4f36-a850-d7dd929d5e7c/0_3.png',
-      bonus: 'Up to 25% Cashback',
-      code: 'VIPCLUB',
-      category: 'vip',
-      featured: true,
-      timeLeft: 'Invitation Only',
-      requirements: ['Minimum monthly volume: 10 BTC', 'Invitation required', 'Exclusive benefits'],
-      maxBonus: 'No limit',
-      games: 'All games + Live casino'
+    { 
+      symbol: 'USDT', 
+      name: 'Tether', 
+      icon: '₮', 
+      address: 'TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t',
+      qrCode: 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t',
+      minDeposit: '10',
+      network: 'Tron',
+      confirmations: '20'
     },
-    {
-      id: 4,
-      title: 'Weekend Reload',
-      subtitle: 'Weekend Special',
-      description: 'Get 50% bonus on deposits made during weekends. Perfect for weekend gaming sessions',
-      image: 'https://cdn.midjourney.com/0ac3937e-6f1e-438c-b549-124318dd6b3f/0_2.png',
-      bonus: '50% Weekend Bonus',
-      code: 'WEEKEND50',
-      category: 'reload',
-      featured: false,
-      timeLeft: '2 days',
-      requirements: ['Available Fri-Sun', 'Minimum deposit: 0.005 BTC', 'Wagering: 30x'],
-      maxBonus: '2 BTC',
-      games: 'Slots & Live games'
-    },
-    {
-      id: 5,
-      title: 'High Roller Bonus',
-      subtitle: 'For Big Players',
-      description: 'Exclusive bonus for high rollers. Deposit 1 BTC or more and get 25% bonus with VIP treatment',
-      image: 'https://cdn.midjourney.com/54d71f3e-7598-4f36-a850-d7dd929d5e7c/0_3.png',
-      bonus: '25% High Roller',
-      code: 'HIGHROLLER',
-      category: 'highroller',
-      featured: false,
-      timeLeft: 'Ongoing',
-      requirements: ['Minimum deposit: 1 BTC', 'VIP status required', 'Wagering: 25x'],
-      maxBonus: '10 BTC',
-      games: 'All games'
-    },
-    {
-      id: 6,
-      title: 'Free Spins Friday',
-      subtitle: 'Weekly Spins',
-      description: 'Every Friday get 50 free spins on featured slot games. No deposit required for existing players',
-      image: 'https://iili.io/FwUxYcN.png',
-      bonus: '50 Free Spins',
-      code: 'FRIDAY50',
-      category: 'freespins',
-      featured: false,
-      timeLeft: '5 days',
-      requirements: ['Active account required', 'Available every Friday', 'Wagering: 40x winnings'],
-      maxBonus: 'No cash limit',
-      games: 'Featured slots only'
+    { 
+      symbol: 'SOL', 
+      name: 'Solana', 
+      icon: 'S', 
+      address: '9WzDXwBbmkg8ZTbNMqUxvQRAyrZzDsGYdLVL9zYtAWWM',
+      qrCode: 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=9WzDXwBbmkg8ZTbNMqUxvQRAyrZzDsGYdLVL9zYtAWWM',
+      minDeposit: '0.1',
+      network: 'Solana',
+      confirmations: '1'
     }
   ];
 
-  const categories = [
-    { id: 'all', name: 'All Promotions', icon: Gift },
-    { id: 'welcome', name: 'Welcome', icon: Star },
-    { id: 'daily', name: 'Daily', icon: Clock },
-    { id: 'vip', name: 'VIP', icon: Crown },
-    { id: 'reload', name: 'Reload', icon: Zap },
-    { id: 'freespins', name: 'Free Spins', icon: Target }
-  ];
-
-  const filteredPromotions = activeTab === 'all' 
-    ? promotions 
-    : promotions.filter(promo => promo.category === activeTab);
-
-  const featuredPromotions = promotions.filter(promo => promo.featured);
+  const selectedCrypto = cryptocurrencies.find(crypto => crypto.symbol === selectedCurrency);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800">
@@ -334,7 +271,7 @@ const PromotionsPage: React.FC<PromotionsPageProps> = ({ onNavigate }) => {
 
               {activeSubmenu === 'wallet' && (
                 <div className="pl-10 pt-1 space-y-1">
-                  <button onClick={() => handleNavigate('deposit')} className="flex items-center space-x-2 p-2 text-sm text-gray-300 hover:text-white w-full text-left">
+                  <button onClick={() => handleNavigate('deposit')} className="flex items-center space-x-2 p-2 text-sm text-gray-300 hover:text-white w-full text-left bg-gradient-to-r from-yellow-500/20 to-orange-500/20">
                     <CreditCard className="w-4 h-4" />
                     <span>Deposit</span>
                   </button>
@@ -454,227 +391,192 @@ const PromotionsPage: React.FC<PromotionsPageProps> = ({ onNavigate }) => {
               <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
                 <div className="text-center md:text-left max-w-2xl">
                   <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
-                    Exclusive <span className="bg-gradient-to-r from-[#F25287] to-[#36CFC9] bg-clip-text text-transparent">Promotions</span>
+                    <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-orange-500">Deposit</span> Funds
                   </h1>
                   <p className="text-xl text-gray-300">
-                    Boost your gaming with our amazing bonuses and rewards
+                    Add funds to your account instantly with cryptocurrency deposits
                   </p>
                 </div>
               </div>
             </section>
 
-        {/* Featured Promotions */}
-        <div className="mb-12">
-          <h2 className="text-2xl font-bold text-white mb-6 flex items-center">
-            <Crown className="w-7 h-7 text-yellow-400 mr-3" />
-            Featured Promotions
-          </h2>
-          <div className="grid lg:grid-cols-3 gap-6">
-            {featuredPromotions.map((promo) => (
-              <div
-                key={promo.id}
-                className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-yellow-900/30 to-orange-900/30 backdrop-blur-sm border border-yellow-500/30 hover:border-yellow-500/50 transition-all duration-300"
-              >
-                <div className="absolute top-4 left-4 z-10 bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-3 py-1 rounded-full text-sm font-bold flex items-center space-x-1">
-                  <Star className="w-4 h-4 fill-current" />
-                  <span>FEATURED</span>
-                </div>
-                
-                <div className="aspect-[3/2] relative overflow-hidden">
-                  <img
-                    src={promo.image}
-                    alt={promo.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-                </div>
-                
-                <div className="p-6">
-                  <div className="mb-4">
-                    <h3 className="text-2xl font-bold text-white mb-1">{promo.title}</h3>
-                    <p className="text-yellow-400 font-semibold">{promo.subtitle}</p>
-                  </div>
-                  
-                  <p className="text-gray-300 mb-4 text-sm leading-relaxed">{promo.description}</p>
-                  
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="bg-gradient-to-r from-yellow-500/20 to-orange-500/20 border border-yellow-500/30 rounded-lg px-3 py-2">
-                      <span className="text-yellow-400 font-bold text-lg">{promo.bonus}</span>
-                    </div>
-                    <div className="text-right">
-                      <div className="text-xs text-gray-400">Time Left</div>
-                      <div className="text-sm font-semibold text-white">{promo.timeLeft}</div>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-center space-x-3">
-                    <div className="flex-1 bg-black/30 rounded-lg px-3 py-2 font-mono text-sm text-center">
-                      <span className="text-yellow-400">{promo.code}</span>
-                    </div>
-                    <button
-                      onClick={() => copyToClipboard(promo.code)}
-                      className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-4 py-2 rounded-lg font-semibold hover:from-yellow-600 hover:to-orange-600 transition-all duration-200 flex items-center space-x-2"
-                    >
-                      {copiedCode === promo.code ? (
-                        <>
-                          <Check className="w-4 h-4" />
-                          <span>Copied!</span>
-                        </>
-                      ) : (
-                        <>
-                          <Copy className="w-4 h-4" />
-                          <span>Copy</span>
-                        </>
-                      )}
-                    </button>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Category Tabs */}
-        <div className="mb-8">
-          <div className="flex overflow-x-auto scrollbar-hide space-x-2 pb-2">
-            {categories.map((category) => {
-              const Icon = category.icon;
-              return (
-                <button
-                  key={category.id}
-                  onClick={() => setActiveTab(category.id)}
-                  className={`flex items-center space-x-2 px-4 py-3 rounded-xl transition-all duration-200 whitespace-nowrap ${
-                    activeTab === category.id
-                      ? 'bg-gradient-to-r from-[#3C1A4F] to-[#36CFC9] text-white'
-                      : 'bg-black/20 text-gray-300 hover:bg-[#3C1A4F]/20'
-                  }`}
-                >
-                  <Icon className="w-5 h-5" />
-                  <span className="font-medium">{category.name}</span>
-                </button>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* All Promotions Grid */}
-        <div className="grid lg:grid-cols-2 gap-6">
-          {filteredPromotions.map((promo) => (
-            <div
-              key={promo.id}
-              className="bg-gradient-to-br from-[#3C1A4F]/30 to-[#36CFC9]/30 backdrop-blur-sm border border-[#3C1A4F]/20 rounded-2xl overflow-hidden hover:border-[#3C1A4F]/40 transition-all duration-300"
-            >
-              <div className="flex">
-                <div className="w-1/3 relative">
-                  <img
-                    src={promo.image}
-                    alt={promo.title}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black/50" />
-                </div>
-                
-                <div className="flex-1 p-6">
-                  <div className="flex items-start justify-between mb-3">
-                    <div>
-                      <h3 className="text-xl font-bold text-white mb-1">{promo.title}</h3>
-                      <p className="text-[#F25287] font-semibold text-sm">{promo.subtitle}</p>
-                    </div>
-                    {promo.featured && (
-                      <div className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-2 py-1 rounded-full text-xs font-bold">
-                        FEATURED
+            {/* Currency Selection */}
+            <div className="mb-8">
+              <h2 className="text-2xl font-bold text-white mb-6">Select Cryptocurrency</h2>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                {cryptocurrencies.map((crypto) => (
+                  <button
+                    key={crypto.symbol}
+                    onClick={() => setSelectedCurrency(crypto.symbol)}
+                    className={`p-4 rounded-xl border-2 transition-all duration-200 ${
+                      selectedCurrency === crypto.symbol
+                        ? 'border-yellow-500 bg-gradient-to-r from-yellow-500/20 to-orange-500/20'
+                        : 'border-gray-700 bg-gray-800/50 hover:border-gray-600'
+                    }`}
+                  >
+                    <div className="flex items-center space-x-3">
+                      <div className="text-2xl">{crypto.icon}</div>
+                      <div className="text-left">
+                        <div className="font-bold text-white">{crypto.symbol}</div>
+                        <div className="text-sm text-gray-400">{crypto.name}</div>
                       </div>
-                    )}
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Deposit Information */}
+            {selectedCrypto && (
+              <div className="grid lg:grid-cols-2 gap-8">
+                {/* QR Code and Address */}
+                <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-2xl p-8 border border-gray-700">
+                  <h3 className="text-xl font-bold text-white mb-6 flex items-center">
+                    <QrCode className="w-6 h-6 mr-3 text-yellow-400" />
+                    Deposit {selectedCrypto.name}
+                  </h3>
+                  
+                  <div className="text-center mb-6">
+                    <div className="bg-white p-4 rounded-lg inline-block mb-4">
+                      <img 
+                        src={selectedCrypto.qrCode} 
+                        alt={`${selectedCrypto.name} QR Code`}
+                        className="w-48 h-48"
+                      />
+                    </div>
                   </div>
-                  
-                  <p className="text-gray-300 text-sm mb-4 leading-relaxed">{promo.description}</p>
-                  
-                  <div className="grid grid-cols-2 gap-4 mb-4">
-                    <div>
-                      <div className="text-xs text-gray-400 mb-1">Bonus</div>
-                      <div className="text-[#36CFC9] font-semibold text-sm">{promo.bonus}</div>
-                    </div>
-                    <div>
-                      <div className="text-xs text-gray-400 mb-1">Max Bonus</div>
-                      <div className="text-[#7ED957] font-semibold text-sm">{promo.maxBonus}</div>
-                    </div>
-                    <div>
-                      <div className="text-xs text-gray-400 mb-1">Time Left</div>
-                      <div className="text-white font-semibold text-sm">{promo.timeLeft}</div>
-                    </div>
-                    <div>
-                      <div className="text-xs text-gray-400 mb-1">Games</div>
-                      <div className="text-white font-semibold text-sm">{promo.games}</div>
+
+                  <div className="mb-6">
+                    <label className="block text-sm font-medium text-gray-300 mb-2">Deposit Address</label>
+                    <div className="flex items-center space-x-2">
+                      <div className="flex-1 bg-gray-900 rounded-lg px-4 py-3 font-mono text-sm text-gray-300 break-all">
+                        {selectedCrypto.address}
+                      </div>
+                      <button
+                        onClick={() => copyToClipboard(selectedCrypto.address)}
+                        className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-4 py-3 rounded-lg hover:from-yellow-600 hover:to-orange-600 transition-all duration-200 flex items-center space-x-2"
+                      >
+                        {copiedAddress === selectedCrypto.address ? (
+                          <>
+                            <Check className="w-4 h-4" />
+                            <span>Copied!</span>
+                          </>
+                        ) : (
+                          <>
+                            <CopyIcon className="w-4 h-4" />
+                            <span>Copy</span>
+                          </>
+                        )}
+                      </button>
                     </div>
                   </div>
-                  
-                  <div className="flex items-center space-x-3">
-                    <div className="flex-1 bg-black/30 rounded-lg px-3 py-2 font-mono text-sm text-center">
-                      <span className="text-[#F25287]">{promo.code}</span>
+
+                  <div className="grid grid-cols-2 gap-4 text-sm">
+                    <div>
+                      <div className="text-gray-400">Minimum Deposit</div>
+                      <div className="text-white font-semibold">{selectedCrypto.minDeposit} {selectedCrypto.symbol}</div>
                     </div>
-                    <button
-                      onClick={() => copyToClipboard(promo.code)}
-                      className="bg-gradient-to-r from-[#3C1A4F] to-[#36CFC9] text-white px-3 py-2 rounded-lg font-semibold hover:from-[#3C1A4F]/80 hover:to-[#36CFC9]/80 transition-all duration-200 flex items-center space-x-1"
-                    >
-                      {copiedCode === promo.code ? (
-                        <>
-                          <Check className="w-4 h-4" />
-                          <span className="hidden sm:inline">Copied!</span>
-                        </>
-                      ) : (
-                        <>
-                          <Copy className="w-4 h-4" />
-                          <span className="hidden sm:inline">Copy</span>
-                        </>
-                      )}
-                    </button>
+                    <div>
+                      <div className="text-gray-400">Network</div>
+                      <div className="text-white font-semibold">{selectedCrypto.network}</div>
+                    </div>
+                    <div>
+                      <div className="text-gray-400">Confirmations</div>
+                      <div className="text-white font-semibold">{selectedCrypto.confirmations}</div>
+                    </div>
+                    <div>
+                      <div className="text-gray-400">Processing Time</div>
+                      <div className="text-white font-semibold">5-30 minutes</div>
+                    </div>
                   </div>
-                  
-                  {/* Requirements */}
-                  <div className="mt-4 pt-4 border-t border-white/10">
-                    <div className="text-xs text-gray-400 mb-2">Requirements:</div>
-                    <ul className="space-y-1">
-                      {promo.requirements.map((req, index) => (
-                        <li key={index} className="text-xs text-gray-300 flex items-center space-x-2">
-                          <div className="w-1 h-1 bg-[#36CFC9] rounded-full"></div>
-                          <span>{req}</span>
-                        </li>
-                      ))}
+                </div>
+
+                {/* Instructions and Info */}
+                <div className="space-y-6">
+                  {/* Instructions */}
+                  <div className="bg-gradient-to-br from-blue-900/20 to-blue-800/20 rounded-2xl p-6 border border-blue-700/30">
+                    <h3 className="text-lg font-bold text-white mb-4 flex items-center">
+                      <CreditCardIcon className="w-5 h-5 mr-2 text-blue-400" />
+                      How to Deposit
+                    </h3>
+                    <ol className="space-y-3 text-gray-300">
+                      <li className="flex items-start space-x-3">
+                        <span className="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold flex-shrink-0">1</span>
+                        <span>Copy the deposit address above or scan the QR code with your wallet</span>
+                      </li>
+                      <li className="flex items-start space-x-3">
+                        <span className="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold flex-shrink-0">2</span>
+                        <span>Send the minimum amount or more to the provided address</span>
+                      </li>
+                      <li className="flex items-start space-x-3">
+                        <span className="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold flex-shrink-0">3</span>
+                        <span>Wait for network confirmations (usually 5-30 minutes)</span>
+                      </li>
+                      <li className="flex items-start space-x-3">
+                        <span className="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold flex-shrink-0">4</span>
+                        <span>Your funds will be credited to your account automatically</span>
+                      </li>
+                    </ol>
+                  </div>
+
+                  {/* Important Notes */}
+                  <div className="bg-gradient-to-br from-yellow-900/20 to-orange-900/20 rounded-2xl p-6 border border-yellow-700/30">
+                    <h3 className="text-lg font-bold text-white mb-4 flex items-center">
+                      <Award className="w-5 h-5 mr-2 text-yellow-400" />
+                      Important Notes
+                    </h3>
+                    <ul className="space-y-2 text-gray-300">
+                      <li className="flex items-start space-x-2">
+                        <div className="w-1.5 h-1.5 bg-yellow-400 rounded-full mt-2 flex-shrink-0"></div>
+                        <span>Only send {selectedCrypto.symbol} to this address. Sending other cryptocurrencies may result in permanent loss.</span>
+                      </li>
+                      <li className="flex items-start space-x-2">
+                        <div className="w-1.5 h-1.5 bg-yellow-400 rounded-full mt-2 flex-shrink-0"></div>
+                        <span>Ensure you're using the correct network ({selectedCrypto.network}) for your transaction.</span>
+                      </li>
+                      <li className="flex items-start space-x-2">
+                        <div className="w-1.5 h-1.5 bg-yellow-400 rounded-full mt-2 flex-shrink-0"></div>
+                        <span>Deposits below the minimum amount will not be credited to your account.</span>
+                      </li>
+                      <li className="flex items-start space-x-2">
+                        <div className="w-1.5 h-1.5 bg-yellow-400 rounded-full mt-2 flex-shrink-0"></div>
+                        <span>For support, contact our 24/7 customer service team.</span>
+                      </li>
                     </ul>
                   </div>
+
+                  {/* Recent Deposits */}
+                  <div className="bg-gradient-to-br from-green-900/20 to-green-800/20 rounded-2xl p-6 border border-green-700/30">
+                    <h3 className="text-lg font-bold text-white mb-4 flex items-center">
+                      <Clock className="w-5 h-5 mr-2 text-green-400" />
+                      Recent Deposits
+                    </h3>
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between p-3 bg-gray-800/50 rounded-lg">
+                        <div className="flex items-center space-x-3">
+                          <div className="text-lg">{selectedCrypto.icon}</div>
+                          <div>
+                            <div className="text-white font-semibold">0.005 {selectedCrypto.symbol}</div>
+                            <div className="text-sm text-gray-400">2 minutes ago</div>
+                          </div>
+                        </div>
+                        <div className="text-green-400 font-semibold">Confirmed</div>
+                      </div>
+                      <div className="flex items-center justify-between p-3 bg-gray-800/50 rounded-lg">
+                        <div className="flex items-center space-x-3">
+                          <div className="text-lg">{selectedCrypto.icon}</div>
+                          <div>
+                            <div className="text-white font-semibold">0.002 {selectedCrypto.symbol}</div>
+                            <div className="text-sm text-gray-400">15 minutes ago</div>
+                          </div>
+                        </div>
+                        <div className="text-yellow-400 font-semibold">Pending</div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Promotion Stats */}
-
-        {/* Terms Notice */}
-        <div className="mt-8 bg-gradient-to-r from-purple-900/20 to-blue-900/20 border border-purple-500/20 rounded-xl p-6">
-          <div className="flex items-start space-x-3">
-            <Award className="w-6 h-6 text-purple-400 mt-1 flex-shrink-0" />
-            <div>
-              <h3 className="text-lg font-bold text-white mb-2">Important Information</h3>
-              <p className="text-gray-300 text-sm leading-relaxed">
-                All promotions are subject to terms and conditions. Wagering requirements apply to bonus funds. 
-                Players must be 18+ and verify their account. Responsible gaming limits apply. 
-                TucanBit reserves the right to modify or cancel promotions at any time.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Custom scrollbar styles */}
-        <style>{`
-          .scrollbar-hide {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-          }
-          .scrollbar-hide::-webkit-scrollbar {
-            display: none;
-          }
-        `}</style>
+            )}
           </div>
         </div>
       </main>
@@ -682,4 +584,4 @@ const PromotionsPage: React.FC<PromotionsPageProps> = ({ onNavigate }) => {
   );
 };
 
-export default PromotionsPage;
+export default DepositPage; 

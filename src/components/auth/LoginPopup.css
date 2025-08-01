@@ -13,6 +13,7 @@
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  place-items: center; 
   font-family: 'Poppins', sans-serif;
 }
 
@@ -338,6 +339,39 @@
 }
 @media (max-width: 768px) {
   .popup-image-section {
-    display: none; /* Hide the section on screens smaller than 768px */
+    display: none; 
+  }
+  .popup-container {
+    flex-direction: column;
+    width: 90vw; /* Adjust width to fit the screen */
+    height: auto; /* Allow height to adjust based on content */
+    max-height: 95vh;
+    overflow-y: auto; /* Enable scrolling for tall content */
+  }
+
+  .popup-image-section {
+    display: none; /* Hide the image on smaller screens */
+  }
+
+  .popup-form-section {
+    padding: 30px 20px; /* Adjust padding for mobile */
+  }
+
+  .social-login-icons {
+    gap: 10px; /* Reduce gap between icons on mobile */
+  }
+
+  .social-icon-btn {
+    flex-grow: 0; /* Override flex-grow so they don't stretch */
+    flex-basis: calc(50% - 5px); /* Set each button to take up roughly half the width, with a small gap */
+  }
+
+  /* Optional: Adjust font sizes for better readability */
+  .logo-text {
+    font-size: 1.25rem;
+  }
+
+  .welcome-text {
+    font-size: 1rem;
   }
 }

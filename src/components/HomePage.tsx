@@ -371,9 +371,9 @@ const HomePage: React.FC<HomePageProps> = ({ language, onNavigate }) => {
   const OriginalHomePageContent = ( ) => (
     <>
        {/* Hero Section - Showcasing the background image */}
-        <section className="relative overflow-hidden h-[70vh] min-h-[600px] flex items-center">
+        <section className="relative overflow-hidden h-[55vh] min-h-[150px] flex items-center">
           <div
-            className="absolute inset-0 bg-[url('https://iili.io/FwSX1Xj.png')] bg-cover bg-center"
+            className="absolute inset-0 bg-[url('https://iili.io/FwSX1Xj.png')] bg-cover bg-center "
             style={{ backgroundPosition: 'center 30%' }}
           >
             <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/70 to-transparent"></div>

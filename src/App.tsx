@@ -4,11 +4,15 @@ import HomePage from './components/HomePage';
 import CasinoPage from './components/Caino/CasinoPage';
 import GameLobbyPage from './components/GameLobbyPage';
 import SlotsPage from './components/SlotsPage';
+import TableGamesPage from './components/TableGamesPage';
+import RoulettePage from './components/RoulettePage';
 // import GameLobby from './components/GameLobby';
 import SlotMachine from './components/games/SlotMachine';
 import Blackjack from './components/games/Blackjack';
 import Roulette from './components/games/Roulette';
 import PromotionsPage from './components/PromotionsPage';
+import DepositPage from './components/DepositPage';
+import WithdrawPage from './components/Withdrawpage';
 import ProfilePage from './components/ProfilePage';
 import LootboxPage from './components/LootboxPage';
 import GamesPage from './components/GamesPage';
@@ -22,6 +26,8 @@ import HelpCenter from './components/support/HelpCenter';
 import ContactUs from './components/support/ContactUs';
 import ResponsibleGaming from './components/support/ResponsibleGaming';
 import Fairness from './components/support/Fairness';
+import BlackjackPage from './components/BlackJacksPage'
+import JackPotsPage from './components/JackPotsPage';
 
 // --- MODAL IMPORTS (Your exact components) ---
 import LoginModal from './components/auth/LoginModal';
@@ -125,7 +131,7 @@ const Footer: React.FC<{ onNavigate: (page: string) => void }> = ({ onNavigate }
 };
 
 // --- CORRECTED PAGE TYPE (Modals are not pages) ---
-type Page = 'home' | 'casino' | 'games' | 'sports' | 'lootboxes' | 'lobby' | 'slots' | 'slot' | 'blackjack' | 'roulette' | 'profile' | 'promotions' | 'terms' | 'privacy' | 'cookies' | 'licensing' | 'security' | 'help' | 'contact' | 'responsible-gaming' | 'fairness';
+type Page = 'home' | 'casino' | 'games' | 'sports' | 'lootboxes' | 'lobby' | 'slots' | 'table-games' | 'slot' | 'blackjack' | 'roulette' | 'jackpots' | 'profile' | 'promotions' | 'deposit' | 'withdraw' | 'terms' | 'privacy' | 'cookies' | 'licensing' | 'security' | 'help' | 'contact' | 'responsible-gaming' | 'fairness';
 
 function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home');
@@ -214,14 +220,24 @@ function App() {
         return <GameLobbyPage onNavigate={handleNavigation} />;
       case 'slots':
         return <SlotsPage onNavigate={handleNavigation} />;
+      case 'table-games':
+        return <TableGamesPage onNavigate={handleNavigation} />;
+      case 'roulette':
+        return <RoulettePage onNavigate={handleNavigation} />;
       case 'slot':
         return <SlotMachine balance={balance} onBalanceChange={setBalance} onBack={() => setCurrentPage('lobby')} />;
       case 'blackjack':
-        return <Blackjack balance={balance} onBalanceChange={setBalance} onBack={() => setCurrentPage('lobby')} />;
-      case 'roulette':
-        return <Roulette balance={balance} onBalanceChange={setBalance} onBack={() => setCurrentPage('lobby')} />;
+        return <BlackjackPage onNavigate={handleNavigation} />;
+         case 'jackpots':
+        return <JackPotsPage onNavigate={handleNavigation} />;
+      // case 'roulette':
+      //   return <Roulette balance={balance} onBalanceChange={setBalance} onBack={() => setCurrentPage('lobby')} />;
       case 'promotions':
-        return <PromotionsPage onBack={() => setCurrentPage('home')} />;
+        return <PromotionsPage onNavigate={handleNavigation} />;
+      case 'deposit':
+        return <DepositPage onNavigate={handleNavigation} />;
+      case 'withdraw':
+        return <WithdrawPage onNavigate={handleNavigation} />;
       case 'profile':
         return <ProfilePage />;
       case 'help':
