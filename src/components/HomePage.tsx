@@ -18,7 +18,7 @@ import {
   Gamepad2, Home, Wallet, Coins, Dice5, HelpCircle, Mail, Settings,
   ChevronDown, ChevronRight, LogOut, User, CreditCard, BarChart2,
   Heart, Gem, Bitcoin, Aperture, Sparkles, Bell, ShieldCheck, RotateCw,
-  Currency
+  Currency, Scale, FileText, Lock, Cookie, Briefcase, Diamond, LifeBuoy
 } from 'lucide-react';
 
 import CasinoPage from './Caino/CasinoPage';
@@ -529,7 +529,7 @@ const HomePage: React.FC<HomePageProps> = ({ language, onNavigate }) => {
               onClick={() => handleNavigate('home')}
               className={`w-full flex items-center space-x-3 p-3 rounded-lg text-[15px] text-white ${currentPage === 'home' ? 'bg-gradient-to-r from-yellow-500/20 to-orange-500/20' : 'hover:bg-gray-800'}`}
             >
-              <Home className="w-5 h-5" />
+              <span className="text-xl">🏠</span>
               <span>Home</span>
             </button>
 
@@ -538,7 +538,7 @@ const HomePage: React.FC<HomePageProps> = ({ language, onNavigate }) => {
               onClick={() => handleNavigate('casino')}
               className={`w-full flex items-center space-x-3 p-3 rounded-lg text-white ${currentPage === 'casino' ? 'bg-gradient-to-r from-yellow-500/20 to-orange-500/20' : 'hover:bg-gray-800'}`}
             >
-              <Dice5 className="w-5 h-5" />
+              <span className="text-xl">🎰</span>
               <span>Casino</span>
             </button>
 
@@ -547,7 +547,7 @@ const HomePage: React.FC<HomePageProps> = ({ language, onNavigate }) => {
               onClick={() => handleNavigate('sports')}
               className={`w-full flex items-center space-x-3 p-3 rounded-lg text-white ${currentPage === 'sports' ? 'bg-gradient-to-r from-yellow-500/20 to-orange-500/20' : 'hover:bg-gray-800'}`}
             >
-              <Trophy className="w-5 h-5" />
+              <span className="text-xl">🏆</span>
               <span>Sports</span>
             </button>
 
@@ -556,7 +556,7 @@ const HomePage: React.FC<HomePageProps> = ({ language, onNavigate }) => {
               onClick={() => handleNavigate('lootboxes')}
               className={`w-full flex items-center space-x-3 p-3 rounded-lg text-white ${currentPage === 'lootboxes' ? 'bg-gradient-to-r from-yellow-500/20 to-orange-500/20' : 'hover:bg-gray-800'}`}
             >
-              <Gift className="w-5 h-5" />
+              <span className="text-xl">🎁</span>
               <span>Lootboxes</span>
             </button>
 
@@ -567,7 +567,7 @@ const HomePage: React.FC<HomePageProps> = ({ language, onNavigate }) => {
                 className="w-full flex items-center justify-between p-3 rounded-lg hover:bg-gray-800 text-white"
               >
                 <div className="flex items-center space-x-3">
-                  <Gamepad2 className="w-5 h-5" />
+                  <span className="text-xl">🎮</span>
                   <span>Games</span>
                 </div>
                 {activeSubmenu === 'games' ? <ChevronDown className="w-5 h-5" /> : <ChevronRight className="w-5 h-5" />}
@@ -576,27 +576,27 @@ const HomePage: React.FC<HomePageProps> = ({ language, onNavigate }) => {
               {activeSubmenu === 'games' && (
                 <div className="pl-10 pt-2 space-y-2">
                   <button onClick={() => handleNavigate('slots')} className="flex items-center space-x-2 p-2 text-sm text-gray-300 hover:text-white">
-                    <Dice5 className="w-4 h-4" />
+                    <span className="text-lg">🎰</span>
                     <span>Slots</span>
                   </button>
                   <button onClick={() => handleNavigate('table-games')} className="flex items-center space-x-2 p-2 text-sm text-gray-300 hover:text-white">
-                    <BarChart2 className="w-4 h-4" />
+                    <span className="text-lg">🃏</span>
                     <span>Table Games</span>
                   </button>
                   <button onClick={() => handleNavigate('roulette')} className="flex items-center space-x-2 p-2 text-sm text-gray-300 hover:text-white">
-                    <BarChart2 className="w-4 h-4" />
+                    <span className="text-lg">🎲</span>
                     <span>Roulette</span>
                   </button>
                   <button onClick={() => handleNavigate('blackjack')} className="flex items-center space-x-2 p-2 text-sm text-gray-300 hover:text-white">
-                    <BarChart2 className="w-4 h-4" />
+                    <span className="text-lg">🂡</span>
                     <span>Blackjack</span>
                   </button>
                   <button onClick={() => handleNavigate('live-casino')} className="flex items-center space-x-2 p-2 text-sm text-gray-300 hover:text-white">
-                    <Users className="w-4 h-4" />
+                    <span className="text-lg">👥</span>
                     <span>Live Casino</span>
                   </button>
                   <button onClick={() => handleNavigate('jackpots')} className="flex items-center space-x-2 p-2 text-sm text-gray-300 hover:text-white">
-                    <Coins className="w-4 h-4" />
+                    <span className="text-lg">💰</span>
                     <span>Jackpots</span>
                   </button>
                 </div>
@@ -605,10 +605,10 @@ const HomePage: React.FC<HomePageProps> = ({ language, onNavigate }) => {
 
             {/* Promotions */}
             <button
-              onClick={() => onNavigate('promotions')}
+              onClick={() => onNavigate && onNavigate('promotions')}
               className={`w-full flex items-center space-x-3 p-3 rounded-lg text-white ${currentPage === 'promotions' ? 'bg-gradient-to-r from-yellow-500/20 to-orange-500/20' : 'hover:bg-gray-800'}`}
             >
-              <Gift className="w-5 h-5" />
+              <span className="text-xl">🎁</span>
               <span>Promotions</span>
             </button>
 
@@ -619,7 +619,7 @@ const HomePage: React.FC<HomePageProps> = ({ language, onNavigate }) => {
                 className="w-full flex items-center justify-between p-3 rounded-lg hover:bg-gray-800 text-white"
               >
                 <div className="flex items-center space-x-3">
-                  <Wallet className="w-5 h-5" />
+                  <span className="text-xl">💼</span>
                   <span>Wallet</span>
                 </div>
                 {activeSubmenu === 'wallet' ? <ChevronDown className="w-5 h-5" /> : <ChevronRight className="w-5 h-5" />}
@@ -627,12 +627,12 @@ const HomePage: React.FC<HomePageProps> = ({ language, onNavigate }) => {
 
               {activeSubmenu === 'wallet' && (
                 <div className="pl-10 pt-1 space-y-1">
-                  <button onClick={() => onNavigate('deposit')} className="flex items-center space-x-2 p-2 text-sm text-gray-300 hover:text-white w-full text-left">
-                    <CreditCard className="w-4 h-4" />
+                  <button onClick={() => onNavigate && onNavigate('deposit')} className="flex items-center space-x-2 p-2 text-sm text-gray-300 hover:text-white w-full text-left">
+                    <span className="text-lg">💳</span>
                     <span>Deposit</span>
                   </button>
-                  <button onClick={() => onNavigate('withdraw')} className="flex items-center space-x-2 p-2 text-sm text-gray-300 hover:text-white w-full text-left">
-                    <LogOut className="w-4 h-4" />
+                  <button onClick={() => onNavigate && onNavigate('withdraw')} className="flex items-center space-x-2 p-2 text-sm text-gray-300 hover:text-white w-full text-left">
+                    <span className="text-lg">↩️</span>
                     <span>Withdraw</span>
                   </button>
                 </div>
@@ -641,63 +641,109 @@ const HomePage: React.FC<HomePageProps> = ({ language, onNavigate }) => {
 
             {/* Tournaments */}
             <button
-              onClick={() => onNavigate('tournaments')}
+              onClick={() => onNavigate && onNavigate('tournaments')}
               className={`w-full flex items-center space-x-3 p-3 rounded-lg text-white ${currentPage === 'tournaments' ? 'bg-gradient-to-r from-yellow-500/20 to-orange-500/20' : 'hover:bg-gray-800'}`}
             >
-              <Trophy className="w-5 h-5" />
+              <span className="text-xl">🏆</span>
               <span>Tournaments</span>
             </button>
 
             {/* Earn */}
             <button
-              onClick={() => onNavigate('earn')}
+              onClick={() => onNavigate && onNavigate('earn')}
               className={`w-full flex items-center space-x-3 p-3 rounded-lg text-white ${currentPage === 'earn' ? 'bg-gradient-to-r from-yellow-500/20 to-orange-500/20' : 'hover:bg-gray-800'}`}
             >
-              <Coins className="w-5 h-5" />
+              <span className="text-xl">💎</span>
               <span>Earn</span>
             </button>
 
             {/* Token Dashboard */}
             <button
-              onClick={() => onNavigate('token-dashboard')}
+              onClick={() => onNavigate && onNavigate('token-dashboard')}
               className={`w-full flex items-center space-x-3 p-3 rounded-lg text-white ${currentPage === 'token-dashboard' ? 'bg-gradient-to-r from-yellow-500/20 to-orange-500/20' : 'hover:bg-gray-800'}`}
             >
-              <HelpCircle className="w-5 h-5" />
+              <span className="text-xl">📊</span>
               <span>Token Dashboard</span>
             </button>
 
-            {/* Support */}
-            <button
-              onClick={() => onNavigate('support')}
-              className={`w-full flex items-center space-x-3 p-3 rounded-lg text-white ${currentPage === 'support' ? 'bg-gradient-to-r from-yellow-500/20 to-orange-500/20' : 'hover:bg-gray-800'}`}
-            >
-              <HelpCircle className="w-5 h-5" />
-              <span>Support</span>
-            </button>
+            {/* Support Submenu */}
+            <div>
+              <button
+                onClick={() => toggleSubmenu('support')}
+                className="w-full flex items-center justify-between p-3 rounded-lg hover:bg-gray-800 text-white"
+              >
+                <div className="flex items-center space-x-3">
+                  <span className="text-xl">🆘</span>
+                  <span>SOS Support</span>
+                </div>
+                {activeSubmenu === 'support' ? <ChevronDown className="w-5 h-5" /> : <ChevronRight className="w-5 h-5" />}
+              </button>
+
+              {activeSubmenu === 'support' && (
+                <div className="pl-10 pt-2 space-y-2">
+                  <button onClick={() => onNavigate && onNavigate('help')} className="flex items-center space-x-2 p-2 text-sm text-gray-300 hover:text-white">
+                    <span className="text-lg">❓</span>
+                    <span>Help Center</span>
+                  </button>
+                  <button onClick={() => onNavigate && onNavigate('contact')} className="flex items-center space-x-2 p-2 text-sm text-gray-300 hover:text-white">
+                    <span className="text-lg">📧</span>
+                    <span>Contact Us</span>
+                  </button>
+                  <button onClick={() => onNavigate && onNavigate('responsible-gaming')} className="flex items-center space-x-2 p-2 text-sm text-gray-300 hover:text-white">
+                    <span className="text-lg">🛡️</span>
+                    <span>Responsible Gaming</span>
+                  </button>
+                  <button onClick={() => onNavigate && onNavigate('fairness')} className="flex items-center space-x-2 p-2 text-sm text-gray-300 hover:text-white">
+                    <span className="text-lg">⚖️</span>
+                    <span>Fairness</span>
+                  </button>
+                  <button onClick={() => onNavigate && onNavigate('terms')} className="flex items-center space-x-2 p-2 text-sm text-gray-300 hover:text-white">
+                    <span className="text-lg">📄</span>
+                    <span>Terms of Service</span>
+                  </button>
+                  <button onClick={() => onNavigate && onNavigate('privacy')} className="flex items-center space-x-2 p-2 text-sm text-gray-300 hover:text-white">
+                    <span className="text-lg">🔒</span>
+                    <span>Privacy Policy</span>
+                  </button>
+                  <button onClick={() => onNavigate && onNavigate('cookies')} className="flex items-center space-x-2 p-2 text-sm text-gray-300 hover:text-white">
+                    <span className="text-lg">🍪</span>
+                    <span>Cookie Policy</span>
+                  </button>
+                  <button onClick={() => onNavigate && onNavigate('licensing')} className="flex items-center space-x-2 p-2 text-sm text-gray-300 hover:text-white">
+                    <span className="text-lg">🏅</span>
+                    <span>Licensing</span>
+                  </button>
+                  <button onClick={() => onNavigate && onNavigate('security')} className="flex items-center space-x-2 p-2 text-sm text-gray-300 hover:text-white">
+                    <span className="text-lg">🔐</span>
+                    <span>Security</span>
+                  </button>
+                </div>
+              )}
+            </div>
 
             {/* Community */}
             <button
-              onClick={() => onNavigate('community')}
+              onClick={() => onNavigate && onNavigate('community')}
               className={`w-full flex items-center space-x-3 p-3 rounded-lg text-white ${currentPage === 'community' ? 'bg-gradient-to-r from-yellow-500/20 to-orange-500/20' : 'hover:bg-gray-800'}`}
             >
-              <User className="w-5 h-5" />
+              <span className="text-xl">👥</span>
               <span>Community</span>
             </button>
 
-            {/* Settings */}
+            {/* Profile */}
             <button
-              onClick={() => onNavigate('settings')}
-              className={`w-full flex items-center space-x-3 p-3 rounded-lg text-white ${currentPage === 'settings' ? 'bg-gradient-to-r from-yellow-500/20 to-orange-500/20' : 'hover:bg-gray-800'}`}
+              onClick={() => onNavigate && onNavigate('profile')}
+              className={`w-full flex items-center space-x-3 p-3 rounded-lg text-white ${currentPage === 'profile' ? 'bg-gradient-to-r from-yellow-500/20 to-orange-500/20' : 'hover:bg-gray-800'}`}
             >
-              <Settings className="w-5 h-5" />
-              <span>Settings</span>
+              <span className="text-xl">👤</span>
+              <span>Profile</span>
             </button>
           </nav>
 
           <div className="p-4 border-t border-gray-800">
             {walletAddress ? (
               <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-r from-yellow-500 to-orange-500 flex items-center justify-center"><User className="w-5 h-5 text-white" /></div>
+                <div className="w-10 h-10 rounded-full bg-gradient-to-r from-yellow-500 to-orange-500 flex items-center justify-center"><span className="text-white text-lg">👤</span></div>
                 <div className="flex-1">
                   <p className="text-sm font-medium text-white truncate">{walletAddress.slice(0, 6)}...{walletAddress.slice(-4)}</p>
                   {walletBalance && <div className="flex items-center gap-2 mt-1"><span className="text-base font-bold text-yellow-400">{parseFloat(walletBalance).toFixed(4)}</span><span className="text-xs font-semibold text-gray-300">{walletCurrency}</span></div>}
@@ -706,7 +752,7 @@ const HomePage: React.FC<HomePageProps> = ({ language, onNavigate }) => {
               </div>
             ) : (
               <button onClick={() => setShowWalletModal(true)} className="w-full bg-gradient-to-r from-yellow-500 to-orange-500 text-white py-2 rounded-lg font-semibold flex items-center justify-center space-x-2 hover:from-yellow-600 hover:to-orange-600 transition-all">
-                <Wallet className="w-5 h-5" />
+                <span className="text-lg">💼</span>
                 <span>Connect Wallet</span>
               </button>
             )}

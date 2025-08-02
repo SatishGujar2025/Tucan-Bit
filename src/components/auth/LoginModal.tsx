@@ -68,8 +68,8 @@ const LoginPopup: React.FC<LoginPopupProps> = ({ onClose, onShowOtp }) => {
 
  
   return (
-    <div className="popup-overlay" onClick={onClose}>
-      <div className="popup-container" onClick={handlePopupContentClick}>
+    <div className="popup-overlay " onClick={onClose}>
+      <div className="popup-container " onClick={handlePopupContentClick}>
         {/* Close button */}
         <button className="close-button" onClick={onClose}>
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

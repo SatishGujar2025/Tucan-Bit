@@ -13,6 +13,12 @@ import Roulette from './components/games/Roulette';
 import PromotionsPage from './components/PromotionsPage';
 import DepositPage from './components/DepositPage';
 import WithdrawPage from './components/Withdrawpage';
+import TournamentPage from './components/TournamentPage';
+import EarnPage from './components/EarnPage';
+import TaskDashboardPage from './components/TaskDashboardPage';
+import TokenDashboardPage from './components/TokenDashboardPage';
+import SupportPage from './components/SupportPage';
+import CommunityPage from './components/CommunityPage';
 import ProfilePage from './components/ProfilePage';
 import LootboxPage from './components/LootboxPage';
 import GamesPage from './components/GamesPage';
@@ -131,7 +137,7 @@ const Footer: React.FC<{ onNavigate: (page: string) => void }> = ({ onNavigate }
 };
 
 // --- CORRECTED PAGE TYPE (Modals are not pages) ---
-type Page = 'home' | 'casino' | 'games' | 'sports' | 'lootboxes' | 'lobby' | 'slots' | 'table-games' | 'slot' | 'blackjack' | 'roulette' | 'jackpots' | 'profile' | 'promotions' | 'deposit' | 'withdraw' | 'terms' | 'privacy' | 'cookies' | 'licensing' | 'security' | 'help' | 'contact' | 'responsible-gaming' | 'fairness';
+type Page = 'home' | 'casino' | 'games' | 'sports' | 'lootboxes' | 'lobby' | 'slots' | 'table-games' | 'slot' | 'blackjack' | 'roulette' | 'jackpots' | 'profile' | 'promotions' | 'deposit' | 'withdraw' | 'tournaments' | 'earn' | 'task-dashboard' | 'token-dashboard' | 'support' | 'community' | 'terms' | 'privacy' | 'cookies' | 'licensing' | 'security' | 'help' | 'contact' | 'responsible-gaming' | 'fairness';
 
 function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home');
@@ -238,6 +244,18 @@ function App() {
         return <DepositPage onNavigate={handleNavigation} />;
       case 'withdraw':
         return <WithdrawPage onNavigate={handleNavigation} />;
+      case 'tournaments':
+        return <TournamentPage onNavigate={handleNavigation} />;
+      case 'earn':
+        return <EarnPage onNavigate={handleNavigation} />;
+              case 'task-dashboard':
+          return <TaskDashboardPage onNavigate={handleNavigation} />;
+        case 'token-dashboard':
+          return <TokenDashboardPage onNavigate={handleNavigation} />;
+        case 'support':
+          return <SupportPage onNavigate={handleNavigation} />;
+        case 'community':
+          return <CommunityPage onNavigate={handleNavigation} />;
       case 'profile':
         return <ProfilePage />;
       case 'help':
