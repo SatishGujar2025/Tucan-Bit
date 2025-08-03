@@ -346,8 +346,34 @@ const ProfilePage: React.FC = () => {
     setShowCustomDateInputs(false);
     setCurrentPage(1);
   };
+  const ResponsiveTableRow: React.FC<{ transaction: typeof recentActivity[0] }> = ({ transaction }) => (
+    <tr className="block md:table-row border-b border-gray-800 last:border-b-0 md:border-b-0">
+      <td className="p-3 block md:table-cell md:py-4 md:px-4 text-right md:text-left border-b border-gray-800 md:border-none" data-label="Transaction ID">
+        <span className="text-sm font-mono text-blue-400">{transaction.id}</span>
+      </td>
+      <td className="p-3 block md:table-cell md:py-4 md:px-4 text-right md:text-left border-b border-gray-800 md:border-none" data-label="Type">
+        <span className="text-sm font-medium text-white">{transaction.type}</span>
+      </td>
+      <td className="p-3 block md:table-cell md:py-4 md:px-4 text-right md:text-left border-b border-gray-800 md:border-none" data-label="Game/Source">
+        <span className="text-sm text-gray-300">{transaction.game}</span>
+      </td>
+      <td className="p-3 block md:table-cell md:py-4 md:px-4 text-right md:text-left border-b border-gray-800 md:border-none" data-label="Amount (USD)">
+        <span className={`text-sm font-semibold ${transaction.amount > 0 ? 'text-green-400' : 'text-red-400'}`}>
+          {transaction.amount > 0 ? '+' : ''}${Math.abs(transaction.amount).toLocaleString()}
+        </span>
+      </td>
+      <td className="p-3 block md:table-cell md:py-4 md:px-4 text-right md:text-center border-b border-gray-800 md:border-none" data-label="Status">
+        <span className={`px-2 py-1 rounded-full text-xs font-semibold ${transaction.status === 'Completed' ? 'bg-green-500/20 text-green-400' : 'bg-yellow-500/20 text-yellow-400'}`}>
+          {transaction.status}
+        </span>
+      </td>
+      <td className="p-3 block md:table-cell md:py-4 md:px-4 text-right md:text-left" data-label="Date">
+        <div className="text-sm text-gray-300">{transaction.time}</div>
+      </td>
+    </tr>
+  );
   return (
-    <div className="min-h-screen p-6">
+    <div className="min-h-screen p-4 md:p-6">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="mb-8">
@@ -356,14 +382,14 @@ const ProfilePage: React.FC = () => {
         </div>
 
         {/* Profile Header */}
-        <div className="bg-gradient-to-br from-purple-900/50 to-blue-900/50 backdrop-blur-sm border border-purple-500/20 rounded-2xl p-8 mb-8">
-          <div className="flex items-center space-x-6">
-            <div className="w-24 h-24 bg-gradient-to-br from-purple-500 to-blue-500 rounded-full flex items-center justify-center">
-              <User className="w-12 h-12 text-white" />
+        <div className="bg-gradient-to-br from-purple-900/50 to-blue-900/50 backdrop-blur-sm border border-purple-500/20 rounded-2xl p-6 md:p-8 mb-8">
+          <div className="flex flex-col sm:flex-row items-center space-x-6 sm:space-y-0 sm:space-x-6">
+            <div className="sm:w-24 sm:h-24 w-20 h-20 bg-gradient-to-br from-purple-500 to-blue-500 rounded-full flex items-center justify-center">
+              <User className="sm:w-12 sm:h-12 w-10 h-10 text-white" />
             </div>
-            <div className="flex-1">
-              <h2 className="text-3xl font-bold text-white mb-2">CryptoPlayer_42</h2>
-              <div className="flex items-center space-x-4 text-gray-300">
+            <div className="flex-1 text-center sm:text-left">
+              <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">CryptoPlayer_42</h2>
+              <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start space-y-2 sm:space-y-0 sm:space-x-4  text-gray-300">
                 <span>Level {userStats.level}</span>
                 <span>•</span>
                 <span>Member since {userStats.memberSince}</span>
@@ -384,29 +410,15 @@ const ProfilePage: React.FC = () => {
           </div>
         </div>
 
-        {/* Tabs */}
         <div className="mb-8">
-          <div className="flex space-x-2 bg-black/20 p-2 rounded-xl">
-            {tabs.map((tab) => {
-              const Icon = tab.icon;
-              return (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
-                  className={`flex-1 flex items-center justify-center space-x-2 py-3 rounded-lg transition-all duration-200 ${
-                    activeTab === tab.id
-                      ? 'bg-purple-500 text-white'
-                      : 'text-gray-400 hover:text-white hover:bg-white/10'
-                  }`}
-                >
-                  <Icon className="w-5 h-5" />
-                  <span>{tab.label}</span>
-                </button>
-              );
-            })}
+          <div className="flex space-x-2 bg-black/20 p-2 rounded-xl overflow-x-auto">
+            {tabs.map((tab) => (
+              <button key={tab.id} onClick={() => setActiveTab(tab.id)} className={`flex-1 flex items-center justify-center space-x-2 py-3 px-4 rounded-lg whitespace-nowrap ${activeTab === tab.id ? 'bg-purple-500' : 'text-gray-400'}`}>
+                <tab.icon className="w-5 h-5" /><span>{tab.label}</span>
+              </button>
+            ))}
           </div>
         </div>
-
         {/* Tab Content */}
         {activeTab === 'overview' && (
           <div className="grid lg:grid-cols-3 gap-6">
@@ -416,8 +428,19 @@ const ProfilePage: React.FC = () => {
               <div className="bg-black/20 rounded-2xl p-6">
                 <h2 className="text-2xl font-bold text-white mb-6">Recent Activity</h2>
                 <div className="overflow-x-auto">
-                  <table className="w-full">
-                    <thead>
+                    <style>{`
+                  @media (max-width: 767px) {
+                    .responsive-table td[data-label]::before {
+                      content: attr(data-label);
+                      font-weight: 600;
+                      color: #9ca3af; /* text-gray-400 */
+                      float: left;
+                      margin-right: 1rem;
+                    }
+                  }
+                `}</style>
+                  <table className="w-full responsive-table">
+                    <thead className='hidden md:table-header-group'>
                       <tr className="border-b border-gray-700">
                         <th className="text-left py-3 px-4 text-sm font-semibold text-gray-300">Transaction ID</th>
                         <th className="text-left py-3 px-4 text-sm font-semibold text-gray-300">Type</th>
@@ -428,7 +451,7 @@ const ProfilePage: React.FC = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      {recentActivity.map((activity, index) => (
+                      {/* {recentActivity.map((activity, index) => (
                         <tr key={index} className="border-b border-gray-800/50 hover:bg-gray-800/30 transition-colors">
                           <td className="py-4 px-4">
                             <span className="text-sm font-mono text-blue-400">{activity.id}</span>
@@ -468,7 +491,8 @@ const ProfilePage: React.FC = () => {
                             <div className="text-xs text-gray-500">{activity.date}</div>
                           </td>
                         </tr>
-                      ))}
+                      ))} */}
+                       {recentActivity.map((tx) => <ResponsiveTableRow key={tx.id} transaction={tx} />)}
                     </tbody>
                   </table>
                 </div>
@@ -636,7 +660,7 @@ const ProfilePage: React.FC = () => {
 
         {/* Transaction History Modal */}
         {showTransactionHistory && (
-          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 ml-44 p-4">
             <div className="bg-gray-900 rounded-2xl p-6 max-w-6xl w-full max-h-[80vh] overflow-y-auto">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-2xl font-bold text-white">Transaction History</h2>

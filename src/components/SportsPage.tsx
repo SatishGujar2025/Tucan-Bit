@@ -41,6 +41,7 @@ const SportsPage: React.FC<{ onBack: () => void }> = ({ onBack }) => {
   const [betSlip, setBetSlip] = useState<BetSlip[]>([]);
   const [betAmount, setBetAmount] = useState(55.00);
   const [activeTab, setActiveTab] = useState('turbo-combo');
+  const [isBetSlipOpen, setIsBetSlipOpen] = useState(false);
   
   // Sidebar state
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -226,186 +227,22 @@ const SportsPage: React.FC<{ onBack: () => void }> = ({ onBack }) => {
 
   return (
     <div className="min-h-screen bg-gray-900 text-white">
-      {/* Left Sidebar */}
-      <div className={`fixed inset-y-0 left-0 z-[60] w-64 bg-gray-900 shadow-2xl transform ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 transition-transform duration-300 border-r border-gray-800`}>
-        <div className="flex flex-col h-full">
-          {/* Logo */}
-          <div className="p-6 border-b border-gray-800">
-            <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center">
-                <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M18 10C18 14.4183 14.4183 18 10 18C5.58172 18 2 14.4183 2 10C2 5.58172 5.58172 2 10 2C14.4183 2 18 5.58172 18 10Z" fill="currentColor" />
-                  <path d="M18 10L24 7L22 12L18 10Z" fill="currentColor" />
-                </svg>
-              </div>
-              <div>
-                <span className="text-2xl font-bold text-white">
-                  <span className="text-yellow-400">Tucan</span>
-                  <span className="text-orange-500">Bit</span>
-                </span>
-                <p className="text-xs text-gray-400 mt-1">Crypto Casino & Sportsbook</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Whale Token Section */}
-          <div className="p-4 border-b border-gray-800">
-            <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg p-3">
-              <div className="flex items-center space-x-2 mb-2">
-                <span className="text-2xl">🐋</span>
-                <div>
-                  <p className="text-sm font-semibold">Whale Token (WHALE)</p>
-                  <p className="text-xs text-gray-300">Coming soon</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* BattlePass Section */}
-          <div className="p-4 border-b border-gray-800">
-            <div className="bg-gradient-to-r from-yellow-500 to-orange-500 rounded-lg p-3">
-              <h3 className="font-bold text-sm mb-2">BATTLEPASS</h3>
-              <p className="text-xs mb-3">Get amazing rewards with Battlepass.</p>
-              <div className="flex items-center justify-between mb-3">
-                <div className="flex items-center space-x-2">
-                  <span className="text-lg">🪙</span>
-                  <span className="text-lg">🏆</span>
-                </div>
-                <div className="text-xs">
-                  <p>Levelup Rewards</p>
-                  <p>Whale Tokens</p>
-                </div>
-              </div>
-              <button className="w-full bg-white text-orange-500 py-2 rounded text-sm font-semibold">
-                Get BattlePass
-              </button>
-            </div>
-          </div>
-
-          {/* Streak Counter */}
-          <div className="p-4 border-b border-gray-800">
-            <div className="flex items-center justify-between">
-              <span className="text-sm">Streak</span>
-              <div className="flex items-center space-x-1">
-                <span className="text-lg font-bold">2</span>
-                <ChevronRightIcon className="w-4 h-4" />
-              </div>
-            </div>
-          </div>
-
-          {/* Main Menu */}
-          <nav className="flex-1 overflow-y-auto p-4 space-y-1">
-            <button
-              onClick={() => onNavigate('home')}
-              className={`w-full flex items-center space-x-3 p-3 rounded-lg text-[15px] text-white ${currentPage === 'home' ? 'bg-gradient-to-r from-yellow-500/20 to-orange-500/20' : 'hover:bg-gray-800'}`}
-            >
-              <Home className="w-5 h-5" />
-              <span>Home</span>
-            </button>
-
-            <button
-              onClick={() => onNavigate('originals')}
-              className={`w-full flex items-center space-x-3 p-3 rounded-lg text-white ${currentPage === 'originals' ? 'bg-gradient-to-r from-yellow-500/20 to-orange-500/20' : 'hover:bg-gray-800'}`}
-            >
-              <Dice5 className="w-5 h-5" />
-              <span>Originals</span>
-            </button>
-
-            <button
-              onClick={() => onNavigate('casino')}
-              className={`w-full flex items-center space-x-3 p-3 rounded-lg text-white ${currentPage === 'casino' ? 'bg-gradient-to-r from-yellow-500/20 to-orange-500/20' : 'hover:bg-gray-800'}`}
-            >
-              <Dice5 className="w-5 h-5" />
-              <span>Casino</span>
-            </button>
-
-            <button
-              onClick={() => onNavigate('sports')}
-              className={`w-full flex items-center space-x-3 p-3 rounded-lg text-white ${currentPage === 'sports' ? 'bg-gradient-to-r from-yellow-500/20 to-orange-500/20' : 'hover:bg-gray-800'}`}
-            >
-              <Trophy className="w-5 h-5" />
-              <span>Sportsbook</span>
-            </button>
-
-            <button
-              onClick={() => onNavigate('lootboxes')}
-              className={`w-full flex items-center space-x-3 p-3 rounded-lg text-white ${currentPage === 'lootboxes' ? 'bg-gradient-to-r from-yellow-500/20 to-orange-500/20' : 'hover:bg-gray-800'}`}
-            >
-              <Trophy className="w-5 h-5" />
-              <span>Lootboxes</span>
-            </button>
-
-            {/* Community Section */}
-            <div className="pt-4">
-              <h4 className="text-xs font-semibold text-gray-400 mb-2">COMMUNITY</h4>
-              <div className="space-y-1">
-                <button className="w-full flex items-center space-x-3 p-2 rounded-lg text-sm text-gray-300 hover:text-white hover:bg-gray-800">
-                  <Trophy className="w-4 h-4" />
-                  <span>Tournaments</span>
-                </button>
-                <button className="w-full flex items-center space-x-3 p-2 rounded-lg text-sm text-gray-300 hover:text-white hover:bg-gray-800">
-                  <Users className="w-4 h-4" />
-                  <span>Tribes</span>
-                </button>
-                <button className="w-full flex items-center space-x-3 p-2 rounded-lg text-sm text-gray-300 hover:text-white hover:bg-gray-800">
-                  <Award className="w-4 h-4" />
-                  <span>Battle Pass</span>
-                </button>
-                <button className="w-full flex items-center space-x-3 p-2 rounded-lg text-sm text-gray-300 hover:text-white hover:bg-gray-800">
-                  <Coins className="w-4 h-4" />
-                  <span>Earn</span>
-                </button>
-                <button className="w-full flex items-center space-x-3 p-2 rounded-lg text-sm text-gray-300 hover:text-white hover:bg-gray-800">
-                  <BarChart2 className="w-4 h-4" />
-                  <span>Token Dashboard</span>
-                </button>
-                <button className="w-full flex items-center space-x-3 p-2 rounded-lg text-sm text-gray-300 hover:text-white hover:bg-gray-800">
-                  <Trophy className="w-4 h-4" />
-                  <span>Promotions</span>
-                </button>
-              </div>
-            </div>
-          </nav>
-
-          {/* Settings */}
-          <div className="p-4 border-t border-gray-800">
-            <button className="w-full flex items-center justify-center p-2 text-gray-400 hover:text-white">
-              <BarChart2 className="w-5 h-5" />
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Mobile Menu Button */}
-      <button 
-        onClick={() => setSidebarOpen(!sidebarOpen)} 
-        className="lg:hidden fixed top-4 left-4 z-50 p-2 bg-gray-800 rounded-lg text-white"
-      >
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-      </button>
-
+    
+      {/* className={`lg:ml-64 ${sidebarOpen ? 'ml-64' : ''} lg:mr-80`} */}
       {/* Main Content */}
-      <div className={`lg:ml-64 ${sidebarOpen ? 'ml-64' : ''} lg:mr-80`}>
-        {/* Header */}
-        <div className="bg-gray-800 border-b border-gray-700 p-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <button
-                onClick={onBack}
-                className="flex items-center space-x-2 px-3 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg transition-colors"
-              >
-                <ArrowLeft className="w-4 h-4" />
-                <span>Back</span>
-              </button>
-              <h1 className="text-xl font-bold">Sportsbook</h1>
-            </div>
-            <button className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-4 py-2 rounded-lg font-semibold">
-              Deposit
-            </button>
-          </div>
-        </div>
+       {/* <button 
+              onClick={() => setIsBetSlipOpen(true)}
+              className="lg:hidden bg-yellow-500 text-white px-4 py-2 rounded-lg font-semibold text-sm relative"
+            >
+              Bet Slip
+              {betSlip.length > 0 && (
+                <span className="absolute -top-2 -right-2 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center text-xs">
+                  {betSlip.length}
+                </span>
+              )}
+            </button> */}
+      <div  className='flex-1 lg:mr-64'>
+      
 
         {/* Featured Events Carousel */}
         <div className="p-4 border-b border-gray-700">
@@ -443,7 +280,7 @@ const SportsPage: React.FC<{ onBack: () => void }> = ({ onBack }) => {
         </div>
 
         {/* Navigation Tabs */}
-        <div className="p-4 border-b border-gray-700">
+        <div className="p-4 border-b border-gray-700 hidden md:block">
           <div className="flex items-center space-x-6">
             <button
               onClick={() => setSelectedTab('live')}
@@ -629,7 +466,12 @@ const SportsPage: React.FC<{ onBack: () => void }> = ({ onBack }) => {
       </div>
 
       {/* Right Sidebar - Bet Slip */}
-      <div className="fixed inset-y-0 right-0 z-50 w-80 bg-gray-800 border-l border-gray-700">
+      <div className={`
+        fixed inset-y-0 right-0 w-64 bg-gray-800 border-l border-gray-700 
+        flex flex-col transition-transform duration-300
+        ${isBetSlipOpen ? 'translate-x-0' : 'translate-x-full'}
+        lg:translate-x-0 lg:flex
+      `}>
         <div className="flex flex-col h-full">
           {/* Balance */}
           <div className="p-4 border-b border-gray-700">
@@ -749,7 +591,7 @@ const SportsPage: React.FC<{ onBack: () => void }> = ({ onBack }) => {
       </div>
 
       {/* Wallet Connection Modal */}
-      {showWalletModal && (
+      {/* {showWalletModal && (
         <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
           <div className="bg-gray-800 border border-gray-700 rounded-xl p-6 max-w-md w-full">
             <div className="flex items-center justify-between mb-4">
@@ -796,7 +638,7 @@ const SportsPage: React.FC<{ onBack: () => void }> = ({ onBack }) => {
             </p>
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 };

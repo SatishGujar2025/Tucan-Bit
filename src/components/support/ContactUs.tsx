@@ -68,13 +68,13 @@ const ContactUs: React.FC<ContactUsProps> = ({ onBack }) => {
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="flex items-center mb-8">
-          <button
+          {/* <button
             onClick={onBack}
             className="flex items-center space-x-2 text-gray-300 hover:text-white transition-colors mr-6"
           >
             <ArrowLeft className="w-5 h-5" />
             <span>Back</span>
-          </button>
+          </button> */}
           <div>
             <h1 className="text-4xl font-bold text-white mb-2">Contact Us</h1>
             <p className="text-gray-300">We're here to help you 24/7</p>

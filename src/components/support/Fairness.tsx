@@ -92,13 +92,13 @@ const Fairness: React.FC<FairnessProps> = ({ onBack }) => {
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="flex items-center mb-8">
-          <button
+          {/* <button
             onClick={onBack}
             className="flex items-center space-x-2 text-gray-300 hover:text-white transition-colors mr-6"
           >
             <ArrowLeft className="w-5 h-5" />
             <span>Back</span>
-          </button>
+          </button> */}
           <div>
             <h1 className="text-4xl font-bold text-white mb-2">Provably Fair Gaming</h1>
             <p className="text-gray-300">Transparent and verifiable game outcomes</p>

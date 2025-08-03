@@ -61,7 +61,7 @@ interface Tournament {
   }>;
 }
 
-const TournamentPage: React.FC<TournamentPageProps> = ({ onNavigate }) => {
+const TournamentPage: React.FC<TournamentPageProps> = () => {
   const [isConnecting, setIsConnecting] = useState(false);
   const [walletAddress, setWalletAddress] = useState<string | null>(null);
   const [walletBalance, setWalletBalance] = useState<string>('0.00');
@@ -279,235 +279,11 @@ const TournamentPage: React.FC<TournamentPageProps> = ({ onNavigate }) => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800">
-      {/* Sidebar */}
-      <div className={`fixed inset-y-0 left-0 z-[60] w-64 bg-gray-900 shadow-2xl transform ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 transition-transform duration-300 border-r border-gray-800`}>
-        <div className="flex items-center justify-between p-6 border-b border-gray-800">
-          <div className="flex items-center space-x-3">
-            <div className="w-8 h-8 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-lg flex items-center justify-center">
-              <span className="text-gray-900 font-bold text-sm">TB</span>
-            </div>
-            <span className="text-white font-bold text-xl">TucanBit</span>
-          </div>
-          <button
-            onClick={() => setSidebarOpen(false)}
-            className="lg:hidden text-gray-400 hover:text-white"
-          >
-            <X className="w-6 h-6" />
-          </button>
-        </div>
 
-        <nav className="flex-1 overflow-y-auto p-4 space-y-1">
-          <button
-            onClick={() => handleNavigate('home')}
-            className={`w-full flex items-center space-x-3 p-3 rounded-lg text-white ${currentPage === 'home' ? 'bg-gradient-to-r from-yellow-500/20 to-orange-500/20' : 'hover:bg-gray-800'}`}
-          >
-            <Home className="w-5 h-5" />
-            <span>Home</span>
-          </button>
+     
+    
 
-          <button
-            onClick={() => handleNavigate('casino')}
-            className={`w-full flex items-center space-x-3 p-3 rounded-lg text-white ${currentPage === 'casino' ? 'bg-gradient-to-r from-yellow-500/20 to-orange-500/20' : 'hover:bg-gray-800'}`}
-          >
-            <Dice5 className="w-5 h-5" />
-            <span>Casino</span>
-          </button>
-
-          <button
-            onClick={() => handleNavigate('sports')}
-            className={`w-full flex items-center space-x-3 p-3 rounded-lg text-white ${currentPage === 'sports' ? 'bg-gradient-to-r from-yellow-500/20 to-orange-500/20' : 'hover:bg-gray-800'}`}
-          >
-            <Trophy className="w-5 h-5" />
-            <span>Sports</span>
-          </button>
-
-          <button
-            onClick={() => handleNavigate('lootboxes')}
-            className={`w-full flex items-center space-x-3 p-3 rounded-lg text-white ${currentPage === 'lootboxes' ? 'bg-gradient-to-r from-yellow-500/20 to-orange-500/20' : 'hover:bg-gray-800'}`}
-          >
-            <Gift className="w-5 h-5" />
-            <span>Lootboxes</span>
-          </button>
-
-          {/* Games Submenu */}
-          <div>
-            <button
-              onClick={() => toggleSubmenu('games')}
-              className="w-full flex items-center justify-between p-3 rounded-lg hover:bg-gray-800 text-white"
-            >
-              <div className="flex items-center space-x-3">
-                <Gamepad2 className="w-5 h-5" />
-                <span>Games</span>
-              </div>
-              {activeSubmenu === 'games' ? <ChevronDown className="w-5 h-5" /> : <ChevronRight className="w-5 h-5" />}
-            </button>
-            {activeSubmenu === 'games' && (
-              <div className="pl-10 pt-1 space-y-1">
-                <button onClick={() => handleNavigate('slots')} className="flex items-center space-x-2 p-2 text-sm text-gray-300 hover:text-white w-full text-left">
-                  <Dice5 className="w-4 h-4" />
-                  <span>Slots</span>
-                </button>
-                <button onClick={() => handleNavigate('table-games')} className="flex items-center space-x-2 p-2 text-sm text-gray-300 hover:text-white w-full text-left">
-                  <BarChart2 className="w-4 h-4" />
-                  <span>Table Games</span>
-                </button>
-                <button onClick={() => handleNavigate('roulette')} className="flex items-center space-x-2 p-2 text-sm text-gray-300 hover:text-white w-full text-left">
-                  <Target className="w-4 h-4" />
-                  <span>Roulette</span>
-                </button>
-                <button onClick={() => handleNavigate('blackjack')} className="flex items-center space-x-2 p-2 text-sm text-gray-300 hover:text-white w-full text-left">
-                  <BarChart2 className="w-4 h-4" />
-                  <span>Blackjack</span>
-                </button>
-                <button onClick={() => handleNavigate('live-casino')} className="flex items-center space-x-2 p-2 text-sm text-gray-300 hover:text-white w-full text-left">
-                  <Users className="w-4 h-4" />
-                  <span>Live Casino</span>
-                </button>
-                <button onClick={() => handleNavigate('jackpots')} className="flex items-center space-x-2 p-2 text-sm text-gray-300 hover:text-white w-full text-left">
-                  <Crown className="w-4 h-4" />
-                  <span>Jackpots</span>
-                </button>
-              </div>
-            )}
-          </div>
-
-          <button
-            onClick={() => handleNavigate('promotions')}
-            className={`w-full flex items-center space-x-3 p-3 rounded-lg text-white ${currentPage === 'promotions' ? 'bg-gradient-to-r from-yellow-500/20 to-orange-500/20' : 'hover:bg-gray-800'}`}
-          >
-            <Star className="w-5 h-5" />
-            <span>Promotions</span>
-          </button>
-
-          {/* Wallet Submenu */}
-          <div>
-            <button
-              onClick={() => toggleSubmenu('wallet')}
-              className="w-full flex items-center justify-between p-3 rounded-lg hover:bg-gray-800 text-white"
-            >
-              <div className="flex items-center space-x-3">
-                <Wallet className="w-5 h-5" />
-                <span>Wallet</span>
-              </div>
-              {activeSubmenu === 'wallet' ? <ChevronDown className="w-5 h-5" /> : <ChevronRight className="w-5 h-5" />}
-            </button>
-            {activeSubmenu === 'wallet' && (
-              <div className="pl-10 pt-1 space-y-1">
-                <button onClick={() => handleNavigate('deposit')} className="flex items-center space-x-2 p-2 text-sm text-gray-300 hover:text-white w-full text-left">
-                  <CreditCard className="w-4 h-4" />
-                  <span>Deposit</span>
-                </button>
-                <button onClick={() => handleNavigate('withdraw')} className="flex items-center space-x-2 p-2 text-sm text-gray-300 hover:text-white w-full text-left">
-                  <LogOut className="w-4 h-4" />
-                  <span>Withdraw</span>
-                </button>
-              </div>
-            )}
-          </div>
-
-          {/* Tournaments */}
-          <button
-            onClick={() => handleNavigate('tournaments')}
-            className={`w-full flex items-center space-x-3 p-3 rounded-lg text-white ${currentPage === 'tournaments' ? 'bg-gradient-to-r from-yellow-500/20 to-orange-500/20' : 'hover:bg-gray-800'}`}
-          >
-            <Trophy className="w-5 h-5" />
-            <span>Tournaments</span>
-          </button>
-
-          <button
-            onClick={() => handleNavigate('earn')}
-            className={`w-full flex items-center space-x-3 p-3 rounded-lg text-white ${currentPage === 'earn' ? 'bg-gradient-to-r from-yellow-500/20 to-orange-500/20' : 'hover:bg-gray-800'}`}
-          >
-            <TrendingUp className="w-5 h-5" />
-            <span>Earn</span>
-          </button>
-
-          <button
-            onClick={() => handleNavigate('task-dashboard')}
-            className={`w-full flex items-center space-x-3 p-3 rounded-lg text-white ${currentPage === 'task-dashboard' ? 'bg-gradient-to-r from-yellow-500/20 to-orange-500/20' : 'hover:bg-gray-800'}`}
-          >
-            <BarChart2 className="w-5 h-5" />
-            <span>Task Dashboard</span>
-          </button>
-
-          <button
-            onClick={() => handleNavigate('support')}
-            className={`w-full flex items-center space-x-3 p-3 rounded-lg text-white ${currentPage === 'support' ? 'bg-gradient-to-r from-yellow-500/20 to-orange-500/20' : 'hover:bg-gray-800'}`}
-          >
-            <Users className="w-5 h-5" />
-            <span>Support</span>
-          </button>
-
-          <button
-            onClick={() => handleNavigate('community')}
-            className={`w-full flex items-center space-x-3 p-3 rounded-lg text-white ${currentPage === 'community' ? 'bg-gradient-to-r from-yellow-500/20 to-orange-500/20' : 'hover:bg-gray-800'}`}
-          >
-            <Globe className="w-5 h-5" />
-            <span>Community</span>
-          </button>
-
-          <button
-            onClick={() => handleNavigate('settings')}
-            className={`w-full flex items-center space-x-3 p-3 rounded-lg text-white ${currentPage === 'settings' ? 'bg-gradient-to-r from-yellow-500/20 to-orange-500/20' : 'hover:bg-gray-800'}`}
-          >
-            <Settings className="w-5 h-5" />
-            <span>Settings</span>
-          </button>
-        </nav>
-
-        {/* Wallet Connection */}
-        <div className="p-4 border-t border-gray-800">
-          {walletAddress ? (
-            <div className="bg-gray-800 rounded-lg p-3">
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-sm text-gray-400">Connected</span>
-                <button
-                  onClick={disconnectWallet}
-                  className="text-xs text-red-400 hover:text-red-300"
-                >
-                  Disconnect
-                </button>
-              </div>
-              <div className="text-xs text-gray-300 font-mono mb-1">
-                {walletAddress.slice(0, 6)}...{walletAddress.slice(-4)}
-              </div>
-              <div className="flex items-center space-x-2">
-                <span className="text-sm font-semibold text-white">{walletBalance}</span>
-                <span className="text-xs text-gray-400">{walletCurrency}</span>
-              </div>
-            </div>
-          ) : (
-            <button
-              onClick={() => setShowWalletModal(true)}
-              className="w-full bg-gradient-to-r from-yellow-500 to-orange-500 text-white py-2 px-4 rounded-lg font-semibold hover:from-yellow-600 hover:to-orange-600 transition-all duration-200"
-            >
-              Connect Wallet
-            </button>
-          )}
-        </div>
-      </div>
-
-      {/* Mobile Header */}
-      <div className="lg:hidden bg-gray-900 border-b border-gray-800 p-4">
-        <div className="flex items-center justify-between">
-          <button
-            onClick={() => setSidebarOpen(true)}
-            className="text-white"
-          >
-            <Menu className="w-6 h-6" />
-          </button>
-          <div className="flex items-center space-x-3">
-            <div className="w-8 h-8 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-lg flex items-center justify-center">
-              <span className="text-gray-900 font-bold text-sm">TB</span>
-            </div>
-            <span className="text-white font-bold text-xl">TucanBit</span>
-          </div>
-          <div className="w-6"></div>
-        </div>
-      </div>
-
-      {/* Main Content */}
-      <div className="lg:ml-64">
+  
         {/* Hero Section */}
         <section className="relative overflow-hidden h-[70vh] min-h-[600px] flex items-center">
           <div className="absolute inset-0 bg-[url('https://iili.io/FwSX1Xj.png')] bg-cover bg-center" style={{ backgroundPosition: 'center 30%' }}>
@@ -720,7 +496,7 @@ const TournamentPage: React.FC<TournamentPageProps> = ({ onNavigate }) => {
             )}
           </div>
         </section>
-      </div>
+     
 
       {/* Tournament Details Modal */}
       {showTournamentDetails && selectedTournament && (
@@ -825,40 +601,7 @@ const TournamentPage: React.FC<TournamentPageProps> = ({ onNavigate }) => {
         </div>
       )}
 
-      {/* Wallet Connection Modal */}
-      {showWalletModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-          <div className="absolute inset-0 bg-black/80" onClick={() => setShowWalletModal(false)}></div>
-          <div className="relative bg-gray-900 rounded-2xl p-6 max-w-md w-full">
-            <div className="text-center mb-6">
-              <h3 className="text-xl font-bold text-white mb-2">Connect Wallet</h3>
-              <p className="text-gray-400">Choose your preferred wallet to connect</p>
-            </div>
-            
-            <div className="space-y-3">
-              {walletProviders.map((provider) => (
-                <button
-                  key={provider.name}
-                  onClick={connectWallet}
-                  disabled={isConnecting}
-                  className="w-full flex items-center space-x-3 p-4 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors disabled:opacity-50"
-                >
-                  <span className="text-2xl">{provider.icon}</span>
-                  <span className="text-white font-medium">{provider.name}</span>
-                  {isConnecting && <div className="ml-auto w-5 h-5 border-2 border-yellow-500 border-t-transparent rounded-full animate-spin"></div>}
-                </button>
-              ))}
-            </div>
-            
-            <button
-              onClick={() => setShowWalletModal(false)}
-              className="w-full mt-4 p-3 text-gray-400 hover:text-white transition-colors"
-            >
-              Cancel
-            </button>
-          </div>
-        </div>
-      )}
+    
     </div>
   );
 };

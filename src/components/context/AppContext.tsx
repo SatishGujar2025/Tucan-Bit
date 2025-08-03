@@ -1,8 +1,18 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
+import { ethers } from 'ethers';
 
-// Define the types for our shared state and functions
-type ModalView = 'login' | 'otp' | 'verification' | 'deposit' | 'visa' | null;
+// Define all possible modal views
+type ModalView = 'login' | 'otp' | 'verification' | 'deposit' | 'visa' | 'history' | 'withdrawConfirm' | 'walletConnect' | null;
 
+// Define the data for the withdraw confirmation modal
+interface WithdrawDetails {
+  amount: string;
+  address: string;
+  currency: any;
+}
+
+// Define the full shape of our shared context
+type WalletCurrency = 'ETH' | 'SOL' | null;
 interface AppContextType {
   isAuthenticated: boolean;
   user: { username: string } | null;
@@ -13,54 +23,102 @@ interface AppContextType {
   openModal: (view: ModalView) => void;
   closeModal: () => void;
   setBalance: React.Dispatch<React.SetStateAction<number>>;
+  withdrawDetails: WithdrawDetails | null;
+  setWithdrawDetails: React.Dispatch<React.SetStateAction<WithdrawDetails | null>>;
+  walletAddress: string | null;
+  walletBalance: string | null;
+  walletCurrency: WalletCurrency;
+  isConnecting: boolean;
+  connectWallet: (type: string) => Promise<void>;
+  disconnectWallet: () => void;
 }
 
-// Create the context with a default undefined value
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
-// Define the props for our provider component
 interface AppProviderProps {
   children: ReactNode;
 }
 
-// Create the Provider component
 export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [modalView, setModalView] = useState<ModalView>(null);
   const [user, setUser] = useState<{ username: string } | null>(null);
   const [balance, setBalance] = useState(10000);
+  const [withdrawDetails, setWithdrawDetails] = useState<WithdrawDetails | null>(null);
+  
+  // Wallet State
+  const [walletAddress, setWalletAddress] = useState<string | null>(null);
+  const [walletBalance, setWalletBalance] = useState<string | null>(null);
+  const [walletCurrency, setWalletCurrency] = useState<WalletCurrency>(null);
+  const [isConnecting, setIsConnecting] = useState(false);
 
-  const handleLoginSuccess = (username: string) => {
+  useEffect(() => {
+    const savedAddress = localStorage.getItem('walletAddress');
+    if (savedAddress) {
+      setWalletAddress(savedAddress);
+      setWalletBalance(localStorage.getItem('walletBalance'));
+      setWalletCurrency(localStorage.getItem('walletCurrency') as WalletCurrency);
+    }
+  }, []);
+  
+  // --- THIS IS THE CORRECTED LOGIN FUNCTION ---
+  const login = (username: string) => {
     setIsAuthenticated(true);
     setUser({ username });
-    setModalView('deposit'); // Show deposit modal after successful login flow
+    // This is the crucial step: close the current modal and open the next one.
+    openModal('deposit'); 
   };
 
-  const handleLogout = () => {
+  const logout = () => {
     setIsAuthenticated(false);
     setUser(null);
-    setModalView(null);
   };
 
   const openModal = (view: ModalView) => setModalView(view);
   const closeModal = () => setModalView(null);
+
+  // --- Wallet Connection Logic ---
+  const connectWallet = async (walletType: string) => {
+    // This is a placeholder for your full connection logic
+    console.log("Connecting with", walletType);
+    const mockAddress = `0x${Math.random().toString(16).substr(2, 40)}`;
+    setWalletAddress(mockAddress);
+    setWalletCurrency('ETH');
+    setWalletBalance((Math.random() * 2).toFixed(4));
+    localStorage.setItem('walletAddress', mockAddress);
+    closeModal();
+  };
+
+  const disconnectWallet = () => {
+    setWalletAddress(null);
+    setWalletBalance(null);
+    setWalletCurrency(null);
+    localStorage.removeItem('walletAddress');
+  };
 
   const value: AppContextType = {
     isAuthenticated,
     user,
     balance,
     modalView,
-    login: handleLoginSuccess,
-    logout: handleLogout,
+    login,
+    logout,
     openModal,
     closeModal,
-    setBalance
+    setBalance,
+    withdrawDetails,
+    setWithdrawDetails,
+    walletAddress,
+    walletBalance,
+    walletCurrency,
+    isConnecting,
+    connectWallet,
+    disconnectWallet
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };
 
-// Create a custom hook for easy access to the context
 export const useAppContext = (): AppContextType => {
   const context = useContext(AppContext);
   if (context === undefined) {

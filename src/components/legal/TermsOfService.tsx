@@ -11,13 +11,13 @@ const TermsOfService: React.FC<TermsOfServiceProps> = ({ onBack }) => {
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="flex items-center mb-8">
-          <button
+          {/* <button
             onClick={onBack}
             className="flex items-center space-x-2 text-gray-300 hover:text-white transition-colors mr-6"
           >
             <ArrowLeft className="w-5 h-5" />
             <span>Back</span>
-          </button>
+          </button> */}
           <div>
             <h1 className="text-4xl font-bold text-white mb-2">Terms of Service</h1>
             <p className="text-gray-300">Last updated: January 1, 2024</p>
