@@ -213,7 +213,6 @@ const Blackjack: React.FC<BlackjackProps> = ({ balance, onBalanceChange, onBack 
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <button
-            onClick={onBack}
             onClick={() => {
               window.scrollTo(0, 0);
               onBack();

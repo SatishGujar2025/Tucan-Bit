@@ -86,7 +86,6 @@ const SlotMachine: React.FC<SlotMachineProps> = ({ balance, onBalanceChange, onB
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <button
-            onClick={onBack}
             onClick={() => {
               window.scrollTo(0, 0);
               onBack();
