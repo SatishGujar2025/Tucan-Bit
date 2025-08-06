@@ -330,7 +330,7 @@ const EarnPage: React.FC<EarnPageProps> = ({ onNavigate }) => {
             <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/70 to-transparent"></div>
             <div className="absolute inset-0 bg-gradient-to-r from-gray-900/80 to-gray-900/30"></div>
           </div>
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div className="relative p-6 w-full">
             <div className="text-center md:text-left max-w-2xl">
               <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-orange-500">Earn</span> Rewards
@@ -355,8 +355,8 @@ const EarnPage: React.FC<EarnPageProps> = ({ onNavigate }) => {
         </section>
 
         {/* Tabs */}
-        <section className="py-8 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-7xl mx-auto">
+        <section className="p-6">
+          <div>
             <div className="flex flex-wrap gap-2 mb-8">
               {[
                 { id: 'tasks', name: 'Tasks', icon: Target, count: tasks.length },

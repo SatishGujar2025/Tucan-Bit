@@ -1,114 +1,129 @@
+import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { AppProvider } from './context/AppContext';
-import { Layout } from './components';
-
-// Import all page components from the organized structure
+import { AppProvider, useAppContext } from './context/AppContext';
+import Layout from './components/layout/Layout';
+import HomePage from './pages/HomePage';
+import CasinoPage from './pages/casino/CasinoPage';
+import LiveCasinoPage from './pages/casino/LiveCasinoPage';
+import TournamentPage from './pages/TournamentPage';
+import EarnPage from './pages/EarnPage';
+import TokenDashboardPage from './pages/TokenDashboardPage';
+import TaskDashboardPage from './pages/TaskDashboardPage';
+import GameLobbyPage from './pages/GameLobbyPage';
+import SlotsPage from './pages/games/SlotsPage';
+import BlackJacksPage from './pages/games/BlackJacksPage';
+import JackPotsPage from './pages/games/JackPotsPage';
+import RoulettePage from './pages/games/RoulettePage';
+import TableGamesPage from './pages/games/TableGamesPage';
+import SupportPage from './pages/support/SupportPage';
+import CommunityPage from './pages/community/CommunityPage';
+import PromotionsPage from './pages/PromotionsPage';
+import HotSummerPage from './pages/promotions/HotSummerPage';
+import WeekendSpecialPage from './pages/promotions/WeekendSpecialPage';
+import VIPTournamentPage from './pages/tournaments/VIPTournamentPage';
+import DepositPage from './pages/wallet/DepositPage';
+import WithdrawPage from './pages/wallet/Withdrawpage';
+import ProfilePage from './pages/ProfilePage';
+import LootboxPage from './pages/LootboxPage';
+import SportsPage from './pages/sports/SportsPage';
+import ContactUs from './pages/support/ContactUs';
+import Fairness from './pages/support/Fairness';
+import HelpCenter from './pages/support/HelpCenter';
+import LiveChatPage from './pages/support/LiveChatPage';
+import ResponsibleGaming from './pages/support/ResponsibleGaming';
+import CookiePolicy from './pages/legal/CookiePolicy';
+import Licensing from './pages/legal/Licensing';
+import PrivacyPolicy from './pages/legal/PrivacyPolicy';
+import Security from './pages/legal/Security';
+import TermsOfService from './pages/legal/TermsOfService';
 import {
-  HomePage,
-  CasinoPage,
-  LiveCasinoPage,
-  GameLobbyPage,
-  SlotsPage,
-  TableGamesPage,
-  RoulettePage,
-  BlackJacksPage,
-  JackPotsPage,
-  PromotionsPage,
-  DepositPage,
-  WithdrawPage,
-  TournamentPage,
-  EarnPage,
-  TaskDashboardPage,
-  TokenDashboardPage,
-  SupportPage,
-  CommunityPage,
-  ProfilePage,
-  LootboxPage,
-  GamesPage,
-  SportsPage,
-  TermsOfService,
-  PrivacyPolicy,
-  CookiePolicy,
-  Licensing,
-  Security,
-  HelpCenter,
-  ContactUs,
-  ResponsibleGaming,
-  Fairness,
-  LiveChatPage,
+  NotFoundPage,
+  GameDetailPage,
 } from './pages';
+import PromotionalModal from './components/modals/PromotionalModal';
 
-function App() {
+function AppContent() {
+  const { showPromoModal, setShowPromoModal, currentAdType } = useAppContext();
+
   return (
-    // =================================================================
-    // THE FIX IS HERE: <AppProvider> must wrap your entire router.
-    // This makes the context available to all components, including Layout.
-    // =================================================================
-    <AppProvider>
+    <>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout />}>
-            {/* All your page routes go here as before */}
             <Route index element={<HomePage />} />
             <Route path="casino" element={<CasinoPage />} />
             <Route path="live-casino" element={<LiveCasinoPage />} />
-            <Route path="games" element={<GamesPage onBack={function (): void {
-              throw new Error('Function not implemented.');
-            } } />} />
+            <Route path="tournaments" element={<TournamentPage />} />
+            <Route path="earn" element={<EarnPage />} />
+            <Route path="token-dashboard" element={<TokenDashboardPage />} />
+            <Route path="task-dashboard" element={<TaskDashboardPage />} />
+            <Route path="game-lobby" element={<GameLobbyPage />} />
+            <Route path="slots" element={<SlotsPage />} />
+            <Route path="blackjacks" element={<BlackJacksPage />} />
+            <Route path="jackpots" element={<JackPotsPage />} />
+            <Route path="roulette" element={<RoulettePage />} />
+            <Route path="table-games" element={<TableGamesPage />} />
+            <Route path="support" element={<SupportPage />} />
+            <Route path="community" element={<CommunityPage />} />
+            <Route path="promotions" element={<PromotionsPage />} />
+            <Route path="promotions/hot-summer" element={<HotSummerPage />} />
+            <Route path="promotions/weekend-special" element={<WeekendSpecialPage />} />
+            <Route path="tournaments/vip" element={<VIPTournamentPage />} />
+            <Route path="deposit" element={<DepositPage />} />
+            <Route path="withdraw" element={<WithdrawPage />} />
+            <Route path="profile" element={<ProfilePage />} />
+            <Route path="lootboxes" element={<LootboxPage />} />
             <Route path="sports" element={<SportsPage onBack={function (): void {
               throw new Error('Function not implemented.');
             } } />} />
-            <Route path="lootboxes" element={<LootboxPage />} />
-            <Route path="promotions" element={<PromotionsPage />} />
-            <Route path="tournaments" element={<TournamentPage />} />
-            <Route path="earn" element={<EarnPage />} />
-            <Route path="community" element={<CommunityPage />} />
-            <Route path="profile" element={<ProfilePage />} />
-            <Route path="lobby" element={<GameLobbyPage />} />
-            <Route path="slots" element={<SlotsPage />} />
-            <Route path="table-games" element={<TableGamesPage />} />
-            <Route path="roulette" element={<RoulettePage />} />
-            <Route path="blackjack" element={<BlackJacksPage />} />
-            <Route path="jackpots" element={<JackPotsPage />} />
-            <Route path="deposit" element={<DepositPage />} />
-            <Route path="withdraw" element={<WithdrawPage />} />
-            <Route path="task-dashboard" element={<TaskDashboardPage />} />
-            <Route path="token-dashboard" element={<TokenDashboardPage />} />
-            <Route path="support" element={<SupportPage />} />
-            <Route path="help" element={<HelpCenter onBack={function (): void {
+            <Route path="contact" element={<ContactUs onBack={function (): void {
               throw new Error('Function not implemented.');
             } } />} />
-            <Route path="contact" element={<ContactUs onBack={function (): void {
+            <Route path="fairness" element={<Fairness onBack={function (): void {
+              throw new Error('Function not implemented.');
+            } } />} />
+            <Route path="help" element={<HelpCenter onBack={function (): void {
               throw new Error('Function not implemented.');
             } } />} />
             <Route path="live-chat" element={<LiveChatPage />} />
             <Route path="responsible-gaming" element={<ResponsibleGaming onBack={function (): void {
               throw new Error('Function not implemented.');
             } } />} />
-            <Route path="fairness" element={<Fairness onBack={function (): void {
-              throw new Error('Function not implemented.');
-            } } />} />
-            <Route path="terms" element={<TermsOfService onBack={function (): void {
-              throw new Error('Function not implemented.');
-            } } />} />
-            <Route path="privacy" element={<PrivacyPolicy onBack={function (): void {
-              throw new Error('Function not implemented.');
-            } } />} />
-            <Route path="cookies" element={<CookiePolicy onBack={function (): void {
+            <Route path="cookie-policy" element={<CookiePolicy onBack={function (): void {
               throw new Error('Function not implemented.');
             } } />} />
             <Route path="licensing" element={<Licensing onBack={function (): void {
               throw new Error('Function not implemented.');
             } } />} />
+            <Route path="privacy-policy" element={<PrivacyPolicy onBack={function (): void {
+              throw new Error('Function not implemented.');
+            } } />} />
             <Route path="security" element={<Security onBack={function (): void {
               throw new Error('Function not implemented.');
             } } />} />
-            {/* <Route path="deposit" element={<DepositPage />} /> */}
-            
-            <Route path="*" element={<h1 className="p-8 text-white">404 - Page Not Found</h1>} />
+            <Route path="terms-of-service" element={<TermsOfService onBack={function (): void {
+              throw new Error('Function not implemented.');
+            } } />} />
+            <Route path="game/:gameId" element={<GameDetailPage />} />
+            <Route path="*" element={<NotFoundPage />} />
           </Route>
         </Routes>
       </BrowserRouter>
+
+      {/* Global Promotional Modal */}
+      <PromotionalModal 
+        isOpen={showPromoModal} 
+        onClose={() => setShowPromoModal(false)}
+        adType={currentAdType}
+      />
+    </>
+  );
+}
+
+function App() {
+  return (
+    <AppProvider>
+      <AppContent />
     </AppProvider>
   );
 }

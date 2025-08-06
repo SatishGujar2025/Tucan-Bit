@@ -490,7 +490,7 @@ const SupportPage: React.FC<SupportPageProps> = ({ onNavigate }) => {
         <section className="relative overflow-hidden h-[60vh] min-h-[500px] flex items-center">
           <div className="absolute inset-0 bg-gradient-to-r from-blue-900/50 to-purple-900/50"></div>
           <div className="absolute inset-0 bg-[url('/src/assets/tucanbit.jpeg')] bg-cover bg-center opacity-20"></div>
-          <div className="relative z-10 container mx-auto px-4">
+          <div className="relative z-10 p-6">
             <div className="max-w-4xl">
               <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-orange-500">Support</span> Center

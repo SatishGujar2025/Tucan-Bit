@@ -201,7 +201,7 @@ const TokenDashboardPage: React.FC<TokenDashboardPageProps> = ({ onNavigate }) =
         <section className="relative overflow-hidden h-[60vh] min-h-[500px] flex items-center">
           <div className="absolute inset-0 bg-gradient-to-r from-blue-900/50 to-purple-900/50"></div>
           <div className="absolute inset-0 bg-[url('/src/assets/tucanbit.jpeg')] bg-cover bg-center opacity-20"></div>
-          <div className="relative z-10 container mx-auto px-4">
+          <div className="relative z-10 p-6">
             <div className="max-w-4xl">
               <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-orange-500">Token</span> Dashboard
@@ -228,13 +228,13 @@ const TokenDashboardPage: React.FC<TokenDashboardPageProps> = ({ onNavigate }) =
         </section>
 
         {/* Dashboard Content */}
-        <section className="py-12 px-4">
-          <div className="container mx-auto max-w-7xl">
+        <section className="p-6">
+          <div>
             {/* Tab Navigation */}
             <div className="flex flex-wrap gap-2 mb-8">
               <button
                 onClick={() => setActiveTab('overview')}
-                className={`px-6 py-3 rounded-lg font-medium transition-colors ${
+                className={`px-4 py-2 rounded-lg font-medium transition-colors text-sm ${
                   activeTab === 'overview'
                     ? 'bg-blue-600 text-white'
                     : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
@@ -244,7 +244,7 @@ const TokenDashboardPage: React.FC<TokenDashboardPageProps> = ({ onNavigate }) =
               </button>
               <button
                 onClick={() => setActiveTab('analytics')}
-                className={`px-6 py-3 rounded-lg font-medium transition-colors ${
+                className={`px-4 py-2 rounded-lg font-medium transition-colors text-sm ${
                   activeTab === 'analytics'
                     ? 'bg-blue-600 text-white'
                     : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
@@ -254,7 +254,7 @@ const TokenDashboardPage: React.FC<TokenDashboardPageProps> = ({ onNavigate }) =
               </button>
               <button
                 onClick={() => setActiveTab('transactions')}
-                className={`px-6 py-3 rounded-lg font-medium transition-colors ${
+                className={`px-4 py-2 rounded-lg font-medium transition-colors text-sm ${
                   activeTab === 'transactions'
                     ? 'bg-blue-600 text-white'
                     : 'bg-gray-700 text-gray-300 hover:bg-gray-600'

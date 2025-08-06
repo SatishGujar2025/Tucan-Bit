@@ -66,7 +66,7 @@ const DepositPage: React.FC = () => {
 
   return (
     <div className="p-6 bg-gray-900">
-      <div className="max-w-7xl mx-auto">
+      <div>
         {/* Hero Section */}
         <section className="relative overflow-hidden h-[40vh] min-h-[300px] flex items-center mb-12">
           <div className="absolute inset-0 bg-[url('https://iili.io/FwSX1Xj.png')] bg-cover bg-center" style={{ backgroundPosition: 'center 30%' }}>
@@ -117,7 +117,7 @@ const DepositPage: React.FC = () => {
                 <label className="block text-sm font-medium text-gray-300 mb-2">Deposit Address</label>
                 <div className="flex items-center space-x-2">
                   <div className="flex-1 bg-gray-900 rounded-lg px-4 py-3 font-mono text-sm text-gray-300 break-all">{selectedCrypto.address}</div>
-                  <button onClick={() => copyToClipboard(selectedCrypto.address)} className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-4 py-3 rounded-lg flex items-center space-x-2">
+                  <button onClick={() => copyToClipboard(selectedCrypto.address)} className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-3 py-2 rounded-lg flex items-center space-x-2 text-sm">
                     {copiedAddress === selectedCrypto.address ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
                     <span>{copiedAddress === selectedCrypto.address ? 'Copied!' : 'Copy'}</span>
                   </button>

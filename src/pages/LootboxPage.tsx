@@ -120,10 +120,21 @@ const LootboxPage: React.FC = () => {
           </div>
 
           {/* Banner */} 
-          <div className="relative mb-8 overflow-hidden rounded-xl p-8 py-24" style={{ backgroundImage: `url(${tb})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
-            <div className="relative z-10">
-              <h2 className="text-3xl font-bold mb-2 text-white">OPEN LOOTBOXES WIN PRIZES EVERY TIME!</h2>
-              <p className="text-lg text-white mb-4">Unbox Crypto, Free Spins, Merch & more! Win every time, sell what you don't want.</p>
+          <div className="relative mb-8 overflow-hidden rounded-xl p-8 py-16 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 border border-gray-700">
+            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10"></div>
+            <div className="relative z-10 text-center">
+              <div className="flex justify-center mb-4">
+                <div className="text-6xl mb-4">🎁</div>
+              </div>
+              <h2 className="text-4xl font-bold mb-3 bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400 bg-clip-text text-transparent">OPEN LOOTBOXES WIN PRIZES EVERY TIME!</h2>
+              <p className="text-xl text-gray-300 mb-6">Unbox Crypto, Free Spins, Merch & more! Win every time, sell what you don't want.</p>
+              <div className="flex justify-center space-x-4 text-2xl">
+                <span>💎</span>
+                <span>🎰</span>
+                <span>👕</span>
+                <span>🎯</span>
+                <span>🐋</span>
+              </div>
             </div>
           </div>
 
@@ -235,7 +246,7 @@ const LootboxPage: React.FC = () => {
                 {openFAQ === 0 ? <ChevronUp className="w-3 h-3 text-gray-400" /> : <ChevronDown className="w-3 h-3 text-gray-400" />}
               </button>
               {openFAQ === 0 && (
-                <div className="px-3 pb-3"><p className="text-xs text-gray-300">Lootboxes are mystery boxes containing various rewards and bonuses.</p></div>
+                <div className="px-3 pb-3"><p className="text-xs text-gray-300">Lootboxes are mystery boxes containing various rewards like crypto, free spins, merchandise, and exclusive bonuses. Each lootbox guarantees a win!</p></div>
               )}
             </div>
             <div className="bg-gray-800 rounded-md border border-gray-700 overflow-hidden">
@@ -244,81 +255,61 @@ const LootboxPage: React.FC = () => {
                  {openFAQ === 1 ? <ChevronUp className="w-3 h-3 text-gray-400" /> : <ChevronDown className="w-3 h-3 text-gray-400" />}
               </button>
               {openFAQ === 1 && (
-                <div className="px-3 pb-3"><p className="text-xs text-gray-300">To purchase a lootbox, connect your wallet and use the "Purchase" button.</p></div>
-              )}
-            </div>
-
-            <div className="bg-gray-800 rounded-md border border-gray-700 overflow-hidden">
-              <button onClick={() => setOpenFAQ(openFAQ === 1 ? null : 1)} className="w-full p-3 text-left flex items-center justify-between hover:bg-gray-750">
-                 <h3 className="text-sm font-semibold text-white flex items-center"><span className="text-blue-500 mr-2 text-xs">Q:</span>How do I purchase a Lootbox?</h3>
-                 {openFAQ === 1 ? <ChevronUp className="w-3 h-3 text-gray-400" /> : <ChevronDown className="w-3 h-3 text-gray-400" />}
-              </button>
-              {openFAQ === 1 && (
-                <div className="px-3 pb-3"><p className="text-xs text-gray-300">To purchase a lootbox, connect your wallet and use the "Purchase" button.</p></div>
-              )}
-            </div>
-
-            <div className="bg-gray-800 rounded-md border border-gray-700 overflow-hidden">
-              <button onClick={() => setOpenFAQ(openFAQ === 1 ? null : 1)} className="w-full p-3 text-left flex items-center justify-between hover:bg-gray-750">
-                 <h3 className="text-sm font-semibold text-white flex items-center"><span className="text-blue-500 mr-2 text-xs">Q:</span>How do I purchase a Lootbox?</h3>
-                 {openFAQ === 1 ? <ChevronUp className="w-3 h-3 text-gray-400" /> : <ChevronDown className="w-3 h-3 text-gray-400" />}
-              </button>
-              {openFAQ === 1 && (
-                <div className="px-3 pb-3"><p className="text-xs text-gray-300">To purchase a lootbox, connect your wallet and use the "Purchase" button.</p></div>
+                <div className="px-3 pb-3"><p className="text-xs text-gray-300">Connect your wallet, browse available lootboxes, and click the "Purchase" button. Payment is processed instantly using your connected crypto wallet.</p></div>
               )}
             </div>
             <div className="bg-gray-800 rounded-md border border-gray-700 overflow-hidden">
-              <button onClick={() => setOpenFAQ(openFAQ === 1 ? null : 1)} className="w-full p-3 text-left flex items-center justify-between hover:bg-gray-750">
-                 <h3 className="text-sm font-semibold text-white flex items-center"><span className="text-blue-500 mr-2 text-xs">Q:</span>How do I purchase a Lootbox?</h3>
-                 {openFAQ === 1 ? <ChevronUp className="w-3 h-3 text-gray-400" /> : <ChevronDown className="w-3 h-3 text-gray-400" />}
+              <button onClick={() => setOpenFAQ(openFAQ === 2 ? null : 2)} className="w-full p-3 text-left flex items-center justify-between hover:bg-gray-750">
+                 <h3 className="text-sm font-semibold text-white flex items-center"><span className="text-blue-500 mr-2 text-xs">Q:</span>What can I win from Lootboxes?</h3>
+                 {openFAQ === 2 ? <ChevronUp className="w-3 h-3 text-gray-400" /> : <ChevronDown className="w-3 h-3 text-gray-400" />}
               </button>
-              {openFAQ === 1 && (
-                <div className="px-3 pb-3"><p className="text-xs text-gray-300">To purchase a lootbox, connect your wallet and use the "Purchase" button.</p></div>
+              {openFAQ === 2 && (
+                <div className="px-3 pb-3"><p className="text-xs text-gray-300">You can win crypto rewards, free spins, bonus rounds, merchandise, exclusive game bonuses, multipliers, and special in-game items.</p></div>
               )}
             </div>
             <div className="bg-gray-800 rounded-md border border-gray-700 overflow-hidden">
-              <button onClick={() => setOpenFAQ(openFAQ === 1 ? null : 1)} className="w-full p-3 text-left flex items-center justify-between hover:bg-gray-750">
-                 <h3 className="text-sm font-semibold text-white flex items-center"><span className="text-blue-500 mr-2 text-xs">Q:</span>How do I purchase a Lootbox?</h3>
-                 {openFAQ === 1 ? <ChevronUp className="w-3 h-3 text-gray-400" /> : <ChevronDown className="w-3 h-3 text-gray-400" />}
+              <button onClick={() => setOpenFAQ(openFAQ === 3 ? null : 3)} className="w-full p-3 text-left flex items-center justify-between hover:bg-gray-750">
+                 <h3 className="text-sm font-semibold text-white flex items-center"><span className="text-blue-500 mr-2 text-xs">Q:</span>Are Lootboxes guaranteed to win?</h3>
+                 {openFAQ === 3 ? <ChevronUp className="w-3 h-3 text-gray-400" /> : <ChevronDown className="w-3 h-3 text-gray-400" />}
               </button>
-              {openFAQ === 1 && (
-                <div className="px-3 pb-3"><p className="text-xs text-gray-300">To purchase a lootbox, connect your wallet and use the "Purchase" button.</p></div>
+              {openFAQ === 3 && (
+                <div className="px-3 pb-3"><p className="text-xs text-gray-300">Yes! Every lootbox guarantees a win. You will always receive a reward, making lootboxes a risk-free way to get exciting prizes.</p></div>
               )}
             </div>
             <div className="bg-gray-800 rounded-md border border-gray-700 overflow-hidden">
-              <button onClick={() => setOpenFAQ(openFAQ === 1 ? null : 1)} className="w-full p-3 text-left flex items-center justify-between hover:bg-gray-750">
-                 <h3 className="text-sm font-semibold text-white flex items-center"><span className="text-blue-500 mr-2 text-xs">Q:</span>How do I purchase a Lootbox?</h3>
-                 {openFAQ === 1 ? <ChevronUp className="w-3 h-3 text-gray-400" /> : <ChevronDown className="w-3 h-3 text-gray-400" />}
+              <button onClick={() => setOpenFAQ(openFAQ === 4 ? null : 4)} className="w-full p-3 text-left flex items-center justify-between hover:bg-gray-750">
+                 <h3 className="text-sm font-semibold text-white flex items-center"><span className="text-blue-500 mr-2 text-xs">Q:</span>Can I sell unwanted rewards?</h3>
+                 {openFAQ === 4 ? <ChevronUp className="w-3 h-3 text-gray-400" /> : <ChevronDown className="w-3 h-3 text-gray-400" />}
               </button>
-              {openFAQ === 1 && (
-                <div className="px-3 pb-3"><p className="text-xs text-gray-300">To purchase a lootbox, connect your wallet and use the "Purchase" button.</p></div>
+              {openFAQ === 4 && (
+                <div className="px-3 pb-3"><p className="text-xs text-gray-300">Yes! You can sell unwanted rewards in our marketplace. Convert them to crypto or trade for other items you prefer.</p></div>
               )}
             </div>
             <div className="bg-gray-800 rounded-md border border-gray-700 overflow-hidden">
-              <button onClick={() => setOpenFAQ(openFAQ === 1 ? null : 1)} className="w-full p-3 text-left flex items-center justify-between hover:bg-gray-750">
-                 <h3 className="text-sm font-semibold text-white flex items-center"><span className="text-blue-500 mr-2 text-xs">Q:</span>How do I purchase a Lootbox?</h3>
-                 {openFAQ === 1 ? <ChevronUp className="w-3 h-3 text-gray-400" /> : <ChevronDown className="w-3 h-3 text-gray-400" />}
+              <button onClick={() => setOpenFAQ(openFAQ === 5 ? null : 5)} className="w-full p-3 text-left flex items-center justify-between hover:bg-gray-750">
+                 <h3 className="text-sm font-semibold text-white flex items-center"><span className="text-blue-500 mr-2 text-xs">Q:</span>What are the different rarity levels?</h3>
+                 {openFAQ === 5 ? <ChevronUp className="w-3 h-3 text-gray-400" /> : <ChevronDown className="w-3 h-3 text-gray-400" />}
               </button>
-              {openFAQ === 1 && (
-                <div className="px-3 pb-3"><p className="text-xs text-gray-300">To purchase a lootbox, connect your wallet and use the "Purchase" button.</p></div>
+              {openFAQ === 5 && (
+                <div className="px-3 pb-3"><p className="text-xs text-gray-300">Lootboxes come in Common, Rare, Epic, and Legendary rarities. Higher rarity lootboxes contain better rewards and exclusive items.</p></div>
               )}
             </div>
             <div className="bg-gray-800 rounded-md border border-gray-700 overflow-hidden">
-              <button onClick={() => setOpenFAQ(openFAQ === 1 ? null : 1)} className="w-full p-3 text-left flex items-center justify-between hover:bg-gray-750">
-                 <h3 className="text-sm font-semibold text-white flex items-center"><span className="text-blue-500 mr-2 text-xs">Q:</span>How do I purchase a Lootbox?</h3>
-                 {openFAQ === 1 ? <ChevronUp className="w-3 h-3 text-gray-400" /> : <ChevronDown className="w-3 h-3 text-gray-400" />}
+              <button onClick={() => setOpenFAQ(openFAQ === 6 ? null : 6)} className="w-full p-3 text-left flex items-center justify-between hover:bg-gray-750">
+                 <h3 className="text-sm font-semibold text-white flex items-center"><span className="text-blue-500 mr-2 text-xs">Q:</span>How do I claim my rewards?</h3>
+                 {openFAQ === 6 ? <ChevronUp className="w-3 h-3 text-gray-400" /> : <ChevronDown className="w-3 h-3 text-gray-400" />}
               </button>
-              {openFAQ === 1 && (
-                <div className="px-3 pb-3"><p className="text-xs text-gray-300">To purchase a lootbox, connect your wallet and use the "Purchase" button.</p></div>
+              {openFAQ === 6 && (
+                <div className="px-3 pb-3"><p className="text-xs text-gray-300">Rewards are automatically added to your account. Crypto rewards go to your wallet, game bonuses are applied immediately, and merchandise is shipped to your address.</p></div>
               )}
             </div>
             <div className="bg-gray-800 rounded-md border border-gray-700 overflow-hidden">
-              <button onClick={() => setOpenFAQ(openFAQ === 1 ? null : 1)} className="w-full p-3 text-left flex items-center justify-between hover:bg-gray-750">
-                 <h3 className="text-sm font-semibold text-white flex items-center"><span className="text-blue-500 mr-2 text-xs">Q:</span>How do I purchase a Lootbox?</h3>
-                 {openFAQ === 1 ? <ChevronUp className="w-3 h-3 text-gray-400" /> : <ChevronDown className="w-3 h-3 text-gray-400" />}
+              <button onClick={() => setOpenFAQ(openFAQ === 7 ? null : 7)} className="w-full p-3 text-left flex items-center justify-between hover:bg-gray-750">
+                 <h3 className="text-sm font-semibold text-white flex items-center"><span className="text-blue-500 mr-2 text-xs">Q:</span>Is there a limit on purchases?</h3>
+                 {openFAQ === 7 ? <ChevronUp className="w-3 h-3 text-gray-400" /> : <ChevronDown className="w-3 h-3 text-gray-400" />}
               </button>
-              {openFAQ === 1 && (
-                <div className="px-3 pb-3"><p className="text-xs text-gray-300">To purchase a lootbox, connect your wallet and use the "Purchase" button.</p></div>
+              {openFAQ === 7 && (
+                <div className="px-3 pb-3"><p className="text-xs text-gray-300">There are no limits on lootbox purchases. You can buy as many as you want, but we encourage responsible gaming practices.</p></div>
               )}
             </div>
           </div>

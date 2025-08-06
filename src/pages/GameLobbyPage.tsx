@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   Play, TrendingUp, Shield, Zap, Star, Award, Users, Clock, Trophy,
   ExternalLink, Twitter, Facebook, Instagram, Youtube, Gift, Crown,
@@ -6,7 +7,8 @@ import {
   ChevronDown, ChevronRight, LogOut, User, CreditCard, BarChart2,
   Heart, Gem, Bitcoin, Aperture, Sparkles, Bell, ShieldCheck, RotateCw,
   Currency, ArrowRight, Target, Flame, Rocket, Diamond, Crown as CrownIcon,
-  Search, Filter, Grid, List, Star as StarIcon, TrendingUp as TrendingUpIcon
+  Search, Filter, Grid, List, Star as StarIcon, TrendingUp as TrendingUpIcon,
+  Trophy as TrophyIcon
 } from 'lucide-react';
 
 type GameLobbyPageProps = {
@@ -14,6 +16,7 @@ type GameLobbyPageProps = {
 };
 
  const GameLobbyPage: React.FC<GameLobbyPageProps> = ({ onNavigate }) => {
+  const navigate = useNavigate();
   const [isConnecting, setIsConnecting] = useState(false);
   const [walletAddress, setWalletAddress] = useState<string | null>(null);
   const [walletBalance, setWalletBalance] = useState<string | null>(null);
@@ -29,9 +32,8 @@ type GameLobbyPageProps = {
   const handleNavigate = (page: string) => {
     setCurrentPage(page);
     setSidebarOpen(false);
-    if (onNavigate) {
-      onNavigate(page);
-    }
+    // Use React Router navigation
+    navigate(`/${page}`);
   };
 
   // Generate tons of game data
@@ -185,7 +187,7 @@ type GameLobbyPageProps = {
       {/* Main Content */}
       <main >
                 {/* Hero Section */}
-        {/* <section className="relative overflow-hidden h-[70vh] min-h-[600px] flex items-center">
+        <section className="relative overflow-hidden h-[70vh] min-h-[600px] flex items-center">
           <div
             className="absolute inset-0 bg-[url('https://iili.io/FwSX1Xj.png')] bg-cover bg-center"
             style={{ backgroundPosition: 'center 30%' }}
@@ -194,7 +196,7 @@ type GameLobbyPageProps = {
             <div className="absolute inset-0 bg-gradient-to-r from-gray-900/80 to-gray-900/30"></div>
           </div>
 
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div className="relative p-6 w-full">
             <div className="text-center md:text-left max-w-2xl">
               <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-orange-500">TucanBit</span> Game Lobby
@@ -206,27 +208,28 @@ type GameLobbyPageProps = {
               <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
                 <button
                   onClick={() => handleNavigate('casino')}
-                  className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-8 py-4 rounded-xl font-bold text-lg hover:from-yellow-600 hover:to-orange-600 transform hover:scale-105 transition-all duration-200 flex items-center justify-center space-x-2 shadow-lg"
+                  className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-6 py-3 rounded-xl font-semibold text-base hover:from-yellow-600 hover:to-orange-600 transform hover:scale-105 transition-all duration-200 flex items-center justify-center space-x-2 shadow-lg"
                 >
-                  <Play className="w-6 h-6" />
-                  <span>Play Now</span>
+                  <Play className="w-5 h-5" />
+                  <span>Start Playing</span>
                 </button>
-
                 <button
-                  onClick={() => setShowWalletModal(true)}
-                  className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white/20 transition-all duration-200 flex items-center justify-center space-x-2 shadow-lg"
+                  onClick={() => {
+                    handleNavigate('tournaments');
+                  }}
+                  className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-6 py-3 rounded-xl font-semibold text-base hover:bg-white/20 transition-all duration-200 flex items-center justify-center space-x-2 shadow-lg"
                 >
-                  <Wallet className="w-6 h-6" />
-                  <span>{walletAddress ? `${walletAddress.slice(0, 6)}...${walletAddress.slice(-4)}` : 'Connect Wallet'}</span>
+                  <TrophyIcon className="w-5 h-5" />
+                  <span>Join Tournaments</span>
                 </button>
-                            </div>
+              </div>
             </div>
           </div>
-        </section> */}
+        </section>
 
         {/* Search and Filter Section */}
-        <section className="py-8 px-4 sm:px-6 lg:px-8 bg-gray-800/50">
-          <div className="">
+        <section className="p-6 bg-gray-800/50">
+          <div>
             <div className="flex flex-col lg:flex-row gap-4 items-center justify-between">
               <div className="relative flex-1 max-w-md">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -264,8 +267,8 @@ type GameLobbyPageProps = {
         </section>
 
         {/* Game Categories */}
-        <section className="py-8 px-4 sm:px-6 lg:px-8">
-          <div className="">
+        <section className="p-6">
+          <div>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
               {gameCategories.map((category) => {
                 const Icon = category.icon;
@@ -297,8 +300,8 @@ type GameLobbyPageProps = {
         </section>
 
         {/* Games Grid */}
-        <section className="py-8 px-4 sm:px-6 lg:px-8">
-          <div className="">
+        <section className="p-6">
+          <div>
             <div className={`grid gap-4 ${
               viewMode === 'grid' 
                 ? 'grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8' 
@@ -344,9 +347,9 @@ type GameLobbyPageProps = {
 
                     {/* Play Button */}
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <button className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-4 py-2 rounded-lg font-bold hover:from-yellow-600 hover:to-orange-600 transition-all duration-200 flex items-center space-x-2 transform scale-90 group-hover:scale-100">
+                      <button className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-3 py-2 rounded-lg font-semibold hover:from-yellow-600 hover:to-orange-600 transition-all duration-200 flex items-center space-x-2 transform scale-90 group-hover:scale-100 text-sm">
                         <Play className="w-4 h-4" />
-                        <span className="text-sm">Play</span>
+                        <span>Play</span>
                       </button>
                     </div>
                   </div>

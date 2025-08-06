@@ -1,0 +1,551 @@
+import React, { useState, useEffect } from 'react';
+import { Trophy, Clock, Star, TrendingUp, Flame, Gamepad2, BookOpen, Users, ChevronLeft, ChevronRight, Sparkles, X } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import g1 from '../../assets/g1.jpg';
+import g3 from '../../assets/g3.jpg';
+import sidebarPromo from '../../assets/sidebar_promo.png';
+import promoMagicGame from '../../assets/promo_tucanbit_magic_game.jpg';
+import promoGatekeeper from '../../assets/tucanbit_promo_gatekeeper.png';
+
+interface LeaderboardEntry {
+  id: number;
+  playerName: string;
+  betAmount: number;
+  currency: string;
+  isNew?: boolean;
+}
+
+interface Promotion {
+  id: number;
+  title: string;
+  description: string;
+  endTime: Date;
+  image: string;
+  link: string;
+}
+
+interface HotGame {
+  id: number;
+  name: string;
+  players: number;
+  image: string;
+}
+
+const PromotionalSidebar: React.FC = () => {
+  const navigate = useNavigate();
+  const [isExpanded, setIsExpanded] = useState(true);
+
+  // Update main content margins when sidebar state changes
+  useEffect(() => {
+    const mainContent = document.getElementById('main-content');
+    if (mainContent) {
+      if (isExpanded) {
+        mainContent.classList.add('lg:mr-80');
+        mainContent.classList.remove('lg:mr-0');
+      } else {
+        mainContent.classList.remove('lg:mr-80');
+        mainContent.classList.add('lg:mr-0');
+      }
+    }
+  }, [isExpanded]);
+  const [showTournamentRules, setShowTournamentRules] = useState(false);
+  const [showLeaderboard, setShowLeaderboard] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+  const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([
+    { id: 1, playerName: 'Player_***123', betAmount: 1250.50, currency: 'T' },
+    { id: 2, playerName: 'User_***456', betAmount: 890.25, currency: 'T' },
+    { id: 3, playerName: 'Gamer_***789', betAmount: 675.80, currency: 'T' },
+    { id: 4, playerName: 'Winner_***321', betAmount: 543.20, currency: 'T' },
+    { id: 5, playerName: 'Lucky_***654', betAmount: 432.10, currency: 'T' },
+  ]);
+
+  const [currentPromoIndex, setCurrentPromoIndex] = useState(0);
+  
+  const [promotions] = useState<Promotion[]>([
+    {
+      id: 1,
+      title: "Hot Summer",
+      description: "Exclusive bonuses",
+      endTime: new Date(Date.now() + 24 * 60 * 60 * 1000), // 24 hours from now
+      image: sidebarPromo,
+      link: "/promotions/hot-summer"
+    },
+    {
+      id: 2,
+      title: "Magic Game",
+      description: "Magical rewards",
+      endTime: new Date(Date.now() + 12 * 60 * 60 * 1000), // 12 hours from now
+      image: promoMagicGame,
+      link: "/promotions/weekend-special"
+    },
+    {
+      id: 3,
+      title: "Gatekeeper",
+      description: "Guardian rewards",
+      endTime: new Date(Date.now() + 48 * 60 * 60 * 1000), // 48 hours from now
+      image: promoGatekeeper,
+      link: "/tournaments/vip"
+    }
+  ]);
+
+  const currentPromotion = promotions[currentPromoIndex];
+
+  const [hotGames] = useState<HotGame[]>([
+    { id: 1, name: "Crazy Time", players: 1247, image: "🎰" },
+    { id: 2, name: "Sweet Bonanza", players: 892, image: "🍭" },
+    { id: 3, name: "Gates of Olympus", players: 756, image: "⚡" },
+    { id: 4, name: "Book of Dead", players: 634, image: "📚" },
+    { id: 5, name: "Starburst", players: 521, image: "💎" },
+  ]);
+
+  const [timeLeft, setTimeLeft] = useState({
+    hours: 0,
+    minutes: 0,
+    seconds: 0
+  });
+
+  // Update countdown timer
+  useEffect(() => {
+    const timer = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = currentPromotion.endTime.getTime() - now;
+
+      if (distance > 0) {
+        setTimeLeft({
+          hours: Math.floor(distance / (1000 * 60 * 60)),
+          minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+          seconds: Math.floor((distance % (1000 * 60)) / 1000)
+        });
+      }
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [currentPromotion.endTime]);
+
+  // Simulate real-time leaderboard updates
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setLeaderboard(prev => {
+        const newLeaderboard = [...prev];
+        const randomIndex = Math.floor(Math.random() * newLeaderboard.length);
+        const randomIncrease = Math.random() * 100 + 10;
+        
+        newLeaderboard[randomIndex] = {
+          ...newLeaderboard[randomIndex],
+          betAmount: parseFloat((newLeaderboard[randomIndex].betAmount + randomIncrease).toFixed(2)),
+          isNew: true
+        };
+
+        // Sort by bet amount
+        newLeaderboard.sort((a, b) => b.betAmount - a.betAmount);
+
+        // Remove the "new" flag after a short delay
+        setTimeout(() => {
+          setLeaderboard(current => 
+            current.map(entry => ({ ...entry, isNew: false }))
+          );
+        }, 2000);
+
+        return newLeaderboard;
+      });
+    }, 5000); // Update every 5 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <>
+      {/* Toggle Button - Always visible */}
+      <button
+        onClick={() => setIsExpanded(!isExpanded)}
+        className={`fixed top-4 right-0 z-[9999] bg-gradient-to-r from-gray-700 to-gray-600 hover:from-gray-600 hover:to-gray-500 text-white p-3 rounded-l-lg shadow-lg transition-all duration-300 border border-gray-600 ${
+          isExpanded ? 'right-80' : 'right-0'
+        }`}
+      >
+        {isExpanded ? (
+          <X className="w-5 h-5" />
+        ) : (
+          <Sparkles className="w-5 h-5 animate-pulse" />
+        )}
+      </button>
+
+      {/* Sidebar */}
+      <div className={`fixed inset-y-0 right-0 z-40 bg-gray-900 shadow-2xl border-l border-gray-800 overflow-y-auto transition-all duration-300 ${
+        isExpanded ? 'w-80 translate-x-0' : 'w-0 translate-x-full'
+      }`}>
+        <div className="flex flex-col h-full">
+          {/* Header */}
+          <div className="p-6 border-b border-gray-800 bg-gradient-to-r from-gray-800 to-gray-900">
+            <h2 className="text-xl font-bold text-white flex items-center space-x-2">
+              <Trophy className="w-6 h-6 text-yellow-400" />
+              <span>Live Activity</span>
+            </h2>
+            <p className="text-sm text-gray-400 mt-1">Real-time updates & promotions</p>
+          </div>
+
+
+
+          {/* Promotional Countdown */}
+          <div className="p-4 border-b border-gray-800">
+            <div 
+              className="bg-gradient-to-br from-pink-500 to-purple-600 rounded-xl overflow-hidden relative cursor-pointer hover:scale-[1.02] transition-transform"
+              onClick={() => navigate(currentPromotion.link)}
+            >
+              <div className="relative h-48 bg-gradient-to-br from-pink-400 to-purple-500">
+                {/* Fallback background if image doesn't load */}
+                <div className="absolute inset-0 bg-gradient-to-br from-pink-400 to-purple-500"></div>
+                <img 
+                  src={currentPromotion.image} 
+                  alt="Promotion" 
+                  className="w-full h-full object-cover relative z-10"
+                  onError={(e) => {
+                    e.currentTarget.style.display = 'none';
+                  }}
+                />
+                <div className="absolute inset-0 bg-black/40 z-20"></div>
+                
+                {/* Navigation Buttons */}
+                <button 
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setCurrentPromoIndex((prev) => (prev === 0 ? promotions.length - 1 : prev - 1));
+                  }}
+                  className="absolute left-2 top-1/2 transform -translate-y-1/2 z-40 bg-black/50 hover:bg-black/70 text-white p-1 rounded-full transition-all"
+                >
+                  <ChevronLeft className="w-4 h-4" />
+                </button>
+                <button 
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setCurrentPromoIndex((prev) => (prev === promotions.length - 1 ? 0 : prev + 1));
+                  }}
+                  className="absolute right-2 top-1/2 transform -translate-y-1/2 z-40 bg-black/50 hover:bg-black/70 text-white p-1 rounded-full transition-all"
+                >
+                  <ChevronRight className="w-4 h-4" />
+                </button>
+                
+                <div className="absolute inset-0 p-4 flex flex-col justify-between z-30">
+                  <div>
+                    <h3 className="text-lg font-bold text-white mb-1">{currentPromotion.title}</h3>
+                    <p className="text-sm text-gray-200">{currentPromotion.description}</p>
+                  </div>
+                  <div className="bg-black/50 rounded-lg p-3">
+                    <div className="flex items-center space-x-2 mb-2">
+                      <Clock className="w-4 h-4 text-yellow-400" />
+                      <span className="text-sm text-white font-semibold">Ends in:</span>
+                    </div>
+                    <div className="flex space-x-2">
+                      <div className="bg-white/20 rounded px-2 py-1">
+                        <span className="text-white font-bold text-sm">{timeLeft.hours.toString().padStart(2, '0')}</span>
+                      </div>
+                      <span className="text-white">:</span>
+                      <div className="bg-white/20 rounded px-2 py-1">
+                        <span className="text-white font-bold text-sm">{timeLeft.minutes.toString().padStart(2, '0')}</span>
+                      </div>
+                      <span className="text-white">:</span>
+                      <div className="bg-white/20 rounded px-2 py-1">
+                        <span className="text-white font-bold text-sm">{timeLeft.seconds.toString().padStart(2, '0')}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Promo Indicators */}
+              <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 z-40 flex space-x-1">
+                {promotions.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setCurrentPromoIndex(index);
+                    }}
+                    className={`w-2 h-2 rounded-full transition-all ${
+                      index === currentPromoIndex ? 'bg-white' : 'bg-white/50'
+                    }`}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Action Buttons - Moved to middle position */}
+          <div className="p-4 border-b border-gray-800 space-y-3">
+            <button 
+              onClick={() => setShowTournamentRules(true)}
+              className="w-full bg-gray-800/60 hover:bg-gray-700/70 text-white py-3 rounded-lg font-semibold flex items-center justify-center space-x-2 transition-all shadow-lg border border-gray-600/50 backdrop-blur-sm"
+            >
+              <BookOpen className="w-4 h-4" />
+              <span>Tournament Rules</span>
+            </button>
+            
+            <button 
+              onClick={() => setShowLeaderboard(true)}
+              className="w-full bg-gray-800/60 hover:bg-gray-700/70 text-white py-3 rounded-lg font-semibold flex items-center justify-center space-x-2 transition-all shadow-lg border border-gray-600/50 backdrop-blur-sm"
+            >
+              <Users className="w-4 h-4" />
+              <span>Leaderboard</span>
+            </button>
+          </div>
+
+          {/* Live Leaderboard */}
+          <div className="flex-1 p-4">
+            <div className="flex items-center space-x-2 mb-4">
+              <Trophy className="w-5 h-5 text-yellow-400" />
+              <h3 className="text-lg font-bold text-white">Live Leaderboard</h3>
+              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+            </div>
+            
+            {/* Header */}
+            <div className="grid grid-cols-3 gap-2 mb-3 text-xs font-semibold text-gray-400">
+              <div className="flex items-center space-x-1">
+                <Trophy className="w-3 h-3" />
+                <span>Place</span>
+              </div>
+              <div>Player</div>
+              <div>Prize</div>
+            </div>
+            
+            <div className="space-y-2">
+              {leaderboard.map((entry, index) => (
+                <div 
+                  key={entry.id} 
+                  className={`bg-gray-800 rounded-lg p-3 border transition-all duration-300 ${
+                    entry.isNew ? 'border-green-500 bg-green-500/10' : 'border-gray-700'
+                  }`}
+                >
+                  <div className="grid grid-cols-3 gap-2 items-center">
+                    <div className="flex items-center space-x-2">
+                      <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${
+                        index === 0 ? 'bg-yellow-500 text-black' :
+                        index === 1 ? 'bg-gray-400 text-black' :
+                        index === 2 ? 'bg-orange-600 text-white' :
+                        'bg-gray-600 text-white'
+                      }`}>
+                        {index + 1}
+                      </div>
+                      {index < 3 && (
+                        <Trophy className={`w-4 h-4 ${
+                          index === 0 ? 'text-yellow-400' :
+                          index === 1 ? 'text-gray-400' :
+                          'text-orange-500'
+                        }`} />
+                      )}
+                    </div>
+                    <div>
+                      <p className="text-white font-medium text-sm truncate">{entry.playerName}</p>
+                    </div>
+                    <div className="text-right">
+                      <p className="text-green-400 font-bold text-sm">${(Math.random() * 3000 + 500).toFixed(0)}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Hot Games */}
+          <div className="p-4 border-t border-gray-800">
+            <h4 className="text-sm font-semibold text-white mb-3 flex items-center space-x-2">
+              <Gamepad2 className="w-4 h-4 text-green-400" />
+              <span>🔥 Hot Games</span>
+            </h4>
+            <div className="space-y-2">
+              {hotGames.map((game) => (
+                <div key={game.id} className="bg-gray-800 rounded-lg p-3 hover:bg-gray-700 transition-colors cursor-pointer">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-3">
+                      <span className="text-2xl">{game.image}</span>
+                      <div>
+                        <h5 className="text-white font-semibold text-sm">{game.name}</h5>
+                        <p className="text-xs text-gray-400">{game.players} players</p>
+                      </div>
+                    </div>
+                    <div className="text-green-400 text-xs font-bold">HOT</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Tournament Rules Modal */}
+      {showTournamentRules && (
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-[100] p-4">
+          <div className="bg-gray-800 border border-gray-700 rounded-xl p-6 max-w-2xl w-full max-h-[80vh] overflow-y-auto">
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-xl font-bold text-white">Tournament Rules</h3>
+              <button 
+                onClick={() => setShowTournamentRules(false)} 
+                className="text-gray-400 hover:text-white text-2xl"
+              >
+                ×
+              </button>
+            </div>
+            <div className="text-gray-300 space-y-4 text-sm">
+              <div>
+                <h4 className="text-white font-semibold mb-2">1. Tournament Entry</h4>
+                <p>• Players must register before the tournament starts</p>
+                <p>• Entry fee is non-refundable once tournament begins</p>
+                <p>• Minimum bet requirements apply to all tournament games</p>
+              </div>
+              <div>
+                <h4 className="text-white font-semibold mb-2">2. Scoring System</h4>
+                <p>• Points are awarded based on bet amounts and wins</p>
+                <p>• Multiplier bonuses for consecutive wins</p>
+                <p>• Bonus points for high-value bets</p>
+              </div>
+              <div>
+                <h4 className="text-white font-semibold mb-2">3. Prize Distribution</h4>
+                <p>• Top 10 players receive prizes</p>
+                <p>• Prizes are distributed within 24 hours</p>
+                <p>• All prizes are subject to wagering requirements</p>
+              </div>
+              <div>
+                <h4 className="text-white font-semibold mb-2">4. Fair Play</h4>
+                <p>• No cheating or manipulation allowed</p>
+                <p>• TucanBit reserves the right to disqualify players</p>
+                <p>• All decisions are final</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Leaderboard Modal */}
+      {showLeaderboard && (
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-[100] p-4">
+          <div className="bg-gray-800 border border-gray-700 rounded-xl max-w-4xl w-full max-h-[80vh] flex flex-col">
+            {/* Header with X close icon */}
+            <div className="flex items-center justify-between p-6 border-b border-gray-700">
+              <h3 className="text-xl font-bold text-white">Tournament Leaderboard</h3>
+              <button 
+                onClick={() => setShowLeaderboard(false)} 
+                className="text-gray-400 hover:text-white text-2xl"
+              >
+                ×
+              </button>
+            </div>
+            
+            {/* Content */}
+            <div className="flex-1 p-6 overflow-y-auto">
+              {/* Header */}
+              <div className="grid grid-cols-5 gap-4 mb-4 text-sm font-semibold text-gray-400">
+                <div className="flex items-center space-x-1">
+                  <Trophy className="w-4 h-4" />
+                  <span>Place</span>
+                </div>
+                <div>Player</div>
+                <div>Points</div>
+                <div>Prize</div>
+                <div>Avatar</div>
+              </div>
+              
+              {/* Leaderboard Entries */}
+              <div className="space-y-3">
+                {[
+                  { place: 1, player: "WhaleHunter", points: "12,456", prize: "$15,000", avatar: "👤" },
+                  { place: 2, player: "LuckyDragon", points: "11,234", prize: "$10,000", avatar: "👤" },
+                  { place: 3, player: "GoldenTiger", points: "10,567", prize: "$7,500", avatar: "👤" },
+                  { place: 4, player: "VoiceChatHelm93677", points: "9,749", prize: "$1,500", avatar: "👤" },
+                  { place: 5, player: "Duck lover", points: "9,107", prize: "$1,200", avatar: "👤" },
+                  { place: 6, player: "🤙🏻", points: "8,403", prize: "$1,000", avatar: "👤" },
+                  { place: 7, player: "Nish", points: "7,201", prize: "$850", avatar: "👤" },
+                  { place: 8, player: "🏆 WIN", points: "7,066", prize: "$750", avatar: "👤" },
+                  { place: 9, player: "mdnoverflow", points: "6,117", prize: "$650", avatar: "👤" },
+                  { place: 10, player: "Cryptopunter", points: "5,951", prize: "$600", avatar: "👤" },
+                  { place: 11, player: "Player_011", points: "5,234", prize: "$550", avatar: "👤" },
+                  { place: 12, player: "Player_012", points: "4,876", prize: "$500", avatar: "👤" },
+                  { place: 13, player: "Player_013", points: "4,521", prize: "$450", avatar: "👤" },
+                  { place: 14, player: "Player_014", points: "4,123", prize: "$400", avatar: "👤" },
+                  { place: 15, player: "Player_015", points: "3,876", prize: "$350", avatar: "👤" },
+                  { place: 16, player: "Player_016", points: "3,654", prize: "$300", avatar: "👤" },
+                  { place: 17, player: "Player_017", points: "3,432", prize: "$250", avatar: "👤" },
+                  { place: 18, player: "Player_018", points: "3,210", prize: "$200", avatar: "👤" },
+                  { place: 19, player: "Player_019", points: "2,987", prize: "$150", avatar: "👤" },
+                  { place: 20, player: "Player_020", points: "2,765", prize: "$100", avatar: "👤" },
+                ].slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage).map((entry, index) => (
+                  <div key={entry.place} className="bg-gray-700 rounded-lg p-4">
+                    <div className="grid grid-cols-5 gap-4 items-center">
+                      <div className="flex items-center space-x-3">
+                        <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${
+                          entry.place === 1 ? 'bg-yellow-500 text-black' :
+                          entry.place === 2 ? 'bg-gray-400 text-black' :
+                          entry.place === 3 ? 'bg-orange-600 text-white' :
+                          'bg-gray-600 text-white'
+                        }`}>
+                          {entry.place}
+                        </div>
+                        {entry.place <= 3 && (
+                          <Trophy className={`w-5 h-5 ${
+                            entry.place === 1 ? 'text-yellow-400' :
+                            entry.place === 2 ? 'text-gray-400' :
+                            'text-orange-500'
+                          }`} />
+                        )}
+                      </div>
+                      <div className="text-white font-medium">{entry.player}</div>
+                      <div className="text-green-400 font-bold">{entry.points}</div>
+                      <div className="text-yellow-400 font-bold">{entry.prize}</div>
+                      <div className="text-2xl">{entry.avatar}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            
+            {/* Footer with Close button */}
+            <div className="p-6 border-t border-gray-700">
+              <div className="flex items-center justify-between">
+                {/* Pagination */}
+                <div className="flex items-center space-x-2">
+                  <button 
+                    onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+                    disabled={currentPage === 1}
+                    className="bg-gray-700 hover:bg-gray-600 disabled:bg-gray-800 disabled:text-gray-500 text-white px-3 py-2 rounded-lg transition-colors"
+                  >
+                    Previous
+                  </button>
+                  <div className="flex space-x-1">
+                    {[1, 2].map(page => (
+                      <button 
+                        key={page}
+                        onClick={() => setCurrentPage(page)}
+                        className={`px-3 py-2 rounded-lg font-semibold transition-all ${
+                          currentPage === page 
+                            ? 'bg-gradient-to-r from-purple-500 to-blue-600 text-white' 
+                            : 'bg-gray-700 hover:bg-gray-600 text-white'
+                        }`}
+                      >
+                        {page}
+                      </button>
+                    ))}
+                  </div>
+                  <button 
+                    onClick={() => setCurrentPage(prev => Math.min(2, prev + 1))}
+                    disabled={currentPage === 2}
+                    className="bg-gray-700 hover:bg-gray-600 disabled:bg-gray-800 disabled:text-gray-500 text-white px-3 py-2 rounded-lg transition-colors"
+                  >
+                    Next
+                  </button>
+                </div>
+                
+                {/* Close button */}
+                <button 
+                  onClick={() => setShowLeaderboard(false)} 
+                  className="bg-gradient-to-r from-purple-500 to-blue-600 hover:from-purple-600 hover:to-blue-700 text-white px-6 py-2 rounded-lg font-semibold transition-all"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
+
+export default PromotionalSidebar; 

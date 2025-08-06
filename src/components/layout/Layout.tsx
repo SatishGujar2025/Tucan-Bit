@@ -12,6 +12,7 @@ import VisaPaymentModal from '../modals/VisaPaymentModal';
 import { Wallet, Home, Gamepad2, Gift, User, ChevronDown,ChevronRightIcon, ChevronRight, LogOut } from 'lucide-react';
 import WalletConnectModal from '../modals/WalletConnectModal';
 import VerificationModal from '../modals/VerificationModal';
+import PromotionalSidebar from './PromotionalSidebar';
 
 
 
@@ -467,7 +468,10 @@ const Layout: React.FC = () => {
         </div>
       </div>
 
-      <div className="lg:ml-64">
+      {/* Promotional Sidebar */}
+      <PromotionalSidebar />
+
+      <div className="lg:ml-64 transition-all duration-300" id="main-content">
         {/* ====================================================================== */}
         {/* 2. HEADER - The top bar with login/user info                         */}
         {/* ====================================================================== */}

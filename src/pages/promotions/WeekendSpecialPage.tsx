@@ -1,0 +1,235 @@
+import React, { useState, useEffect } from 'react';
+import { Trophy, Clock, Gamepad2, ChevronLeft, ChevronRight } from 'lucide-react';
+import promoMagicGame from '../../assets/promo_tucanbit_magic_game.jpg';
+
+const WeekendSpecialPage: React.FC = () => {
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0
+  });
+
+  // Countdown timer
+  useEffect(() => {
+    const endTime = new Date(Date.now() + 12 * 60 * 60 * 1000); // 12 hours from now
+    
+    const timer = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = endTime.getTime() - now;
+
+      if (distance > 0) {
+        setTimeLeft({
+          days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+          minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+          seconds: Math.floor((distance % (1000 * 60)) / 1000)
+        });
+      }
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  const participatingGames = [
+    { id: 1, name: "Whale Roulette", image: "🎲", live88: true },
+    { id: 2, name: "Baccarat Speed", image: "🃏", live88: true },
+    { id: 3, name: "Blackjack 1", image: "♠️", live88: true },
+    { id: 4, name: "Dragon Tiger", image: "🐉", live88: true },
+    { id: 5, name: "Speed Dragon", image: "⚡", live88: true },
+    { id: 6, name: "Blackjack Ruby", image: "💎", live88: true },
+    { id: 7, name: "Royal Riches", image: "👑", live88: true },
+    { id: 8, name: "Triton Multiplier", image: "🌊", live88: true },
+  ];
+
+  const leaderboard = [
+    { place: 1, player: "weekend_king", points: "67,890", prize: "$8,000" },
+    { place: 2, player: "saturday_night", points: "45,234", prize: "$5,000" },
+    { place: 3, player: "sunday_funday", points: "38,567", prize: "$3,000" },
+    { place: 4, player: "weekend_warrior", points: "32,145", prize: "$2,000" },
+    { place: 5, player: "friday_feeling", points: "28,901", prize: "$1,500" },
+  ];
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+      {/* Hero Section */}
+      <div className="relative h-96 overflow-hidden">
+        <img 
+          src={promoMagicGame} 
+          alt="Magic Game Promotion" 
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black/50"></div>
+        
+        <div className="absolute inset-0 flex items-center justify-between p-8">
+          <div className="text-white">
+            <h1 className="text-5xl font-bold mb-4">Magic Game</h1>
+            
+            {/* Countdown Timer */}
+            <div className="flex space-x-4 mb-6">
+              <div className="text-center">
+                <div className="text-3xl font-bold bg-white/20 rounded-lg px-4 py-2">
+                  {timeLeft.days.toString().padStart(2, '0')}
+                </div>
+                <div className="text-sm mt-1">Days</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold bg-white/20 rounded-lg px-4 py-2">
+                  {timeLeft.hours.toString().padStart(2, '0')}
+                </div>
+                <div className="text-sm mt-1">Hours</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold bg-white/20 rounded-lg px-4 py-2">
+                  {timeLeft.minutes.toString().padStart(2, '0')}
+                </div>
+                <div className="text-sm mt-1">Min</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold bg-white/20 rounded-lg px-4 py-2">
+                  {timeLeft.seconds.toString().padStart(2, '0')}
+                </div>
+                <div className="text-sm mt-1">Sec</div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Prize Pool */}
+          <div className="text-center">
+            <div className="bg-yellow-500 text-black px-6 py-4 rounded-lg">
+              <div className="text-sm font-semibold">Prize Pool</div>
+              <div className="text-3xl font-bold">$25,000</div>
+            </div>
+          </div>
+          
+          {/* Trophy Icon */}
+          <div className="absolute top-4 right-4">
+            <Trophy className="w-8 h-8 text-yellow-400" />
+          </div>
+        </div>
+      </div>
+
+      {/* Promotion Details */}
+      <div className="max-w-6xl mx-auto px-6 py-8">
+        <div className="text-center mb-8">
+          <h2 className="text-4xl font-bold text-white mb-2">WEEKEND SPECIAL</h2>
+          <h3 className="text-2xl font-bold text-yellow-400">DOUBLE REWARDS!</h3>
+        </div>
+
+        {/* Rules and Details */}
+        <div className="bg-gray-800 rounded-xl p-8 mb-8">
+          <div className="grid md:grid-cols-2 gap-8">
+            <div>
+              <h4 className="text-xl font-bold text-white mb-4">Weekend Bonuses</h4>
+              <ul className="space-y-3 text-gray-300">
+                <li>• Double points on all weekend wagers</li>
+                <li>• 2x multipliers on Friday to Sunday</li>
+                <li>• Special weekend-only game bonuses</li>
+                <li>• Extra rewards for weekend warriors</li>
+                <li>• Limited time weekend exclusives</li>
+              </ul>
+            </div>
+            
+            <div>
+              <h4 className="text-xl font-bold text-white mb-4">Key Information</h4>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="bg-gray-700 rounded-lg p-4">
+                  <div className="text-sm text-gray-400">Type</div>
+                  <div className="text-white font-semibold">Weekend</div>
+                </div>
+                <div className="bg-gray-700 rounded-lg p-4">
+                  <div className="text-sm text-gray-400">Prize Pool</div>
+                  <div className="text-white font-semibold">$25,000</div>
+                </div>
+                <div className="bg-gray-700 rounded-lg p-4">
+                  <div className="text-sm text-gray-400">Rank</div>
+                  <div className="text-white font-semibold">All</div>
+                </div>
+                <div className="bg-gray-700 rounded-lg p-4">
+                  <div className="text-sm text-gray-400">Participants</div>
+                  <div className="text-white font-semibold">512</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Participating Games */}
+        <div className="mb-8">
+          <div className="flex items-center justify-between mb-6">
+            <h3 className="text-2xl font-bold text-white flex items-center space-x-2">
+              <Gamepad2 className="w-6 h-6" />
+              <span>Participating Games ({participatingGames.length})</span>
+            </h3>
+            <div className="flex space-x-2">
+              <button className="bg-gray-700 hover:bg-gray-600 text-white p-2 rounded-lg">
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+              <button className="bg-gray-700 hover:bg-gray-600 text-white p-2 rounded-lg">
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            </div>
+          </div>
+          
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
+            {participatingGames.map((game) => (
+              <div key={game.id} className="bg-gray-800 rounded-lg p-4 text-center hover:bg-gray-700 transition-colors cursor-pointer">
+                <div className="text-3xl mb-2">{game.image}</div>
+                <div className="text-sm text-white font-medium">{game.name}</div>
+                {game.live88 && (
+                  <div className="text-xs text-yellow-400 mt-1">Live88</div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Leaderboard */}
+        <div>
+          <h3 className="text-2xl font-bold text-white flex items-center space-x-2 mb-6">
+            <Trophy className="w-6 h-6 text-yellow-400" />
+            <span>Leaderboard</span>
+          </h3>
+          
+          <div className="bg-gray-800 rounded-xl overflow-hidden">
+            <div className="grid grid-cols-4 gap-4 p-4 bg-gray-700 text-sm font-semibold text-gray-300">
+              <div>Place</div>
+              <div>Player</div>
+              <div>Points</div>
+              <div>Prize</div>
+            </div>
+            
+            <div className="space-y-2 p-4">
+              {leaderboard.map((entry) => (
+                <div key={entry.place} className="grid grid-cols-4 gap-4 items-center py-3 hover:bg-gray-700 rounded-lg transition-colors">
+                  <div className="flex items-center space-x-2">
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${
+                      entry.place === 1 ? 'bg-yellow-500 text-black' :
+                      entry.place === 2 ? 'bg-gray-400 text-black' :
+                      entry.place === 3 ? 'bg-orange-600 text-white' :
+                      'bg-gray-600 text-white'
+                    }`}>
+                      {entry.place}
+                    </div>
+                    {entry.place <= 3 && (
+                      <Trophy className={`w-5 h-5 ${
+                        entry.place === 1 ? 'text-yellow-400' :
+                        entry.place === 2 ? 'text-gray-400' :
+                        'text-orange-500'
+                      }`} />
+                    )}
+                  </div>
+                  <div className="text-white font-medium">{entry.player}</div>
+                  <div className="text-green-400 font-bold">{entry.points}</div>
+                  <div className="text-yellow-400 font-bold">{entry.prize}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default WeekendSpecialPage; 

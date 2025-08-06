@@ -8,6 +8,8 @@ export { default as TokenDashboardPage } from './TokenDashboardPage';
 export { default as PromotionsPage } from './PromotionsPage';
 export { default as LootboxPage } from './LootboxPage';
 export { default as GameLobbyPage } from './GameLobbyPage';
+export { default as NotFoundPage } from './NotFoundPage';
+export { default as GameDetailPage } from './GameDetailPage';
 
 // Game pages
 export { default as GamesPage } from './games/GamesPage';

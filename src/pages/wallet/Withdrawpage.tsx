@@ -50,7 +50,7 @@ const WithdrawPage: React.FC = () => {
 
   return (
     <div className="p-6 bg-gray-900">
-      <div className="max-w-7xl mx-auto">
+      <div>
         {/* Hero Section */}
         <section className="relative overflow-hidden h-[40vh] min-h-[300px] flex items-center mb-12">
           <div className="absolute inset-0 bg-[url('https://iili.io/FwSX1Xj.png')] bg-cover bg-center" style={{ backgroundPosition: 'center 30%' }}>
@@ -115,7 +115,7 @@ const WithdrawPage: React.FC = () => {
                     <div><div className="text-gray-400">Min Withdrawal</div><div className="text-white font-semibold">{selectedCrypto.minWithdraw} {selectedCrypto.symbol}</div></div>
                   </div>
                 </div>
-                <button onClick={handleWithdraw} disabled={!withdrawAmount || !withdrawAddress || parseFloat(withdrawAmount) < parseFloat(selectedCrypto.minWithdraw)} className="w-full bg-gradient-to-r from-yellow-500 to-orange-500 text-white py-4 rounded-lg font-bold text-lg disabled:opacity-50">
+                <button onClick={handleWithdraw} disabled={!withdrawAmount || !withdrawAddress || parseFloat(withdrawAmount) < parseFloat(selectedCrypto.minWithdraw)} className="w-full bg-gradient-to-r from-yellow-500 to-orange-500 text-white py-3 rounded-lg font-semibold text-base disabled:opacity-50">
                   Withdraw {selectedCrypto.symbol}
                 </button>
               </div>

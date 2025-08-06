@@ -31,6 +31,12 @@ interface AppContextType {
   isConnecting: boolean;
   connectWallet: (type: string) => Promise<void>;
   disconnectWallet: () => void;
+  showPromoModal: boolean;
+  setShowPromoModal: React.Dispatch<React.SetStateAction<boolean>>;
+  promoShown: boolean;
+  setPromoShown: React.Dispatch<React.SetStateAction<boolean>>;
+  currentAdType: string;
+  setCurrentAdType: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -52,12 +58,50 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   const [walletCurrency, setWalletCurrency] = useState<WalletCurrency>(null);
   const [isConnecting, setIsConnecting] = useState(false);
 
+  // Promotional Modal State
+  const [showPromoModal, setShowPromoModal] = useState(false);
+  const [promoShown, setPromoShown] = useState(false);
+  const [currentAdType, setCurrentAdType] = useState('tournament');
+
   useEffect(() => {
     const savedAddress = localStorage.getItem('walletAddress');
     if (savedAddress) {
       setWalletAddress(savedAddress);
       setWalletBalance(localStorage.getItem('walletBalance'));
       setWalletCurrency(localStorage.getItem('walletCurrency') as WalletCurrency);
+    }
+  }, []);
+
+  // Check if promo was already shown and show modal on first visit
+  useEffect(() => {
+    const wasShown = localStorage.getItem('promoShown');
+    
+    const showRandomAd = () => {
+      const adTypes = ['tournament', 'welcome', 'deposit', 'vip', 'jackpot'];
+      const randomAd = adTypes[Math.floor(Math.random() * adTypes.length)];
+      setCurrentAdType(randomAd);
+      setShowPromoModal(true);
+      console.log('Promotional modal should show now with ad type:', randomAd);
+    };
+    
+    // For testing: Clear localStorage to force first-time visitor behavior
+    // localStorage.removeItem('promoShown');
+    
+    if (wasShown === 'true') {
+      setPromoShown(true);
+      // For returning users, show random ad after 30 seconds
+      const timer = setTimeout(() => {
+        showRandomAd();
+      }, 30000); // 30 seconds
+      return () => clearTimeout(timer);
+    } else {
+      // For first-time visitors, show modal after a short delay
+      const timer = setTimeout(() => {
+        showRandomAd();
+        setPromoShown(true);
+        localStorage.setItem('promoShown', 'true');
+      }, 2000); // 2 seconds delay for better UX
+      return () => clearTimeout(timer);
     }
   }, []);
   
@@ -113,7 +157,13 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     walletCurrency,
     isConnecting,
     connectWallet,
-    disconnectWallet
+    disconnectWallet,
+    showPromoModal,
+    setShowPromoModal,
+    promoShown,
+    setPromoShown,
+    currentAdType,
+    setCurrentAdType
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
