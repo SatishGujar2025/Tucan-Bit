@@ -52,8 +52,12 @@ function App() {
             <Route index element={<HomePage />} />
             <Route path="casino" element={<CasinoPage />} />
             <Route path="live-casino" element={<LiveCasinoPage />} />
-            <Route path="games" element={<GamesPage />} />
-            <Route path="sports" element={<SportsPage />} />
+            <Route path="games" element={<GamesPage onBack={function (): void {
+              throw new Error('Function not implemented.');
+            } } />} />
+            <Route path="sports" element={<SportsPage onBack={function (): void {
+              throw new Error('Function not implemented.');
+            } } />} />
             <Route path="lootboxes" element={<LootboxPage />} />
             <Route path="promotions" element={<PromotionsPage />} />
             <Route path="tournaments" element={<TournamentPage />} />
@@ -71,16 +75,34 @@ function App() {
             <Route path="task-dashboard" element={<TaskDashboardPage />} />
             <Route path="token-dashboard" element={<TokenDashboardPage />} />
             <Route path="support" element={<SupportPage />} />
-            <Route path="help" element={<HelpCenter />} />
-            <Route path="contact" element={<ContactUs />} />
+            <Route path="help" element={<HelpCenter onBack={function (): void {
+              throw new Error('Function not implemented.');
+            } } />} />
+            <Route path="contact" element={<ContactUs onBack={function (): void {
+              throw new Error('Function not implemented.');
+            } } />} />
             <Route path="live-chat" element={<LiveChatPage />} />
-            <Route path="responsible-gaming" element={<ResponsibleGaming />} />
-            <Route path="fairness" element={<Fairness />} />
-            <Route path="terms" element={<TermsOfService />} />
-            <Route path="privacy" element={<PrivacyPolicy />} />
-            <Route path="cookies" element={<CookiePolicy />} />
-            <Route path="licensing" element={<Licensing />} />
-            <Route path="security" element={<Security />} />
+            <Route path="responsible-gaming" element={<ResponsibleGaming onBack={function (): void {
+              throw new Error('Function not implemented.');
+            } } />} />
+            <Route path="fairness" element={<Fairness onBack={function (): void {
+              throw new Error('Function not implemented.');
+            } } />} />
+            <Route path="terms" element={<TermsOfService onBack={function (): void {
+              throw new Error('Function not implemented.');
+            } } />} />
+            <Route path="privacy" element={<PrivacyPolicy onBack={function (): void {
+              throw new Error('Function not implemented.');
+            } } />} />
+            <Route path="cookies" element={<CookiePolicy onBack={function (): void {
+              throw new Error('Function not implemented.');
+            } } />} />
+            <Route path="licensing" element={<Licensing onBack={function (): void {
+              throw new Error('Function not implemented.');
+            } } />} />
+            <Route path="security" element={<Security onBack={function (): void {
+              throw new Error('Function not implemented.');
+            } } />} />
             {/* <Route path="deposit" element={<DepositPage />} /> */}
             
             <Route path="*" element={<h1 className="p-8 text-white">404 - Page Not Found</h1>} />
