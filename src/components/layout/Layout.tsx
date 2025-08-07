@@ -322,6 +322,22 @@ const Layout: React.FC = () => {
         }`
       }><span className="text-xl">🎁</span><span>Promotions</span></NavLink>
 
+            <NavLink to="/news" onClick={handleLinkClick}  className={({ isActive }) => 
+        `w-full flex items-center space-x-3 p-3 rounded-lg transition-colors ${
+          isActive 
+            ? 'text-white bg-gray-800  font-semibold' 
+            : 'hover:bg-yellow-500/20 text-white'                  
+        }`
+      }><span className="text-xl">📰</span><span>News</span></NavLink>
+
+            <NavLink to="/vip-club" onClick={handleLinkClick}  className={({ isActive }) => 
+        `w-full flex items-center space-x-3 p-3 rounded-lg transition-colors ${
+          isActive 
+            ? 'text-white bg-gray-800  font-semibold' 
+            : 'hover:bg-yellow-500/20 text-white'                  
+        }`
+      }><span className="text-xl">👑</span><span>VIP Club</span></NavLink>
+
             <div> {/* Wallet Submenu */}
               <button onClick={() => toggleSubmenu('wallet')} className="w-full flex items-center justify-between p-3 rounded-lg hover:bg-gray-800 text-white">
                 <div className="flex items-center space-x-3"><span className="text-xl">💼</span><span>Wallet</span></div>

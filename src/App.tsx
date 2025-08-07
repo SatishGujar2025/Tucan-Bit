@@ -25,6 +25,8 @@ import DepositPage from './pages/wallet/DepositPage';
 import WithdrawPage from './pages/wallet/Withdrawpage';
 import ProfilePage from './pages/ProfilePage';
 import LootboxPage from './pages/LootboxPage';
+import NewsPage from './pages/NewsPage';
+import VIPClubPage from './pages/VIPClubPage';
 import SportsPage from './pages/sports/SportsPage';
 import ContactUs from './pages/support/ContactUs';
 import Fairness from './pages/support/Fairness';
@@ -124,6 +126,8 @@ function AppContent() {
             <Route path="withdraw" element={<WithdrawPage />} />
             <Route path="profile" element={<ProfilePage />} />
             <Route path="lootboxes" element={<LootboxPage />} />
+            <Route path="news" element={<NewsPage />} />
+            <Route path="vip-club" element={<VIPClubPage />} />
             <Route path="sports" element={<SportsPageWrapper />} />
             <Route path="contact" element={<ContactUsWrapper />} />
             <Route path="fairness" element={<FairnessWrapper />} />
