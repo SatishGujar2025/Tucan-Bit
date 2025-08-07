@@ -4,6 +4,7 @@ import { Play, Wallet, User, Gamepad2, ShieldCheck, Bitcoin, Gem, Zap, Star, Tro
 import { useAppContext } from '../context/AppContext';
 import { getAllGames } from '../utils/gameUtils';
 import pokerTableBg from '../assets/group-young-players-are-posing-poker-table-casino.avif';
+import ongoingTribesBg from '../assets/ongoing_tribes.jpeg';
 
 // This component is now only responsible for the home page content.
 const HomePage: React.FC = () => {
@@ -394,9 +395,34 @@ const HomePage: React.FC = () => {
           <div className="relative">
             <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/20 via-orange-500/20 to-yellow-500/20 rounded-2xl blur-xl animate-pulse"></div>
             <div className="relative bg-gray-800 rounded-2xl p-8 border border-yellow-500/30 overflow-hidden">
+              {/* Background Image */}
+              <div className="absolute inset-0 bg-cover bg-center bg-no-repeat rounded-2xl" style={{ backgroundImage: `url(${ongoingTribesBg})` }}></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30 rounded-2xl"></div>
+              
+              {/* Animated Glowing Lights */}
+              <div className="absolute top-4 left-4 w-10 h-10 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm glow-pulse shadow-lg shadow-yellow-500/50"></div>
+              <div className="absolute top-4 right-4 w-8 h-8 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm glow-pulse shadow-lg shadow-yellow-500/50" style={{ animationDelay: '0.5s' }}></div>
+              <div className="absolute bottom-4 left-4 w-12 h-12 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm glow-pulse shadow-lg shadow-yellow-500/50" style={{ animationDelay: '1s' }}></div>
+              <div className="absolute bottom-4 right-4 w-9 h-9 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm glow-pulse shadow-lg shadow-yellow-500/50" style={{ animationDelay: '1.5s' }}></div>
+              
+              {/* Moving Glowing Lights - Circular Pattern */}
+              <div className="absolute top-1/4 left-1/4 w-6 h-6 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm move-circle shadow-lg shadow-yellow-500/50"></div>
+              <div className="absolute top-1/4 right-1/4 w-8 h-8 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm move-circle2 shadow-lg shadow-yellow-500/50" style={{ animationDelay: '2s' }}></div>
+              <div className="absolute bottom-1/4 left-1/4 w-7 h-7 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm move-circle shadow-lg shadow-yellow-500/50" style={{ animationDelay: '4s' }}></div>
+              <div className="absolute bottom-1/4 right-1/4 w-5 h-5 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm move-circle2 shadow-lg shadow-yellow-500/50" style={{ animationDelay: '6s' }}></div>
+              
+              {/* Moving Glowing Lights - Rectangular Pattern */}
+              <div className="absolute top-1/3 left-0 w-4 h-4 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm move-rectangle shadow-lg shadow-yellow-500/50"></div>
+              <div className="absolute top-1/3 right-0 w-6 h-6 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm move-rectangle shadow-lg shadow-yellow-500/50" style={{ animationDelay: '1s' }}></div>
+              <div className="absolute bottom-1/3 left-0 w-5 h-5 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm move-rectangle shadow-lg shadow-yellow-500/50" style={{ animationDelay: '2s' }}></div>
+              <div className="absolute bottom-1/3 right-0 w-4 h-4 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm move-rectangle shadow-lg shadow-yellow-500/50" style={{ animationDelay: '3s' }}></div>
+              
+              {/* Rotating Glowing Border */}
+              <div className="absolute inset-0 border-2 border-yellow-500/30 rounded-2xl animate-pulse"></div>
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-500 via-orange-500 to-yellow-500 animate-pulse"></div>
-              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-r from-yellow-500/20 to-orange-500/20 rounded-full blur-3xl animate-spin"></div>
-              <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-r from-orange-500/20 to-yellow-500/20 rounded-full blur-2xl animate-pulse"></div>
+              <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-500 via-orange-500 to-yellow-500 animate-pulse" style={{ animationDelay: '1s' }}></div>
+              <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-yellow-500 via-orange-500 to-yellow-500 animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+              <div className="absolute top-0 right-0 w-1 h-full bg-gradient-to-b from-yellow-500 via-orange-500 to-yellow-500 animate-pulse" style={{ animationDelay: '1.5s' }}></div>
               
               <div className="relative z-10 flex flex-col lg:flex-row items-center">
                 <div className="lg:w-1/2 mb-6 lg:mb-0">
@@ -422,12 +448,27 @@ const HomePage: React.FC = () => {
                 </div>
                 <div className="lg:w-1/2 lg:pl-8">
                   <div className="relative">
-                    <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/20 to-orange-500/20 rounded-xl blur-lg animate-pulse"></div>
-                    <img 
-                      src="https://iili.io/FwSX1Xj.png" 
-                      alt="Ongoing Tribes" 
-                      className="relative w-full h-64 object-cover rounded-xl border border-yellow-500/30"
-                    />
+                    <div className="bg-gray-800/50 rounded-xl p-6 border border-yellow-500/30">
+                      <h3 className="text-lg font-bold text-white mb-4">Active Tribes</h3>
+                      <div className="space-y-2">
+                        <div className="flex justify-between items-center p-2 bg-gray-700/50 rounded">
+                          <span className="text-sm text-white">Dragon Warriors</span>
+                          <span className="text-xs text-yellow-400">1,247 members</span>
+                        </div>
+                        <div className="flex justify-between items-center p-2 bg-gray-700/50 rounded">
+                          <span className="text-sm text-white">Phoenix Clan</span>
+                          <span className="text-xs text-yellow-400">892 members</span>
+                        </div>
+                        <div className="flex justify-between items-center p-2 bg-gray-700/50 rounded">
+                          <span className="text-sm text-white">Shadow Hunters</span>
+                          <span className="text-xs text-yellow-400">654 members</span>
+                        </div>
+                        <div className="flex justify-between items-center p-2 bg-gray-700/50 rounded">
+                          <span className="text-sm text-white">Golden Eagles</span>
+                          <span className="text-xs text-yellow-400">543 members</span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
