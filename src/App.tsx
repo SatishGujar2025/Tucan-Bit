@@ -6,6 +6,9 @@ import HomePage from './pages/HomePage';
 import CasinoPage from './pages/casino/CasinoPage';
 import LiveCasinoPage from './pages/casino/LiveCasinoPage';
 import TournamentPage from './pages/TournamentPage';
+import TribesPage from './pages/TribesPage';
+import LeaderboardPage from './pages/LeaderboardPage';
+import AchievementsPage from './pages/AchievementsPage';
 import EarnPage from './pages/EarnPage';
 import TokenDashboardPage from './pages/TokenDashboardPage';
 import TaskDashboardPage from './pages/TaskDashboardPage';
@@ -108,6 +111,9 @@ function AppContent() {
             <Route path="casino" element={<CasinoPage />} />
             <Route path="live-casino" element={<LiveCasinoPage />} />
             <Route path="tournaments" element={<TournamentPage />} />
+            <Route path="tribes" element={<TribesPage />} />
+            <Route path="leaderboards" element={<LeaderboardPage />} />
+            <Route path="achievements" element={<AchievementsPage />} />
             <Route path="earn" element={<EarnPage />} />
             <Route path="token-dashboard" element={<TokenDashboardPage />} />
             <Route path="task-dashboard" element={<TaskDashboardPage />} />

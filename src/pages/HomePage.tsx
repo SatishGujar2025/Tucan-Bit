@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Play, Wallet, User, Gamepad2, ShieldCheck, Bitcoin, Gem, Zap, Star, Trophy, Gift } from 'lucide-react';
+import { Play, Wallet, User, Gamepad2, ShieldCheck, Bitcoin, Gem, Zap, Star, Trophy, Gift, Crown } from 'lucide-react';
 import { useAppContext } from '../context/AppContext';
 import { getAllGames } from '../utils/gameUtils';
 import pokerTableBg from '../assets/group-young-players-are-posing-poker-table-casino.avif';
@@ -390,9 +390,9 @@ const HomePage: React.FC = () => {
                       <span className="text-white">Real-time leaderboards and rankings</span>
                     </div>
                   </div>
-                  <button className="mt-6 bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-6 py-3 rounded-lg font-semibold hover:from-yellow-600 hover:to-orange-600 transition-all duration-200">
+                  <Link to="/tribes" className="mt-6 bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-6 py-3 rounded-lg font-semibold hover:from-yellow-600 hover:to-orange-600 transition-all duration-200 inline-block">
                     Join Tribes Now
-                  </button>
+                  </Link>
                 </div>
                 <div className="lg:w-1/2 lg:pl-8">
                   <div className="relative">
@@ -574,6 +574,14 @@ const HomePage: React.FC = () => {
               <Link to="/casino" className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-6 py-3 rounded-xl font-semibold text-base hover:bg-white/20 transition-all duration-200 flex items-center justify-center space-x-2 shadow-lg">
                 <Play className="w-5 h-5" />
                 <span>Start Playing</span>
+              </Link>
+              <Link to="/leaderboards" className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-6 py-3 rounded-xl font-semibold text-base hover:bg-white/20 transition-all duration-200 flex items-center justify-center space-x-2 shadow-lg">
+                <Crown className="w-5 h-5" />
+                <span>View Leaderboards</span>
+              </Link>
+              <Link to="/achievements" className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-6 py-3 rounded-xl font-semibold text-base hover:bg-white/20 transition-all duration-200 flex items-center justify-center space-x-2 shadow-lg">
+                <Star className="w-5 h-5" />
+                <span>View Achievements</span>
               </Link>
           </div>
         </div>

@@ -2,6 +2,9 @@
 export { default as HomePage } from './HomePage';
 export { default as ProfilePage } from './ProfilePage';
 export { default as TournamentPage } from './TournamentPage';
+export { default as TribesPage } from './TribesPage';
+export { default as LeaderboardPage } from './LeaderboardPage';
+export { default as AchievementsPage } from './AchievementsPage';
 export { default as EarnPage } from './EarnPage';
 export { default as TaskDashboardPage } from './TaskDashboardPage';
 export { default as TokenDashboardPage } from './TokenDashboardPage';
