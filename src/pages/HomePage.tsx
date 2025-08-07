@@ -189,6 +189,32 @@ const HomePage: React.FC = () => {
       <section className="py-12 relative border-y border-yellow-500/20">
         <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url(${pokerTableBg})` }}></div>
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/50"></div>
+        
+        {/* Animated Glowing Lights */}
+        <div className="absolute top-4 left-4 w-10 h-10 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm glow-pulse shadow-lg shadow-yellow-500/50"></div>
+        <div className="absolute top-4 right-4 w-8 h-8 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm glow-pulse shadow-lg shadow-yellow-500/50" style={{ animationDelay: '0.5s' }}></div>
+        <div className="absolute bottom-4 left-4 w-12 h-12 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm glow-pulse shadow-lg shadow-yellow-500/50" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute bottom-4 right-4 w-9 h-9 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm glow-pulse shadow-lg shadow-yellow-500/50" style={{ animationDelay: '1.5s' }}></div>
+        
+        {/* Moving Glowing Lights - Circular Pattern */}
+        <div className="absolute top-1/4 left-1/4 w-6 h-6 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm move-circle shadow-lg shadow-yellow-500/50"></div>
+        <div className="absolute top-1/4 right-1/4 w-8 h-8 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm move-circle2 shadow-lg shadow-yellow-500/50" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute bottom-1/4 left-1/4 w-7 h-7 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm move-circle shadow-lg shadow-yellow-500/50" style={{ animationDelay: '4s' }}></div>
+        <div className="absolute bottom-1/4 right-1/4 w-5 h-5 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm move-circle2 shadow-lg shadow-yellow-500/50" style={{ animationDelay: '6s' }}></div>
+        
+        {/* Moving Glowing Lights - Rectangular Pattern */}
+        <div className="absolute top-1/3 left-0 w-4 h-4 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm move-rectangle shadow-lg shadow-yellow-500/50"></div>
+        <div className="absolute top-1/3 right-0 w-6 h-6 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm move-rectangle shadow-lg shadow-yellow-500/50" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute bottom-1/3 left-0 w-5 h-5 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm move-rectangle shadow-lg shadow-yellow-500/50" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute bottom-1/3 right-0 w-4 h-4 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm move-rectangle shadow-lg shadow-yellow-500/50" style={{ animationDelay: '3s' }}></div>
+        
+        {/* Rotating Glowing Border */}
+        <div className="absolute inset-0 border-2 border-yellow-500/30 rounded-lg animate-pulse"></div>
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-500 via-orange-500 to-yellow-500 animate-pulse"></div>
+        <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-500 via-orange-500 to-yellow-500 animate-pulse" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-yellow-500 via-orange-500 to-yellow-500 animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+        <div className="absolute top-0 right-0 w-1 h-full bg-gradient-to-b from-yellow-500 via-orange-500 to-yellow-500 animate-pulse" style={{ animationDelay: '1.5s' }}></div>
+        
         <div className="relative px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-yellow-400 mb-4 drop-shadow-lg">Don't miss your Daily cashback</h2>
