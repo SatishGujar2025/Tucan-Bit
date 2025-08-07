@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Play, Wallet, User, Gamepad2, ShieldCheck, Bitcoin, Gem, Zap } from 'lucide-react';
+import { Play, Wallet, User, Gamepad2, ShieldCheck, Bitcoin, Gem, Zap, Star } from 'lucide-react';
 import { useAppContext } from '../context/AppContext';
 import { getAllGames } from '../utils/gameUtils';
 
