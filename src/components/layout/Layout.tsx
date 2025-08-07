@@ -9,7 +9,7 @@ import OTPPopup from '../modals/OTPModal';
 
 import DepositModal from '../modals/DepositModal';
 import VisaPaymentModal from '../modals/VisaPaymentModal';
-import { Wallet, Home, Gamepad2, Gift, User, ChevronDown,ChevronRightIcon, ChevronRight, LogOut } from 'lucide-react';
+import { Wallet, Home, Gamepad2, Gift, User, ChevronDown,ChevronRightIcon, ChevronRight, LogOut, BarChart3, Settings, DollarSign } from 'lucide-react';
 import WalletConnectModal from '../modals/WalletConnectModal';
 import VerificationModal from '../modals/VerificationModal';
 import PromotionalSidebar from './PromotionalSidebar';
@@ -150,6 +150,25 @@ const Layout: React.FC = () => {
     setIsMobileSidebarOpen(!isMobileSidebarOpen);
   };
   const [isBalanceDropdownOpen, setIsBalanceDropdownOpen] = useState(false);
+  const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
+
+  // Close dropdowns when clicking outside
+  React.useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Element;
+      if (!target.closest('.user-dropdown')) {
+        setIsUserDropdownOpen(false);
+      }
+      if (!target.closest('.balance-dropdown')) {
+        setIsBalanceDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
     // Data for the dropdown
   const currencies = [
       { name: 'Tether', code: 'USDT', icon: '₮', balance: '12,345.67' },
@@ -172,9 +191,7 @@ const Layout: React.FC = () => {
     { id: 'liveCasino', path: '/live-casino', label: 'Live Casino', icon: '🔴' },
     { id: 'games', path: '/games', label: 'Games', icon: '🎮' },
   ];
-  if (isAuthenticated) {
-    headerNavItems.push({ id: 'profile', path: '/profile', label: 'Profile', icon: '👤' });
-  }
+
 
 
   // Modal handlers
@@ -491,8 +508,10 @@ const Layout: React.FC = () => {
         </div>
       </div>
 
-      {/* Promotional Sidebar */}
-      <PromotionalSidebar />
+      {/* Promotional Sidebar - Hidden on mobile, visible on wider screens */}
+      <div className="hidden lg:block">
+        <PromotionalSidebar />
+      </div>
 
       <div className="lg:ml-64 transition-all duration-300" id="main-content">
         {/* ====================================================================== */}
@@ -534,9 +553,10 @@ const Layout: React.FC = () => {
                   ) : (
                     
                       <div className="flex items-center space-x-4 sm:space-x-8">
+
                           {/* Balance Dropdown */}
-                          <div className="relative">
-                            <div className="flex items-center space-x-2 bg-gray-800/50 px-3 py-2 rounded-lg">
+                          <div className="relative balance-dropdown">
+                            <div className="flex items-center space-x-2 bg-gray-800/50 px-3 py-2 rounded-lg border border-yellow-500/30">
                                 <span className="text-yellow-400 font-bold">₿</span>
                                 <span className="text-white font-semibold">{balance.toFixed(2)}</span>
                                 <button onClick={() => setIsBalanceDropdownOpen(!isBalanceDropdownOpen)}>
@@ -560,25 +580,72 @@ const Layout: React.FC = () => {
                             )}
                           </div>
 
-                 {/* from-[#3C1A4F] to-[#36CFC9] */}
-
-
-
-                          <button onClick={() => openModal('deposit')} className="flex items-center space-x-2 px-4 py-2 text-white rounded-lg font-semibold bg-gradient-to-br from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600">
+                          {/* Deposit Button */}
+                          <button onClick={() => openModal('deposit')} className="flex items-center space-x-2 px-4 py-2 text-white rounded-lg font-semibold bg-gradient-to-br from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 shadow-lg">
                               <Wallet className="w-5 h-5" />
-                              <span>Deposit</span>
+                              <span className="hidden sm:inline">Deposit</span>
                           </button>
 
-                          {/* RESTORED: Profile Icon */}
-                          {/* <div className="relative">
-                            <button className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center">
-                                <User className="w-6 h-6 text-white" />
+                          {/* User Avatar & Welcome Dropdown */}
+                          <div className="relative user-dropdown">
+                            <button 
+                              onClick={() => setIsUserDropdownOpen(!isUserDropdownOpen)}
+                              className="flex items-center space-x-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-500/30 px-3 py-2 rounded-lg hover:from-purple-500/30 hover:to-pink-500/30 transition-all duration-200"
+                            >
+                              <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
+                                <User className="w-4 h-4 text-white" />
+                              </div>
+                              <span className="text-white text-sm font-semibold hidden md:inline">Welcome, User</span>
+                              <ChevronDown className={`w-4 h-4 text-white transition-transform ${isUserDropdownOpen ? 'rotate-180' : ''}`} />
                             </button>
-                          </div> */}
+                            
+                            {/* User Dropdown Menu */}
+                            {isUserDropdownOpen && (
+                              <div className="absolute top-full right-0 mt-2 w-56 bg-gray-800 border border-gray-700 rounded-lg shadow-lg z-50">
+                                <div className="p-2">
+                                  <div className="px-3 py-2 border-b border-gray-700 mb-2">
+                                    <p className="text-white font-semibold">Welcome, User</p>
+                                    <p className="text-gray-400 text-sm">user@example.com</p>
+                                  </div>
+                                  
+                                  <Link to="/profile" onClick={() => setIsUserDropdownOpen(false)} className="flex items-center space-x-3 p-2 hover:bg-gray-700 rounded-md text-gray-300 hover:text-white transition-colors">
+                                    <User className="w-4 h-4" />
+                                    <span>Profile</span>
+                                  </Link>
+                                  
+                                  <Link to="/transactions" onClick={() => setIsUserDropdownOpen(false)} className="flex items-center space-x-3 p-2 hover:bg-gray-700 rounded-md text-gray-300 hover:text-white transition-colors">
+                                    <BarChart3 className="w-4 h-4" />
+                                    <span>Transactions</span>
+                                  </Link>
+                                  
+                                  <Link to="/settings" onClick={() => setIsUserDropdownOpen(false)} className="flex items-center space-x-3 p-2 hover:bg-gray-700 rounded-md text-gray-300 hover:text-white transition-colors">
+                                    <Settings className="w-4 h-4" />
+                                    <span>Settings</span>
+                                  </Link>
+                                  
+                                  <Link to="/withdraw" onClick={() => setIsUserDropdownOpen(false)} className="flex items-center space-x-3 p-2 hover:bg-gray-700 rounded-md text-gray-300 hover:text-white transition-colors">
+                                    <DollarSign className="w-4 h-4" />
+                                    <span>Get Paid</span>
+                                  </Link>
+                                  
+                                  <div className="border-t border-gray-700 mt-2 pt-2">
+                                    <button 
+                                      onClick={() => {
+                                        logout();
+                                        setIsUserDropdownOpen(false);
+                                      }} 
+                                      className="flex items-center space-x-3 p-2 hover:bg-red-500/20 rounded-md text-red-400 hover:text-red-300 transition-colors w-full"
+                                    >
+                                      <LogOut className="w-4 h-4" />
+                                      <span>Logout</span>
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            )}
+                          </div>
 
-                          <button onClick={logout} className="w-10 h-10 flex items-center justify-center bg-red-500/20 text-red-400 rounded-full">
-                              <LogOut className="w-5 h-5" />
-                          </button>
+
                       </div>
                   )}
                 </div>

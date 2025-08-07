@@ -5,7 +5,18 @@ import {
   Trophy, Gift, Gamepad2, BarChart2, Users as UsersIcon, Video
 } from 'lucide-react';
 
-const Sidebar = ({
+interface SidebarProps {
+  sidebarOpen: boolean;
+  activeSubmenu: string | null;
+  toggleSubmenu: (menu: string) => void;
+  onNavigate: (page: string) => void;
+  walletAddress?: string;
+  disconnectWallet?: () => void;
+  setShowWalletModal?: (show: boolean) => void;
+  currentPage?: string;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({
   sidebarOpen,
   activeSubmenu,
   toggleSubmenu,
@@ -13,11 +24,11 @@ const Sidebar = ({
   walletAddress,
   disconnectWallet,
   setShowWalletModal,
-  currentPage // <-- Receive currentPage as a prop
+  currentPage
 }) => {
   
   // Helper function to determine button classes
-  const getButtonClass = (pageName) => {
+  const getButtonClass = (pageName: string) => {
     const baseClass = "w-full flex items-center space-x-3 p-3 rounded-lg text-[15px] text-white";
     if (currentPage === pageName) {
       return `${baseClass} bg-gradient-to-r from-yellow-500/20 to-orange-500/20`;
@@ -82,49 +93,50 @@ const Sidebar = ({
               </div>
             )}
           </div>
-             <button onClick={() => onNavigate('home')} className={getButtonClass('promotions')}>
-            <Home className="w-5 h-5" />
+          <button onClick={() => onNavigate('promotions')} className={getButtonClass('promotions')}>
+            <Gift className="w-5 h-5" />
             <span>Promotions</span>
           </button>
 
-  <div>
+          {/* Wallet Submenu */}
+          <div>
             <button onClick={() => toggleSubmenu('wallet')} className="w-full flex items-center justify-between p-3 rounded-lg hover:bg-[#2A1B4F] text-white">
-              <div className="flex items-center space-x-3"><Gamepad2 className="w-5 h-5" /><span>Wallet</span></div>
-              {activeSubmenu === 'games' ? <ChevronDown className="w-5 h-5" /> : <ChevronRight className="w-5 h-5" />}
+              <div className="flex items-center space-x-3"><Wallet className="w-5 h-5" /><span>Wallet</span></div>
+              {activeSubmenu === 'wallet' ? <ChevronDown className="w-5 h-5" /> : <ChevronRight className="w-5 h-5" />}
             </button>
-            {activeSubmenu === 'games' && (
+            {activeSubmenu === 'wallet' && (
               <div className="pl-10 pt-2 space-y-2">
-                <button onClick={() => onNavigate('slots')} className="flex items-center space-x-2 p-2 text-sm text-gray-300 hover:text-white"><Dice5 className="w-4 h-4" /><span>Deposit</span></button>
-                <button onClick={() => onNavigate('table-games')} className="flex items-center space-x-2 p-2 text-sm text-gray-300 hover:text-white"><BarChart2 className="w-4 h-4" /><span>WithDraw</span></button>
+                <button onClick={() => onNavigate('deposit')} className="flex items-center space-x-2 p-2 text-sm text-gray-300 hover:text-white"><CreditCard className="w-4 h-4" /><span>Deposit</span></button>
+                <button onClick={() => onNavigate('withdraw')} className="flex items-center space-x-2 p-2 text-sm text-gray-300 hover:text-white"><Coins className="w-4 h-4" /><span>Withdraw</span></button>
               </div>
             )}
           </div>
 
 
 
-          <button onClick={() => onNavigate('Tournaments')} className={getButtonClass('tournaments')}>
-            <Dice5 className="w-5 h-5" />
+          <button onClick={() => onNavigate('tournaments')} className={getButtonClass('tournaments')}>
+            <Trophy className="w-5 h-5" />
             <span>Tournaments</span>
           </button>
           <button onClick={() => onNavigate('earn')} className={getButtonClass('earn')}>
-            <Trophy className="w-5 h-5" />
+            <Coins className="w-5 h-5" />
             <span>Earn</span>
           </button>
-          <button onClick={() => onNavigate('lootboxes')} className={getButtonClass('task dashboard')}>
-            <Gift className="w-5 h-5" />
+          <button onClick={() => onNavigate('task-dashboard')} className={getButtonClass('task-dashboard')}>
+            <BarChart2 className="w-5 h-5" />
             <span>Task Dashboard</span>
           </button>
 
-             <button onClick={() => onNavigate('home')} className={getButtonClass('support')}>
-            <Home className="w-5 h-5" />
+          <button onClick={() => onNavigate('support')} className={getButtonClass('support')}>
+            <HelpCircle className="w-5 h-5" />
             <span>Support</span>
           </button>
-          <button onClick={() => onNavigate('casino')} className={getButtonClass('community')}>
-            <Dice5 className="w-5 h-5" />
+          <button onClick={() => onNavigate('community')} className={getButtonClass('community')}>
+            <UsersIcon className="w-5 h-5" />
             <span>Community</span>
           </button>
-          <button onClick={() => onNavigate('sports')} className={getButtonClass('setting')}>
-            <Trophy className="w-5 h-5" />
+          <button onClick={() => onNavigate('settings')} className={getButtonClass('settings')}>
+            <Settings className="w-5 h-5" />
             <span>Settings</span>
           </button>
           
@@ -135,10 +147,10 @@ const Sidebar = ({
           {walletAddress ? (
             <div className="flex items-center space-x-3">
               <div className="w-10 h-10 rounded-full bg-gradient-to-r from-yellow-500 to-orange-500 flex items-center justify-center"><User className="w-5 h-5 text-white" /></div>
-              <div className="flex-1"><p className="text-sm font-medium text-white truncate">{walletAddress.slice(0, 6)}...{walletAddress.slice(-4)}</p><button onClick={disconnectWallet} className="text-xs text-orange-400 hover:text-orange-300">Disconnect</button></div>
+              <div className="flex-1"><p className="text-sm font-medium text-white truncate">{walletAddress.slice(0, 6)}...{walletAddress.slice(-4)}</p><button onClick={() => disconnectWallet?.()} className="text-xs text-orange-400 hover:text-orange-300">Disconnect</button></div>
             </div>
           ) : (
-            <button onClick={() => setShowWalletModal(true)} className="w-full bg-gradient-to-r from-yellow-500 to-orange-500 text-white py-2 rounded-lg font-semibold flex items-center justify-center space-x-2 hover:from-yellow-600 hover:to-orange-600 transition-all">
+            <button onClick={() => setShowWalletModal?.(true)} className="w-full bg-gradient-to-r from-yellow-500 to-orange-500 text-white py-2 rounded-lg font-semibold flex items-center justify-center space-x-2 hover:from-yellow-600 hover:to-orange-600 transition-all">
               <Wallet className="w-5 h-5" />
               <span>Connect Wallet</span>
             </button>

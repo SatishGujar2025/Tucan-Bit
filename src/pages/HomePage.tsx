@@ -112,9 +112,9 @@ const HomePage: React.FC = () => {
               View All →
             </Link>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+          <div className="flex overflow-x-auto gap-4 pb-4 sm:grid sm:grid-cols-3 lg:grid-cols-6 sm:overflow-x-visible">
             {featuredGames.slice(0, 6).map((game) => (
-              <div key={game.id} className="group relative rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-700 hover:border-green-500/30">
+              <div key={game.id} className="flex-shrink-0 w-48 sm:w-auto group relative rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-700 hover:border-green-500/30">
                 <Link to={`/game/${game.id}`}>
                     <div className="relative aspect-[3/2] overflow-hidden">
                     <img src={game.image} alt={game.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
@@ -155,9 +155,9 @@ const HomePage: React.FC = () => {
               View All →
             </Link>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+          <div className="flex overflow-x-auto gap-4 pb-4 sm:grid sm:grid-cols-3 lg:grid-cols-5 sm:overflow-x-visible">
             {featuredGames.slice(0, 10).map((game, index) => (
-              <div key={game.id} className="group relative rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-700 hover:border-yellow-500/30">
+              <div key={game.id} className="flex-shrink-0 w-48 sm:w-auto group relative rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-700 hover:border-yellow-500/30">
                 <Link to={`/game/${game.id}`}>
                     <div className="relative aspect-[3/2] overflow-hidden">
                     <img src={game.image} alt={game.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
@@ -266,9 +266,9 @@ const HomePage: React.FC = () => {
               View All →
             </Link>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+          <div className="flex overflow-x-auto gap-4 pb-4 sm:grid sm:grid-cols-3 lg:grid-cols-6 sm:overflow-x-visible">
             {featuredGames.slice(0, 6).map((game) => (
-              <div key={game.id} className="group relative rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-700 hover:border-yellow-500/30">
+              <div key={game.id} className="flex-shrink-0 w-48 sm:w-auto group relative rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-700 hover:border-yellow-500/30">
                 <Link to={`/game/${game.id}`}>
                     <div className="relative aspect-[3/2] overflow-hidden">
                     <img src={game.image} alt={game.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
@@ -315,9 +315,9 @@ const HomePage: React.FC = () => {
               View All →
             </Link>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+          <div className="flex overflow-x-auto gap-4 pb-4 sm:grid sm:grid-cols-3 lg:grid-cols-6 sm:overflow-x-visible">
             {featuredGames.slice(6, 12).map((game) => (
-              <div key={game.id} className="group relative rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-700 hover:border-yellow-500/30">
+              <div key={game.id} className="flex-shrink-0 w-48 sm:w-auto group relative rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-700 hover:border-yellow-500/30">
                 <Link to={`/game/${game.id}`}>
                     <div className="relative aspect-[3/2] overflow-hidden">
                     <img src={game.image} alt={game.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
@@ -425,47 +425,47 @@ const HomePage: React.FC = () => {
               <div className="absolute top-0 right-0 w-1 h-full bg-gradient-to-b from-yellow-500 via-orange-500 to-yellow-500 animate-pulse" style={{ animationDelay: '1.5s' }}></div>
               
               <div className="relative z-10 flex flex-col lg:flex-row items-center">
-                <div className="lg:w-1/2 mb-6 lg:mb-0">
-                  <h2 className="text-3xl font-bold text-white mb-4">Ongoing Tribes</h2>
-                  <p className="text-gray-300 mb-6">Join the ultimate gaming community and compete with players worldwide in our exclusive tribal tournaments.</p>
+                <div className="lg:w-2/3 mb-6 lg:mb-0">
+                  <h2 className="text-3xl font-bold text-white mb-4 drop-shadow-lg">Ongoing Tribes</h2>
+                  <p className="text-base text-gray-300 mb-5 leading-relaxed">Join the ultimate gaming community and compete with players worldwide in our exclusive tribal tournaments.</p>
                   <div className="space-y-3">
                     <div className="flex items-center space-x-3">
                       <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                      <span className="text-white">Live tournaments with massive prize pools</span>
+                      <span className="text-sm text-white">Live tournaments with massive prize pools</span>
                     </div>
                     <div className="flex items-center space-x-3">
                       <div className="w-3 h-3 bg-blue-500 rounded-full animate-pulse"></div>
-                      <span className="text-white">Exclusive rewards and bonuses</span>
+                      <span className="text-sm text-white">Exclusive rewards and bonuses</span>
                     </div>
                     <div className="flex items-center space-x-3">
                       <div className="w-3 h-3 bg-purple-500 rounded-full animate-pulse"></div>
-                      <span className="text-white">Real-time leaderboards and rankings</span>
+                      <span className="text-sm text-white">Real-time leaderboards and rankings</span>
                     </div>
                   </div>
-                  <Link to="/tribes" className="mt-6 bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-6 py-3 rounded-lg font-semibold hover:from-yellow-600 hover:to-orange-600 transition-all duration-200 inline-block">
+                  <Link to="/tribes" className="mt-5 bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-6 py-3 rounded-lg font-semibold hover:from-yellow-600 hover:to-orange-600 transition-all duration-200 inline-block text-base" onClick={() => window.scrollTo(0, 0)}>
                     Join Tribes Now
                   </Link>
                 </div>
-                <div className="lg:w-1/2 lg:pl-8">
-                  <div className="relative">
-                    <div className="bg-gray-800/50 rounded-xl p-6 border border-yellow-500/30">
-                      <h3 className="text-lg font-bold text-white mb-4">Active Tribes</h3>
-                      <div className="space-y-2">
-                        <div className="flex justify-between items-center p-2 bg-gray-700/50 rounded">
-                          <span className="text-sm text-white">Dragon Warriors</span>
-                          <span className="text-xs text-yellow-400">1,247 members</span>
+                <div className="w-full lg:w-1/3 lg:pl-12 lg:ml-auto mt-6 lg:mt-0">
+                  <div className="relative flex justify-center lg:justify-start">
+                    <div className="bg-gray-800/50 rounded-xl p-4 border border-yellow-500/30 max-w-xs w-full">
+                      <h3 className="text-sm font-bold text-white mb-3">Active Tribes</h3>
+                      <div className="space-y-1.5">
+                        <div className="flex justify-between items-center p-1.5 bg-gray-700/50 rounded">
+                          <span className="text-xs text-white">Dragon Warriors</span>
+                          <span className="text-xs text-yellow-400">1,247</span>
                         </div>
-                        <div className="flex justify-between items-center p-2 bg-gray-700/50 rounded">
-                          <span className="text-sm text-white">Phoenix Clan</span>
-                          <span className="text-xs text-yellow-400">892 members</span>
+                        <div className="flex justify-between items-center p-1.5 bg-gray-700/50 rounded">
+                          <span className="text-xs text-white">Phoenix Clan</span>
+                          <span className="text-xs text-yellow-400">892</span>
                         </div>
-                        <div className="flex justify-between items-center p-2 bg-gray-700/50 rounded">
-                          <span className="text-sm text-white">Shadow Hunters</span>
-                          <span className="text-xs text-yellow-400">654 members</span>
+                        <div className="flex justify-between items-center p-1.5 bg-gray-700/50 rounded">
+                          <span className="text-xs text-white">Shadow Hunters</span>
+                          <span className="text-xs text-yellow-400">654</span>
                         </div>
-                        <div className="flex justify-between items-center p-2 bg-gray-700/50 rounded">
-                          <span className="text-sm text-white">Golden Eagles</span>
-                          <span className="text-xs text-yellow-400">543 members</span>
+                        <div className="flex justify-between items-center p-1.5 bg-gray-700/50 rounded">
+                          <span className="text-xs text-white">Golden Eagles</span>
+                          <span className="text-xs text-yellow-400">543</span>
                         </div>
                       </div>
                     </div>
@@ -489,9 +489,9 @@ const HomePage: React.FC = () => {
               View All →
             </Link>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+          <div className="flex overflow-x-auto gap-4 pb-4 sm:grid sm:grid-cols-3 lg:grid-cols-6 sm:overflow-x-visible">
             {featuredGames.slice(6, 12).map((game) => (
-              <div key={game.id} className="group relative rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-700 hover:border-yellow-500/30">
+              <div key={game.id} className="flex-shrink-0 w-48 sm:w-auto group relative rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-700 hover:border-yellow-500/30">
                 <Link to={`/game/${game.id}`}>
                     <div className="relative aspect-[3/2] overflow-hidden">
                     <img src={game.image} alt={game.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
@@ -532,9 +532,9 @@ const HomePage: React.FC = () => {
               View All →
             </Link>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+          <div className="flex overflow-x-auto gap-4 pb-4 sm:grid sm:grid-cols-3 lg:grid-cols-6 sm:overflow-x-visible">
             {featuredGames.slice(12, 18).map((game) => (
-              <div key={game.id} className="group relative rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-700 hover:border-yellow-500/30">
+              <div key={game.id} className="flex-shrink-0 w-48 sm:w-auto group relative rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-700 hover:border-yellow-500/30">
                 <Link to={`/game/${game.id}`}>
                     <div className="relative aspect-[3/2] overflow-hidden">
                     <img src={game.image} alt={game.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
@@ -575,9 +575,9 @@ const HomePage: React.FC = () => {
               View All →
             </Link>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+          <div className="flex overflow-x-auto gap-4 pb-4 sm:grid sm:grid-cols-3 lg:grid-cols-6 sm:overflow-x-visible">
             {featuredGames.slice(18, 24).map((game) => (
-              <div key={game.id} className="group relative rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-700 hover:border-yellow-500/30">
+              <div key={game.id} className="flex-shrink-0 w-48 sm:w-auto group relative rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-700 hover:border-yellow-500/30">
                 <Link to={`/game/${game.id}`}>
                     <div className="relative aspect-[3/2] overflow-hidden">
                     <img src={game.image} alt={game.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />

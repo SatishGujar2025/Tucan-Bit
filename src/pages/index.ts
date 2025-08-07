@@ -53,4 +53,11 @@ export { default as TermsOfService } from './legal/TermsOfService';
 export { default as PrivacyPolicy } from './legal/PrivacyPolicy';
 export { default as CookiePolicy } from './legal/CookiePolicy';
 export { default as Licensing } from './legal/Licensing';
-export { default as Security } from './legal/Security'; 
+export { default as Security } from './legal/Security';
+
+// Payment pages
+export { default as TransactionsPage } from './payment/TransactionsPage';
+export { default as GetPaidPage } from './payment/GetPaidPage';
+
+// Settings pages
+export { default as SettingsPage } from './settings/SettingsPage'; 

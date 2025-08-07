@@ -55,6 +55,7 @@ import {
   Gamepad2
 } from 'lucide-react';
 import { useAppContext } from '../context/AppContext';
+import tribalCasinosBg from '../assets/tribal-casinos.jpg';
 
 interface Tribe {
   id: string;
@@ -246,29 +247,44 @@ const TribesPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-900">
       {/* Hero Section */}
-      <section className="relative overflow-hidden py-16 bg-gradient-to-br from-gray-800 to-gray-900">
-        <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/10 via-orange-500/10 to-yellow-500/10"></div>
+      <section className="relative overflow-hidden py-20 bg-gradient-to-br from-gray-800 to-gray-900">
+        {/* Background Image */}
+        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url(${tribalCasinosBg})` }}></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40"></div>
+        
+        {/* Animated Glowing Lights */}
+        <div className="absolute top-8 left-8 w-12 h-12 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm glow-pulse shadow-lg shadow-yellow-500/50"></div>
+        <div className="absolute top-8 right-8 w-10 h-10 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm glow-pulse shadow-lg shadow-yellow-500/50" style={{ animationDelay: '0.5s' }}></div>
+        <div className="absolute bottom-8 left-8 w-14 h-14 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm glow-pulse shadow-lg shadow-yellow-500/50" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute bottom-8 right-8 w-11 h-11 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm glow-pulse shadow-lg shadow-yellow-500/50" style={{ animationDelay: '1.5s' }}></div>
+        
+        {/* Moving Glowing Lights */}
+        <div className="absolute top-1/4 left-1/4 w-8 h-8 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm move-circle shadow-lg shadow-yellow-500/50"></div>
+        <div className="absolute top-1/4 right-1/4 w-10 h-10 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm move-circle2 shadow-lg shadow-yellow-500/50" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute bottom-1/4 left-1/4 w-9 h-9 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm move-circle shadow-lg shadow-yellow-500/50" style={{ animationDelay: '4s' }}></div>
+        <div className="absolute bottom-1/4 right-1/4 w-7 h-7 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm move-circle2 shadow-lg shadow-yellow-500/50" style={{ animationDelay: '6s' }}></div>
+        
         <div className="relative px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-orange-500">TucanBit</span> Tribes
+            <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 drop-shadow-2xl">
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-orange-500 drop-shadow-lg">TucanBit</span> Tribes
             </h1>
-            <p className="text-xl text-gray-300 mb-8">
+            <p className="text-xl md:text-2xl text-gray-200 mb-10 leading-relaxed drop-shadow-lg">
               Join exclusive gaming communities, compete in tournaments, and share strategies with fellow players.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <button
                 onClick={() => openModal('walletConnect')}
-                className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-6 py-3 rounded-xl font-semibold text-base hover:from-yellow-600 hover:to-orange-600 transform hover:scale-105 transition-all duration-200 flex items-center justify-center space-x-2 shadow-lg"
+                className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-8 py-4 rounded-xl font-bold text-lg hover:from-yellow-600 hover:to-orange-600 transform hover:scale-105 transition-all duration-200 flex items-center justify-center space-x-3 shadow-xl"
               >
-                <Wallet className="w-5 h-5" />
+                <Wallet className="w-6 h-6" />
                 <span>{walletAddress ? 'Connected' : 'Connect Wallet'}</span>
               </button>
               <Link
                 to="/tournaments"
-                className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-6 py-3 rounded-xl font-semibold text-base hover:bg-white/20 transition-all duration-200 flex items-center justify-center space-x-2"
+                className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-8 py-4 rounded-xl font-bold text-lg hover:from-purple-600 hover:to-pink-600 transform hover:scale-105 transition-all duration-200 flex items-center justify-center space-x-3 shadow-xl"
               >
-                <Trophy className="w-5 h-5" />
+                <Trophy className="w-6 h-6" />
                 <span>View Tournaments</span>
               </Link>
             </div>

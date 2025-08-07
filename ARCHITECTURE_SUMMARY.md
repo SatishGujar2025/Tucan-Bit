@@ -26,7 +26,7 @@ src/
 ### After (Organized Structure)
 ```
 src/
-├── pages/                    # All page components
+├── pages/                   # All page components
 │   ├── index.ts             # Clean exports
 │   ├── HomePage.tsx
 │   ├── ProfilePage.tsx
