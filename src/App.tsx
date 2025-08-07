@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import { AppProvider, useAppContext } from './context/AppContext';
 import Layout from './components/layout/Layout';
 import HomePage from './pages/HomePage';
@@ -42,6 +42,57 @@ import {
 } from './pages';
 import PromotionalModal from './components/modals/PromotionalModal';
 
+// Wrapper components to provide onBack function
+const SportsPageWrapper = () => {
+  const navigate = useNavigate();
+  return <SportsPage onBack={() => navigate(-1)} />;
+};
+
+const ContactUsWrapper = () => {
+  const navigate = useNavigate();
+  return <ContactUs onBack={() => navigate(-1)} />;
+};
+
+const FairnessWrapper = () => {
+  const navigate = useNavigate();
+  return <Fairness onBack={() => navigate(-1)} />;
+};
+
+const HelpCenterWrapper = () => {
+  const navigate = useNavigate();
+  return <HelpCenter onBack={() => navigate(-1)} />;
+};
+
+const ResponsibleGamingWrapper = () => {
+  const navigate = useNavigate();
+  return <ResponsibleGaming onBack={() => navigate(-1)} />;
+};
+
+const CookiePolicyWrapper = () => {
+  const navigate = useNavigate();
+  return <CookiePolicy onBack={() => navigate(-1)} />;
+};
+
+const LicensingWrapper = () => {
+  const navigate = useNavigate();
+  return <Licensing onBack={() => navigate(-1)} />;
+};
+
+const PrivacyPolicyWrapper = () => {
+  const navigate = useNavigate();
+  return <PrivacyPolicy onBack={() => navigate(-1)} />;
+};
+
+const SecurityWrapper = () => {
+  const navigate = useNavigate();
+  return <Security onBack={() => navigate(-1)} />;
+};
+
+const TermsOfServiceWrapper = () => {
+  const navigate = useNavigate();
+  return <TermsOfService onBack={() => navigate(-1)} />;
+};
+
 function AppContent() {
   const { showPromoModal, setShowPromoModal, currentAdType } = useAppContext();
 
@@ -73,37 +124,17 @@ function AppContent() {
             <Route path="withdraw" element={<WithdrawPage />} />
             <Route path="profile" element={<ProfilePage />} />
             <Route path="lootboxes" element={<LootboxPage />} />
-            <Route path="sports" element={<SportsPage onBack={function (): void {
-              throw new Error('Function not implemented.');
-            } } />} />
-            <Route path="contact" element={<ContactUs onBack={function (): void {
-              throw new Error('Function not implemented.');
-            } } />} />
-            <Route path="fairness" element={<Fairness onBack={function (): void {
-              throw new Error('Function not implemented.');
-            } } />} />
-            <Route path="help" element={<HelpCenter onBack={function (): void {
-              throw new Error('Function not implemented.');
-            } } />} />
+            <Route path="sports" element={<SportsPageWrapper />} />
+            <Route path="contact" element={<ContactUsWrapper />} />
+            <Route path="fairness" element={<FairnessWrapper />} />
+            <Route path="help" element={<HelpCenterWrapper />} />
             <Route path="live-chat" element={<LiveChatPage />} />
-            <Route path="responsible-gaming" element={<ResponsibleGaming onBack={function (): void {
-              throw new Error('Function not implemented.');
-            } } />} />
-            <Route path="cookie-policy" element={<CookiePolicy onBack={function (): void {
-              throw new Error('Function not implemented.');
-            } } />} />
-            <Route path="licensing" element={<Licensing onBack={function (): void {
-              throw new Error('Function not implemented.');
-            } } />} />
-            <Route path="privacy-policy" element={<PrivacyPolicy onBack={function (): void {
-              throw new Error('Function not implemented.');
-            } } />} />
-            <Route path="security" element={<Security onBack={function (): void {
-              throw new Error('Function not implemented.');
-            } } />} />
-            <Route path="terms-of-service" element={<TermsOfService onBack={function (): void {
-              throw new Error('Function not implemented.');
-            } } />} />
+            <Route path="responsible-gaming" element={<ResponsibleGamingWrapper />} />
+            <Route path="cookie-policy" element={<CookiePolicyWrapper />} />
+            <Route path="licensing" element={<LicensingWrapper />} />
+            <Route path="privacy-policy" element={<PrivacyPolicyWrapper />} />
+            <Route path="security" element={<SecurityWrapper />} />
+            <Route path="terms-of-service" element={<TermsOfServiceWrapper />} />
             <Route path="game/:gameId" element={<GameDetailPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Route>
