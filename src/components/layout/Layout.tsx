@@ -49,7 +49,7 @@ const Footer: React.FC<{}> = () => {
                         <h3 className="text-white font-bold text-lg mb-6">Games</h3>
                         <ul className="space-y-3">
                             <li><Link to="/slots" className="text-gray-400 hover:text-white transition-colors">Slots</Link></li>
-                            <li><Link to="/blackjack" className="text-gray-400 hover:text-white transition-colors">Blackjack</Link></li>
+                            <li><Link to="/blackjacks" className="text-gray-400 hover:text-white transition-colors">Blackjack</Link></li>
                             <li><Link to="/roulette" className="text-gray-400 hover:text-white transition-colors">Roulette</Link></li>
                             <li><Link to="/live-casino" className="text-gray-400 hover:text-white transition-colors">Live Casino</Link></li>
                             <li><Link to="/jackpots" className="text-gray-400 hover:text-white transition-colors">Jackpots</Link></li>
@@ -72,9 +72,9 @@ const Footer: React.FC<{}> = () => {
                     <div>
                         <h3 className="text-white font-bold text-lg mb-6">Legal</h3>
                         <ul className="space-y-3">
-                            <li><Link to="/terms" className="text-gray-400 hover:text-white transition-colors">Terms of Service</Link></li>
-                            <li><Link to="/privacy" className="text-gray-400 hover:text-white transition-colors">Privacy Policy</Link></li>
-                            <li><Link to="/cookies" className="text-gray-400 hover:text-white transition-colors">Cookie Policy</Link></li>
+                                            <li><Link to="/terms-of-service" className="text-gray-400 hover:text-white transition-colors">Terms of Service</Link></li>
+                <li><Link to="/privacy-policy" className="text-gray-400 hover:text-white transition-colors">Privacy Policy</Link></li>
+                <li><Link to="/cookie-policy" className="text-gray-400 hover:text-white transition-colors">Cookie Policy</Link></li>
                             <li><Link to="/licensing" className="text-gray-400 hover:text-white transition-colors">Licensing</Link></li>
                             <li><Link to="/security" className="text-gray-400 hover:text-white transition-colors">Security</Link></li>
                         </ul>
@@ -290,7 +290,7 @@ const Layout: React.FC = () => {
             : 'hover:bg-yellow-500/20 text-white'                  
         }`
       }><span className="text-lg">🎲</span><span>Roulette</span></NavLink>
-                  <NavLink to="/blackjack" onClick={handleLinkClick}  className={({ isActive }) => 
+                  <NavLink to="/blackjacks" onClick={handleLinkClick}  className={({ isActive }) => 
         `w-full flex items-center space-x-3 p-3 rounded-lg transition-colors ${
           isActive 
             ? 'text-white bg-gray-800  font-semibold' 
@@ -417,14 +417,14 @@ const Layout: React.FC = () => {
             : 'hover:bg-yellow-500/20 text-white'                  
         }`
       }><span className="text-lg">⚖️</span><span>Fairness</span></NavLink>
-                    <NavLink to="/terms" onClick={handleLinkClick}  className={({ isActive }) => 
+                    <NavLink to="/terms-of-service" onClick={handleLinkClick}  className={({ isActive }) => 
         `w-full flex items-center space-x-3 p-3 rounded-lg transition-colors ${
           isActive 
             ? 'text-white bg-gray-800  font-semibold' 
             : 'hover:bg-yellow-500/20 text-white'                  
         }`
       }><span className="text-lg">📄</span><span>Terms of Service</span></NavLink>
-                    <NavLink to="/privacy" onClick={handleLinkClick}  className={({ isActive }) => 
+                    <NavLink to="/privacy-policy" onClick={handleLinkClick}  className={({ isActive }) => 
         `w-full flex items-center space-x-3 p-3 rounded-lg transition-colors ${
           isActive 
             ? 'text-white bg-gray-800  font-semibold' 
