@@ -424,66 +424,76 @@ const EarnPage: React.FC<EarnPageProps> = ({ onNavigate }) => {
                 {/* Tasks Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {filteredTasks.map((task) => (
-                    <div key={task.id} className="bg-gray-800 rounded-xl p-6 border border-gray-700 hover:border-yellow-500/50 transition-all duration-300">
-                      <div className="flex items-start justify-between mb-4">
-                        <div className="flex items-center space-x-3">
-                          <span className="text-3xl">{task.icon}</span>
-                          <div>
-                            <h3 className="text-white font-bold text-lg">{task.title}</h3>
-                            <p className="text-gray-400 text-sm">{task.description}</p>
+                    <div key={task.id} className="bg-gray-800 rounded-xl p-6 border border-gray-700 hover:border-yellow-500/50 transition-all duration-300 flex flex-col h-full">
+                      {/* Header Section */}
+                      <div className="flex items-start justify-between mb-6">
+                        <div className="flex items-center space-x-4">
+                          <span className="text-3xl flex-shrink-0">{task.icon}</span>
+                          <div className="min-w-0 flex-1">
+                            <h3 className="text-white font-bold text-lg mb-1 truncate">{task.title}</h3>
+                            <p className="text-gray-400 text-sm leading-relaxed">{task.description}</p>
                           </div>
                         </div>
-                        <span className={`inline-flex items-center space-x-1 px-2 py-1 rounded-full text-xs font-medium ${getDifficultyColor(task.difficulty)}`}>
+                        <span className={`inline-flex items-center space-x-1 px-3 py-1 rounded-full text-xs font-medium flex-shrink-0 ${getDifficultyColor(task.difficulty)}`}>
                           {task.difficulty}
                         </span>
                       </div>
 
-                      <div className="space-y-4">
-                        <div className="flex items-center justify-between">
-                          <span className="text-gray-400 text-sm">Reward</span>
-                          <span className="text-yellow-400 font-bold">{task.reward}</span>
+                      {/* Content Section */}
+                      <div className="flex-1 flex flex-col space-y-4">
+                        {/* Reward and Time Row */}
+                        <div className="grid grid-cols-2 gap-4">
+                          <div className="bg-gray-700/50 rounded-lg p-3">
+                            <div className="text-gray-400 text-xs font-medium mb-1">Reward</div>
+                            <div className="text-yellow-400 font-bold text-lg">{task.reward}</div>
+                          </div>
+                          <div className="bg-gray-700/50 rounded-lg p-3">
+                            <div className="text-gray-400 text-xs font-medium mb-1">Time</div>
+                            <div className="text-white font-semibold">{task.timeEstimate}</div>
+                          </div>
                         </div>
 
-                        <div className="flex items-center justify-between">
-                          <span className="text-gray-400 text-sm">Time</span>
-                          <span className="text-white text-sm">{task.timeEstimate}</span>
-                        </div>
-
+                        {/* Progress Section */}
                         {task.status === 'in-progress' && task.progress !== undefined && task.maxProgress !== undefined && (
-                          <div>
-                            <div className="flex items-center justify-between text-sm mb-2">
-                              <span className="text-gray-400">Progress</span>
-                              <span className="text-white">{task.progress}/{task.maxProgress}</span>
+                          <div className="bg-gray-700/30 rounded-lg p-4">
+                            <div className="flex items-center justify-between text-sm mb-3">
+                              <span className="text-gray-300 font-medium">Progress</span>
+                              <span className="text-white font-bold">{task.progress}/{task.maxProgress}</span>
                             </div>
-                            <div className="w-full bg-gray-700 rounded-full h-2">
+                            <div className="w-full bg-gray-600 rounded-full h-3">
                               <div
-                                className="bg-gradient-to-r from-yellow-500 to-orange-500 h-2 rounded-full transition-all duration-300"
+                                className="bg-gradient-to-r from-yellow-500 to-orange-500 h-3 rounded-full transition-all duration-300"
                                 style={{ width: `${(task.progress / task.maxProgress) * 100}%` }}
                               ></div>
                             </div>
                           </div>
                         )}
 
-                        <div className="flex items-center justify-between">
-                          <span className={`inline-flex items-center space-x-1 px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(task.status)}`}>
-                            {task.status === 'completed' && <CheckCircle className="w-3 h-3" />}
-                            {task.status === 'in-progress' && <Clock className="w-3 h-3" />}
-                            {task.status === 'available' && <Unlock className="w-3 h-3" />}
+                        {/* Status Badge */}
+                        <div className="flex justify-center">
+                          <span className={`inline-flex items-center space-x-2 px-4 py-2 rounded-full text-sm font-medium ${getStatusColor(task.status)}`}>
+                            {task.status === 'completed' && <CheckCircle className="w-4 h-4" />}
+                            {task.status === 'in-progress' && <Clock className="w-4 h-4" />}
+                            {task.status === 'available' && <Unlock className="w-4 h-4" />}
                             <span className="capitalize">{task.status.replace('-', ' ')}</span>
                           </span>
                         </div>
 
-                        <button className={`w-full py-3 px-4 rounded-lg font-semibold transition-all duration-200 flex items-center justify-center space-x-2 ${
+                        {/* Spacer to push button to bottom */}
+                        <div className="flex-1"></div>
+
+                        {/* Action Button */}
+                        <button className={`w-full h-14 px-6 rounded-lg font-semibold transition-all duration-200 flex items-center justify-center space-x-3 ${
                           task.status === 'completed'
                             ? 'bg-green-600 text-white cursor-not-allowed'
                             : task.status === 'in-progress'
                             ? 'bg-yellow-500 text-gray-900 hover:bg-yellow-600'
                             : 'bg-gradient-to-r from-yellow-500 to-orange-500 text-gray-900 hover:from-yellow-600 hover:to-orange-600'
                         }`}>
-                          {task.status === 'completed' && <CheckCircle className="w-4 h-4" />}
-                          {task.status === 'in-progress' && <Clock className="w-4 h-4" />}
-                          {task.status === 'available' && <Play className="w-4 h-4" />}
-                          <span>
+                          {task.status === 'completed' && <CheckCircle className="w-5 h-5" />}
+                          {task.status === 'in-progress' && <Clock className="w-5 h-5" />}
+                          {task.status === 'available' && <Play className="w-5 h-5" />}
+                          <span className="text-base font-medium">
                             {task.status === 'completed' ? 'Completed' : task.status === 'in-progress' ? 'Continue' : 'Start Task'}
                           </span>
                         </button>

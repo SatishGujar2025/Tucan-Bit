@@ -199,7 +199,7 @@ const Layout: React.FC = () => {
               <>
                 <div className="p-4 border-b border-gray-800">
                   <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg p-3">
-                    <div className="flex items-center space-x-2 mb-2"><span className="text-2xl">🐋</span><div><p className="text-sm font-semibold text-white">Whale Token (WHALE)</p><p className="text-xs text-gray-300">Coming soon</p></div></div>
+                    <div className="flex items-center space-x-2 mb-2"><span className="text-2xl"></span><div><p className="text-sm font-semibold text-white">Tucan Wallet</p><p className="text-xs text-gray-300">Coming soon</p></div></div>
                   </div>
                 </div>
                <div className="p-4 border-b border-gray-800">
@@ -213,7 +213,7 @@ const Layout: React.FC = () => {
                 </div>
                 <div className="text-xs">
                   <p>Levelup Rewards</p>
-                  <p>Whale Tokens</p>
+                  <p>Tucan Tokens</p>
                 </div>
               </div>
               <button className="w-full bg-white text-orange-500 py-2 rounded text-sm font-semibold">

@@ -19,44 +19,7 @@ const LiveCasinoPage: React.FC = () => {
           </div>
         </div>
         
-        {/* Live Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-          <div className="bg-gray-800 rounded-lg p-4 border border-gray-700">
-            <div className="flex items-center space-x-2">
-              <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-              <span className="text-green-400 text-sm font-medium">Live Now</span>
-            </div>
-            <p className="text-2xl font-bold text-white mt-2">24/7</p>
-            <p className="text-gray-400 text-xs">Always Available</p>
-          </div>
-          
-          <div className="bg-gray-800 rounded-lg p-4 border border-gray-700">
-            <div className="flex items-center space-x-2">
-              <Users className="w-4 h-4 text-blue-400" />
-              <span className="text-blue-400 text-sm font-medium">Active Players</span>
-            </div>
-            <p className="text-2xl font-bold text-white mt-2">1,247</p>
-            <p className="text-gray-400 text-xs">Online Now</p>
-          </div>
-          
-          <div className="bg-gray-800 rounded-lg p-4 border border-gray-700">
-            <div className="flex items-center space-x-2">
-              <Clock className="w-4 h-4 text-yellow-400" />
-              <span className="text-yellow-400 text-sm font-medium">Next Game</span>
-            </div>
-            <p className="text-2xl font-bold text-white mt-2">00:15</p>
-            <p className="text-gray-400 text-xs">Crazy Time</p>
-          </div>
-          
-          <div className="bg-gray-800 rounded-lg p-4 border border-gray-700">
-            <div className="flex items-center space-x-2">
-              <Star className="w-4 h-4 text-purple-400" />
-              <span className="text-purple-400 text-sm font-medium">Top Provider</span>
-            </div>
-            <p className="text-2xl font-bold text-white mt-2">Evolution</p>
-            <p className="text-gray-400 text-xs">Gaming</p>
-          </div>
-        </div>
+      
       </div>
 
       <SearchBar />

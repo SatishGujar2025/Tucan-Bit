@@ -1,13 +1,34 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
 import { 
-  Gift, Star, Clock, Crown, Zap, Target, Copy, Check, Award
+  Gift, Star, Clock, Crown, Zap, Target, Copy, Check, Award, Trophy
 } from 'lucide-react';
 
 const PromotionsPage: React.FC = () => {
   // State specific to this page's functionality
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState('all');
+  const [searchParams] = useSearchParams();
+
+  // Handle URL parameters for direct navigation from sidebar
+  useEffect(() => {
+    const category = searchParams.get('category');
+    const promo = searchParams.get('promo');
+    
+    if (category) {
+      setActiveTab(category);
+    }
+    
+    if (promo) {
+      // Scroll to specific promotion if needed
+      setTimeout(() => {
+        const promoElement = document.getElementById(`promo-${promo}`);
+        if (promoElement) {
+          promoElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }, 500);
+    }
+  }, [searchParams]);
 
   // All wallet and sidebar state has been removed.
 
@@ -21,6 +42,10 @@ const PromotionsPage: React.FC = () => {
     { id: 1, title: 'Welcome Bonus', subtitle: 'New Player Special', description: 'Get 100% match on your first deposit up to 5 BTC plus 100 free spins on our most popular slots', image: 'https://cdn.midjourney.com/0ac3937e-6f1e-438c-b549-124318dd6b3f/0_2.png', bonus: '100% Match + 100 Spins', code: 'WELCOME100', category: 'welcome', featured: true, timeLeft: '6 days', requirements: ['Minimum deposit: 0.01 BTC', 'Wagering requirement: 35x'], maxBonus: '5 BTC', games: 'All slots' },
     { id: 2, title: 'Daily Cashback', subtitle: 'Every Day Rewards', description: 'Earn 10% cashback on all losses every day. No wagering requirements, instant credit.', image: 'https://iili.io/FwUxYcN.png', bonus: '10% Daily Cashback', code: 'DAILY10', category: 'daily', featured: true, timeLeft: 'Ongoing', requirements: ['Minimum loss: 0.001 BTC', 'No wagering'], maxBonus: '1 BTC per day', games: 'All games' },
     { id: 3, title: 'VIP Rewards Program', subtitle: 'Exclusive Benefits', description: 'Join our VIP program for exclusive bonuses, faster withdrawals, and personal account manager.', image: 'https://cdn.midjourney.com/54d71f3e-7598-4f36-a850-d7dd929d5e7c/0_3.png', bonus: 'Up to 25% Cashback', code: 'VIPCLUB', category: 'vip', featured: true, timeLeft: 'Invitation Only', requirements: ['Invitation required', 'Exclusive benefits'], maxBonus: 'No limit', games: 'All games' },
+    // Tournament Promotions
+    { id: 4, title: 'SPIN WARS', subtitle: 'VOL 5', description: 'Same Battle. New Games.', image: 'https://iili.io/FwSX1Xj.png', bonus: '$30,000', code: 'SPINWARS30K', category: 'tournament', featured: true, timeLeft: '3 days', requirements: ['Minimum bet: $1', 'Tournament entry required'], maxBonus: '$30,000', games: 'All slots', promoId: 'spin-wars' },
+    { id: 5, title: 'TucanBIT Tournament', subtitle: 'Break Live88', description: 'Bet on Live88 tables. Break the house. Win the bag.', image: 'https://iili.io/FwUxYcN.png', bonus: '$20,000', code: 'TUCANBIT20K', category: 'tournament', featured: true, timeLeft: '5 days', requirements: ['Live88 tables only', 'Minimum bet: $5'], maxBonus: '$20,000', games: 'Live88 tables', promoId: 'tucanbit-tournament' },
+    { id: 6, title: 'Provider of the Month', subtitle: 'HACKSAW GAMING', description: 'Too Volatile For Amateurs!', image: 'https://cdn.midjourney.com/54d71f3e-7598-4f36-a850-d7dd929d5e7c/0_3.png', bonus: '$15,000', code: 'HACKSAW15K', category: 'tournament', featured: false, timeLeft: '7 days', requirements: ['Hacksaw games only', 'Minimum bet: $0.50'], maxBonus: '$15,000', games: 'Hacksaw Gaming', promoId: 'hacksaw' },
   ];
 
   const categories = [
@@ -28,6 +53,7 @@ const PromotionsPage: React.FC = () => {
     { id: 'welcome', name: 'Welcome', icon: Star },
     { id: 'daily', name: 'Daily', icon: Clock },
     { id: 'vip', name: 'VIP', icon: Crown },
+    { id: 'tournament', name: 'Tournaments', icon: Trophy },
     { id: 'reload', name: 'Reload', icon: Zap },
     { id: 'freespins', name: 'Free Spins', icon: Target }
   ];
@@ -105,7 +131,11 @@ const PromotionsPage: React.FC = () => {
         {/* All Promotions Grid */}
         <div className="grid lg:grid-cols-2 gap-6">
           {filteredPromotions.map((promo) => (
-            <div key={promo.id} className="bg-gradient-to-br from-[#3C1A4F]/30 to-[#36CFC9]/30 border border-[#3C1A4F]/20 rounded-2xl overflow-hidden">
+            <div 
+              key={promo.id} 
+              id={promo.promoId ? `promo-${promo.promoId}` : undefined}
+              className="bg-gradient-to-br from-[#3C1A4F]/30 to-[#36CFC9]/30 border border-[#3C1A4F]/20 rounded-2xl overflow-hidden"
+            >
               <div className="flex">
                 <div className="w-1/3 relative"><img src={promo.image} alt={promo.title} className="w-full h-full object-cover" /></div>
                 <div className="flex-1 p-6">

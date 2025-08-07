@@ -101,10 +101,12 @@ const CommunityPage: React.FC<CommunityPageProps> = ({ onNavigate }) => {
   const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
   const [walletCurrency, setWalletCurrency] = useState<'ETH' | 'SOL' | null>(null);
   const [currentPage, setCurrentPage] = useState('community');
-  const [activeTab, setActiveTab] = useState('forums');
+  const [activeTab, setActiveTab] = useState('chat');
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [newPostContent, setNewPostContent] = useState('');
+  const [chatMessage, setChatMessage] = useState('');
+  const [selectedChannel, setSelectedChannel] = useState('general');
 
   // Wallet connection logic
   useEffect(() => {
@@ -304,6 +306,53 @@ const CommunityPage: React.FC<CommunityPageProps> = ({ onNavigate }) => {
     { name: 'YouTube', icon: '📺', url: '#', members: '12.3K', color: 'red' }
   ];
 
+  // Chat channels
+  const chatChannels = [
+    { id: 'general', name: 'General', icon: MessageCircle, members: 1247, unread: 0 },
+    { id: 'casino', name: 'Casino Games', icon: Gamepad2, members: 892, unread: 3 },
+    { id: 'sports', name: 'Sports Betting', icon: Trophy, members: 456, unread: 1 },
+    { id: 'crypto', name: 'Cryptocurrency', icon: Coins, members: 678, unread: 0 },
+    { id: 'support', name: 'Support', icon: HelpCircle, members: 234, unread: 0 },
+    { id: 'announcements', name: 'Announcements', icon: Bell, members: 1567, unread: 2 }
+  ];
+
+  // Mock chat messages
+  const chatMessages = [
+    {
+      id: 1,
+      user: 'CryptoGambler',
+      avatar: '🎰',
+      message: 'Anyone tried the new slot game? It looks amazing!',
+      timestamp: '2 min ago',
+      isOnline: true
+    },
+    {
+      id: 2,
+      user: 'SlotMaster',
+      avatar: '🎰',
+      message: 'Yes! The bonus features are incredible. Highly recommend!',
+      timestamp: '1 min ago',
+      isOnline: true
+    },
+    {
+      id: 3,
+      user: 'LiveCasinoFan',
+      avatar: '🎲',
+      message: 'How\'s the live casino experience today?',
+      timestamp: '30 sec ago',
+      isOnline: false
+    },
+    {
+      id: 4,
+      user: 'TucanBit_Support',
+      avatar: '🛡️',
+      message: 'Welcome everyone! Feel free to ask any questions.',
+      timestamp: 'Just now',
+      isOnline: true,
+      isStaff: true
+    }
+  ];
+
   const filteredPosts = forumPosts.filter(post => {
     const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          post.content.toLowerCase().includes(searchTerm.toLowerCase());
@@ -399,6 +448,16 @@ const CommunityPage: React.FC<CommunityPageProps> = ({ onNavigate }) => {
             {/* Tab Navigation */}
             <div className="flex flex-wrap gap-2 mb-8">
               <button
+                onClick={() => setActiveTab('chat')}
+                className={`px-6 py-3 rounded-lg font-medium transition-colors ${
+                  activeTab === 'chat'
+                    ? 'bg-blue-600 text-white'
+                    : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                }`}
+              >
+                Live Chat
+              </button>
+              <button
                 onClick={() => setActiveTab('forums')}
                 className={`px-6 py-3 rounded-lg font-medium transition-colors ${
                   activeTab === 'forums'
@@ -429,6 +488,132 @@ const CommunityPage: React.FC<CommunityPageProps> = ({ onNavigate }) => {
                 Social Media
               </button>
             </div>
+
+            {/* Chat Tab */}
+            {activeTab === 'chat' && (
+              <div className="bg-gray-800 rounded-lg border border-gray-700 overflow-hidden">
+                <div className="flex h-[600px]">
+                  {/* Channels Sidebar */}
+                  <div className="w-64 bg-gray-900 border-r border-gray-700 flex flex-col">
+                    <div className="p-4 border-b border-gray-700">
+                      <h3 className="text-lg font-semibold text-white mb-2">Channels</h3>
+                      <div className="text-sm text-gray-400">{communityStats.onlineMembers} online</div>
+                    </div>
+                    
+                    <div className="flex-1 overflow-y-auto">
+                      {chatChannels.map((channel) => (
+                        <button
+                          key={channel.id}
+                          onClick={() => setSelectedChannel(channel.id)}
+                          className={`w-full p-3 flex items-center justify-between hover:bg-gray-800 transition-colors ${
+                            selectedChannel === channel.id ? 'bg-blue-600/20 border-r-2 border-blue-500' : ''
+                          }`}
+                        >
+                          <div className="flex items-center space-x-3">
+                            <channel.icon className={`w-4 h-4 ${
+                              selectedChannel === channel.id ? 'text-blue-400' : 'text-gray-400'
+                            }`} />
+                            <span className={`text-sm font-medium ${
+                              selectedChannel === channel.id ? 'text-white' : 'text-gray-300'
+                            }`}>
+                              #{channel.name}
+                            </span>
+                          </div>
+                          <div className="flex items-center space-x-2">
+                            {channel.unread > 0 && (
+                              <span className="bg-red-500 text-white text-xs px-2 py-1 rounded-full">
+                                {channel.unread}
+                              </span>
+                            )}
+                            <span className="text-xs text-gray-500">{channel.members}</span>
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Chat Area */}
+                  <div className="flex-1 flex flex-col">
+                    {/* Chat Header */}
+                    <div className="p-4 border-b border-gray-700 bg-gray-800">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-3">
+                          <MessageCircle className="w-5 h-5 text-blue-400" />
+                          <h3 className="text-lg font-semibold text-white">
+                            #{chatChannels.find(c => c.id === selectedChannel)?.name}
+                          </h3>
+                          <span className="text-sm text-gray-400">
+                            {chatChannels.find(c => c.id === selectedChannel)?.members} members
+                          </span>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <button className="p-2 text-gray-400 hover:text-white hover:bg-gray-700 rounded-lg transition-colors">
+                            <Settings size={16} />
+                          </button>
+                          <button className="p-2 text-gray-400 hover:text-white hover:bg-gray-700 rounded-lg transition-colors">
+                            <Users size={16} />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Messages */}
+                    <div className="flex-1 overflow-y-auto p-4 space-y-4">
+                      {chatMessages.map((msg) => (
+                        <div key={msg.id} className="flex items-start space-x-3">
+                          <div className="flex-shrink-0">
+                            <div className={`w-10 h-10 rounded-full flex items-center justify-center text-lg relative ${
+                              msg.isStaff ? 'bg-blue-600' : 'bg-gray-700'
+                            }`}>
+                              {msg.avatar}
+                              {msg.isOnline && (
+                                <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-gray-800"></div>
+                              )}
+                            </div>
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center space-x-2 mb-1">
+                              <span className="font-medium text-white">{msg.user}</span>
+                              {msg.isStaff && (
+                                <span className="px-2 py-1 bg-blue-600 text-white text-xs rounded-full">Staff</span>
+                              )}
+                              <span className="text-xs text-gray-400">{msg.timestamp}</span>
+                            </div>
+                            <p className="text-gray-300">{msg.message}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Message Input */}
+                    <div className="p-4 border-t border-gray-700">
+                      <div className="flex items-center space-x-3">
+                        <div className="flex-1 relative">
+                          <input
+                            type="text"
+                            value={chatMessage}
+                            onChange={(e) => setChatMessage(e.target.value)}
+                            placeholder="Type your message..."
+                            className="w-full pl-4 pr-12 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          />
+                          <div className="absolute right-3 top-1/2 transform -translate-y-1/2 flex items-center space-x-2">
+                            <button className="p-1 text-gray-400 hover:text-white transition-colors">
+                              <Smile size={16} />
+                            </button>
+                            <button className="p-1 text-gray-400 hover:text-white transition-colors">
+                              <Image size={16} />
+                            </button>
+                          </div>
+                        </div>
+                        <button className="bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-lg transition-colors">
+                          <Send size={16} />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
 
             {/* Forums Tab */}
             {activeTab === 'forums' && (

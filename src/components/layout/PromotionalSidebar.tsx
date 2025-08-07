@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Trophy, Clock, Star, TrendingUp, Flame, Gamepad2, BookOpen, Users, ChevronLeft, ChevronRight, Sparkles, X } from 'lucide-react';
+import { Trophy, Clock, Star, TrendingUp, Flame, Gamepad2, BookOpen, Users, ChevronLeft, ChevronRight, Sparkles, X, Menu, Gift } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import g1 from '../../assets/g1.jpg';
 import g3 from '../../assets/g3.jpg';
@@ -48,6 +48,7 @@ const PromotionalSidebar: React.FC = () => {
       }
     }
   }, [isExpanded]);
+  
   const [showTournamentRules, setShowTournamentRules] = useState(false);
   const [showLeaderboard, setShowLeaderboard] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
@@ -65,24 +66,24 @@ const PromotionalSidebar: React.FC = () => {
   const [promotions] = useState<Promotion[]>([
     {
       id: 1,
-      title: "Hot Summer",
-      description: "Exclusive bonuses",
+      title: "SPIN WARS",
+      description: "VOL 5 - Same Battle. New Games.",
       endTime: new Date(Date.now() + 24 * 60 * 60 * 1000), // 24 hours from now
       image: sidebarPromo,
       link: "/promotions/hot-summer"
     },
     {
       id: 2,
-      title: "Magic Game",
-      description: "Magical rewards",
+      title: "TucanBIT Tournament",
+      description: "Break Live88 - Bet on Live88 tables. Break the house. Win the bag.",
       endTime: new Date(Date.now() + 12 * 60 * 60 * 1000), // 12 hours from now
       image: promoMagicGame,
       link: "/promotions/weekend-special"
     },
     {
       id: 3,
-      title: "Gatekeeper",
-      description: "Guardian rewards",
+      title: "HACKSAW GAMING",
+      description: "Provider of the Month - Too Volatile For Amateurs!",
       endTime: new Date(Date.now() + 48 * 60 * 60 * 1000), // 48 hours from now
       image: promoGatekeeper,
       link: "/tournaments/vip"
@@ -156,43 +157,60 @@ const PromotionalSidebar: React.FC = () => {
 
   return (
     <>
-      {/* Toggle Button - Always visible */}
+      {/* Toggle Button - Positioned in middle of sidebar */}
       <button
         onClick={() => setIsExpanded(!isExpanded)}
-        className={`fixed top-4 right-0 z-[9999] bg-gradient-to-r from-gray-700 to-gray-600 hover:from-gray-600 hover:to-gray-500 text-white p-3 rounded-l-lg shadow-lg transition-all duration-300 border border-gray-600 ${
-          isExpanded ? 'right-80' : 'right-0'
+        className={`fixed z-[9999] bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white shadow-lg transition-all duration-300 border-2 border-white/20 hover:border-white/40 ${
+          isExpanded ? 'rotate-180' : ''
+        } ${
+          // Position in middle of sidebar area - only show when sidebar is expanded
+          isExpanded ? 'top-1/2 transform -translate-y-1/2 right-80 md:right-80' : 'hidden'
+        } ${
+          // Mobile: rectangular, Desktop: circular
+          'p-2 rounded-lg md:p-3 md:rounded-full'
+        } ${
+          // Hide when any modal is open
+          'modal-open:hidden'
         }`}
       >
         {isExpanded ? (
-          <X className="w-5 h-5" />
+          <X className="w-4 h-4 md:w-5 md:h-5" />
         ) : (
-          <Sparkles className="w-5 h-5 animate-pulse" />
+          <ChevronLeft className="w-4 h-4 md:w-5 md:h-5" />
         )}
       </button>
 
-      {/* Sidebar */}
+      {/* Show button when sidebar is collapsed - positioned at screen edge */}
+      {!isExpanded && (
+        <button
+          onClick={() => setIsExpanded(!isExpanded)}
+          className="fixed z-[9999] bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white shadow-lg transition-all duration-300 border-2 border-white/20 hover:border-white/40 top-1/2 transform -translate-y-1/2 right-4 p-2 rounded-lg md:p-3 md:rounded-full modal-open:hidden"
+        >
+          <ChevronLeft className="w-4 h-4 md:w-5 md:h-5" />
+        </button>
+      )}
+
+      {/* Sidebar - Mobile responsive */}
       <div className={`fixed inset-y-0 right-0 z-40 bg-gray-900 shadow-2xl border-l border-gray-800 overflow-y-auto transition-all duration-300 ${
         isExpanded ? 'w-80 translate-x-0' : 'w-0 translate-x-full'
       }`}>
         <div className="flex flex-col h-full">
           {/* Header */}
-          <div className="p-6 border-b border-gray-800 bg-gradient-to-r from-gray-800 to-gray-900">
-            <h2 className="text-xl font-bold text-white flex items-center space-x-2">
-              <Trophy className="w-6 h-6 text-yellow-400" />
+          <div className="p-4 sm:p-6 border-b border-gray-800 bg-gradient-to-r from-gray-800 to-gray-900">
+            <h2 className="text-lg sm:text-xl font-bold text-white flex items-center space-x-2">
+              <Trophy className="w-5 h-5 sm:w-6 sm:h-6 text-yellow-400" />
               <span>Live Activity</span>
             </h2>
-            <p className="text-sm text-gray-400 mt-1">Real-time updates & promotions</p>
+            <p className="text-xs sm:text-sm text-gray-400 mt-1">Real-time updates & promotions</p>
           </div>
 
-
-
           {/* Promotional Countdown */}
-          <div className="p-4 border-b border-gray-800">
+          <div className="p-3 sm:p-4 border-b border-gray-800">
             <div 
               className="bg-gradient-to-br from-pink-500 to-purple-600 rounded-xl overflow-hidden relative cursor-pointer hover:scale-[1.02] transition-transform"
               onClick={() => navigate(currentPromotion.link)}
             >
-              <div className="relative h-48 bg-gradient-to-br from-pink-400 to-purple-500">
+              <div className="relative h-32 sm:h-48 bg-gradient-to-br from-pink-400 to-purple-500">
                 {/* Fallback background if image doesn't load */}
                 <div className="absolute inset-0 bg-gradient-to-br from-pink-400 to-purple-500"></div>
                 <img 
@@ -205,47 +223,47 @@ const PromotionalSidebar: React.FC = () => {
                 />
                 <div className="absolute inset-0 bg-black/40 z-20"></div>
                 
-                {/* Navigation Buttons */}
+                {/* Navigation Buttons - Mobile responsive */}
                 <button 
                   onClick={(e) => {
                     e.stopPropagation();
                     setCurrentPromoIndex((prev) => (prev === 0 ? promotions.length - 1 : prev - 1));
                   }}
-                  className="absolute left-2 top-1/2 transform -translate-y-1/2 z-40 bg-black/50 hover:bg-black/70 text-white p-1 rounded-full transition-all"
+                  className="absolute left-1 sm:left-2 top-1/2 transform -translate-y-1/2 z-40 bg-black/50 hover:bg-black/70 text-white p-1 rounded-full transition-all"
                 >
-                  <ChevronLeft className="w-4 h-4" />
+                  <ChevronLeft className="w-3 h-3 sm:w-4 sm:h-4" />
                 </button>
                 <button 
                   onClick={(e) => {
                     e.stopPropagation();
                     setCurrentPromoIndex((prev) => (prev === promotions.length - 1 ? 0 : prev + 1));
                   }}
-                  className="absolute right-2 top-1/2 transform -translate-y-1/2 z-40 bg-black/50 hover:bg-black/70 text-white p-1 rounded-full transition-all"
+                  className="absolute right-1 sm:right-2 top-1/2 transform -translate-y-1/2 z-40 bg-black/50 hover:bg-black/70 text-white p-1 rounded-full transition-all"
                 >
-                  <ChevronRight className="w-4 h-4" />
+                  <ChevronRight className="w-3 h-3 sm:w-4 sm:h-4" />
                 </button>
                 
-                <div className="absolute inset-0 p-4 flex flex-col justify-between z-30">
+                <div className="absolute inset-0 p-2 sm:p-4 flex flex-col justify-between z-30">
                   <div>
-                    <h3 className="text-lg font-bold text-white mb-1">{currentPromotion.title}</h3>
-                    <p className="text-sm text-gray-200">{currentPromotion.description}</p>
+                    <h3 className="text-sm sm:text-lg font-bold text-white mb-1">{currentPromotion.title}</h3>
+                    <p className="text-xs sm:text-sm text-gray-200">{currentPromotion.description}</p>
                   </div>
-                  <div className="bg-black/50 rounded-lg p-3">
-                    <div className="flex items-center space-x-2 mb-2">
-                      <Clock className="w-4 h-4 text-yellow-400" />
-                      <span className="text-sm text-white font-semibold">Ends in:</span>
+                  <div className="bg-black/50 rounded-lg p-2 sm:p-3">
+                    <div className="flex items-center space-x-1 sm:space-x-2 mb-1 sm:mb-2">
+                      <Clock className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400" />
+                      <span className="text-xs sm:text-sm text-white font-semibold">Ends in:</span>
                     </div>
-                    <div className="flex space-x-2">
-                      <div className="bg-white/20 rounded px-2 py-1">
-                        <span className="text-white font-bold text-sm">{timeLeft.hours.toString().padStart(2, '0')}</span>
+                    <div className="flex space-x-1 sm:space-x-2">
+                      <div className="bg-white/20 rounded px-1 sm:px-2 py-1">
+                        <span className="text-white font-bold text-xs sm:text-sm">{timeLeft.hours.toString().padStart(2, '0')}</span>
                       </div>
-                      <span className="text-white">:</span>
-                      <div className="bg-white/20 rounded px-2 py-1">
-                        <span className="text-white font-bold text-sm">{timeLeft.minutes.toString().padStart(2, '0')}</span>
+                      <span className="text-white text-xs sm:text-sm">:</span>
+                      <div className="bg-white/20 rounded px-1 sm:px-2 py-1">
+                        <span className="text-white font-bold text-xs sm:text-sm">{timeLeft.minutes.toString().padStart(2, '0')}</span>
                       </div>
-                      <span className="text-white">:</span>
-                      <div className="bg-white/20 rounded px-2 py-1">
-                        <span className="text-white font-bold text-sm">{timeLeft.seconds.toString().padStart(2, '0')}</span>
+                      <span className="text-white text-xs sm:text-sm">:</span>
+                      <div className="bg-white/20 rounded px-1 sm:px-2 py-1">
+                        <span className="text-white font-bold text-xs sm:text-sm">{timeLeft.seconds.toString().padStart(2, '0')}</span>
                       </div>
                     </div>
                   </div>
@@ -253,7 +271,7 @@ const PromotionalSidebar: React.FC = () => {
               </div>
               
               {/* Promo Indicators */}
-              <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 z-40 flex space-x-1">
+              <div className="absolute bottom-1 sm:bottom-2 left-1/2 transform -translate-x-1/2 z-40 flex space-x-1">
                 {promotions.map((_, index) => (
                   <button
                     key={index}
@@ -261,7 +279,7 @@ const PromotionalSidebar: React.FC = () => {
                       e.stopPropagation();
                       setCurrentPromoIndex(index);
                     }}
-                    className={`w-2 h-2 rounded-full transition-all ${
+                    className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full transition-all ${
                       index === currentPromoIndex ? 'bg-white' : 'bg-white/50'
                     }`}
                   />
@@ -270,54 +288,54 @@ const PromotionalSidebar: React.FC = () => {
             </div>
           </div>
 
-          {/* Action Buttons - Moved to middle position */}
-          <div className="p-4 border-b border-gray-800 space-y-3">
+          {/* Action Buttons - Mobile responsive */}
+          <div className="p-3 sm:p-4 border-b border-gray-800 space-y-2 sm:space-y-3">
             <button 
               onClick={() => setShowTournamentRules(true)}
-              className="w-full bg-gray-800/60 hover:bg-gray-700/70 text-white py-3 rounded-lg font-semibold flex items-center justify-center space-x-2 transition-all shadow-lg border border-gray-600/50 backdrop-blur-sm"
+              className="w-full bg-gray-800/60 hover:bg-gray-700/70 text-white py-2 sm:py-3 rounded-lg font-semibold flex items-center justify-center space-x-2 transition-all shadow-lg border border-gray-600/50 backdrop-blur-sm text-sm sm:text-base"
             >
-              <BookOpen className="w-4 h-4" />
+              <BookOpen className="w-3 h-3 sm:w-4 sm:h-4" />
               <span>Tournament Rules</span>
             </button>
             
             <button 
               onClick={() => setShowLeaderboard(true)}
-              className="w-full bg-gray-800/60 hover:bg-gray-700/70 text-white py-3 rounded-lg font-semibold flex items-center justify-center space-x-2 transition-all shadow-lg border border-gray-600/50 backdrop-blur-sm"
+              className="w-full bg-gray-800/60 hover:bg-gray-700/70 text-white py-2 sm:py-3 rounded-lg font-semibold flex items-center justify-center space-x-2 transition-all shadow-lg border border-gray-600/50 backdrop-blur-sm text-sm sm:text-base"
             >
-              <Users className="w-4 h-4" />
+              <Users className="w-3 h-3 sm:w-4 sm:h-4" />
               <span>Leaderboard</span>
             </button>
           </div>
 
-          {/* Live Leaderboard */}
-          <div className="flex-1 p-4">
-            <div className="flex items-center space-x-2 mb-4">
-              <Trophy className="w-5 h-5 text-yellow-400" />
-              <h3 className="text-lg font-bold text-white">Live Leaderboard</h3>
-              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+          {/* Live Leaderboard - Mobile responsive */}
+          <div className="flex-1 p-4 sm:p-6">
+            <div className="flex items-center space-x-3 mb-4 sm:mb-6">
+              <Trophy className="w-5 h-5 sm:w-6 sm:h-6 text-yellow-400" />
+              <h3 className="text-lg sm:text-xl font-bold text-white">Live Leaderboard</h3>
+              <div className="w-2 h-2 sm:w-3 sm:h-3 bg-green-500 rounded-full animate-pulse"></div>
             </div>
             
             {/* Header */}
-            <div className="grid grid-cols-3 gap-2 mb-3 text-xs font-semibold text-gray-400">
-              <div className="flex items-center space-x-1">
-                <Trophy className="w-3 h-3" />
+            <div className="grid grid-cols-3 gap-3 mb-3 sm:mb-4 text-sm font-semibold text-gray-400 border-b border-gray-700 pb-2">
+              <div className="flex items-center space-x-2">
+                <Trophy className="w-3 h-3 sm:w-4 sm:h-4" />
                 <span>Place</span>
               </div>
               <div>Player</div>
-              <div>Prize</div>
+              <div className="text-right">Prize</div>
             </div>
             
-            <div className="space-y-2">
+            <div className="space-y-4 sm:space-y-5">
               {leaderboard.map((entry, index) => (
                 <div 
                   key={entry.id} 
-                  className={`bg-gray-800 rounded-lg p-3 border transition-all duration-300 ${
-                    entry.isNew ? 'border-green-500 bg-green-500/10' : 'border-gray-700'
+                  className={`bg-gray-800/60 rounded-xl p-3 sm:p-4 border transition-all duration-300 hover:bg-gray-700/60 ${
+                    entry.isNew ? 'border-green-500 bg-green-500/10' : 'border-gray-700/50'
                   }`}
                 >
-                  <div className="grid grid-cols-3 gap-2 items-center">
-                    <div className="flex items-center space-x-2">
-                      <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${
+                  <div className="grid grid-cols-3 gap-3 items-center">
+                    <div className="flex items-center space-x-2 sm:space-x-3">
+                      <div className={`w-6 h-6 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-sm font-bold ${
                         index === 0 ? 'bg-yellow-500 text-black' :
                         index === 1 ? 'bg-gray-400 text-black' :
                         index === 2 ? 'bg-orange-600 text-white' :
@@ -326,7 +344,7 @@ const PromotionalSidebar: React.FC = () => {
                         {index + 1}
                       </div>
                       {index < 3 && (
-                        <Trophy className={`w-4 h-4 ${
+                        <Trophy className={`w-4 h-4 sm:w-5 sm:h-5 ${
                           index === 0 ? 'text-yellow-400' :
                           index === 1 ? 'text-gray-400' :
                           'text-orange-500'
@@ -334,10 +352,10 @@ const PromotionalSidebar: React.FC = () => {
                       )}
                     </div>
                     <div>
-                      <p className="text-white font-medium text-sm truncate">{entry.playerName}</p>
+                      <p className="text-white font-semibold text-sm sm:text-base truncate">{entry.playerName}</p>
                     </div>
                     <div className="text-right">
-                      <p className="text-green-400 font-bold text-sm">${(Math.random() * 3000 + 500).toFixed(0)}</p>
+                      <p className="text-green-400 font-bold text-sm sm:text-base">${(Math.random() * 3000 + 500).toFixed(0)}</p>
                     </div>
                   </div>
                 </div>
@@ -345,24 +363,28 @@ const PromotionalSidebar: React.FC = () => {
             </div>
           </div>
 
-          {/* Hot Games */}
-          <div className="p-4 border-t border-gray-800">
-            <h4 className="text-sm font-semibold text-white mb-3 flex items-center space-x-2">
-              <Gamepad2 className="w-4 h-4 text-green-400" />
+          {/* Hot Games - Mobile responsive */}
+          <div className="p-4 sm:p-6 border-t border-gray-800">
+            <h4 className="text-sm sm:text-base font-bold text-white mb-4 sm:mb-6 flex items-center space-x-3">
+              <Gamepad2 className="w-4 h-4 sm:w-5 sm:h-5 text-green-400" />
               <span>🔥 Hot Games</span>
             </h4>
-            <div className="space-y-2">
+            <div className="space-y-3 sm:space-y-4">
               {hotGames.map((game) => (
-                <div key={game.id} className="bg-gray-800 rounded-lg p-3 hover:bg-gray-700 transition-colors cursor-pointer">
+                <div key={game.id} className="bg-gray-800/60 rounded-xl p-3 sm:p-4 hover:bg-gray-700/60 transition-all duration-300 cursor-pointer border border-gray-700/50 hover:border-green-500/30">
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-3">
-                      <span className="text-2xl">{game.image}</span>
+                    <div className="flex items-center space-x-3 sm:space-x-4">
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gray-700/50 rounded-lg flex items-center justify-center">
+                        <span className="text-xl sm:text-2xl">{game.image}</span>
+                      </div>
                       <div>
-                        <h5 className="text-white font-semibold text-sm">{game.name}</h5>
-                        <p className="text-xs text-gray-400">{game.players} players</p>
+                        <h5 className="text-white font-bold text-sm sm:text-base mb-1">{game.name}</h5>
+                        <p className="text-xs sm:text-sm text-gray-400">{game.players.toLocaleString()} players</p>
                       </div>
                     </div>
-                    <div className="text-green-400 text-xs font-bold">HOT</div>
+                    <div className="bg-green-500/20 text-green-400 text-xs font-bold px-2 py-1 rounded-full border border-green-500/30">
+                      HOT
+                    </div>
                   </div>
                 </div>
               ))}
@@ -371,40 +393,40 @@ const PromotionalSidebar: React.FC = () => {
         </div>
       </div>
 
-      {/* Tournament Rules Modal */}
+      {/* Tournament Rules Modal - Mobile responsive */}
       {showTournamentRules && (
-        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-[100] p-4">
-          <div className="bg-gray-800 border border-gray-700 rounded-xl p-6 max-w-2xl w-full max-h-[80vh] overflow-y-auto">
-            <div className="flex items-center justify-between mb-6">
-              <h3 className="text-xl font-bold text-white">Tournament Rules</h3>
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-[100] p-2 sm:p-4">
+          <div className="bg-gray-800 border border-gray-700 rounded-xl p-4 sm:p-6 max-w-2xl w-full max-h-[80vh] overflow-y-auto">
+            <div className="flex items-center justify-between mb-4 sm:mb-6">
+              <h3 className="text-lg sm:text-xl font-bold text-white">Tournament Rules</h3>
               <button 
                 onClick={() => setShowTournamentRules(false)} 
-                className="text-gray-400 hover:text-white text-2xl"
+                className="text-gray-400 hover:text-white text-xl sm:text-2xl p-1"
               >
                 ×
               </button>
             </div>
-            <div className="text-gray-300 space-y-4 text-sm">
+            <div className="text-gray-300 space-y-3 sm:space-y-4 text-xs sm:text-sm">
               <div>
-                <h4 className="text-white font-semibold mb-2">1. Tournament Entry</h4>
+                <h4 className="text-white font-semibold mb-1 sm:mb-2">1. Tournament Entry</h4>
                 <p>• Players must register before the tournament starts</p>
                 <p>• Entry fee is non-refundable once tournament begins</p>
                 <p>• Minimum bet requirements apply to all tournament games</p>
               </div>
               <div>
-                <h4 className="text-white font-semibold mb-2">2. Scoring System</h4>
+                <h4 className="text-white font-semibold mb-1 sm:mb-2">2. Scoring System</h4>
                 <p>• Points are awarded based on bet amounts and wins</p>
                 <p>• Multiplier bonuses for consecutive wins</p>
                 <p>• Bonus points for high-value bets</p>
               </div>
               <div>
-                <h4 className="text-white font-semibold mb-2">3. Prize Distribution</h4>
+                <h4 className="text-white font-semibold mb-1 sm:mb-2">3. Prize Distribution</h4>
                 <p>• Top 10 players receive prizes</p>
                 <p>• Prizes are distributed within 24 hours</p>
                 <p>• All prizes are subject to wagering requirements</p>
               </div>
               <div>
-                <h4 className="text-white font-semibold mb-2">4. Fair Play</h4>
+                <h4 className="text-white font-semibold mb-1 sm:mb-2">4. Fair Play</h4>
                 <p>• No cheating or manipulation allowed</p>
                 <p>• TucanBit reserves the right to disqualify players</p>
                 <p>• All decisions are final</p>
@@ -414,37 +436,37 @@ const PromotionalSidebar: React.FC = () => {
         </div>
       )}
 
-      {/* Leaderboard Modal */}
+      {/* Leaderboard Modal - Mobile responsive */}
       {showLeaderboard && (
-        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-[100] p-4">
-          <div className="bg-gray-800 border border-gray-700 rounded-xl max-w-4xl w-full max-h-[80vh] flex flex-col">
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-[100] p-2 sm:p-4">
+          <div className="bg-gray-800 border border-gray-700 rounded-xl w-full max-w-md sm:max-w-2xl lg:max-w-4xl max-h-[90vh] flex flex-col">
             {/* Header with X close icon */}
-            <div className="flex items-center justify-between p-6 border-b border-gray-700">
-              <h3 className="text-xl font-bold text-white">Tournament Leaderboard</h3>
+            <div className="flex items-center justify-between p-3 sm:p-4 lg:p-6 border-b border-gray-700">
+              <h3 className="text-base sm:text-lg lg:text-xl font-bold text-white">Tournament Leaderboard</h3>
               <button 
                 onClick={() => setShowLeaderboard(false)} 
-                className="text-gray-400 hover:text-white text-2xl"
+                className="text-gray-400 hover:text-white text-lg sm:text-xl lg:text-2xl p-1"
               >
                 ×
               </button>
             </div>
             
             {/* Content */}
-            <div className="flex-1 p-6 overflow-y-auto">
+            <div className="flex-1 p-3 sm:p-4 lg:p-6 overflow-y-auto">
               {/* Header */}
-              <div className="grid grid-cols-5 gap-4 mb-4 text-sm font-semibold text-gray-400">
+              <div className="grid grid-cols-4 sm:grid-cols-5 gap-1 sm:gap-2 lg:gap-4 mb-2 sm:mb-3 lg:mb-4 text-xs sm:text-sm font-semibold text-gray-400">
                 <div className="flex items-center space-x-1">
-                  <Trophy className="w-4 h-4" />
+                  <Trophy className="w-3 h-3 sm:w-4 sm:h-4" />
                   <span>Place</span>
                 </div>
                 <div>Player</div>
                 <div>Points</div>
-                <div>Prize</div>
-                <div>Avatar</div>
+                <div className="hidden sm:block">Prize</div>
+                <div className="hidden sm:block">Avatar</div>
               </div>
               
               {/* Leaderboard Entries */}
-              <div className="space-y-3">
+              <div className="space-y-1 sm:space-y-2 lg:space-y-3">
                 {[
                   { place: 1, player: "WhaleHunter", points: "12,456", prize: "$15,000", avatar: "👤" },
                   { place: 2, player: "LuckyDragon", points: "11,234", prize: "$10,000", avatar: "👤" },
@@ -467,10 +489,10 @@ const PromotionalSidebar: React.FC = () => {
                   { place: 19, player: "Player_019", points: "2,987", prize: "$150", avatar: "👤" },
                   { place: 20, player: "Player_020", points: "2,765", prize: "$100", avatar: "👤" },
                 ].slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage).map((entry, index) => (
-                  <div key={entry.place} className="bg-gray-700 rounded-lg p-4">
-                    <div className="grid grid-cols-5 gap-4 items-center">
-                      <div className="flex items-center space-x-3">
-                        <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${
+                  <div key={entry.place} className="bg-gray-700 rounded-lg p-2 sm:p-3 lg:p-4">
+                    <div className="grid grid-cols-4 sm:grid-cols-5 gap-1 sm:gap-2 lg:gap-4 items-center">
+                      <div className="flex items-center space-x-1 sm:space-x-2 lg:space-x-3">
+                        <div className={`w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 rounded-full flex items-center justify-center text-xs sm:text-sm font-bold ${
                           entry.place === 1 ? 'bg-yellow-500 text-black' :
                           entry.place === 2 ? 'bg-gray-400 text-black' :
                           entry.place === 3 ? 'bg-orange-600 text-white' :
@@ -479,32 +501,32 @@ const PromotionalSidebar: React.FC = () => {
                           {entry.place}
                         </div>
                         {entry.place <= 3 && (
-                          <Trophy className={`w-5 h-5 ${
+                          <Trophy className={`w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5 ${
                             entry.place === 1 ? 'text-yellow-400' :
                             entry.place === 2 ? 'text-gray-400' :
                             'text-orange-500'
                           }`} />
                         )}
                       </div>
-                      <div className="text-white font-medium">{entry.player}</div>
-                      <div className="text-green-400 font-bold">{entry.points}</div>
-                      <div className="text-yellow-400 font-bold">{entry.prize}</div>
-                      <div className="text-2xl">{entry.avatar}</div>
+                      <div className="text-white font-medium text-xs sm:text-sm truncate">{entry.player}</div>
+                      <div className="text-green-400 font-bold text-xs sm:text-sm">{entry.points}</div>
+                      <div className="text-yellow-400 font-bold text-xs sm:text-sm hidden sm:block">{entry.prize}</div>
+                      <div className="text-base sm:text-lg lg:text-2xl hidden sm:block">{entry.avatar}</div>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
             
-            {/* Footer with Close button */}
-            <div className="p-6 border-t border-gray-700">
-              <div className="flex items-center justify-between">
+            {/* Footer with Close button - Mobile responsive */}
+            <div className="p-3 sm:p-4 lg:p-6 border-t border-gray-700">
+              <div className="flex flex-col sm:flex-row items-center justify-between space-y-3 sm:space-y-0">
                 {/* Pagination */}
-                <div className="flex items-center space-x-2">
+                <div className="flex items-center space-x-1 sm:space-x-2">
                   <button 
                     onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
                     disabled={currentPage === 1}
-                    className="bg-gray-700 hover:bg-gray-600 disabled:bg-gray-800 disabled:text-gray-500 text-white px-3 py-2 rounded-lg transition-colors"
+                    className="bg-gray-700 hover:bg-gray-600 disabled:bg-gray-800 disabled:text-gray-500 text-white px-2 sm:px-3 py-1 sm:py-2 rounded-lg transition-colors text-xs sm:text-sm"
                   >
                     Previous
                   </button>
@@ -513,7 +535,7 @@ const PromotionalSidebar: React.FC = () => {
                       <button 
                         key={page}
                         onClick={() => setCurrentPage(page)}
-                        className={`px-3 py-2 rounded-lg font-semibold transition-all ${
+                        className={`px-2 sm:px-3 py-1 sm:py-2 rounded-lg font-semibold transition-all text-xs sm:text-sm ${
                           currentPage === page 
                             ? 'bg-gradient-to-r from-purple-500 to-blue-600 text-white' 
                             : 'bg-gray-700 hover:bg-gray-600 text-white'
@@ -526,7 +548,7 @@ const PromotionalSidebar: React.FC = () => {
                   <button 
                     onClick={() => setCurrentPage(prev => Math.min(2, prev + 1))}
                     disabled={currentPage === 2}
-                    className="bg-gray-700 hover:bg-gray-600 disabled:bg-gray-800 disabled:text-gray-500 text-white px-3 py-2 rounded-lg transition-colors"
+                    className="bg-gray-700 hover:bg-gray-600 disabled:bg-gray-800 disabled:text-gray-500 text-white px-2 sm:px-3 py-1 sm:py-2 rounded-lg transition-colors text-xs sm:text-sm"
                   >
                     Next
                   </button>
@@ -535,7 +557,7 @@ const PromotionalSidebar: React.FC = () => {
                 {/* Close button */}
                 <button 
                   onClick={() => setShowLeaderboard(false)} 
-                  className="bg-gradient-to-r from-purple-500 to-blue-600 hover:from-purple-600 hover:to-blue-700 text-white px-6 py-2 rounded-lg font-semibold transition-all"
+                  className="bg-gradient-to-r from-purple-500 to-blue-600 hover:from-purple-600 hover:to-blue-700 text-white px-3 sm:px-4 lg:px-6 py-2 rounded-lg font-semibold transition-all text-sm sm:text-base"
                 >
                   Close
                 </button>

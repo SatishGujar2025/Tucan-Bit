@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { 
   Menu, 
   X, 
@@ -85,6 +86,7 @@ interface Tournament {
 }
 
 const TournamentPage: React.FC<TournamentPageProps> = ({ onNavigate }) => {
+  const navigate = useNavigate();
   const [isConnecting, setIsConnecting] = useState(false);
   const [walletAddress, setWalletAddress] = useState<string | null>(null);
   const [walletBalance, setWalletBalance] = useState<string | null>(null);
@@ -240,8 +242,11 @@ const TournamentPage: React.FC<TournamentPageProps> = ({ onNavigate }) => {
 
   return (
     <div>
-      {/* Hero Section with Background */}
-      <section className="relative overflow-hidden h-[60vh] min-h-[500px] flex items-center">
+      {/* Hero Section with Background - Clickable to Promotions */}
+      <section 
+        className="relative overflow-hidden h-[60vh] min-h-[500px] flex items-center cursor-pointer"
+        onClick={() => navigate('/promotions')}
+      >
         <div className="absolute inset-0 bg-[url('https://iili.io/FwSX1Xj.png')] bg-cover bg-center" style={{ backgroundPosition: 'center 30%' }}>
           <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/70 to-transparent"></div>
           <div className="absolute inset-0 bg-gradient-to-r from-gray-900/80 to-gray-900/30"></div>
@@ -256,7 +261,8 @@ const TournamentPage: React.FC<TournamentPageProps> = ({ onNavigate }) => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button 
-                onClick={() => {
+                onClick={(e) => {
+                  e.stopPropagation();
                   // Scroll to tournament grid
                   document.querySelector('.tournament-grid')?.scrollIntoView({ behavior: 'smooth' });
                 }}
@@ -266,7 +272,8 @@ const TournamentPage: React.FC<TournamentPageProps> = ({ onNavigate }) => {
                 <span>Join Tournaments</span>
               </button>
               <button 
-                onClick={() => {
+                onClick={(e) => {
+                  e.stopPropagation();
                   // Show leaderboard modal or navigate to leaderboard page
                   alert('Leaderboards feature coming soon! 🏆');
                 }}
@@ -275,6 +282,9 @@ const TournamentPage: React.FC<TournamentPageProps> = ({ onNavigate }) => {
                 <BarChart2 className="w-5 h-5" />
                 <span>View Leaderboards</span>
               </button>
+            </div>
+            <div className="mt-4 text-center">
+              <p className="text-yellow-400 text-sm font-medium">Click anywhere on banner to view tournament promotions →</p>
             </div>
           </div>
         </div>
@@ -359,11 +369,11 @@ const TournamentPage: React.FC<TournamentPageProps> = ({ onNavigate }) => {
 
         {/* Tournament Grid/List */}
         {viewMode === 'grid' ? (
-          <div className="tournament-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
+          <div className="tournament-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {filteredTournaments.map((tournament) => (
               <div
                 key={tournament.id}
-                className="bg-gray-800 rounded-lg p-3 hover:bg-gray-700 transition-all duration-200 cursor-pointer h-32"
+                className="bg-gray-800 rounded-lg p-4 hover:bg-gray-700 transition-all duration-200 cursor-pointer h-36"
                 onClick={() => {
                   setSelectedTournament(tournament);
                   setShowTournamentDetails(true);
@@ -402,7 +412,7 @@ const TournamentPage: React.FC<TournamentPageProps> = ({ onNavigate }) => {
             ))}
           </div>
         ) : (
-          <div className="space-y-4">
+          <div className="space-y-6">
             {filteredTournaments.map((tournament) => (
               <div
                 key={tournament.id}
@@ -454,103 +464,61 @@ const TournamentPage: React.FC<TournamentPageProps> = ({ onNavigate }) => {
 
 
 
-      {/* Tournament Details Modal */}
+      {/* Tournament Details Modal - Compact & Clean */}
       {showTournamentDetails && selectedTournament && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm">
-          <div className="bg-gray-800 rounded-2xl max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto">
-            <div className="bg-gradient-to-r from-purple-600 to-blue-600 p-6 rounded-t-2xl">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+          <div className="bg-gray-800 rounded-xl w-full max-w-md overflow-hidden">
+            {/* Header */}
+            <div className="bg-gradient-to-r from-purple-600 to-blue-600 p-4">
               <div className="flex items-center justify-between">
-                <h2 className="text-2xl font-bold text-white">{selectedTournament.name}</h2>
+                <h2 className="text-lg font-bold text-white truncate pr-4">{selectedTournament.name}</h2>
                 <button
                   onClick={() => setShowTournamentDetails(false)}
-                  className="text-gray-400 hover:text-white"
+                  className="text-white hover:text-gray-200 p-1"
                 >
-                  <X className="w-6 h-6" />
+                  <X className="w-5 h-5" />
                 </button>
               </div>
             </div>
             
-            <div className="p-6">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                {/* Tournament Info */}
-                <div>
-                  <h3 className="text-xl font-bold text-white mb-4">Tournament Details</h3>
-                  <div className="space-y-4">
-                    <div className="flex justify-between">
-                      <span className="text-gray-400">Game:</span>
-                      <span className="text-white">{selectedTournament.game}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-400">Prize Pool:</span>
-                      <span className="text-yellow-400 font-bold">{selectedTournament.prizePool}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-400">Entry Fee:</span>
-                      <span className="text-white">{selectedTournament.entryFee}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-400">Participants:</span>
-                      <span className="text-white">{selectedTournament.participants.toLocaleString()}/{selectedTournament.maxParticipants.toLocaleString()}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-400">Start Time:</span>
-                      <span className="text-white">{formatTime(selectedTournament.startTime)}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-400">End Time:</span>
-                      <span className="text-white">{formatTime(selectedTournament.endTime)}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-400">Status:</span>
-                      <span className={`inline-flex items-center space-x-1 px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(selectedTournament.status)}`}>
-                        {getStatusIcon(selectedTournament.status)}
-                        <span className="capitalize">{selectedTournament.status}</span>
-                      </span>
-                    </div>
-                  </div>
-                  
-                  <div className="mt-6">
-                    <h4 className="text-lg font-semibold text-white mb-2">Description</h4>
-                    <p className="text-gray-300">{selectedTournament.description}</p>
-                  </div>
-                  
-                  <button className="w-full mt-6 bg-gradient-to-r from-yellow-500 to-orange-500 text-white py-3 px-4 rounded-lg font-semibold hover:from-yellow-600 hover:to-orange-600 transition-all duration-200 flex items-center justify-center space-x-2">
-                    <Play className="w-5 h-5" />
-                    <span>Join Tournament</span>
-                  </button>
+            {/* Content */}
+            <div className="p-4 space-y-4">
+              {/* Quick Stats */}
+              <div className="grid grid-cols-2 gap-3">
+                <div className="bg-gray-700 rounded-lg p-3 text-center">
+                  <div className="text-yellow-400 font-bold text-lg">{selectedTournament.prizePool}</div>
+                  <div className="text-gray-400 text-xs">Prize Pool</div>
                 </div>
-
-                {/* Leaderboard */}
-                <div>
-                  <h3 className="text-xl font-bold text-white mb-4">Leaderboard</h3>
-                  {selectedTournament.leaderboard.length > 0 ? (
-                    <div className="space-y-3">
-                      {selectedTournament.leaderboard.map((player, index) => (
-                        <div key={index} className="flex items-center justify-between bg-gray-800 rounded-lg p-3">
-                          <div className="flex items-center space-x-3">
-                            <div className="w-8 h-8 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-full flex items-center justify-center text-sm font-bold text-gray-900">
-                              {player.rank}
-                            </div>
-                            <div className="flex items-center space-x-2">
-                              <span className="text-2xl">{player.avatar}</span>
-                              <span className="text-white font-medium">{player.username}</span>
-                            </div>
-                          </div>
-                          <div className="text-right">
-                            <div className="text-white font-semibold">{player.score.toLocaleString()}</div>
-                            <div className="text-yellow-400 text-sm">{player.prize}</div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  ) : (
-                    <div className="text-center py-8">
-                      <Trophy className="w-16 h-16 text-gray-600 mx-auto mb-4" />
-                      <p className="text-gray-400">Leaderboard will be available once the tournament starts</p>
-                    </div>
-                  )}
+                <div className="bg-gray-700 rounded-lg p-3 text-center">
+                  <div className="text-white font-bold text-lg">{selectedTournament.entryFee}</div>
+                  <div className="text-gray-400 text-xs">Entry Fee</div>
                 </div>
               </div>
+
+              {/* Key Info */}
+              <div className="space-y-2">
+                <div className="flex justify-between text-sm">
+                  <span className="text-gray-400">Game:</span>
+                  <span className="text-white font-medium">{selectedTournament.game}</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-gray-400">Players:</span>
+                  <span className="text-white font-medium">{selectedTournament.participants}/{selectedTournament.maxParticipants}</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-gray-400">Status:</span>
+                  <span className={`inline-flex items-center space-x-1 px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(selectedTournament.status)}`}>
+                    {getStatusIcon(selectedTournament.status)}
+                    <span className="capitalize">{selectedTournament.status}</span>
+                  </span>
+                </div>
+              </div>
+
+              {/* Join Button */}
+              <button className="w-full bg-gradient-to-r from-yellow-500 to-orange-500 text-white py-3 rounded-lg font-semibold hover:from-yellow-600 hover:to-orange-600 transition-all duration-200 flex items-center justify-center space-x-2">
+                <Play className="w-4 h-4" />
+                <span>Join Tournament</span>
+              </button>
             </div>
           </div>
         </div>

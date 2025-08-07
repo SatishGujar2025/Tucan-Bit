@@ -72,37 +72,31 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     }
   }, []);
 
-  // Check if promo was already shown and show modal on first visit
+  // New promotional modal logic: show after 5 minutes and every 5 minutes
   useEffect(() => {
-    const wasShown = localStorage.getItem('promoShown');
+    const adTypes = ['tournament', 'welcome', 'deposit', 'vip', 'jackpot'];
     
     const showRandomAd = () => {
-      const adTypes = ['tournament', 'welcome', 'deposit', 'vip', 'jackpot'];
       const randomAd = adTypes[Math.floor(Math.random() * adTypes.length)];
       setCurrentAdType(randomAd);
       setShowPromoModal(true);
-      console.log('Promotional modal should show now with ad type:', randomAd);
+      console.log('Promotional modal showing with ad type:', randomAd);
     };
     
-    // For testing: Clear localStorage to force first-time visitor behavior
-    // localStorage.removeItem('promoShown');
+    // Show first ad after 5 minutes (300,000 ms)
+    const initialTimer = setTimeout(() => {
+      showRandomAd();
+    }, 300000); // 5 minutes
     
-    if (wasShown === 'true') {
-      setPromoShown(true);
-      // For returning users, show random ad after 30 seconds
-      const timer = setTimeout(() => {
-        showRandomAd();
-      }, 30000); // 30 seconds
-      return () => clearTimeout(timer);
-    } else {
-      // For first-time visitors, show modal after a short delay
-      const timer = setTimeout(() => {
-        showRandomAd();
-        setPromoShown(true);
-        localStorage.setItem('promoShown', 'true');
-      }, 2000); // 2 seconds delay for better UX
-      return () => clearTimeout(timer);
-    }
+    // Set up recurring timer for every 5 minutes
+    const recurringTimer = setInterval(() => {
+      showRandomAd();
+    }, 300000); // 5 minutes
+    
+    return () => {
+      clearTimeout(initialTimer);
+      clearInterval(recurringTimer);
+    };
   }, []);
   
   // --- THIS IS THE CORRECTED LOGIN FUNCTION ---

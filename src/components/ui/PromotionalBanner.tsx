@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Zap, Users, Award } from 'lucide-react';
 import gameImage9 from '../../assets/g22.jpg';
 import gameImage2 from '../../assets/g19.jpg';
@@ -6,10 +7,16 @@ import gameImage3 from '../../assets/g12.jpg';
 
 
 const PromotionalBanners = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 ">
       {/* Spin Wars Banner */}
-      <div className="p-6 rounded-2xl relative overflow-hidden "  style={{ backgroundImage: `url(${gameImage9})` }}>
+      <div 
+        className="p-6 rounded-2xl relative overflow-hidden cursor-pointer hover:scale-[1.02] transition-transform"  
+        style={{ backgroundImage: `url(${gameImage9})` }}
+        onClick={() => navigate('/promotions?category=tournament&promo=spin-wars')}
+      >
         <div className="relative z-10">
           <div className="text-xs text-orange-200 mb-2 font-semibold uppercase tracking-wider">
             TucanBit Tournament
@@ -42,10 +49,14 @@ const PromotionalBanners = () => {
       </div>
 
       {/* Break Live88 Banner */}
-      <div className=" p-6 rounded-2xl relative overflow-hidden" style={{ backgroundImage: `url(${gameImage2})` }}>
+      <div 
+        className="p-6 rounded-2xl relative overflow-hidden cursor-pointer hover:scale-[1.02] transition-transform" 
+        style={{ backgroundImage: `url(${gameImage2})` }}
+        onClick={() => navigate('/promotions?category=tournament&promo=tucanbit-tournament')}
+      >
         <div className="relative z-10">
           <div className="text-xs text-gray-300 mb-2 font-semibold uppercase tracking-wider">
-            Whale Tournament
+            TucanBIT Tournament
           </div>
           <h3 className="text-2xl font-bold text-white mb-2">Break Live88</h3>
           <div className="text-3xl font-bold text-white mb-2">$20,000</div>
@@ -70,7 +81,11 @@ const PromotionalBanners = () => {
       </div>
 
       {/* Hacksaw Gaming Banner */}
-      <div className="p-6 rounded-2xl relative overflow-hidden" style={{ backgroundImage: `url(${gameImage3})` }}>
+      <div 
+        className="p-6 rounded-2xl relative overflow-hidden cursor-pointer hover:scale-[1.02] transition-transform" 
+        style={{ backgroundImage: `url(${gameImage3})` }}
+        onClick={() => navigate('/promotions?category=tournament&promo=hacksaw')}
+      >
         <div className="relative z-10">
           <div className="text-xs text-orange-200 mb-2 font-semibold uppercase tracking-wider">
             Provider of the Month
