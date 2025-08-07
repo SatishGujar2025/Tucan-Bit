@@ -188,6 +188,20 @@ const TaskDashboardPage: React.FC<TaskDashboardPageProps> = ({ onNavigate }) => 
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
   const [walletCurrency, setWalletCurrency] = useState('BTC');
+
+  // Add/remove modal-open class when wallet modal is open
+  useEffect(() => {
+    if (showWalletModal) {
+      document.body.classList.add('modal-open');
+    } else {
+      document.body.classList.remove('modal-open');
+    }
+
+    // Cleanup on unmount
+    return () => {
+      document.body.classList.remove('modal-open');
+    };
+  }, [showWalletModal]);
   const [currentPage, setCurrentPage] = useState('task-dashboard');
   const [selectedTimeframe, setSelectedTimeframe] = useState<'week' | 'month' | 'year'>('week');
   const [selectedView, setSelectedView] = useState<'overview' | 'analytics' | 'progress'>('overview');

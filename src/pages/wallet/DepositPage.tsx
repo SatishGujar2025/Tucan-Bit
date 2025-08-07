@@ -1,10 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   Copy, Check, QrCode, CreditCard as CreditCardIcon, Award, Clock
 } from 'lucide-react';
 
 const DepositPage: React.FC = () => {
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   // State specific to the deposit page's functionality
   const [copiedAddress, setCopiedAddress] = useState<string | null>(null);
   const [selectedCurrency, setSelectedCurrency] = useState('BTC');

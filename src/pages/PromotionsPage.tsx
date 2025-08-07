@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams, useNavigate } from 'react-router-dom';
 import { 
-  Gift, Star, Clock, Crown, Zap, Target, Copy, Check, Award, Trophy
+  Gift, Star, Clock, Crown, Zap, Target, Copy, Check, Award, Trophy, ArrowLeft
 } from 'lucide-react';
 
 const PromotionsPage: React.FC = () => {
+  const navigate = useNavigate();
+  
   // State specific to this page's functionality
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState('all');
@@ -67,6 +69,15 @@ const PromotionsPage: React.FC = () => {
   return (
     <div className="p-6 bg-gray-900">
       <div>
+        {/* Back Button */}
+        <button
+          onClick={() => navigate(-1)}
+          className="mb-6 flex items-center space-x-2 text-gray-400 hover:text-white transition-colors"
+        >
+          <ArrowLeft className="w-5 h-5" />
+          <span>Back</span>
+        </button>
+
         {/* Hero Section */}
         <section className="relative overflow-hidden h-[40vh] min-h-[300px] flex items-center mb-12">
           <div className="absolute inset-0 bg-[url('https://iili.io/FwSX1Xj.png')] bg-cover bg-center" style={{ backgroundPosition: 'center 30%' }}>

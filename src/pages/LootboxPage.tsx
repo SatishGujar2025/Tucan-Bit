@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Gift, TrendingUp, Search, Eye, ShoppingCart, ChevronDown, ChevronUp } from 'lucide-react';
 
@@ -43,6 +43,20 @@ const LootboxPage: React.FC = () => {
   const [sortBy, setSortBy] = useState('newest');
   const [collection, setCollection] = useState('all');
   const [openFAQ, setOpenFAQ] = useState<number | null>(null);
+
+  // Add/remove modal-open class when preview modal is open
+  useEffect(() => {
+    if (showPreview) {
+      document.body.classList.add('modal-open');
+    } else {
+      document.body.classList.remove('modal-open');
+    }
+
+    // Cleanup on unmount
+    return () => {
+      document.body.classList.remove('modal-open');
+    };
+  }, [showPreview]);
 
   // Data specific to this page
   const recentWins: RecentWin[] = [

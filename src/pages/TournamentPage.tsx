@@ -103,6 +103,34 @@ const TournamentPage: React.FC<TournamentPageProps> = ({ onNavigate }) => {
   const [selectedTournament, setSelectedTournament] = useState<Tournament | null>(null);
   const [showTournamentDetails, setShowTournamentDetails] = useState(false);
 
+  // Add/remove modal-open class when tournament details modal is open
+  useEffect(() => {
+    if (showTournamentDetails) {
+      document.body.classList.add('modal-open');
+    } else {
+      document.body.classList.remove('modal-open');
+    }
+
+    // Cleanup on unmount
+    return () => {
+      document.body.classList.remove('modal-open');
+    };
+  }, [showTournamentDetails]);
+
+  // Add/remove modal-open class when wallet modal is open
+  useEffect(() => {
+    if (showWalletModal) {
+      document.body.classList.add('modal-open');
+    } else {
+      document.body.classList.remove('modal-open');
+    }
+
+    // Cleanup on unmount
+    return () => {
+      document.body.classList.remove('modal-open');
+    };
+  }, [showWalletModal]);
+
   // Wallet connection logic
   useEffect(() => {
     const savedWallet = localStorage.getItem('walletAddress');

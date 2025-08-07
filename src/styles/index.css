@@ -48,3 +48,8 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #6b7280;
 }
+
+/* Modal open state - hide promotional sidebar toggle buttons */
+body.modal-open .modal-open\:hidden {
+  display: none !important;
+}

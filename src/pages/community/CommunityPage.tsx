@@ -100,6 +100,20 @@ const CommunityPage: React.FC<CommunityPageProps> = ({ onNavigate }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
   const [walletCurrency, setWalletCurrency] = useState<'ETH' | 'SOL' | null>(null);
+
+  // Add/remove modal-open class when wallet modal is open
+  useEffect(() => {
+    if (showWalletModal) {
+      document.body.classList.add('modal-open');
+    } else {
+      document.body.classList.remove('modal-open');
+    }
+
+    // Cleanup on unmount
+    return () => {
+      document.body.classList.remove('modal-open');
+    };
+  }, [showWalletModal]);
   const [currentPage, setCurrentPage] = useState('community');
   const [activeTab, setActiveTab] = useState('chat');
   const [searchTerm, setSearchTerm] = useState('');

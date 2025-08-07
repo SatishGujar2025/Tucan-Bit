@@ -52,6 +52,20 @@ const PromotionalSidebar: React.FC = () => {
   const [showTournamentRules, setShowTournamentRules] = useState(false);
   const [showLeaderboard, setShowLeaderboard] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+
+  // Add/remove modal-open class when any modal is open
+  useEffect(() => {
+    if (showTournamentRules || showLeaderboard) {
+      document.body.classList.add('modal-open');
+    } else {
+      document.body.classList.remove('modal-open');
+    }
+
+    // Cleanup on unmount
+    return () => {
+      document.body.classList.remove('modal-open');
+    };
+  }, [showTournamentRules, showLeaderboard]);
   const itemsPerPage = 10;
   const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([
     { id: 1, playerName: 'Player_***123', betAmount: 1250.50, currency: 'T' },
@@ -160,11 +174,9 @@ const PromotionalSidebar: React.FC = () => {
       {/* Toggle Button - Positioned in middle of sidebar */}
       <button
         onClick={() => setIsExpanded(!isExpanded)}
-        className={`fixed z-[9999] bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white shadow-lg transition-all duration-300 border-2 border-white/20 hover:border-white/40 ${
-          isExpanded ? 'rotate-180' : ''
-        } ${
-          // Position in middle of sidebar area - only show when sidebar is expanded
-          isExpanded ? 'top-1/2 transform -translate-y-1/2 right-80 md:right-80' : 'hidden'
+        className={`fixed z-[9999] bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white shadow-lg transition-all duration-300 border border-white/30 hover:border-white/50 ${
+          // Position at top right of sidebar area - only show when sidebar is expanded
+          isExpanded ? 'top-4 right-80 md:right-80' : 'hidden'
         } ${
           // Mobile: rectangular, Desktop: circular
           'p-2 rounded-lg md:p-3 md:rounded-full'
@@ -174,7 +186,7 @@ const PromotionalSidebar: React.FC = () => {
         }`}
       >
         {isExpanded ? (
-          <X className="w-4 h-4 md:w-5 md:h-5" />
+          <ChevronRight className="w-4 h-4 md:w-5 md:h-5" />
         ) : (
           <ChevronLeft className="w-4 h-4 md:w-5 md:h-5" />
         )}
@@ -184,7 +196,7 @@ const PromotionalSidebar: React.FC = () => {
       {!isExpanded && (
         <button
           onClick={() => setIsExpanded(!isExpanded)}
-          className="fixed z-[9999] bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white shadow-lg transition-all duration-300 border-2 border-white/20 hover:border-white/40 top-1/2 transform -translate-y-1/2 right-4 p-2 rounded-lg md:p-3 md:rounded-full modal-open:hidden"
+          className="fixed z-[9999] bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white shadow-lg transition-all duration-300 border border-white/30 hover:border-white/50 top-1/2 transform -translate-y-1/2 right-4 p-2 rounded-lg md:p-3 md:rounded-full modal-open:hidden"
         >
           <ChevronLeft className="w-4 h-4 md:w-5 md:h-5" />
         </button>

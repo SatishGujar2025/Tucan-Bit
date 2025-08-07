@@ -72,6 +72,20 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     }
   }, []);
 
+  // Add/remove modal-open class when any modal is open
+  useEffect(() => {
+    if (showPromoModal || modalView) {
+      document.body.classList.add('modal-open');
+    } else {
+      document.body.classList.remove('modal-open');
+    }
+
+    // Cleanup on unmount
+    return () => {
+      document.body.classList.remove('modal-open');
+    };
+  }, [showPromoModal, modalView]);
+
   // New promotional modal logic: show after 5 minutes and every 5 minutes
   useEffect(() => {
     const adTypes = ['tournament', 'welcome', 'deposit', 'vip', 'jackpot'];

@@ -52,10 +52,20 @@ const HomePage: React.FC = () => {
           </div>
         </section>
 
+      {/* New Games Section */}
       <section className="py-16 bg-gray-900">
-        <div className=" px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-4">
-            {featuredGames.map((game) => (
+        <div className="px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between mb-8">
+            <h2 className="text-2xl font-bold text-white flex items-center">
+              <Zap className="w-6 h-6 text-yellow-400 mr-3" />
+              New Games
+            </h2>
+            <Link to="/casino" className="text-yellow-400 hover:text-yellow-300 text-sm font-semibold">
+              View All →
+            </Link>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+            {featuredGames.slice(0, 6).map((game) => (
               <div key={game.id} className="group relative rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-700 hover:border-yellow-500/30">
                 <Link to={`/game/${game.id}`}>
                     <div className="relative aspect-[3/2] overflow-hidden">
@@ -87,6 +97,135 @@ const HomePage: React.FC = () => {
               <Gamepad2 className="w-4 h-4" />
               <span>See Over 300+ Games</span>
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Popular Games Section */}
+      <section className="py-16 bg-gradient-to-br from-gray-800 to-gray-900">
+        <div className="px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between mb-8">
+            <h2 className="text-2xl font-bold text-white flex items-center">
+              <Star className="w-6 h-6 text-yellow-400 mr-3" />
+              Popular Games
+            </h2>
+            <Link to="/casino" className="text-yellow-400 hover:text-yellow-300 text-sm font-semibold">
+              View All →
+            </Link>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+            {featuredGames.slice(6, 12).map((game) => (
+              <div key={game.id} className="group relative rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-700 hover:border-yellow-500/30">
+                <Link to={`/game/${game.id}`}>
+                    <div className="relative aspect-[3/2] overflow-hidden">
+                    <img src={game.image} alt={game.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                    {game.badge && <div className="absolute top-1 left-1 bg-gradient-to-r from-red-500 to-orange-500 text-white px-1.5 py-0.5 rounded-full text-[10px] font-bold flex items-center"><Zap className="w-2 h-2 mr-0.5" /><span>{game.badge}</span></div>}
+                    {game.isLive && <div className="absolute top-1 right-1 bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-1.5 py-0.5 rounded-full text-[10px] font-bold flex items-center"><span>LIVE</span></div>}
+                    </div>
+                    <div className="p-3">
+                    <h3 className="text-sm font-bold text-white mb-1 truncate">{game.title}</h3>
+                    <div className="flex justify-between items-center mb-2"><span className="text-yellow-400 text-xs">{game.provider}</span><span className="text-gray-400 text-xs">{game.isLive ? 'Live' : 'Slot'}</span></div>
+                    <div className="flex justify-between items-center">
+                        <div className="flex items-center space-x-1 text-gray-300"><svg className="w-3 h-3 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg><span className="text-xs">x5000</span></div>
+                        <span className="text-xs px-1 py-0.5 rounded bg-yellow-500/10 text-yellow-400">High</span>
+                    </div>
+                    </div>
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <button className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-3 py-2 rounded-lg font-semibold hover:from-yellow-600 hover:to-orange-600 transition-all duration-200 flex items-center space-x-2 transform scale-90 group-hover:scale-100 text-sm">
+                        <Play className="w-4 h-4" />
+                        <span>Play</span>
+                      </button>
+                    </div>
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Live Casino Section */}
+      <section className="py-16 bg-gray-900">
+        <div className="px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between mb-8">
+            <h2 className="text-2xl font-bold text-white flex items-center">
+              <div className="w-6 h-6 bg-red-500 rounded-full mr-3 animate-pulse"></div>
+              Live Casino
+            </h2>
+            <Link to="/live-casino" className="text-yellow-400 hover:text-yellow-300 text-sm font-semibold">
+              View All →
+            </Link>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+            {featuredGames.slice(12, 18).map((game) => (
+              <div key={game.id} className="group relative rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-700 hover:border-yellow-500/30">
+                <Link to={`/game/${game.id}`}>
+                    <div className="relative aspect-[3/2] overflow-hidden">
+                    <img src={game.image} alt={game.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                    {game.badge && <div className="absolute top-1 left-1 bg-gradient-to-r from-red-500 to-orange-500 text-white px-1.5 py-0.5 rounded-full text-[10px] font-bold flex items-center"><Zap className="w-2 h-2 mr-0.5" /><span>{game.badge}</span></div>}
+                    <div className="absolute top-1 right-1 bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-1.5 py-0.5 rounded-full text-[10px] font-bold flex items-center"><span>LIVE</span></div>
+                    </div>
+                    <div className="p-3">
+                    <h3 className="text-sm font-bold text-white mb-1 truncate">{game.title}</h3>
+                    <div className="flex justify-between items-center mb-2"><span className="text-yellow-400 text-xs">{game.provider}</span><span className="text-gray-400 text-xs">Live</span></div>
+                    <div className="flex justify-between items-center">
+                        <div className="flex items-center space-x-1 text-gray-300"><svg className="w-3 h-3 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg><span className="text-xs">x5000</span></div>
+                        <span className="text-xs px-1 py-0.5 rounded bg-yellow-500/10 text-yellow-400">High</span>
+                    </div>
+                    </div>
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <button className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-3 py-2 rounded-lg font-semibold hover:from-yellow-600 hover:to-orange-600 transition-all duration-200 flex items-center space-x-2 transform scale-90 group-hover:scale-100 text-sm">
+                        <Play className="w-4 h-4" />
+                        <span>Play</span>
+                      </button>
+                    </div>
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Jackpot Games Section */}
+      <section className="py-16 bg-gradient-to-br from-gray-800 to-gray-900">
+        <div className="px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between mb-8">
+            <h2 className="text-2xl font-bold text-white flex items-center">
+              <Gem className="w-6 h-6 text-yellow-400 mr-3" />
+              Jackpot Games
+            </h2>
+            <Link to="/jackpots" className="text-yellow-400 hover:text-yellow-300 text-sm font-semibold">
+              View All →
+            </Link>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+            {featuredGames.slice(18, 24).map((game) => (
+              <div key={game.id} className="group relative rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-700 hover:border-yellow-500/30">
+                <Link to={`/game/${game.id}`}>
+                    <div className="relative aspect-[3/2] overflow-hidden">
+                    <img src={game.image} alt={game.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                    <div className="absolute top-1 left-1 bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-1.5 py-0.5 rounded-full text-[10px] font-bold flex items-center"><Gem className="w-2 h-2 mr-0.5" /><span>JACKPOT</span></div>
+                    {game.isLive && <div className="absolute top-1 right-1 bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-1.5 py-0.5 rounded-full text-[10px] font-bold flex items-center"><span>LIVE</span></div>}
+                    </div>
+                    <div className="p-3">
+                    <h3 className="text-sm font-bold text-white mb-1 truncate">{game.title}</h3>
+                    <div className="flex justify-between items-center mb-2"><span className="text-yellow-400 text-xs">{game.provider}</span><span className="text-gray-400 text-xs">{game.isLive ? 'Live' : 'Slot'}</span></div>
+                    <div className="flex justify-between items-center">
+                        <div className="flex items-center space-x-1 text-gray-300"><svg className="w-3 h-3 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg><span className="text-xs">x5000</span></div>
+                        <span className="text-xs px-1 py-0.5 rounded bg-yellow-500/10 text-yellow-400">High</span>
+                    </div>
+                    </div>
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <button className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-3 py-2 rounded-lg font-semibold hover:from-yellow-600 hover:to-orange-600 transition-all duration-200 flex items-center space-x-2 transform scale-90 group-hover:scale-100 text-sm">
+                        <Play className="w-4 h-4" />
+                        <span>Play</span>
+                      </button>
+                    </div>
+                </Link>
+              </div>
+            ))}
           </div>
         </div>
       </section>
