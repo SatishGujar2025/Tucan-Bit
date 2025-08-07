@@ -13,6 +13,7 @@ import { Wallet, Home, Gamepad2, Gift, User, ChevronDown,ChevronRightIcon, Chevr
 import WalletConnectModal from '../modals/WalletConnectModal';
 import VerificationModal from '../modals/VerificationModal';
 import PromotionalSidebar from './PromotionalSidebar';
+import MobileNavigation from './MobileNavigation';
 
 
 
@@ -113,6 +114,7 @@ const Layout: React.FC = () => {
   const location = useLocation();
   
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
   const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
   const [language, setLanguage] = useState<'en' | 'es'>('en');
 
@@ -141,6 +143,11 @@ const Layout: React.FC = () => {
   
   const handleLinkClick = () => {
     setSidebarOpen(false); // Close sidebar on mobile when a link is clicked
+    setIsMobileSidebarOpen(false); // Close mobile sidebar when a link is clicked
+  };
+
+  const handleMobileMenuToggle = () => {
+    setIsMobileSidebarOpen(!isMobileSidebarOpen);
   };
   const [isBalanceDropdownOpen, setIsBalanceDropdownOpen] = useState(false);
     // Data for the dropdown
@@ -581,10 +588,72 @@ const Layout: React.FC = () => {
         {/* ====================================================================== */}
         {/* 3. MAIN CONTENT and 4. FOOTER                                        */}
         {/* ====================================================================== */}
-        <main>
+        <main className="pb-16 md:pb-0">
             <Outlet />
-            <Footer />
+            <div className="hidden md:block">
+                <Footer />
+            </div>
         </main>
+      </div>
+
+      {/* Mobile Navigation */}
+      <MobileNavigation onMenuToggle={handleMobileMenuToggle} />
+
+      {/* Mobile Sidebar Overlay */}
+      {isMobileSidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 z-[70] md:hidden"
+          onClick={() => setIsMobileSidebarOpen(false)}
+        />
+      )}
+
+      {/* Mobile Sidebar */}
+      <div className={`fixed inset-y-0 left-0 z-[80] w-64 bg-gray-900 shadow-2xl transform ${
+        isMobileSidebarOpen ? 'translate-x-0' : '-translate-x-full'
+      } md:hidden transition-transform duration-300 border-r border-gray-800`}>
+        <div className="flex items-center justify-between p-4 border-b border-gray-800">
+          <h2 className="text-white font-bold text-lg">Menu</h2>
+          <button
+            onClick={() => setIsMobileSidebarOpen(false)}
+            className="text-gray-400 hover:text-white"
+          >
+            ✕
+          </button>
+        </div>
+        <nav className="p-4 space-y-2">
+          {/* Add the same navigation items as desktop sidebar */}
+          <NavLink to="/" onClick={handleLinkClick} className={({ isActive }) => 
+            `w-full flex items-center space-x-3 p-3 rounded-lg transition-colors ${
+              isActive 
+                ? 'text-white bg-gray-800 font-semibold' 
+                : 'hover:bg-yellow-500/20 text-white'                  
+            }`
+          }><span className="text-xl">🏠</span><span>Home</span></NavLink>
+          
+          <NavLink to="/games" onClick={handleLinkClick} className={({ isActive }) => 
+            `w-full flex items-center space-x-3 p-3 rounded-lg transition-colors ${
+              isActive 
+                ? 'text-white bg-gray-800 font-semibold' 
+                : 'hover:bg-yellow-500/20 text-white'                  
+            }`
+          }><span className="text-xl">🎮</span><span>Games</span></NavLink>
+          
+          <NavLink to="/promotions" onClick={handleLinkClick} className={({ isActive }) => 
+            `w-full flex items-center space-x-3 p-3 rounded-lg transition-colors ${
+              isActive 
+                ? 'text-white bg-gray-800 font-semibold' 
+                : 'hover:bg-yellow-500/20 text-white'                  
+            }`
+          }><span className="text-xl">🎁</span><span>Promotions</span></NavLink>
+          
+          <NavLink to="/profile" onClick={handleLinkClick} className={({ isActive }) => 
+            `w-full flex items-center space-x-3 p-3 rounded-lg transition-colors ${
+              isActive 
+                ? 'text-white bg-gray-800 font-semibold' 
+                : 'hover:bg-yellow-500/20 text-white'                  
+            }`
+          }><span className="text-xl">👤</span><span>Profile</span></NavLink>
+        </nav>
       </div>
 
       {/* --- MODAL RENDERING LOGIC --- */}

@@ -44,9 +44,11 @@ const GameSection: React.FC<GameSectionProps> = ({ title, games, showViewAll }) 
         </div>
       </div>
       
-      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4">
+      <div className="flex overflow-x-auto gap-4 pb-4 md:grid md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 md:overflow-x-visible">
         {games.map((game) => (
-          <GameCard key={game.id} game={game} />
+          <div key={game.id} className="flex-shrink-0 w-48 md:w-auto">
+            <GameCard game={game} />
+          </div>
         ))}
       </div>
     </div>
