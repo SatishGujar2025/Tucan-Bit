@@ -52,13 +52,187 @@ const HomePage: React.FC = () => {
           </div>
         </section>
 
-      {/* New Games Section */}
+      {/* Cashback Countdown Section */}
+      <section className="py-12 bg-gradient-to-r from-yellow-500/10 to-orange-500/10 border-y border-yellow-500/20">
+        <div className="px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold text-white mb-4">Don't miss your Daily cashback</h2>
+            <p className="text-xl text-gray-300 mb-2">Up to 20% Back. No BS. #SometimesLoseAlwaysWin</p>
+            <p className="text-lg text-yellow-400 font-semibold">Your Next Cashback Drops In</p>
+          </div>
+          <div className="flex justify-center items-center space-x-4 sm:space-x-8">
+            <div className="text-center">
+              <div className="bg-gray-800 rounded-lg p-4 border border-yellow-500/30">
+                <div className="text-3xl sm:text-4xl font-bold text-yellow-400">00</div>
+                <div className="text-sm text-gray-300">Days</div>
+              </div>
+            </div>
+            <div className="text-2xl sm:text-3xl text-yellow-400 font-bold">:</div>
+            <div className="text-center">
+              <div className="bg-gray-800 rounded-lg p-4 border border-yellow-500/30">
+                <div className="text-3xl sm:text-4xl font-bold text-yellow-400">10</div>
+                <div className="text-sm text-gray-300">Hours</div>
+              </div>
+            </div>
+            <div className="text-2xl sm:text-3xl text-yellow-400 font-bold">:</div>
+            <div className="text-center">
+              <div className="bg-gray-800 rounded-lg p-4 border border-yellow-500/30">
+                <div className="text-3xl sm:text-4xl font-bold text-yellow-400">59</div>
+                <div className="text-sm text-gray-300">Minutes</div>
+              </div>
+            </div>
+            <div className="text-2xl sm:text-3xl text-yellow-400 font-bold">:</div>
+            <div className="text-center">
+              <div className="bg-gray-800 rounded-lg p-4 border border-yellow-500/30">
+                <div className="text-3xl sm:text-4xl font-bold text-yellow-400">55</div>
+                <div className="text-sm text-gray-300">Seconds</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Continue Playing Section */}
+      <section className="py-16 bg-gray-900">
+        <div className="px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between mb-8">
+            <h2 className="text-2xl font-bold text-white flex items-center">
+              <Play className="w-6 h-6 text-green-400 mr-3" />
+              Continue Playing
+            </h2>
+            <Link to="/casino" className="text-yellow-400 hover:text-yellow-300 text-sm font-semibold">
+              View All →
+            </Link>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+            {featuredGames.slice(0, 6).map((game) => (
+              <div key={game.id} className="group relative rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-700 hover:border-green-500/30">
+                <Link to={`/game/${game.id}`}>
+                    <div className="relative aspect-[3/2] overflow-hidden">
+                    <img src={game.image} alt={game.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                    <div className="absolute top-1 left-1 bg-gradient-to-r from-green-500 to-blue-500 text-white px-1.5 py-0.5 rounded-full text-[10px] font-bold flex items-center"><Play className="w-2 h-2 mr-0.5" /><span>RESUME</span></div>
+                    {game.badge && <div className="absolute top-1 right-1 bg-gradient-to-r from-red-500 to-orange-500 text-white px-1.5 py-0.5 rounded-full text-[10px] font-bold flex items-center"><Zap className="w-2 h-2 mr-0.5" /><span>{game.badge}</span></div>}
+                    </div>
+                    <div className="p-3">
+                    <h3 className="text-sm font-bold text-white mb-1 truncate">{game.title}</h3>
+                    <div className="flex justify-between items-center mb-2"><span className="text-green-400 text-xs">{game.provider}</span><span className="text-gray-400 text-xs">{game.isLive ? 'Live' : 'Slot'}</span></div>
+                    <div className="flex justify-between items-center">
+                        <div className="flex items-center space-x-1 text-gray-300"><svg className="w-3 h-3 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg><span className="text-xs">x5000</span></div>
+                        <span className="text-xs px-1 py-0.5 rounded bg-green-500/10 text-green-400">High</span>
+                    </div>
+                    </div>
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <button className="bg-gradient-to-r from-green-500 to-blue-500 text-white px-3 py-2 rounded-lg font-semibold hover:from-green-600 hover:to-blue-600 transition-all duration-200 flex items-center space-x-2 transform scale-90 group-hover:scale-100 text-sm">
+                        <Play className="w-4 h-4" />
+                        <span>Continue</span>
+                      </button>
+                    </div>
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Top 10 Games Section */}
+      <section className="py-16 bg-gradient-to-br from-gray-800 to-gray-900">
+        <div className="px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between mb-8">
+            <h2 className="text-2xl font-bold text-white flex items-center">
+              <Trophy className="w-6 h-6 text-yellow-400 mr-3" />
+              Top 10
+            </h2>
+            <Link to="/casino" className="text-yellow-400 hover:text-yellow-300 text-sm font-semibold">
+              View All →
+            </Link>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+            {featuredGames.slice(0, 10).map((game, index) => (
+              <div key={game.id} className="group relative rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-700 hover:border-yellow-500/30">
+                <Link to={`/game/${game.id}`}>
+                    <div className="relative aspect-[3/2] overflow-hidden">
+                    <img src={game.image} alt={game.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                    <div className="absolute top-1 left-1 bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-1.5 py-0.5 rounded-full text-[10px] font-bold flex items-center"><span>#{index + 1}</span></div>
+                    {game.badge && <div className="absolute top-1 right-1 bg-gradient-to-r from-red-500 to-orange-500 text-white px-1.5 py-0.5 rounded-full text-[10px] font-bold flex items-center"><Zap className="w-2 h-2 mr-0.5" /><span>{game.badge}</span></div>}
+                    </div>
+                    <div className="p-3">
+                    <h3 className="text-sm font-bold text-white mb-1 truncate">{game.title}</h3>
+                    <div className="flex justify-between items-center mb-2"><span className="text-yellow-400 text-xs">{game.provider}</span><span className="text-gray-400 text-xs">{game.isLive ? 'Live' : 'Slot'}</span></div>
+                    <div className="flex justify-between items-center">
+                        <div className="flex items-center space-x-1 text-gray-300"><svg className="w-3 h-3 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg><span className="text-xs">x5000</span></div>
+                        <span className="text-xs px-1 py-0.5 rounded bg-yellow-500/10 text-yellow-400">High</span>
+                    </div>
+                    </div>
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <button className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-3 py-2 rounded-lg font-semibold hover:from-yellow-600 hover:to-orange-600 transition-all duration-200 flex items-center space-x-2 transform scale-90 group-hover:scale-100 text-sm">
+                        <Play className="w-4 h-4" />
+                        <span>Play</span>
+                      </button>
+                    </div>
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Ongoing Tribes Card with Glowing Animation */}
+      <section className="py-16 bg-gray-900">
+        <div className="px-4 sm:px-6 lg:px-8">
+          <div className="relative">
+            <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/20 via-orange-500/20 to-yellow-500/20 rounded-2xl blur-xl animate-pulse"></div>
+            <div className="relative bg-gray-800 rounded-2xl p-8 border border-yellow-500/30 overflow-hidden">
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-500 via-orange-500 to-yellow-500 animate-pulse"></div>
+              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-r from-yellow-500/20 to-orange-500/20 rounded-full blur-3xl animate-spin"></div>
+              <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-r from-orange-500/20 to-yellow-500/20 rounded-full blur-2xl animate-pulse"></div>
+              
+              <div className="relative z-10 flex flex-col lg:flex-row items-center">
+                <div className="lg:w-1/2 mb-6 lg:mb-0">
+                  <h2 className="text-3xl font-bold text-white mb-4">Ongoing Tribes</h2>
+                  <p className="text-gray-300 mb-6">Join the ultimate gaming community and compete with players worldwide in our exclusive tribal tournaments.</p>
+                  <div className="space-y-3">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                      <span className="text-white">Live tournaments with massive prize pools</span>
+                    </div>
+                    <div className="flex items-center space-x-3">
+                      <div className="w-3 h-3 bg-blue-500 rounded-full animate-pulse"></div>
+                      <span className="text-white">Exclusive rewards and bonuses</span>
+                    </div>
+                    <div className="flex items-center space-x-3">
+                      <div className="w-3 h-3 bg-purple-500 rounded-full animate-pulse"></div>
+                      <span className="text-white">Real-time leaderboards and rankings</span>
+                    </div>
+                  </div>
+                  <button className="mt-6 bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-6 py-3 rounded-lg font-semibold hover:from-yellow-600 hover:to-orange-600 transition-all duration-200">
+                    Join Tribes Now
+                  </button>
+                </div>
+                <div className="lg:w-1/2 lg:pl-8">
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/20 to-orange-500/20 rounded-xl blur-lg animate-pulse"></div>
+                    <img 
+                      src="https://iili.io/FwSX1Xj.png" 
+                      alt="Ongoing Tribes" 
+                      className="relative w-full h-64 object-cover rounded-xl border border-yellow-500/30"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* New Arrivals Section */}
       <section className="py-16 bg-gray-900">
         <div className="px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between mb-8">
             <h2 className="text-2xl font-bold text-white flex items-center">
               <Zap className="w-6 h-6 text-yellow-400 mr-3" />
-              New Games
+              New Arrivals
             </h2>
             <Link to="/casino" className="text-yellow-400 hover:text-yellow-300 text-sm font-semibold">
               View All →
@@ -95,8 +269,94 @@ const HomePage: React.FC = () => {
           <div className="mt-10 text-center">
             <Link to="/casino" className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-6 py-2 rounded-lg font-semibold text-sm hover:from-yellow-600 hover:to-orange-600 transition-all duration-200 inline-flex items-center space-x-2">
               <Gamepad2 className="w-4 h-4" />
-              <span>See Over 300+ Games</span>
+              <span>See over 4,000+ games</span>
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Crypto Games Section */}
+      <section className="py-16 bg-gradient-to-br from-gray-800 to-gray-900">
+        <div className="px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between mb-8">
+            <h2 className="text-2xl font-bold text-white flex items-center">
+              <Bitcoin className="w-6 h-6 text-yellow-400 mr-3" />
+              Crypto Games
+            </h2>
+            <Link to="/casino" className="text-yellow-400 hover:text-yellow-300 text-sm font-semibold">
+              View All →
+            </Link>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+            {featuredGames.slice(6, 12).map((game) => (
+              <div key={game.id} className="group relative rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-700 hover:border-yellow-500/30">
+                <Link to={`/game/${game.id}`}>
+                    <div className="relative aspect-[3/2] overflow-hidden">
+                    <img src={game.image} alt={game.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                    <div className="absolute top-1 left-1 bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-1.5 py-0.5 rounded-full text-[10px] font-bold flex items-center"><Bitcoin className="w-2 h-2 mr-0.5" /><span>CRYPTO</span></div>
+                    {game.badge && <div className="absolute top-1 right-1 bg-gradient-to-r from-red-500 to-orange-500 text-white px-1.5 py-0.5 rounded-full text-[10px] font-bold flex items-center"><Zap className="w-2 h-2 mr-0.5" /><span>{game.badge}</span></div>}
+                    </div>
+                    <div className="p-3">
+                    <h3 className="text-sm font-bold text-white mb-1 truncate">{game.title}</h3>
+                    <div className="flex justify-between items-center mb-2"><span className="text-yellow-400 text-xs">{game.provider}</span><span className="text-gray-400 text-xs">{game.isLive ? 'Live' : 'Slot'}</span></div>
+                    <div className="flex justify-between items-center">
+                        <div className="flex items-center space-x-1 text-gray-300"><svg className="w-3 h-3 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg><span className="text-xs">x5000</span></div>
+                        <span className="text-xs px-1 py-0.5 rounded bg-yellow-500/10 text-yellow-400">High</span>
+                    </div>
+                    </div>
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <button className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-3 py-2 rounded-lg font-semibold hover:from-yellow-600 hover:to-orange-600 transition-all duration-200 flex items-center space-x-2 transform scale-90 group-hover:scale-100 text-sm">
+                        <Play className="w-4 h-4" />
+                        <span>Play</span>
+                      </button>
+                    </div>
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Buy Feature Section */}
+      <section className="py-16 bg-gray-900">
+        <div className="px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between mb-8">
+            <h2 className="text-2xl font-bold text-white flex items-center">
+              <Gift className="w-6 h-6 text-yellow-400 mr-3" />
+              Buy Feature
+            </h2>
+            <Link to="/casino" className="text-yellow-400 hover:text-yellow-300 text-sm font-semibold">
+              View All →
+            </Link>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+            {featuredGames.slice(0, 6).map((game) => (
+              <div key={game.id} className="group relative rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-700 hover:border-yellow-500/30">
+                <Link to={`/game/${game.id}`}>
+                    <div className="relative aspect-[3/2] overflow-hidden">
+                    <img src={game.image} alt={game.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                    <div className="absolute top-1 left-1 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-1.5 py-0.5 rounded-full text-[10px] font-bold flex items-center"><Gift className="w-2 h-2 mr-0.5" /><span>BUY</span></div>
+                    {game.badge && <div className="absolute top-1 right-1 bg-gradient-to-r from-red-500 to-orange-500 text-white px-1.5 py-0.5 rounded-full text-[10px] font-bold flex items-center"><Zap className="w-2 h-2 mr-0.5" /><span>{game.badge}</span></div>}
+                    </div>
+                    <div className="p-3">
+                    <h3 className="text-sm font-bold text-white mb-1 truncate">{game.title}</h3>
+                    <div className="flex justify-between items-center mb-2"><span className="text-purple-400 text-xs">{game.provider}</span><span className="text-gray-400 text-xs">{game.isLive ? 'Live' : 'Slot'}</span></div>
+                    <div className="flex justify-between items-center">
+                        <div className="flex items-center space-x-1 text-gray-300"><svg className="w-3 h-3 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg><span className="text-xs">x5000</span></div>
+                        <span className="text-xs px-1 py-0.5 rounded bg-purple-500/10 text-purple-400">High</span>
+                    </div>
+                    </div>
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <button className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-3 py-2 rounded-lg font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-200 flex items-center space-x-2 transform scale-90 group-hover:scale-100 text-sm">
+                        <Play className="w-4 h-4" />
+                        <span>Buy Feature</span>
+                      </button>
+                    </div>
+                </Link>
+              </div>
+            ))}
           </div>
         </div>
       </section>
