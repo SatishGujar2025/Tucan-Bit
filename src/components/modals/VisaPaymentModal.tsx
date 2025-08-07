@@ -70,7 +70,7 @@ const VisaPaymentModal: React.FC<VisaPaymentModalProps> = ({ onClose }) => {
 
           {/* Description */}
           <p className="text-gray-400 text-sm leading-relaxed">
-            Buy crypto instantly, and have it automatically transferred to your Whale wallet.
+            Buy crypto instantly, and have it automatically transferred to your TucanBit wallet.
             Services related to payments are provided by a separate platform which is owned
             by a third party.
           </p>

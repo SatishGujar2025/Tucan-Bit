@@ -27,6 +27,7 @@ import ProfilePage from './pages/ProfilePage';
 import LootboxPage from './pages/LootboxPage';
 import NewsPage from './pages/NewsPage';
 import VIPClubPage from './pages/VIPClubPage';
+import RegisterPage from './pages/RegisterPage';
 import SportsPage from './pages/sports/SportsPage';
 import ContactUs from './pages/support/ContactUs';
 import Fairness from './pages/support/Fairness';
@@ -128,6 +129,7 @@ function AppContent() {
             <Route path="lootboxes" element={<LootboxPage />} />
             <Route path="news" element={<NewsPage />} />
             <Route path="vip-club" element={<VIPClubPage />} />
+            <Route path="register" element={<RegisterPage />} />
             <Route path="sports" element={<SportsPageWrapper />} />
             <Route path="contact" element={<ContactUsWrapper />} />
             <Route path="fairness" element={<FairnessWrapper />} />

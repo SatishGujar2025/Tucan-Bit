@@ -7,6 +7,7 @@ export { default as TaskDashboardPage } from './TaskDashboardPage';
 export { default as TokenDashboardPage } from './TokenDashboardPage';
 export { default as PromotionsPage } from './PromotionsPage';
 export { default as LootboxPage } from './LootboxPage';
+export { default as RegisterPage } from './RegisterPage';
 export { default as NewsPage } from './NewsPage';
 export { default as VIPClubPage } from './VIPClubPage';
 export { default as GameLobbyPage } from './GameLobbyPage';

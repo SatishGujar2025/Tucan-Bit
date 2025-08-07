@@ -32,8 +32,8 @@ const CasinoPage: React.FC = () => {
         />
 
          <GameSection 
-          title="Whale Specials" 
-          games={gameData.whaleSpecials}
+                  title="TucanBit Specials"
+        games={gameData.tucanbitSpecials}
           showViewAll={false}
         />
 
@@ -81,7 +81,7 @@ const CasinoPage: React.FC = () => {
 
         <GameSection 
           title="Cluster Games" 
-          games={gameData.whaleSpecials}
+          games={gameData.tucanbitSpecials}
           showViewAll={false}
         />
 

@@ -480,7 +480,7 @@ const PromotionalSidebar: React.FC = () => {
               {/* Leaderboard Entries */}
               <div className="space-y-1 sm:space-y-2 lg:space-y-3">
                 {[
-                  { place: 1, player: "WhaleHunter", points: "12,456", prize: "$15,000", avatar: "👤" },
+                  { place: 1, player: "TucanHunter", points: "12,456", prize: "$15,000", avatar: "👤" },
                   { place: 2, player: "LuckyDragon", points: "11,234", prize: "$10,000", avatar: "👤" },
                   { place: 3, player: "GoldenTiger", points: "10,567", prize: "$7,500", avatar: "👤" },
                   { place: 4, player: "VoiceChatHelm93677", points: "9,749", prize: "$1,500", avatar: "👤" },

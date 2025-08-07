@@ -38,21 +38,21 @@ export const gameData = {
   newArrivals: [
     {
       id: '1',
-      title: 'Whale.io Blackjack',
+      title: 'TucanBit Blackjack',
       provider: 'Live88',
       image: g1,
       isLive: true
     },
     {
       id: '2',
-      title: 'Whale.io Blackjack Prime',
+      title: 'TucanBit Blackjack Prime',
       provider: 'Live88',
       image: g2,
       isLive: true
     },
     {
       id: '3',
-      title: 'Whale.io Highroller',
+      title: 'TucanBit Highroller',
       provider: 'Live88',
       image: g3,
       isLive: true
@@ -92,7 +92,7 @@ export const gameData = {
     {
       id: '9',
       title: 'What the Duck?',
-      provider: 'By Whale',
+      provider: 'TucanBit',
       image: g9
     },
     {
@@ -123,7 +123,7 @@ export const gameData = {
     {
       id: '14',
       title: 'Roulette',
-      provider: 'By Whale',
+      provider: 'TucanBit',
       image: g14
     },
     {
@@ -139,24 +139,24 @@ export const gameData = {
       image: g16
     }
   ],
-whaleSpecials:[
+tucanbitSpecials:[
      {
       id: '17',
-      title: 'Whale.io Blackjack',
+      title: 'TucanBit Blackjack',
       provider: 'Live88',
       image: g30,
       isLive: true
     },
     {
       id: '18',
-      title: 'Whale.io Blackjack Prime',
+      title: 'TucanBit Blackjack Prime',
       provider: 'Live88',
       image: g17,
       isLive: true
     },
     {
       id: '19',
-      title: 'Whale.io Highroller',
+      title: 'TucanBit Highroller',
       provider: 'Live88',
       image: g18,
       isLive: true
@@ -197,21 +197,21 @@ whaleSpecials:[
 spinWars:[
      {
       id: '25',
-      title: 'Whale.io Blackjack',
+      title: 'TucanBit Blackjack',
       provider: 'Live88',
       image: g1,
       isLive: true
     },
     {
       id: '26',
-      title: 'Whale.io Blackjack Prime',
+      title: 'TucanBit Blackjack Prime',
       provider: 'Live88',
       image: g22,
       isLive: true
     },
     {
       id: '27',
-      title: 'Whale.io Highroller',
+      title: 'TucanBit Highroller',
       provider: 'Live88',
       image: g2,
       isLive: true

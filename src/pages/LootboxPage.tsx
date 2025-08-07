@@ -74,45 +74,45 @@ const LootboxPage: React.FC = () => {
   ];
 
   const lootboxes: LootboxItem[] = [
-    { id: '1', name: 'Bonus Buy', price: 37.0025, currency: 'T', rarity: 'rare', image: '🐋', description: 'Always Win', contents: ['Bonus Spins', 'Free Games', 'Multipliers'], color: 'bg-orange-500', brand: 'Whale', backgroundImage: g1 },
-    { id: '2', name: 'Free Spins', price: 3.0002, currency: 'T', rarity: 'common', image: '🎰', description: 'Always Win', contents: ['Free Spins', 'Bonus Rounds'], color: 'bg-pink-500', brand: 'Whale', backgroundImage: g2 },
+    { id: '1', name: 'Bonus Buy', price: 37.0025, currency: 'T', rarity: 'rare', image: '🐋', description: 'Always Win', contents: ['Bonus Spins', 'Free Games', 'Multipliers'], color: 'bg-orange-500', brand: 'TucanBit', backgroundImage: g1 },
+    { id: '2', name: 'Free Spins', price: 3.0002, currency: 'T', rarity: 'common', image: '🎰', description: 'Always Win', contents: ['Free Spins', 'Bonus Rounds'], color: 'bg-pink-500', brand: 'TucanBit', backgroundImage: g2 },
     { id: '3', name: 'Highroller Lootbox', price: 20000.3600, currency: 'T', rarity: 'legendary', image: '👑', description: 'HIGHROLLER', contents: ['VIP Rewards', 'Exclusive Items', 'High Stakes'], color: 'bg-yellow-500', brand: 'Premium', backgroundImage: g3 },
-    { id: '4', name: 'JAMBO Lootbox', price: 15.0010, currency: 'T', rarity: 'epic', image: '🎯', description: 'Always Win', contents: ['JAMBO Rewards', 'Special Bonuses'], color: 'bg-blue-500', brand: 'Whale', backgroundImage: g4 },
-    { id: '5', name: '$KINGY Swag', price: 1.5001, currency: 'T', rarity: 'common', image: '👕', description: 'Always Win', contents: ['Merchandise', 'Branded Items'], color: 'bg-red-500', brand: 'Whale', backgroundImage: g5 },
-    { id: '6', name: 'Mega Bonus Buy', price: 299.0203, currency: 'T', rarity: 'epic', image: '💎', description: 'Always Win', contents: ['Mega Bonuses', 'Premium Rewards'], color: 'bg-purple-500', brand: 'Whale', backgroundImage: g6 },
+    { id: '4', name: 'JAMBO Lootbox', price: 15.0010, currency: 'T', rarity: 'epic', image: '🎯', description: 'Always Win', contents: ['JAMBO Rewards', 'Special Bonuses'], color: 'bg-blue-500', brand: 'TucanBit', backgroundImage: g4 },
+    { id: '5', name: '$KINGY Swag', price: 1.5001, currency: 'T', rarity: 'common', image: '👕', description: 'Always Win', contents: ['Merchandise', 'Branded Items'], color: 'bg-red-500', brand: 'TucanBit', backgroundImage: g5 },
+    { id: '6', name: 'Mega Bonus Buy', price: 299.0203, currency: 'T', rarity: 'epic', image: '💎', description: 'Always Win', contents: ['Mega Bonuses', 'Premium Rewards'], color: 'bg-purple-500', brand: 'TucanBit', backgroundImage: g6 },
     
-    { id: '7', name: 'Bonus Buy', price: 37.0025, currency: 'T', rarity: 'rare', image: '🐋', description: 'Always Win', contents: ['Bonus Spins', 'Free Games', 'Multipliers'], color: 'bg-orange-500', brand: 'Whale', backgroundImage: g1 },
-    { id: '8', name: 'JAMBO Lootbox', price: 15.0010, currency: 'T', rarity: 'epic', image: '🎯', description: 'Always Win', contents: ['JAMBO Rewards', 'Special Bonuses'], color: 'bg-blue-500', brand: 'Whale', backgroundImage: g9 },
+    { id: '7', name: 'Bonus Buy', price: 37.0025, currency: 'T', rarity: 'rare', image: '🐋', description: 'Always Win', contents: ['Bonus Spins', 'Free Games', 'Multipliers'], color: 'bg-orange-500', brand: 'TucanBit', backgroundImage: g1 },
+    { id: '8', name: 'JAMBO Lootbox', price: 15.0010, currency: 'T', rarity: 'epic', image: '🎯', description: 'Always Win', contents: ['JAMBO Rewards', 'Special Bonuses'], color: 'bg-blue-500', brand: 'TucanBit', backgroundImage: g9 },
    
    
-    { id: '9', name: 'JAMBO Lootbox', price: 15.0010, currency: 'T', rarity: 'epic', image: '🎯', description: 'Always Win', contents: ['JAMBO Rewards', 'Special Bonuses'], color: 'bg-blue-500', brand: 'Whale', backgroundImage: g8 },
-    { id: '10', name: 'JAMBO Lootbox', price: 15.0010, currency: 'T', rarity: 'epic', image: '🎯', description: 'Always Win', contents: ['JAMBO Rewards', 'Special Bonuses'], color: 'bg-blue-500', brand: 'Whale', backgroundImage: g10 },
+    { id: '9', name: 'JAMBO Lootbox', price: 15.0010, currency: 'T', rarity: 'epic', image: '🎯', description: 'Always Win', contents: ['JAMBO Rewards', 'Special Bonuses'], color: 'bg-blue-500', brand: 'TucanBit', backgroundImage: g8 },
+    { id: '10', name: 'JAMBO Lootbox', price: 15.0010, currency: 'T', rarity: 'epic', image: '🎯', description: 'Always Win', contents: ['JAMBO Rewards', 'Special Bonuses'], color: 'bg-blue-500', brand: 'TucanBit', backgroundImage: g10 },
   
   
-  { id: '11', name: 'Bonus Buy', price: 37.0025, currency: 'T', rarity: 'rare', image: '🐋', description: 'Always Win', contents: ['Bonus Spins', 'Free Games', 'Multipliers'], color: 'bg-orange-500', brand: 'Whale', backgroundImage: g1 },
-    { id: '12', name: 'Free Spins', price: 3.0002, currency: 'T', rarity: 'common', image: '🎰', description: 'Always Win', contents: ['Free Spins', 'Bonus Rounds'], color: 'bg-pink-500', brand: 'Whale', backgroundImage: g2 },
+  { id: '11', name: 'Bonus Buy', price: 37.0025, currency: 'T', rarity: 'rare', image: '🐋', description: 'Always Win', contents: ['Bonus Spins', 'Free Games', 'Multipliers'], color: 'bg-orange-500', brand: 'TucanBit', backgroundImage: g1 },
+    { id: '12', name: 'Free Spins', price: 3.0002, currency: 'T', rarity: 'common', image: '🎰', description: 'Always Win', contents: ['Free Spins', 'Bonus Rounds'], color: 'bg-pink-500', brand: 'TucanBit', backgroundImage: g2 },
     { id: '13', name: 'Highroller Lootbox', price: 20000.3600, currency: 'T', rarity: 'legendary', image: '👑', description: 'HIGHROLLER', contents: ['VIP Rewards', 'Exclusive Items', 'High Stakes'], color: 'bg-yellow-500', brand: 'Premium', backgroundImage: g3 },
-    { id: '14', name: 'JAMBO Lootbox', price: 15.0010, currency: 'T', rarity: 'epic', image: '🎯', description: 'Always Win', contents: ['JAMBO Rewards', 'Special Bonuses'], color: 'bg-blue-500', brand: 'Whale', backgroundImage: g4 },
-    { id: '15', name: '$KINGY Swag', price: 1.5001, currency: 'T', rarity: 'common', image: '👕', description: 'Always Win', contents: ['Merchandise', 'Branded Items'], color: 'bg-red-500', brand: 'Whale', backgroundImage: g5 },
-    { id: '16', name: 'Mega Bonus Buy', price: 299.0203, currency: 'T', rarity: 'epic', image: '💎', description: 'Always Win', contents: ['Mega Bonuses', 'Premium Rewards'], color: 'bg-purple-500', brand: 'Whale', backgroundImage: g6 },
-   { id: '17', name: 'Bonus Buy', price: 37.0025, currency: 'T', rarity: 'rare', image: '🐋', description: 'Always Win', contents: ['Bonus Spins', 'Free Games', 'Multipliers'], color: 'bg-orange-500', brand: 'Whale', backgroundImage: g1 },
+    { id: '14', name: 'JAMBO Lootbox', price: 15.0010, currency: 'T', rarity: 'epic', image: '🎯', description: 'Always Win', contents: ['JAMBO Rewards', 'Special Bonuses'], color: 'bg-blue-500', brand: 'TucanBit', backgroundImage: g4 },
+    { id: '15', name: '$KINGY Swag', price: 1.5001, currency: 'T', rarity: 'common', image: '👕', description: 'Always Win', contents: ['Merchandise', 'Branded Items'], color: 'bg-red-500', brand: 'TucanBit', backgroundImage: g5 },
+    { id: '16', name: 'Mega Bonus Buy', price: 299.0203, currency: 'T', rarity: 'epic', image: '💎', description: 'Always Win', contents: ['Mega Bonuses', 'Premium Rewards'], color: 'bg-purple-500', brand: 'TucanBit', backgroundImage: g6 },
+   { id: '17', name: 'Bonus Buy', price: 37.0025, currency: 'T', rarity: 'rare', image: '🐋', description: 'Always Win', contents: ['Bonus Spins', 'Free Games', 'Multipliers'], color: 'bg-orange-500', brand: 'TucanBit', backgroundImage: g1 },
    
-    { id: '18', name: 'JAMBO Lootbox', price: 15.0010, currency: 'T', rarity: 'epic', image: '🎯', description: 'Always Win', contents: ['JAMBO Rewards', 'Special Bonuses'], color: 'bg-blue-500', brand: 'Whale', backgroundImage: g9 },
-    { id: '19', name: 'JAMBO Lootbox', price: 15.0010, currency: 'T', rarity: 'epic', image: '🎯', description: 'Always Win', contents: ['JAMBO Rewards', 'Special Bonuses'], color: 'bg-blue-500', brand: 'Whale', backgroundImage: g8 },
-    { id: '20', name: 'JAMBO Lootbox', price: 15.0010, currency: 'T', rarity: 'epic', image: '🎯', description: 'Always Win', contents: ['JAMBO Rewards', 'Special Bonuses'], color: 'bg-blue-500', brand: 'Whale', backgroundImage: g10 },
+    { id: '18', name: 'JAMBO Lootbox', price: 15.0010, currency: 'T', rarity: 'epic', image: '🎯', description: 'Always Win', contents: ['JAMBO Rewards', 'Special Bonuses'], color: 'bg-blue-500', brand: 'TucanBit', backgroundImage: g9 },
+    { id: '19', name: 'JAMBO Lootbox', price: 15.0010, currency: 'T', rarity: 'epic', image: '🎯', description: 'Always Win', contents: ['JAMBO Rewards', 'Special Bonuses'], color: 'bg-blue-500', brand: 'TucanBit', backgroundImage: g8 },
+    { id: '20', name: 'JAMBO Lootbox', price: 15.0010, currency: 'T', rarity: 'epic', image: '🎯', description: 'Always Win', contents: ['JAMBO Rewards', 'Special Bonuses'], color: 'bg-blue-500', brand: 'TucanBit', backgroundImage: g10 },
   
 
-     { id: '21', name: 'Bonus Buy', price: 37.0025, currency: 'T', rarity: 'rare', image: '🐋', description: 'Always Win', contents: ['Bonus Spins', 'Free Games', 'Multipliers'], color: 'bg-orange-500', brand: 'Whale', backgroundImage: g1 },
-    { id: '22', name: 'Free Spins', price: 3.0002, currency: 'T', rarity: 'common', image: '🎰', description: 'Always Win', contents: ['Free Spins', 'Bonus Rounds'], color: 'bg-pink-500', brand: 'Whale', backgroundImage: g2 },
+     { id: '21', name: 'Bonus Buy', price: 37.0025, currency: 'T', rarity: 'rare', image: '🐋', description: 'Always Win', contents: ['Bonus Spins', 'Free Games', 'Multipliers'], color: 'bg-orange-500', brand: 'TucanBit', backgroundImage: g1 },
+    { id: '22', name: 'Free Spins', price: 3.0002, currency: 'T', rarity: 'common', image: '🎰', description: 'Always Win', contents: ['Free Spins', 'Bonus Rounds'], color: 'bg-pink-500', brand: 'TucanBit', backgroundImage: g2 },
     { id: '23', name: 'Highroller Lootbox', price: 20000.3600, currency: 'T', rarity: 'legendary', image: '👑', description: 'HIGHROLLER', contents: ['VIP Rewards', 'Exclusive Items', 'High Stakes'], color: 'bg-yellow-500', brand: 'Premium', backgroundImage: g3 },
-    { id: '24', name: 'JAMBO Lootbox', price: 15.0010, currency: 'T', rarity: 'epic', image: '🎯', description: 'Always Win', contents: ['JAMBO Rewards', 'Special Bonuses'], color: 'bg-blue-500', brand: 'Whale', backgroundImage: g4 },
-    { id: '25', name: '$KINGY Swag', price: 1.5001, currency: 'T', rarity: 'common', image: '👕', description: 'Always Win', contents: ['Merchandise', 'Branded Items'], color: 'bg-red-500', brand: 'Whale', backgroundImage: g5 },
-    { id: '26', name: 'Mega Bonus Buy', price: 299.0203, currency: 'T', rarity: 'epic', image: '💎', description: 'Always Win', contents: ['Mega Bonuses', 'Premium Rewards'], color: 'bg-purple-500', brand: 'Whale', backgroundImage: g6 },
-   { id: '27', name: 'Bonus Buy', price: 37.0025, currency: 'T', rarity: 'rare', image: '🐋', description: 'Always Win', contents: ['Bonus Spins', 'Free Games', 'Multipliers'], color: 'bg-orange-500', brand: 'Whale', backgroundImage: g1 },
+    { id: '24', name: 'JAMBO Lootbox', price: 15.0010, currency: 'T', rarity: 'epic', image: '🎯', description: 'Always Win', contents: ['JAMBO Rewards', 'Special Bonuses'], color: 'bg-blue-500', brand: 'TucanBit', backgroundImage: g4 },
+    { id: '25', name: '$KINGY Swag', price: 1.5001, currency: 'T', rarity: 'common', image: '👕', description: 'Always Win', contents: ['Merchandise', 'Branded Items'], color: 'bg-red-500', brand: 'TucanBit', backgroundImage: g5 },
+    { id: '26', name: 'Mega Bonus Buy', price: 299.0203, currency: 'T', rarity: 'epic', image: '💎', description: 'Always Win', contents: ['Mega Bonuses', 'Premium Rewards'], color: 'bg-purple-500', brand: 'TucanBit', backgroundImage: g6 },
+   { id: '27', name: 'Bonus Buy', price: 37.0025, currency: 'T', rarity: 'rare', image: '🐋', description: 'Always Win', contents: ['Bonus Spins', 'Free Games', 'Multipliers'], color: 'bg-orange-500', brand: 'TucanBit', backgroundImage: g1 },
    
-    { id: '28', name: 'JAMBO Lootbox', price: 15.0010, currency: 'T', rarity: 'epic', image: '🎯', description: 'Always Win', contents: ['JAMBO Rewards', 'Special Bonuses'], color: 'bg-blue-500', brand: 'Whale', backgroundImage: g9 },
-    { id: '29', name: 'JAMBO Lootbox', price: 15.0010, currency: 'T', rarity: 'epic', image: '🎯', description: 'Always Win', contents: ['JAMBO Rewards', 'Special Bonuses'], color: 'bg-blue-500', brand: 'Whale', backgroundImage: g8 },
-    { id: '30', name: 'JAMBO Lootbox', price: 15.0010, currency: 'T', rarity: 'epic', image: '🎯', description: 'Always Win', contents: ['JAMBO Rewards', 'Special Bonuses'], color: 'bg-blue-500', brand: 'Whale', backgroundImage: g10 },
+    { id: '28', name: 'JAMBO Lootbox', price: 15.0010, currency: 'T', rarity: 'epic', image: '🎯', description: 'Always Win', contents: ['JAMBO Rewards', 'Special Bonuses'], color: 'bg-blue-500', brand: 'TucanBit', backgroundImage: g9 },
+    { id: '29', name: 'JAMBO Lootbox', price: 15.0010, currency: 'T', rarity: 'epic', image: '🎯', description: 'Always Win', contents: ['JAMBO Rewards', 'Special Bonuses'], color: 'bg-blue-500', brand: 'TucanBit', backgroundImage: g8 },
+    { id: '30', name: 'JAMBO Lootbox', price: 15.0010, currency: 'T', rarity: 'epic', image: '🎯', description: 'Always Win', contents: ['JAMBO Rewards', 'Special Bonuses'], color: 'bg-blue-500', brand: 'TucanBit', backgroundImage: g10 },
  
  
   ];
@@ -187,7 +187,7 @@ const LootboxPage: React.FC = () => {
               <span className="text-sm text-gray-400">Collection:</span>
               <select value={collection} onChange={(e) => setCollection(e.target.value)} className="bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-sm focus:outline-none">
                 <option value="all">All</option>
-                <option value="whale">Whale</option>
+                <option value="tucanbit">TucanBit</option>
               </select>
             </div>
           </div>

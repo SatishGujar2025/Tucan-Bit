@@ -70,7 +70,7 @@ const PromotionalModal: React.FC<PromotionalModalProps> = ({ isOpen, onClose, ad
 
   const showInfoMessage = () => {
     const notification = document.createElement('div');
-    notification.className = 'fixed top-4 right-4 bg-blue-600 text-white px-6 py-4 rounded-lg shadow-lg z-[9999] transform translate-x-full transition-transform duration-300';
+    notification.className = 'fixed top-4 right-4 bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-6 py-4 rounded-lg shadow-lg z-[9999] transform translate-x-full transition-transform duration-300';
     notification.innerHTML = `
       <div class="flex items-center space-x-3">
         <div class="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center">

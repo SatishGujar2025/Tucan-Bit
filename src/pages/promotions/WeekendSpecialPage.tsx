@@ -32,7 +32,7 @@ const WeekendSpecialPage: React.FC = () => {
   }, []);
 
   const participatingGames = [
-    { id: 1, name: "Whale Roulette", image: "🎲", live88: true },
+    { id: 1, name: "TucanBit Roulette", image: "🎲", live88: true },
     { id: 2, name: "Baccarat Speed", image: "🃏", live88: true },
     { id: 3, name: "Blackjack 1", image: "♠️", live88: true },
     { id: 4, name: "Dragon Tiger", image: "🐉", live88: true },

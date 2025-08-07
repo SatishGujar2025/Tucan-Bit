@@ -16,7 +16,7 @@ export const getAllGames = (): Game[] => {
   return [
     ...gameData.newArrivals,
     ...gameData.topGames,
-    ...gameData.whaleSpecials,
+    ...gameData.tucanbitSpecials,
     ...gameData.spinWars,
     ...gameData.liveCasino,
     ...gameData.liveTableGames,

@@ -1,16 +1,63 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Play, Wallet, User, Gamepad2, ShieldCheck, Bitcoin, Gem, Zap, Star } from 'lucide-react';
+import { Play, Wallet, User, Gamepad2, ShieldCheck, Bitcoin, Gem, Zap, Star, Trophy, Gift } from 'lucide-react';
 import { useAppContext } from '../context/AppContext';
 import { getAllGames } from '../utils/gameUtils';
+import pokerTableBg from '../assets/group-young-players-are-posing-poker-table-casino.avif';
 
 // This component is now only responsible for the home page content.
 const HomePage: React.FC = () => {
- const { walletAddress, openModal } = useAppContext();
+  const { walletAddress, openModal } = useAppContext();
+  
+  // Countdown timer state
+  const [countdown, setCountdown] = useState({
+    days: 0,
+    hours: 10,
+    minutes: 59,
+    seconds: 55
+  });
   
   // Use the centralized game data
   const allGames = getAllGames();
   const featuredGames = allGames.slice(0, 24); // Show first 24 games
+
+  // Countdown timer effect
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCountdown(prev => {
+        let { days, hours, minutes, seconds } = prev;
+        
+        if (seconds > 0) {
+          seconds--;
+        } else {
+          seconds = 59;
+          if (minutes > 0) {
+            minutes--;
+          } else {
+            minutes = 59;
+            if (hours > 0) {
+              hours--;
+            } else {
+              hours = 23;
+              if (days > 0) {
+                days--;
+              } else {
+                // Reset to 24 hours when countdown reaches zero
+                days = 0;
+                hours = 23;
+                minutes = 59;
+                seconds = 59;
+              }
+            }
+          }
+        }
+        
+        return { days, hours, minutes, seconds };
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <>
@@ -51,46 +98,6 @@ const HomePage: React.FC = () => {
             </div>
           </div>
         </section>
-
-      {/* Cashback Countdown Section */}
-      <section className="py-12 bg-gradient-to-r from-yellow-500/10 to-orange-500/10 border-y border-yellow-500/20">
-        <div className="px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-white mb-4">Don't miss your Daily cashback</h2>
-            <p className="text-xl text-gray-300 mb-2">Up to 20% Back. No BS. #SometimesLoseAlwaysWin</p>
-            <p className="text-lg text-yellow-400 font-semibold">Your Next Cashback Drops In</p>
-          </div>
-          <div className="flex justify-center items-center space-x-4 sm:space-x-8">
-            <div className="text-center">
-              <div className="bg-gray-800 rounded-lg p-4 border border-yellow-500/30">
-                <div className="text-3xl sm:text-4xl font-bold text-yellow-400">00</div>
-                <div className="text-sm text-gray-300">Days</div>
-              </div>
-            </div>
-            <div className="text-2xl sm:text-3xl text-yellow-400 font-bold">:</div>
-            <div className="text-center">
-              <div className="bg-gray-800 rounded-lg p-4 border border-yellow-500/30">
-                <div className="text-3xl sm:text-4xl font-bold text-yellow-400">10</div>
-                <div className="text-sm text-gray-300">Hours</div>
-              </div>
-            </div>
-            <div className="text-2xl sm:text-3xl text-yellow-400 font-bold">:</div>
-            <div className="text-center">
-              <div className="bg-gray-800 rounded-lg p-4 border border-yellow-500/30">
-                <div className="text-3xl sm:text-4xl font-bold text-yellow-400">59</div>
-                <div className="text-sm text-gray-300">Minutes</div>
-              </div>
-            </div>
-            <div className="text-2xl sm:text-3xl text-yellow-400 font-bold">:</div>
-            <div className="text-center">
-              <div className="bg-gray-800 rounded-lg p-4 border border-yellow-500/30">
-                <div className="text-3xl sm:text-4xl font-bold text-yellow-400">55</div>
-                <div className="text-sm text-gray-300">Seconds</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Continue Playing Section */}
       <section className="py-16 bg-gray-900">
@@ -178,48 +185,42 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* Ongoing Tribes Card with Glowing Animation */}
-      <section className="py-16 bg-gray-900">
-        <div className="px-4 sm:px-6 lg:px-8">
-          <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/20 via-orange-500/20 to-yellow-500/20 rounded-2xl blur-xl animate-pulse"></div>
-            <div className="relative bg-gray-800 rounded-2xl p-8 border border-yellow-500/30 overflow-hidden">
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-500 via-orange-500 to-yellow-500 animate-pulse"></div>
-              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-r from-yellow-500/20 to-orange-500/20 rounded-full blur-3xl animate-spin"></div>
-              <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-r from-orange-500/20 to-yellow-500/20 rounded-full blur-2xl animate-pulse"></div>
-              
-              <div className="relative z-10 flex flex-col lg:flex-row items-center">
-                <div className="lg:w-1/2 mb-6 lg:mb-0">
-                  <h2 className="text-3xl font-bold text-white mb-4">Ongoing Tribes</h2>
-                  <p className="text-gray-300 mb-6">Join the ultimate gaming community and compete with players worldwide in our exclusive tribal tournaments.</p>
-                  <div className="space-y-3">
-                    <div className="flex items-center space-x-3">
-                      <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                      <span className="text-white">Live tournaments with massive prize pools</span>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                      <div className="w-3 h-3 bg-blue-500 rounded-full animate-pulse"></div>
-                      <span className="text-white">Exclusive rewards and bonuses</span>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                      <div className="w-3 h-3 bg-purple-500 rounded-full animate-pulse"></div>
-                      <span className="text-white">Real-time leaderboards and rankings</span>
-                    </div>
-                  </div>
-                  <button className="mt-6 bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-6 py-3 rounded-lg font-semibold hover:from-yellow-600 hover:to-orange-600 transition-all duration-200">
-                    Join Tribes Now
-                  </button>
-                </div>
-                <div className="lg:w-1/2 lg:pl-8">
-                  <div className="relative">
-                    <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/20 to-orange-500/20 rounded-xl blur-lg animate-pulse"></div>
-                    <img 
-                      src="https://iili.io/FwSX1Xj.png" 
-                      alt="Ongoing Tribes" 
-                      className="relative w-full h-64 object-cover rounded-xl border border-yellow-500/30"
-                    />
-                  </div>
-                </div>
+      {/* Cashback Countdown Section */}
+      <section className="py-12 relative border-y border-yellow-500/20">
+        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url(${pokerTableBg})` }}></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/50"></div>
+        <div className="relative px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold text-yellow-400 mb-4 drop-shadow-lg">Don't miss your Daily cashback</h2>
+            <p className="text-xl text-white mb-2 drop-shadow-md">Up to 20% Back. No BS. #SometimesLoseAlwaysWin</p>
+            <p className="text-lg text-yellow-300 font-semibold drop-shadow-md">Your Next Cashback Drops In</p>
+          </div>
+          <div className="flex justify-center items-center space-x-4 sm:space-x-8">
+            <div className="text-center">
+              <div className="bg-gray-800 rounded-lg p-4 border border-yellow-500/30">
+                <div className="text-3xl sm:text-4xl font-bold text-yellow-400">{countdown.days.toString().padStart(2, '0')}</div>
+                <div className="text-sm text-gray-300">Days</div>
+              </div>
+            </div>
+            <div className="text-2xl sm:text-3xl text-yellow-400 font-bold">:</div>
+            <div className="text-center">
+              <div className="bg-gray-800 rounded-lg p-4 border border-yellow-500/30">
+                <div className="text-3xl sm:text-4xl font-bold text-yellow-400">{countdown.hours.toString().padStart(2, '0')}</div>
+                <div className="text-sm text-gray-300">Hours</div>
+              </div>
+            </div>
+            <div className="text-2xl sm:text-3xl text-yellow-400 font-bold">:</div>
+            <div className="text-center">
+              <div className="bg-gray-800 rounded-lg p-4 border border-yellow-500/30">
+                <div className="text-3xl sm:text-4xl font-bold text-yellow-400">{countdown.minutes.toString().padStart(2, '0')}</div>
+                <div className="text-sm text-gray-300">Minutes</div>
+              </div>
+            </div>
+            <div className="text-2xl sm:text-3xl text-yellow-400 font-bold">:</div>
+            <div className="text-center">
+              <div className="bg-gray-800 rounded-lg p-4 border border-yellow-500/30">
+                <div className="text-3xl sm:text-4xl font-bold text-yellow-400">{countdown.seconds.toString().padStart(2, '0')}</div>
+                <div className="text-sm text-gray-300">Seconds</div>
               </div>
             </div>
           </div>
@@ -357,6 +358,54 @@ const HomePage: React.FC = () => {
                 </Link>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Ongoing Tribes Card with Glowing Animation */}
+      <section className="py-16 bg-gray-900">
+        <div className="px-4 sm:px-6 lg:px-8">
+          <div className="relative">
+            <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/20 via-orange-500/20 to-yellow-500/20 rounded-2xl blur-xl animate-pulse"></div>
+            <div className="relative bg-gray-800 rounded-2xl p-8 border border-yellow-500/30 overflow-hidden">
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-500 via-orange-500 to-yellow-500 animate-pulse"></div>
+              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-r from-yellow-500/20 to-orange-500/20 rounded-full blur-3xl animate-spin"></div>
+              <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-r from-orange-500/20 to-yellow-500/20 rounded-full blur-2xl animate-pulse"></div>
+              
+              <div className="relative z-10 flex flex-col lg:flex-row items-center">
+                <div className="lg:w-1/2 mb-6 lg:mb-0">
+                  <h2 className="text-3xl font-bold text-white mb-4">Ongoing Tribes</h2>
+                  <p className="text-gray-300 mb-6">Join the ultimate gaming community and compete with players worldwide in our exclusive tribal tournaments.</p>
+                  <div className="space-y-3">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                      <span className="text-white">Live tournaments with massive prize pools</span>
+                    </div>
+                    <div className="flex items-center space-x-3">
+                      <div className="w-3 h-3 bg-blue-500 rounded-full animate-pulse"></div>
+                      <span className="text-white">Exclusive rewards and bonuses</span>
+                    </div>
+                    <div className="flex items-center space-x-3">
+                      <div className="w-3 h-3 bg-purple-500 rounded-full animate-pulse"></div>
+                      <span className="text-white">Real-time leaderboards and rankings</span>
+                    </div>
+                  </div>
+                  <button className="mt-6 bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-6 py-3 rounded-lg font-semibold hover:from-yellow-600 hover:to-orange-600 transition-all duration-200">
+                    Join Tribes Now
+                  </button>
+                </div>
+                <div className="lg:w-1/2 lg:pl-8">
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/20 to-orange-500/20 rounded-xl blur-lg animate-pulse"></div>
+                    <img 
+                      src="https://iili.io/FwSX1Xj.png" 
+                      alt="Ongoing Tribes" 
+                      className="relative w-full h-64 object-cover rounded-xl border border-yellow-500/30"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
