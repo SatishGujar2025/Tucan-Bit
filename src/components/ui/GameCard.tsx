@@ -1,5 +1,6 @@
 import React from 'react';
 import { Play } from 'lucide-react';
+import { GameImage } from './OptimizedImage';
 
 interface Game {
   id: string;
@@ -18,12 +19,15 @@ const GameCard: React.FC<GameCardProps> = ({ game }) => {
   return (
     <div className="group relative bg-gray-800 rounded-lg overflow-hidden hover:transform hover:scale-105 transition-all duration-300 cursor-pointer">
       {/* Game Image Container */}
-      <div
-        className={`aspect-square relative flex items-center justify-center ${game.image ? 'bg-cover bg-center' : ''}`}
-        style={{ backgroundImage: game.image ? `url(${game.image})` : 'none' }}
-      >
-        {/* Fallback UI: Only shows if there's no image */}
-        {!game.image && (
+      <div className="aspect-square relative flex items-center justify-center">
+        {game.image ? (
+          <GameImage
+            src={game.image}
+            alt={game.title}
+            className="w-full h-full"
+            lazy={true}
+          />
+        ) : (
           <div className="w-full h-full bg-gray-700 flex items-center justify-center">
             <span className="text-2xl font-bold text-gray-400">{game.title.charAt(0)}</span>
           </div>

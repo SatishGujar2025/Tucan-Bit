@@ -3,6 +3,9 @@ export const translations = {
     // Navigation
     home: 'Home',
     games: 'Games',
+    liveCasino: 'Live Casino',
+    vipClub: 'VIP Club',
+    tournaments: 'Tournaments',
     profile: 'Profile',
     wallet: 'Wallet',
     

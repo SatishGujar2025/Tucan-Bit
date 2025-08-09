@@ -13,6 +13,7 @@ import EarnPage from './pages/EarnPage';
 import TokenDashboardPage from './pages/TokenDashboardPage';
 import TaskDashboardPage from './pages/TaskDashboardPage';
 import GameLobbyPage from './pages/GameLobbyPage';
+import GamesPage from './pages/games/GamesPage';
 import SlotsPage from './pages/games/SlotsPage';
 import BlackJacksPage from './pages/games/BlackJacksPage';
 import JackPotsPage from './pages/games/JackPotsPage';
@@ -121,6 +122,7 @@ function AppContent() {
             <Route path="token-dashboard" element={<TokenDashboardPage />} />
             <Route path="task-dashboard" element={<TaskDashboardPage />} />
             <Route path="game-lobby" element={<GameLobbyPage />} />
+            <Route path="games" element={<GamesPage />} />
             <Route path="slots" element={<SlotsPage />} />
             <Route path="blackjacks" element={<BlackJacksPage />} />
             <Route path="jackpots" element={<JackPotsPage />} />

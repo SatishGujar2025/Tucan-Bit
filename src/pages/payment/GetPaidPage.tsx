@@ -31,7 +31,7 @@ const GetPaidPage: React.FC = () => {
     {
       id: 'bank',
       name: 'Bank Transfer',
-      icon: Wallet, // Changed to Wallet as a placeholder, replace with actual Bank icon if available
+      icon: Wallet,
       description: 'Direct bank transfer',
       minAmount: 100,
       maxAmount: 5000,

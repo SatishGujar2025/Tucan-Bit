@@ -21,4 +21,7 @@ export { default as GameCard } from './ui/GameCard';
 export { default as GameSection } from './ui/GameSection';
 export { default as Header } from './ui/Header';
 export { default as PromotionalBanner } from './ui/PromotionalBanner';
-export { default as SearchBar } from './ui/SearchBar'; 
+export { default as SearchBar } from './ui/SearchBar';
+
+// Optimized Image components
+export { OptimizedImage, GameImage, PromoImage, AvatarImage } from './ui/OptimizedImage'; 

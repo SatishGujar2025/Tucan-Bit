@@ -2,12 +2,39 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="/TB.png" />
+    <link rel="apple-touch-icon" href="/TB.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TucanBit</title>
+    <meta name="theme-color" content="#f59e0b" />
+    <meta name="description" content="Premium online casino with live games, slots, and sports betting" />
+    <link rel="manifest" href="/manifest.json" />
+    <title>TucanBit - Online Casino & Gaming</title>
+    
+    <!-- Preload critical images -->
+    <link rel="preload" as="image" href="/src/assets/TB.png" />
+    <link rel="preload" as="image" href="/src/assets/sidebar_promo.png" />
+    
+    <!-- DNS prefetch for better performance -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="//fonts.gstatic.com" />
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then((registration) => {
+              console.log('SW registered: ', registration);
+            })
+            .catch((registrationError) => {
+              console.log('SW registration failed: ', registrationError);
+            });
+        });
+      }
+    </script>
   </body>
 </html>

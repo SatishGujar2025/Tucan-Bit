@@ -9,7 +9,7 @@ import OTPPopup from '../modals/OTPModal';
 
 import DepositModal from '../modals/DepositModal';
 import VisaPaymentModal from '../modals/VisaPaymentModal';
-import { Wallet, Home, Gamepad2, Gift, User, ChevronDown,ChevronRightIcon, ChevronRight, LogOut, BarChart3, Settings, DollarSign } from 'lucide-react';
+import { Wallet, Home, Gamepad2, Gift, User, ChevronDown,ChevronRightIcon, ChevronRight, ChevronLeft, LogOut, BarChart3, Settings, DollarSign } from 'lucide-react';
 import WalletConnectModal from '../modals/WalletConnectModal';
 import VerificationModal from '../modals/VerificationModal';
 import PromotionalSidebar from './PromotionalSidebar';
@@ -114,7 +114,9 @@ const Layout: React.FC = () => {
   const location = useLocation();
   
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
+  const [sidebarExpanded, setSidebarExpanded] = useState(true);
+  const [promotionalSidebarExpanded, setPromotionalSidebarExpanded] = useState(true);
+
   const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
   const [language, setLanguage] = useState<'en' | 'es'>('en');
 
@@ -143,11 +145,10 @@ const Layout: React.FC = () => {
   
   const handleLinkClick = () => {
     setSidebarOpen(false); // Close sidebar on mobile when a link is clicked
-    setIsMobileSidebarOpen(false); // Close mobile sidebar when a link is clicked
   };
 
   const handleMobileMenuToggle = () => {
-    setIsMobileSidebarOpen(!isMobileSidebarOpen);
+    setSidebarOpen(!sidebarOpen); // Open the main sidebar instead of mobile sidebar
   };
   const [isBalanceDropdownOpen, setIsBalanceDropdownOpen] = useState(false);
   const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
@@ -188,8 +189,10 @@ const Layout: React.FC = () => {
 
    const headerNavItems = [
     // { id: 'home', path: '/', label: 'Home', icon: '🏠' },
-    { id: 'liveCasino', path: '/live-casino', label: 'Live Casino', icon: '🔴' },
+    { id: 'liveCasino', path: '/live-casino', label: 'Live Casino', icon: '🎲' },
     { id: 'games', path: '/games', label: 'Games', icon: '🎮' },
+    { id: 'vipClub', path: '/vip-club', label: 'VIP Club', icon: '💎' },
+    { id: 'tournaments', path: '/tournaments', label: 'Tournaments', icon: '⚡' },
   ];
 
 
@@ -200,21 +203,43 @@ const Layout: React.FC = () => {
   const handleLoginComplete = () => login('testuser');
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-[#3C1A4F] to-[#000000]">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-[#3C1A4F] to-[#000000] overflow-x-hidden max-w-full">
       {/* ====================================================================== */}
       {/* 1. SIDEBAR             */}
       {/* ====================================================================== */}
-      <div className={`fixed inset-y-0 left-0 z-[60] w-64 bg-gray-900 shadow-2xl transform ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 transition-transform duration-300 border-r border-gray-800`}>
+      <div className={`fixed inset-y-0 left-0 z-[60] bg-gray-900 shadow-2xl transform ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 transition-all duration-300 border-r border-gray-800 ${sidebarExpanded ? 'w-64' : 'w-8'} w-64 lg:w-auto`}>
         <div className="flex flex-col h-full">
-          <div className="p-6 border-b border-gray-800">
-            <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center">
-                    <Link to="/" onClick={handleLinkClick}> <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 10C18 14.4183 14.4183 18 10 18C5.58172 18 2 14.4183 2 10C2 5.58172 5.58172 2 10 2C14.4183 2 18 5.58172 18 10Z" fill="currentColor" /><path d="M18 10L24 7L22 12L18 10Z" fill="currentColor" /></svg></Link>
-                </div>
-                <div>
-                 <Link to="/" onClick={handleLinkClick}>  <span className="text-2xl font-bold text-white"><span className="text-yellow-400">Tucan</span><span className="text-orange-500">Bit</span></span></Link> 
-                    <p className="text-xs text-gray-400 mt-1">Crypto Casino & Sportsbook</p>
-                </div>
+          <div className={`border-b border-gray-800 ${sidebarExpanded ? 'p-6' : 'p-4'} lg:p-4`}>
+            <div className={`flex items-center ${sidebarExpanded ? 'justify-between' : 'justify-center'}`}>
+              <div className={`flex items-center ${sidebarExpanded ? 'space-x-3' : 'justify-center'}`}>
+                {sidebarExpanded && (
+                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center">
+                      <Link to="/" onClick={handleLinkClick}> <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 10C18 14.4183 14.4183 18 10 18C5.58172 18 2 14.4183 2 10C2 5.58172 5.58172 2 10 2C14.4183 2 18 5.58172 18 10Z" fill="currentColor" /><path d="M18 10L24 7L22 12L18 10Z" fill="currentColor" /></svg></Link>
+                  </div>
+                )}
+                <div className="lg:hidden">
+                   <Link to="/" onClick={handleLinkClick}>  <span className="text-2xl font-bold text-white"><span className="text-yellow-400">Tucan</span><span className="text-orange-500">Bit</span></span></Link> 
+                      <p className="text-xs text-gray-400 mt-1">Crypto Casino & Sportsbook</p>
+                  </div>
+                {sidebarExpanded && (
+                  <div className="hidden lg:block">
+                   <Link to="/" onClick={handleLinkClick}>  <span className="text-2xl font-bold text-white"><span className="text-yellow-400">Tucan</span><span className="text-orange-500">Bit</span></span></Link> 
+                      <p className="text-xs text-gray-400 mt-1">Crypto Casino & Sportsbook</p>
+                  </div>
+                )}
+              </div>
+              
+              {/* Sidebar Toggle Button - Inside sidebar */}
+              <button
+                onClick={() => setSidebarExpanded(!sidebarExpanded)}
+                className="bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white shadow-lg transition-all duration-300 border border-white/30 hover:border-white/50 p-2 rounded-lg hidden lg:block"
+              >
+                {sidebarExpanded ? (
+                  <ChevronLeft className="w-4 h-4 md:w-5 md:h-5" />
+                ) : (
+                  <ChevronRight className="w-4 h-4 md:w-5 md:h-5" />
+                )}
+              </button>
             </div>
           </div>
 
@@ -250,47 +275,47 @@ const Layout: React.FC = () => {
                 </div>
               </>
             )}
-          <nav className="flex-1 overflow-y-auto p-4 space-y-1">
+          <nav className={`flex-1 overflow-y-auto ${sidebarExpanded ? 'p-4' : 'p-2'} space-y-1 min-h-0 h-full`}>
             <NavLink to="/" onClick={handleLinkClick}   className={({ isActive }) => 
-        `w-full flex items-center space-x-3 p-3 rounded-lg transition-colors ${
+        `${sidebarExpanded ? 'w-full' : 'w-8'} flex items-center ${sidebarExpanded ? 'space-x-3' : 'justify-center'} p-3 rounded-lg transition-colors ${
           isActive 
             ? 'text-white bg-gray-800  font-semibold' 
             : 'hover:bg-yellow-500/20 text-white'                  
         }`
-      }><span className="text-xl">🏠</span><span>Home</span></NavLink>
+      }><span className="text-xl">🏠</span>{sidebarExpanded && <span>Home</span>}</NavLink>
             <NavLink to="/casino" onClick={handleLinkClick}  className={({ isActive }) => 
-        `w-full flex items-center space-x-3 p-3 rounded-lg transition-colors ${
+        `${sidebarExpanded ? 'w-full' : 'w-8'} flex items-center ${sidebarExpanded ? 'space-x-3' : 'justify-center'} p-3 rounded-lg transition-colors ${
           isActive 
             ? 'text-white bg-gray-800  font-semibold' 
             : 'hover:bg-yellow-500/20 text-white'                  
         }`
-      }><span className="text-xl">🎰</span><span>Casino</span></NavLink>
+      }><span className="text-xl">🎰</span>{sidebarExpanded && <span>Casino</span>}</NavLink>
             <NavLink to="/live-casino" onClick={handleLinkClick}  className={({ isActive }) => 
-        `w-full flex items-center space-x-3 p-3 rounded-lg transition-colors ${
+        `${sidebarExpanded ? 'w-full' : 'w-8'} flex items-center ${sidebarExpanded ? 'space-x-3' : 'justify-center'} p-3 rounded-lg transition-colors ${
           isActive 
             ? 'text-white bg-gray-800  font-semibold' 
             : 'hover:bg-yellow-500/20 text-white'                  
         }`
-      }><span className="text-xl">📹</span><span>Live Casino</span></NavLink>
+      }><span className="text-xl">📹</span>{sidebarExpanded && <span>Live Casino</span>}</NavLink>
             <NavLink to="/sports" onClick={handleLinkClick}  className={({ isActive }) => 
-        `w-full flex items-center space-x-3 p-3 rounded-lg transition-colors ${
+        `${sidebarExpanded ? 'w-full' : 'w-8'} flex items-center ${sidebarExpanded ? 'space-x-3' : 'justify-center'} p-3 rounded-lg transition-colors ${
           isActive 
             ? 'text-white bg-gray-800  font-semibold' 
             : 'hover:bg-yellow-500/20 text-white'                  
         }`
-      }><span className="text-xl">🏆</span><span>Sports</span></NavLink>
+      }><span className="text-xl">🏆</span>{sidebarExpanded && <span>Sports</span>}</NavLink>
             <NavLink to="/lootboxes" onClick={handleLinkClick}  className={({ isActive }) => 
-        `w-full flex items-center space-x-3 p-3 rounded-lg transition-colors ${
+        `${sidebarExpanded ? 'w-full' : 'w-8'} flex items-center ${sidebarExpanded ? 'space-x-3' : 'justify-center'} p-3 rounded-lg transition-colors ${
           isActive 
             ? 'text-white bg-gray-800  font-semibold' 
             : 'hover:bg-yellow-500/20 text-white'                  
         }`
-      }><span className="text-xl">🎁</span><span>Lootboxes</span></NavLink>
+      }><span className="text-xl">🎁</span>{sidebarExpanded && <span>Lootboxes</span>}</NavLink>
             
             <div> {/* Games Submenu */}
-              <button onClick={() => toggleSubmenu('games')} className="w-full flex items-center justify-between p-3 rounded-lg hover:bg-gray-800 text-white">
-                <div className="flex items-center space-x-3"><span className="text-xl">🎮</span><span>Games</span></div>
-                {activeSubmenu === 'games' ? <ChevronDown className="w-5 h-5" /> : <ChevronRight className="w-5 h-5" />}
+              <button onClick={() => toggleSubmenu('games')} className={`${sidebarExpanded ? 'w-full' : 'w-8'} flex items-center ${sidebarExpanded ? 'justify-between' : 'justify-center'} p-3 rounded-lg hover:bg-gray-800 text-white`}>
+                <div className="flex items-center ${sidebarExpanded ? 'space-x-3' : 'justify-center'}"><span className="text-xl">🎮</span>{sidebarExpanded && <span>Games</span>}</div>
+                {sidebarExpanded && (activeSubmenu === 'games' ? <ChevronDown className="w-5 h-5" /> : <ChevronRight className="w-5 h-5" />)}
               </button>
               {activeSubmenu === 'games' && (<div className="pl-10 pt-2 space-y-2">
                   <NavLink to="/slots" onClick={handleLinkClick}  className={({ isActive }) => 
@@ -339,33 +364,33 @@ const Layout: React.FC = () => {
             </div>
             
             <NavLink to="/promotions" onClick={handleLinkClick}  className={({ isActive }) => 
-        `w-full flex items-center space-x-3 p-3 rounded-lg transition-colors ${
+        `${sidebarExpanded ? 'w-full' : 'w-8'} flex items-center ${sidebarExpanded ? 'space-x-3' : 'justify-center'} p-3 rounded-lg transition-colors ${
           isActive 
             ? 'text-white bg-gray-800  font-semibold' 
             : 'hover:bg-yellow-500/20 text-white'                  
         }`
-      }><span className="text-xl">🎁</span><span>Promotions</span></NavLink>
+      }><span className="text-xl">🎁</span>{sidebarExpanded && <span>Promotions</span>}</NavLink>
 
             <NavLink to="/news" onClick={handleLinkClick}  className={({ isActive }) => 
-        `w-full flex items-center space-x-3 p-3 rounded-lg transition-colors ${
+        `${sidebarExpanded ? 'w-full' : 'w-8'} flex items-center ${sidebarExpanded ? 'space-x-3' : 'justify-center'} p-3 rounded-lg transition-colors ${
           isActive 
             ? 'text-white bg-gray-800  font-semibold' 
             : 'hover:bg-yellow-500/20 text-white'                  
         }`
-      }><span className="text-xl">📰</span><span>News</span></NavLink>
+      }><span className="text-xl">📰</span>{sidebarExpanded && <span>News</span>}</NavLink>
 
             <NavLink to="/vip-club" onClick={handleLinkClick}  className={({ isActive }) => 
-        `w-full flex items-center space-x-3 p-3 rounded-lg transition-colors ${
+        `${sidebarExpanded ? 'w-full' : 'w-8'} flex items-center ${sidebarExpanded ? 'space-x-3' : 'justify-center'} p-3 rounded-lg transition-colors ${
           isActive 
             ? 'text-white bg-gray-800  font-semibold' 
             : 'hover:bg-yellow-500/20 text-white'                  
         }`
-      }><span className="text-xl">👑</span><span>VIP Club</span></NavLink>
+      }><span className="text-xl">👑</span>{sidebarExpanded && <span>VIP Club</span>}</NavLink>
 
             <div> {/* Wallet Submenu */}
-              <button onClick={() => toggleSubmenu('wallet')} className="w-full flex items-center justify-between p-3 rounded-lg hover:bg-gray-800 text-white">
-                <div className="flex items-center space-x-3"><span className="text-xl">💼</span><span>Wallet</span></div>
-                {activeSubmenu === 'wallet' ? <ChevronDown className="w-5 h-5" /> : <ChevronRight className="w-5 h-5" />}
+              <button onClick={() => toggleSubmenu('wallet')} className={`${sidebarExpanded ? 'w-full' : 'w-8'} flex items-center ${sidebarExpanded ? 'justify-between' : 'justify-center'} p-3 rounded-lg hover:bg-gray-800 text-white`}>
+                <div className="flex items-center ${sidebarExpanded ? 'space-x-3' : 'justify-center'}"><span className="text-xl">💼</span>{sidebarExpanded && <span>Wallet</span>}</div>
+                {sidebarExpanded && (activeSubmenu === 'wallet' ? <ChevronDown className="w-5 h-5" /> : <ChevronRight className="w-5 h-5" />)}
               </button>
               {activeSubmenu === 'wallet' && (<div className="pl-10 pt-1 space-y-1">
                   <NavLink to="/deposit" onClick={handleLinkClick}  className={({ isActive }) => 
@@ -386,31 +411,31 @@ const Layout: React.FC = () => {
             </div>
 
             <NavLink to="/tournaments" onClick={handleLinkClick}  className={({ isActive }) => 
-        `w-full flex items-center space-x-3 p-3 rounded-lg transition-colors ${
+        `${sidebarExpanded ? 'w-full' : 'w-8'} flex items-center ${sidebarExpanded ? 'space-x-3' : 'justify-center'} p-3 rounded-lg transition-colors ${
           isActive 
             ? 'text-white bg-gray-800  font-semibold' 
             : 'hover:bg-yellow-500/20 text-white'                  
         }`
-      }><span className="text-xl">🏆</span><span>Tournaments</span></NavLink>
+      }><span className="text-xl">🏆</span>{sidebarExpanded && <span>Tournaments</span>}</NavLink>
             <NavLink to="/earn" onClick={handleLinkClick}  className={({ isActive }) => 
-        `w-full flex items-center space-x-3 p-3 rounded-lg transition-colors ${
+        `${sidebarExpanded ? 'w-full' : 'w-8'} flex items-center ${sidebarExpanded ? 'space-x-3' : 'justify-center'} p-3 rounded-lg transition-colors ${
           isActive 
             ? 'text-white bg-gray-800  font-semibold' 
             : 'hover:bg-yellow-500/20 text-white'                  
         }`
-      }><span className="text-xl">💎</span><span>Earn</span></NavLink>
+      }><span className="text-xl">💎</span>{sidebarExpanded && <span>Earn</span>}</NavLink>
             <NavLink to="/token-dashboard" onClick={handleLinkClick}  className={({ isActive }) => 
-        `w-full flex items-center space-x-3 p-3 rounded-lg transition-colors ${
+        `${sidebarExpanded ? 'w-full' : 'w-8'} flex items-center ${sidebarExpanded ? 'space-x-3' : 'justify-center'} p-3 rounded-lg transition-colors ${
           isActive 
             ? 'text-white bg-gray-800  font-semibold' 
             : 'hover:bg-yellow-500/20 text-white'                  
         }`
-      }><span className="text-xl">📊</span><span>Token Dashboard</span></NavLink>
+      }><span className="text-xl">📊</span>{sidebarExpanded && <span>Token Dashboard</span>}</NavLink>
 
             <div> {/* Support Submenu */}
-                <button onClick={() => toggleSubmenu('support')} className="w-full flex items-center justify-between p-3 rounded-lg hover:bg-gray-800 text-white">
-                    <div className="flex items-center space-x-3"><span className="text-xl">🆘</span><span>SOS Support</span></div>
-                    {activeSubmenu === 'support' ? <ChevronDown className="w-5 h-5" /> : <ChevronRight className="w-5 h-5" />}
+                <button onClick={() => toggleSubmenu('support')} className={`${sidebarExpanded ? 'w-full' : 'w-8'} flex items-center ${sidebarExpanded ? 'justify-between' : 'justify-center'} p-3 rounded-lg hover:bg-gray-800 text-white`}>
+                    <div className="flex items-center ${sidebarExpanded ? 'space-x-3' : 'justify-center'}"><span className="text-xl">💬</span>{sidebarExpanded && <span>Support</span>}</div>
+                    {sidebarExpanded && (activeSubmenu === 'support' ? <ChevronDown className="w-5 h-5" /> : <ChevronRight className="w-5 h-5" />)}
                 </button>
                 {activeSubmenu === 'support' && (<div className="pl-10 pt-2 space-y-2">
                     <NavLink to="/help" onClick={handleLinkClick}  className={({ isActive }) => 
@@ -459,92 +484,68 @@ const Layout: React.FC = () => {
             </div>
 
             <NavLink to="/community" onClick={handleLinkClick}  className={({ isActive }) => 
-        `w-full flex items-center space-x-3 p-3 rounded-lg transition-colors ${
+        `${sidebarExpanded ? 'w-full' : 'w-8'} flex items-center ${sidebarExpanded ? 'space-x-3' : 'justify-center'} p-3 rounded-lg transition-colors ${
           isActive 
             ? 'text-white bg-gray-800  font-semibold' 
             : 'hover:bg-yellow-500/20 text-white'                  
         }`
-      }><span className="text-xl">👥</span><span>Community</span></NavLink>
+      }><span className="text-xl">👥</span>{sidebarExpanded && <span>Community</span>}</NavLink>
              {!isAuthenticated ? (
             null): <NavLink to="/profile" onClick={handleLinkClick}
                 className={({ isActive }) => 
-        `w-full flex items-center space-x-3 p-3 rounded-lg transition-colors ${
+        `${sidebarExpanded ? 'w-full' : 'w-8'} flex items-center ${sidebarExpanded ? 'space-x-3' : 'justify-center'} p-3 rounded-lg transition-colors ${
           isActive 
             ? 'text-white bg-gray-800  font-semibold' 
             : 'hover:bg-yellow-500/20 text-white'                  
         }`
       }><span className="text-xl">👤</span>
-               <span>Profile</span></NavLink>}
+               {sidebarExpanded && <span>Profile</span>}</NavLink>}
           </nav>
-         
-          <div className="p-4 border-t border-gray-800">
-            {walletAddress ? (
-              <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 rounded-full bg-yellow-500/80 flex items-center justify-center">
-                  <User className="w-5 h-5 text-white" />
-                </div>
-                <div>
-                  <p className="text-sm text-white truncate" title={walletAddress}>
-                    {walletAddress.slice(0, 6)}...{walletAddress.slice(-4)}
-                  </p>
-                  <p className="text-base font-bold text-yellow-400">
-                    {walletBalance} {walletCurrency}
-                  </p>
-                  <button onClick={disconnectWallet} className="text-xs text-orange-400 hover:text-orange-300">
-                    Disconnect
-                  </button>
-                </div>
-              </div>
-            ) : (
-              <button 
-                onClick={() => openModal('walletConnect')} 
-                className="w-full bg-gradient-to-r from-yellow-500 to-orange-500 text-white py-2 rounded-lg font-semibold flex items-center justify-center space-x-2 hover:from-yellow-600 hover:to-orange-600"
-              >
-                <span className="text-lg">💼</span>
-                <span>Connect Wallet</span>
-              </button>
-            )}
-          </div>
         </div>
       </div>
 
+
+
       {/* Promotional Sidebar - Hidden on mobile, visible on wider screens */}
       <div className="hidden lg:block">
-        <PromotionalSidebar />
+        <PromotionalSidebar 
+          isExpanded={promotionalSidebarExpanded}
+          setIsExpanded={setPromotionalSidebarExpanded}
+        />
       </div>
 
-      <div className="lg:ml-64 transition-all duration-300" id="main-content">
+      <div className={`transition-all duration-300 overflow-x-hidden w-full ${sidebarExpanded ? 'lg:ml-64 sidebar-expanded' : 'lg:ml-16'} lg:pl-4 lg:pr-4 ${promotionalSidebarExpanded ? 'lg:mr-80' : 'lg:mr-0'}`} id="main-content">
         {/* ====================================================================== */}
         {/* 2. HEADER - The top bar with login/user info                         */}
         {/* ====================================================================== */}
       <nav className="sticky top-0 z-50 bg-black/20 backdrop-blur-md border-b border-[#3C1A4F]/20">
-            <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className={`max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 ${promotionalSidebarExpanded ? 'lg:pr-48' : 'lg:pr-8'}`}>
             <div className="flex items-center justify-between h-16">
                 {/* Mobile Hamburger Button */}
-                <button onClick={() => setSidebarOpen(true)} className="lg:hidden text-white -ml-2">
+                <button onClick={() => setSidebarOpen(!sidebarOpen)} className="lg:hidden text-white -ml-2">
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16m4 6H4"></path></svg>
                 </button>
 
                 {/*  Main Navigation Links for Desktop */}
-                <div className="hidden lg:flex items-center space-x-6">
+                <div className="hidden lg:flex items-center space-x-3">
                   {headerNavItems.map((item) => (
                     <Link
                         key={item.id}
                         to={item.path}
-                        className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all ${
+                        className={`flex items-center space-x-1 px-2 py-2 rounded-lg transition-all text-sm ${
                         location.pathname === item.path
                             ? 'bg-[#3C1A4F]/20 text-[#F25287]'
                             : 'text-gray-400 hover:text-white'
                         }`}
                     >
-                     <span>{ item.icon }</span>  
-                        <span>{getTranslation(language, item.id as keyof typeof translations.en)}</span>
+                     <span className="text-lg">{ item.icon }</span>  
+                        <span className="whitespace-nowrap">{item.label}</span>
                     </Link>
                   ))}
                 </div>
                 
                 {/* Right Side: Login/User Info */}
-                <div className="flex items-center space-x-4">
+                <div className="flex items-center space-x-2">
                   {!isAuthenticated ? (
                       <button onClick={() => openModal('login')} className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white rounded-lg font-semibold">
                           <User className="w-5 h-5" />
@@ -552,11 +553,11 @@ const Layout: React.FC = () => {
                       </button>
                   ) : (
                     
-                      <div className="flex items-center space-x-4 sm:space-x-8">
+                      <div className="flex items-center space-x-2 sm:space-x-4">
 
                           {/* Balance Dropdown */}
                           <div className="relative balance-dropdown">
-                            <div className="flex items-center space-x-2 bg-gray-800/50 px-3 py-2 rounded-lg border border-yellow-500/30">
+                            <div className="flex items-center space-x-1 bg-gray-800/50 px-2 py-2 rounded-lg border border-yellow-500/30">
                                 <span className="text-yellow-400 font-bold">₿</span>
                                 <span className="text-white font-semibold">{balance.toFixed(2)}</span>
                                 <button onClick={() => setIsBalanceDropdownOpen(!isBalanceDropdownOpen)}>
@@ -581,7 +582,7 @@ const Layout: React.FC = () => {
                           </div>
 
                           {/* Deposit Button */}
-                          <button onClick={() => openModal('deposit')} className="flex items-center space-x-2 px-4 py-2 text-white rounded-lg font-semibold bg-gradient-to-br from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 shadow-lg">
+                          <button onClick={() => openModal('deposit')} className="flex items-center space-x-1 px-3 py-2 text-white rounded-lg font-semibold bg-gradient-to-br from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 shadow-lg text-sm">
                               <Wallet className="w-5 h-5" />
                               <span className="hidden sm:inline">Deposit</span>
                           </button>
@@ -655,7 +656,7 @@ const Layout: React.FC = () => {
         {/* ====================================================================== */}
         {/* 3. MAIN CONTENT and 4. FOOTER                                        */}
         {/* ====================================================================== */}
-        <main className="pb-16 md:pb-0">
+        <main className="pb-16 md:pb-0 overflow-x-hidden max-w-full">
             <Outlet />
             <div className="hidden md:block">
                 <Footer />
@@ -666,62 +667,13 @@ const Layout: React.FC = () => {
       {/* Mobile Navigation */}
       <MobileNavigation onMenuToggle={handleMobileMenuToggle} />
 
-      {/* Mobile Sidebar Overlay */}
-      {isMobileSidebarOpen && (
+      {/* Mobile Sidebar Overlay - for main sidebar */}
+      {sidebarOpen && (
         <div
-          className="fixed inset-0 bg-black/50 z-[70] md:hidden"
-          onClick={() => setIsMobileSidebarOpen(false)}
+          className="fixed inset-0 bg-black/50 z-[55] lg:hidden"
+          onClick={() => setSidebarOpen(false)}
         />
       )}
-
-      {/* Mobile Sidebar */}
-      <div className={`fixed inset-y-0 left-0 z-[80] w-64 bg-gray-900 shadow-2xl transform ${
-        isMobileSidebarOpen ? 'translate-x-0' : '-translate-x-full'
-      } md:hidden transition-transform duration-300 border-r border-gray-800`}>
-        <div className="flex items-center justify-between p-4 border-b border-gray-800">
-          <h2 className="text-white font-bold text-lg">Menu</h2>
-          <button
-            onClick={() => setIsMobileSidebarOpen(false)}
-            className="text-gray-400 hover:text-white"
-          >
-            ✕
-          </button>
-        </div>
-        <nav className="p-4 space-y-2">
-          {/* Add the same navigation items as desktop sidebar */}
-          <NavLink to="/" onClick={handleLinkClick} className={({ isActive }) => 
-            `w-full flex items-center space-x-3 p-3 rounded-lg transition-colors ${
-              isActive 
-                ? 'text-white bg-gray-800 font-semibold' 
-                : 'hover:bg-yellow-500/20 text-white'                  
-            }`
-          }><span className="text-xl">🏠</span><span>Home</span></NavLink>
-          
-          <NavLink to="/games" onClick={handleLinkClick} className={({ isActive }) => 
-            `w-full flex items-center space-x-3 p-3 rounded-lg transition-colors ${
-              isActive 
-                ? 'text-white bg-gray-800 font-semibold' 
-                : 'hover:bg-yellow-500/20 text-white'                  
-            }`
-          }><span className="text-xl">🎮</span><span>Games</span></NavLink>
-          
-          <NavLink to="/promotions" onClick={handleLinkClick} className={({ isActive }) => 
-            `w-full flex items-center space-x-3 p-3 rounded-lg transition-colors ${
-              isActive 
-                ? 'text-white bg-gray-800 font-semibold' 
-                : 'hover:bg-yellow-500/20 text-white'                  
-            }`
-          }><span className="text-xl">🎁</span><span>Promotions</span></NavLink>
-          
-          <NavLink to="/profile" onClick={handleLinkClick} className={({ isActive }) => 
-            `w-full flex items-center space-x-3 p-3 rounded-lg transition-colors ${
-              isActive 
-                ? 'text-white bg-gray-800 font-semibold' 
-                : 'hover:bg-yellow-500/20 text-white'                  
-            }`
-          }><span className="text-xl">👤</span><span>Profile</span></NavLink>
-        </nav>
-      </div>
 
       {/* --- MODAL RENDERING LOGIC --- */}
       {modalView === 'login' && <LoginModal onClose={closeModal} onShowOtp={handleShowOtp} />}

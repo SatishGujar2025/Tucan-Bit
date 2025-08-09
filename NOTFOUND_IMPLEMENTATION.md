@@ -6,7 +6,7 @@ The NotFoundPage component has been implemented to handle all "not found" scenar
 
 1. **Invalid game routes** - When users try to access a game that doesn't exist
 2. **Invalid page routes** - When users navigate to non-existent pages
-3. **General 404 errors** - Any other routing errors
+3. **General 404 errors**  - Any other routing errors
 
 ## Implementation Details
 
@@ -40,6 +40,10 @@ The NotFoundPage component has been implemented to handle all "not found" scenar
   - `isValidGameId(gameId)` - Validates if a game ID exists
   - `getAllGames()` - Gets all games from all categories
   - `getSimilarGames(gameId, limit)` - Gets similar games
+
+
+
+
 
 ## Usage Examples
 

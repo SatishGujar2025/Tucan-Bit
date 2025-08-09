@@ -375,14 +375,14 @@ const GamesPage: React.FC<{ onBack: () => void }> = ({ onBack }) => {
           {/* Game Categories */}
           <div className="mb-8">
             <h3 className="text-2xl font-bold mb-6">Game Categories</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="flex overflow-x-auto gap-4 pb-4 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-6 md:overflow-x-visible">
               {gameCategories.map((category) => (
                 <div
                   key={category.id}
-                  className="group cursor-pointer transition-all duration-300 hover:scale-105"
+                  className="group cursor-pointer transition-all duration-300 hover:scale-105 flex-shrink-0 w-80 md:w-auto"
                   onClick={() => setSelectedCategory(category.id)}
                 >
-                  <div className="relative overflow-hidden rounded-xl h-48">
+                  <div className="relative overflow-hidden rounded-xl h-48 w-full">
                     <img
                       src={category.bannerImage}
                       alt={category.name}
@@ -449,13 +449,13 @@ const GamesPage: React.FC<{ onBack: () => void }> = ({ onBack }) => {
           </div>
 
           {/* Games Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+          <div className="flex overflow-x-auto gap-4 pb-4 md:grid md:grid-cols-1 md:sm:grid-cols-2 md:lg:grid-cols-3 md:xl:grid-cols-5 md:gap-6 md:overflow-x-visible">
             {filteredGames.map((game) => (
               <div
                 key={game.id}
-                className="group cursor-pointer transition-all duration-300 hover:scale-105"
+                className="group cursor-pointer transition-all duration-300 hover:scale-105 flex-shrink-0 w-64 md:w-auto"
               >
-                <div className="relative bg-gray-800 rounded-xl overflow-hidden">
+                <div className="relative bg-gray-800 rounded-xl overflow-hidden w-full">
                   {/* Game Image */}
                   <div className="relative h-40">
                     <img

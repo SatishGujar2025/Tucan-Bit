@@ -31,23 +31,15 @@ interface HotGame {
   image: string;
 }
 
-const PromotionalSidebar: React.FC = () => {
-  const navigate = useNavigate();
-  const [isExpanded, setIsExpanded] = useState(true);
+interface PromotionalSidebarProps {
+  isExpanded: boolean;
+  setIsExpanded: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
-  // Update main content margins when sidebar state changes
-  useEffect(() => {
-    const mainContent = document.getElementById('main-content');
-    if (mainContent) {
-      if (isExpanded) {
-        mainContent.classList.add('lg:mr-80');
-        mainContent.classList.remove('lg:mr-0');
-      } else {
-        mainContent.classList.remove('lg:mr-80');
-        mainContent.classList.add('lg:mr-0');
-      }
-    }
-  }, [isExpanded]);
+const PromotionalSidebar: React.FC<PromotionalSidebarProps> = ({ isExpanded, setIsExpanded }) => {
+  const navigate = useNavigate();
+
+
   
   const [showTournamentRules, setShowTournamentRules] = useState(false);
   const [showLeaderboard, setShowLeaderboard] = useState(false);
@@ -171,49 +163,45 @@ const PromotionalSidebar: React.FC = () => {
 
   return (
     <>
-      {/* Toggle Button - Positioned in middle of sidebar */}
-      <button
-        onClick={() => setIsExpanded(!isExpanded)}
-        className={`fixed z-[9999] bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white shadow-lg transition-all duration-300 border border-white/30 hover:border-white/50 ${
-          // Position at top right of sidebar area - only show when sidebar is expanded
-          isExpanded ? 'top-4 right-80 md:right-80' : 'hidden'
-        } ${
-          // Mobile: rectangular, Desktop: circular
-          'p-2 rounded-lg md:p-3 md:rounded-full'
-        } ${
-          // Hide when any modal is open
-          'modal-open:hidden'
-        }`}
-      >
-        {isExpanded ? (
-          <ChevronRight className="w-4 h-4 md:w-5 md:h-5" />
-        ) : (
-          <ChevronLeft className="w-4 h-4 md:w-5 md:h-5" />
-        )}
-      </button>
 
-      {/* Show button when sidebar is collapsed - positioned at screen edge */}
+      {/* Show button when sidebar is collapsed - positioned at top - Hidden on mobile */}
       {!isExpanded && (
         <button
           onClick={() => setIsExpanded(!isExpanded)}
-          className="fixed z-[9999] bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white shadow-lg transition-all duration-300 border border-white/30 hover:border-white/50 top-1/2 transform -translate-y-1/2 right-4 p-2 rounded-lg md:p-3 md:rounded-full modal-open:hidden"
+          className="fixed z-[9999] bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white shadow-lg transition-all duration-300 border border-white/30 hover:border-white/50 top-4 right-4 p-2 rounded-lg hidden lg:block modal-open:hidden"
         >
           <ChevronLeft className="w-4 h-4 md:w-5 md:h-5" />
         </button>
       )}
 
-      {/* Sidebar - Mobile responsive */}
-      <div className={`fixed inset-y-0 right-0 z-40 bg-gray-900 shadow-2xl border-l border-gray-800 overflow-y-auto transition-all duration-300 ${
+      {/* Sidebar - Hidden on mobile, visible on desktop */}
+      <div className={`fixed inset-y-0 right-0 z-30 bg-gray-900 shadow-2xl border-l border-gray-800 overflow-y-auto transition-all duration-300 hidden lg:block ${
         isExpanded ? 'w-80 translate-x-0' : 'w-0 translate-x-full'
       }`}>
         <div className="flex flex-col h-full">
           {/* Header */}
           <div className="p-4 sm:p-6 border-b border-gray-800 bg-gradient-to-r from-gray-800 to-gray-900">
-            <h2 className="text-lg sm:text-xl font-bold text-white flex items-center space-x-2">
-              <Trophy className="w-5 h-5 sm:w-6 sm:h-6 text-yellow-400" />
-              <span>Live Activity</span>
-            </h2>
-            <p className="text-xs sm:text-sm text-gray-400 mt-1">Real-time updates & promotions</p>
+            <div className="flex items-center space-x-3">
+              {/* Promotional Sidebar Toggle Button - Before Live Activity */}
+              <button
+                onClick={() => setIsExpanded(!isExpanded)}
+                className="bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white shadow-lg transition-all duration-300 border border-white/30 hover:border-white/50 p-2 rounded-lg hidden lg:block"
+              >
+                {isExpanded ? (
+                  <ChevronLeft className="w-4 h-4 md:w-5 md:h-5" />
+                ) : (
+                  <ChevronRight className="w-4 h-4 md:w-5 md:h-5" />
+                )}
+              </button>
+              
+              <div>
+                <h2 className="text-lg sm:text-xl font-bold text-white flex items-center space-x-2">
+                  <Trophy className="w-5 h-5 sm:w-6 sm:h-6 text-yellow-400" />
+                  <span>Live Activity</span>
+                </h2>
+                <p className="text-xs sm:text-sm text-gray-400 mt-1">Real-time updates & promotions</p>
+              </div>
+            </div>
           </div>
 
           {/* Promotional Countdown */}
