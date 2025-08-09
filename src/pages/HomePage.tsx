@@ -63,7 +63,7 @@ const HomePage: React.FC = () => {
   return (
     <>
        {/* Hero Section - Showcasing the background image */}
-        <section className="relative overflow-hidden h-[55vh] min-h-[150px] flex items-center">
+        <section className="relative overflow-hidden h-[40vh] sm:h-[55vh] min-h-[120px] sm:min-h-[150px] flex items-center">
           <div
             className="absolute inset-0 bg-[url('https://iili.io/FwSX1Xj.png')] bg-cover bg-center "
             style={{ backgroundPosition: 'center 30%' }}
@@ -72,27 +72,27 @@ const HomePage: React.FC = () => {
             <div className="absolute inset-0 bg-gradient-to-r from-gray-900/80 to-gray-900/30"></div>
           </div>
 
-          <div className="relative p-6 w-full">
-            <div className="text-center md:text-left max-w-2xl">
-              <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
+          <div className="relative p-4 sm:p-6 w-full">
+            <div className="text-center md:text-left max-w-2xl mx-auto md:mx-0">
+              <h1 className="text-2xl sm:text-4xl md:text-6xl font-bold text-white mb-3 sm:mb-6 leading-tight">
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-orange-500">TucanBit</span> Crypto Casino
               </h1>
-              <p className="text-xl text-gray-300 mb-8">
+              <p className="text-sm sm:text-xl text-gray-300 mb-4 sm:mb-8">
                 The most thrilling crypto gambling experience with instant payouts, provably fair games, and exclusive bonuses.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start">
                 <Link
                   to="/game-lobby"
-                  className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-6 py-3 rounded-xl font-semibold text-base hover:from-yellow-600 hover:to-orange-600 transform hover:scale-105 transition-all duration-200 flex items-center justify-center space-x-2 shadow-lg"
+                  className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-xl font-semibold text-sm sm:text-base hover:from-yellow-600 hover:to-orange-600 transform hover:scale-105 transition-all duration-200 flex items-center justify-center space-x-1 sm:space-x-2 shadow-lg w-40 sm:w-auto mx-auto sm:mx-0"
                 >
-                  <Play className="w-5 h-5" />
+                  <Play className="w-4 h-4 sm:w-5 sm:h-5" />
                   <span>Play Now</span>
                 </Link>
                  <button
                 onClick={() => openModal('walletConnect')}
-                className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-6 py-3 rounded-xl font-semibold text-base hover:bg-white/20 flex items-center justify-center space-x-2"
+                className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-xl font-semibold text-sm sm:text-base hover:bg-white/20 flex items-center justify-center space-x-1 sm:space-x-2 w-40 sm:w-auto mx-auto sm:mx-0"
               >
-                <Wallet className="w-5 h-5" />
+                <Wallet className="w-4 h-4 sm:w-5 sm:h-5" />
                 <span>{walletAddress ? `${walletAddress.slice(0, 6)}...` : 'Connect Wallet'}</span>
               </button>
               </div>
