@@ -303,6 +303,30 @@ body.modal-open .modal-open\:hidden {
   scrollbar-color: transparent transparent !important; /* Firefox */
 }
 
+/* Hide scrollbars in sidebar logo area */
+.fixed.inset-y-0.left-0 .border-b::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+}
+
+.fixed.inset-y-0.left-0 .border-b {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+  overflow: hidden !important;
+}
+
+/* Ensure logo section doesn't cause scrollbars */
+.fixed.inset-y-0.left-0 .flex.flex-col.h-full > div:first-child {
+  overflow: hidden !important;
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+
+.fixed.inset-y-0.left-0 .flex.flex-col.h-full > div:first-child::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+}
+
 /* Specific sidebar navigation scrolling */
 nav.overflow-y-auto {
   height: calc(100vh - 120px) !important; /* Fixed height for navigation */

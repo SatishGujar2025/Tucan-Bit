@@ -209,20 +209,20 @@ const Layout: React.FC = () => {
       {/* ====================================================================== */}
       <div className={`fixed inset-y-0 left-0 z-[60] bg-gray-900 shadow-2xl transform ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 transition-all duration-300 border-r border-gray-800 ${sidebarExpanded ? 'w-64' : 'w-8'} w-64 lg:w-auto`}>
         <div className="flex flex-col h-full">
-          <div className={`border-b border-gray-800 ${sidebarExpanded ? 'p-6' : 'p-4'} lg:p-4`}>
-            <div className={`flex items-center ${sidebarExpanded ? 'justify-between' : 'justify-center'}`}>
-              <div className={`flex items-center ${sidebarExpanded ? 'space-x-3' : 'justify-center'}`}>
+          <div className={`border-b border-gray-800 ${sidebarExpanded ? 'p-6' : 'p-4'} lg:p-4 overflow-hidden`}>
+            <div className={`flex items-center ${sidebarExpanded ? 'justify-between' : 'justify-center'} overflow-hidden`}>
+              <div className={`flex items-center ${sidebarExpanded ? 'space-x-3' : 'justify-center'} overflow-hidden`}>
                 {sidebarExpanded && (
-                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center flex-shrink-0">
                       <Link to="/" onClick={handleLinkClick}> <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 10C18 14.4183 14.4183 18 10 18C5.58172 18 2 14.4183 2 10C2 5.58172 5.58172 2 10 2C14.4183 2 18 5.58172 18 10Z" fill="currentColor" /><path d="M18 10L24 7L22 12L18 10Z" fill="currentColor" /></svg></Link>
                   </div>
                 )}
-                <div className="lg:hidden">
+                <div className="lg:hidden overflow-hidden">
                    <Link to="/" onClick={handleLinkClick}>  <span className="text-2xl font-bold text-white"><span className="text-yellow-400">Tucan</span><span className="text-orange-500">Bit</span></span></Link> 
                       <p className="text-xs text-gray-400 mt-1">Crypto Casino & Sportsbook</p>
                   </div>
                 {sidebarExpanded && (
-                  <div className="hidden lg:block">
+                  <div className="hidden lg:block overflow-hidden">
                    <Link to="/" onClick={handleLinkClick}>  <span className="text-2xl font-bold text-white"><span className="text-yellow-400">Tucan</span><span className="text-orange-500">Bit</span></span></Link> 
                       <p className="text-xs text-gray-400 mt-1">Crypto Casino & Sportsbook</p>
                   </div>

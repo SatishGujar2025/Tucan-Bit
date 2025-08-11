@@ -369,32 +369,32 @@ const HomePage: React.FC = () => {
             <p className="text-xl text-white mb-2 drop-shadow-md">Up to 20% Back. No BS. #SometimesLoseAlwaysWin</p>
             <p className="text-lg text-yellow-300 font-semibold drop-shadow-md">Your Next Cashback Drops In</p>
           </div>
-          <div className="flex justify-center items-center space-x-4 sm:space-x-8">
+          <div className="flex justify-center items-center space-x-1 sm:space-x-2 md:space-x-4 lg:space-x-8 px-1 sm:px-2">
             <div className="text-center">
-              <div className="bg-gray-800 rounded-lg p-4 border border-yellow-500/30">
-                <div className="text-3xl sm:text-4xl font-bold text-yellow-400">{countdown.days.toString().padStart(2, '0')}</div>
-                <div className="text-sm text-gray-300">Days</div>
+              <div className="bg-gray-800 rounded-lg p-1 sm:p-2 md:p-3 lg:p-4 border border-yellow-500/30 min-w-[50px] sm:min-w-[60px] md:min-w-[80px] lg:min-w-[100px] max-w-[80px] sm:max-w-[100px] md:max-w-[120px] lg:max-w-[140px]">
+                <div className="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-bold text-yellow-400 leading-tight">{countdown.days.toString().padStart(2, '0')}</div>
+                <div className="text-[10px] sm:text-xs md:text-sm text-gray-300 break-words leading-tight">Days</div>
               </div>
             </div>
-            <div className="text-2xl sm:text-3xl text-yellow-400 font-bold">:</div>
+            <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-yellow-400 font-bold">:</div>
             <div className="text-center">
-              <div className="bg-gray-800 rounded-lg p-4 border border-yellow-500/30">
-                <div className="text-3xl sm:text-4xl font-bold text-yellow-400">{countdown.hours.toString().padStart(2, '0')}</div>
-                <div className="text-sm text-gray-300">Hrs</div>
+              <div className="bg-gray-800 rounded-lg p-1 sm:p-2 md:p-3 lg:p-4 border border-yellow-500/30 min-w-[50px] sm:min-w-[60px] md:min-w-[80px] lg:min-w-[100px] max-w-[80px] sm:max-w-[100px] md:max-w-[120px] lg:max-w-[140px]">
+                <div className="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-bold text-yellow-400 leading-tight">{countdown.hours.toString().padStart(2, '0')}</div>
+                <div className="text-[10px] sm:text-xs md:text-sm text-gray-300 break-words leading-tight">Hrs</div>
               </div>
             </div>
-            <div className="text-2xl sm:text-3xl text-yellow-400 font-bold">:</div>
+            <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-yellow-400 font-bold">:</div>
             <div className="text-center">
-              <div className="bg-gray-800 rounded-lg p-4 border border-yellow-500/30">
-                <div className="text-3xl sm:text-4xl font-bold text-yellow-400">{countdown.minutes.toString().padStart(2, '0')}</div>
-                <div className="text-sm text-gray-300">Min</div>
+              <div className="bg-gray-800 rounded-lg p-1 sm:p-2 md:p-3 lg:p-4 border border-yellow-500/30 min-w-[50px] sm:min-w-[60px] md:min-w-[80px] lg:min-w-[100px] max-w-[80px] sm:max-w-[100px] md:max-w-[120px] lg:max-w-[140px]">
+                <div className="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-bold text-yellow-400 leading-tight">{countdown.minutes.toString().padStart(2, '0')}</div>
+                <div className="text-[10px] sm:text-xs md:text-sm text-gray-300 break-words leading-tight">Min</div>
               </div>
             </div>
-            <div className="text-2xl sm:text-3xl text-yellow-400 font-bold">:</div>
+            <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-yellow-400 font-bold">:</div>
             <div className="text-center">
-              <div className="bg-gray-800 rounded-lg p-4 border border-yellow-500/30">
-                <div className="text-3xl sm:text-4xl font-bold text-yellow-400">{countdown.seconds.toString().padStart(2, '0')}</div>
-                <div className="text-sm text-gray-300">Sec</div>
+              <div className="bg-gray-800 rounded-lg p-1 sm:p-2 md:p-3 lg:p-4 border border-yellow-500/30 min-w-[50px] sm:min-w-[60px] md:min-w-[80px] lg:min-w-[100px] max-w-[80px] sm:max-w-[100px] md:max-w-[120px] lg:max-w-[140px]">
+                <div className="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-bold text-yellow-400 leading-tight">{countdown.seconds.toString().padStart(2, '0')}</div>
+                <div className="text-[10px] sm:text-xs md:text-sm text-gray-300 break-words leading-tight">Sec</div>
               </div>
             </div>
           </div>
