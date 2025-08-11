@@ -59,7 +59,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   const [isConnecting, setIsConnecting] = useState(false);
 
   // Promotional Modal State
-  const [showPromoModal, setShowPromoModal] = useState(true); // Temporarily set to true to show modal
+  const [showPromoModal, setShowPromoModal] = useState(false); // Set back to false for professional behavior
   const [promoShown, setPromoShown] = useState(false);
   const [currentAdType, setCurrentAdType] = useState('vip'); // Set to VIP to show the VIP modal
 
@@ -86,7 +86,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     };
   }, [showPromoModal, modalView]);
 
-  // New promotional modal logic: show after 5 minutes and every 5 minutes
+  // New promotional modal logic: show after 1 minute and every 1 minute
   useEffect(() => {
     const adTypes = ['tournament', 'welcome', 'deposit', 'vip', 'jackpot'];
     
@@ -97,15 +97,15 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
       console.log('Promotional modal showing with ad type:', randomAd);
     };
     
-    // Show first ad after 5 minutes (300,000 ms)
+    // Show first ad after 1 minute (60,000 ms)
     const initialTimer = setTimeout(() => {
       showRandomAd();
-    }, 300000); // 5 minutes
+    }, 60000); // 1 minute
     
-    // Set up recurring timer for every 5 minutes
+    // Set up recurring timer for every 1 minute
     const recurringTimer = setInterval(() => {
       showRandomAd();
-    }, 300000); // 5 minutes
+    }, 60000); // 1 minute
     
     return () => {
       clearTimeout(initialTimer);
