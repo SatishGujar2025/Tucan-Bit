@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Play, User, Gamepad2, ShieldCheck, Bitcoin, Gem, Zap, Star, Trophy, Gift, Crown } from 'lucide-react';
 import { useAppContext } from '../context/AppContext';
@@ -21,6 +21,10 @@ const HomePage: React.FC = () => {
     minutes: 59,
     seconds: 55
   });
+
+  // Banner carousel state
+  const [currentBanner, setCurrentBanner] = useState(0);
+  const bannerRef = useRef<HTMLDivElement>(null);
   
   // Use the centralized game data
   const allGames = getAllGames();
@@ -64,19 +68,47 @@ const HomePage: React.FC = () => {
     return () => clearInterval(timer);
   }, []);
 
+  // Auto-sliding banner effect
+  useEffect(() => {
+    const bannerTimer = setInterval(() => {
+      setCurrentBanner((prev) => (prev + 1) % 3);
+    }, 3000); // 3 seconds
+
+    return () => clearInterval(bannerTimer);
+  }, []);
+
+  // Scroll to current banner
+  useEffect(() => {
+    if (bannerRef.current) {
+      const bannerWidth = bannerRef.current.scrollWidth / 3;
+      bannerRef.current.scrollTo({
+        left: currentBanner * bannerWidth,
+        behavior: 'smooth'
+      });
+    }
+  }, [currentBanner]);
+
   return (
     <div className="page-content max-w-full overflow-x-hidden">
        {/* Hero Section - Three Promotional Banners */}
       <section className="py-8 bg-gray-900 overflow-hidden">
         <div className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 h-64">
+          <div 
+            ref={bannerRef}
+            className="flex overflow-x-auto gap-4 h-64 snap-x snap-mandatory scrollbar-hide md:grid md:grid-cols-3 md:overflow-x-visible"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
             {/* WELCOME GIFT - FREE Lootbox Banner */}
-            <div className="relative bg-gradient-to-br from-orange-500/20 to-red-500/20 rounded-xl p-6 border-none transition-all duration-300 max-w-full">
-            <div 
-  className="absolute inset-0 bg-cover bg-center rounded-xl" 
-  style={{ backgroundImage: `url(${h1})` }}
->
-</div>
+            <div className="relative bg-gradient-to-br from-orange-500/20 to-red-500/20 rounded-xl p-6 border-none transition-all duration-300 flex-shrink-0 w-[calc(100vw-2rem)] md:w-auto snap-start group hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/25">
+              {/* Glowing Border Animation */}
+              <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-orange-400 via-red-500 to-orange-400 bg-[length:200%_200%] animate-pulse opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="absolute inset-[2px] bg-gray-900 rounded-xl"></div>
+              
+              <div 
+                className="absolute inset-0 bg-cover bg-center rounded-xl" 
+                style={{ backgroundImage: `url(${h1})` }}
+              >
+              </div>
               {/* <div className="absolute inset-0 bg-gradient-to-br from-orange-500/80 to-red-500/80 rounded-xl"></div> */}
               <div className="absolute top-2 right-2 w-12 h-12 bg-gradient-to-br from-orange-400 to-red-500 rounded-full blur-lg opacity-30 group-hover:opacity-50 transition-opacity"></div>
               {/* <div className="relative z-10">
@@ -105,15 +137,20 @@ const HomePage: React.FC = () => {
                   Claim Now
                 </Link>
               </div> */}
-          </div>
+              <Link to="/promotion/welcome-gift" className="absolute inset-0 z-10"></Link>
+            </div>
 
             {/* DAILY REWARDS - UP TO 20% CASHBACK Banner */}
-            <div className="relative bg-gradient-to-br from-yellow-500/20 to-orange-500/20 rounded-xl p-6 border-none overflow-hidden group hover:border-yellow-400/50 transition-all duration-300 max-w-full">
-             <div 
-  className="absolute inset-0 bg-cover bg-center rounded-xl" 
-  style={{ backgroundImage: `url(${h2})` }}
->
-</div>
+            <div className="relative bg-gradient-to-br from-yellow-500/20 to-orange-500/20 rounded-xl p-6 border-none overflow-hidden flex-shrink-0 w-[calc(100vw-2rem)] md:w-auto snap-start group hover:scale-105 hover:shadow-2xl hover:shadow-yellow-500/25 transition-all duration-300">
+              {/* Glowing Border Animation */}
+              <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-yellow-400 via-orange-500 to-yellow-400 bg-[length:200%_200%] animate-pulse opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="absolute inset-[2px] bg-gray-900 rounded-xl"></div>
+              
+              <div 
+                className="absolute inset-0 bg-cover bg-center rounded-xl" 
+                style={{ backgroundImage: `url(${h2})` }}
+              >
+              </div>
               {/* <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/80 to-orange-500/80 rounded-xl"></div> */}
               <div className="absolute top-2 right-2 w-12 h-12 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full blur-lg opacity-30 group-hover:opacity-50 transition-opacity"></div>
               {/* <div className="relative z-10">
@@ -142,15 +179,20 @@ const HomePage: React.FC = () => {
                   Get Cashback
                 </Link>
               </div> */}
+              <Link to="/promotion/daily-cashback" className="absolute inset-0 z-10"></Link>
             </div>
 
             {/* WHALE TOURNAMENT - Live Stakes Banner */}
-            <div className="relative bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-xl p-6 border border-orange-500/30 overflow-hidden group hover:border-orange-400/50 transition-all duration-300 max-w-full">
-           <div 
-  className="absolute inset-0 bg-cover bg-center rounded-xl" 
-  style={{ backgroundImage: `url(${h3})` }}
->
-</div>
+            <div className="relative bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-xl p-6 border border-orange-500/30 overflow-hidden flex-shrink-0 w-[calc(100vw-2rem)] md:w-auto snap-start group hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 transition-all duration-300">
+              {/* Glowing Border Animation */}
+              <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-400 via-purple-500 to-blue-400 bg-[length:200%_200%] animate-pulse opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="absolute inset-[2px] bg-gray-900 rounded-xl"></div>
+              
+              <div 
+                className="absolute inset-0 bg-cover bg-center rounded-xl" 
+                style={{ backgroundImage: `url(${h3})` }}
+              >
+              </div>
 
               <div className="absolute top-2 right-2 w-12 h-12 bg-gradient-to-br from-blue-400 to-purple-500 border border-orange-500/30 overflow-hidden group hover:border-orange-400/50 rounded-full blur-lg opacity-30 group-hover:opacity-50 transition-opacity"></div>
               <div className="relative z-10">
@@ -183,10 +225,27 @@ const HomePage: React.FC = () => {
                   Join Tournament
                 </Link> */}
               </div>
-              </div>
+              <Link to="/promotion/whale-tournament" className="absolute inset-0 z-10"></Link>
             </div>
           </div>
-        </section>
+
+          {/* Banner Indicators */}
+          <div className="flex justify-center space-x-1 mt-2 md:hidden">
+            {[0, 1, 2].map((index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentBanner(index)}
+                className={`rounded-full transition-all duration-300 ${
+                  currentBanner === index 
+                    ? 'bg-white' 
+                    : 'bg-white/30'
+                }`}
+                style={{ width: '12px', height: '12px', minWidth: '12px', minHeight: '12px', maxWidth: '12px', maxHeight: '12px' }}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Continue Playing Section */}
       <section className="py-8 bg-gray-900">
@@ -321,21 +380,21 @@ const HomePage: React.FC = () => {
             <div className="text-center">
               <div className="bg-gray-800 rounded-lg p-4 border border-yellow-500/30">
                 <div className="text-3xl sm:text-4xl font-bold text-yellow-400">{countdown.hours.toString().padStart(2, '0')}</div>
-                <div className="text-sm text-gray-300">Hours</div>
+                <div className="text-sm text-gray-300">Hrs</div>
               </div>
             </div>
             <div className="text-2xl sm:text-3xl text-yellow-400 font-bold">:</div>
             <div className="text-center">
               <div className="bg-gray-800 rounded-lg p-4 border border-yellow-500/30">
                 <div className="text-3xl sm:text-4xl font-bold text-yellow-400">{countdown.minutes.toString().padStart(2, '0')}</div>
-                <div className="text-sm text-gray-300">Minutes</div>
+                <div className="text-sm text-gray-300">Min</div>
               </div>
             </div>
             <div className="text-2xl sm:text-3xl text-yellow-400 font-bold">:</div>
             <div className="text-center">
               <div className="bg-gray-800 rounded-lg p-4 border border-yellow-500/30">
                 <div className="text-3xl sm:text-4xl font-bold text-yellow-400">{countdown.seconds.toString().padStart(2, '0')}</div>
-                <div className="text-sm text-gray-300">Seconds</div>
+                <div className="text-sm text-gray-300">Sec</div>
               </div>
             </div>
           </div>

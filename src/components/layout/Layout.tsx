@@ -549,7 +549,7 @@ const Layout: React.FC = () => {
                   {!isAuthenticated ? (
                       <button onClick={() => openModal('login')} className="flex items-center sm:mr-28 mr-2  space-x-2 px-4 py-2 bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white rounded-lg font-semibold">
                           <User className="w-5 h-5" />
-                          <span className="hidden sm:inline">Login/Sign Up</span>
+                          <span className="hidden sm:inline">Get Started</span>
                       </button>
                   ) : (
                     

@@ -51,6 +51,7 @@ import PromotionalModal from './components/modals/PromotionalModal';
 import TransactionsPage from './pages/payment/TransactionsPage';
 import SettingsPage from './pages/settings/SettingsPage';
 import GetPaidPage from './pages/payment/GetPaidPage';
+import PromotionDetailPage from './pages/PromotionDetailPage';
 
 // Wrapper components to provide onBack function
 const SportsPageWrapper = () => {
@@ -156,6 +157,7 @@ function AppContent() {
             <Route path="transactions" element={<TransactionsPage />} />
             <Route path="settings" element={<SettingsPage />} />
             <Route path="withdraw" element={<GetPaidPage />} />
+            <Route path="promotion/:id" element={<PromotionDetailPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Route>
         </Routes>

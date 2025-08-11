@@ -59,9 +59,9 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   const [isConnecting, setIsConnecting] = useState(false);
 
   // Promotional Modal State
-  const [showPromoModal, setShowPromoModal] = useState(false);
+  const [showPromoModal, setShowPromoModal] = useState(true); // Temporarily set to true to show modal
   const [promoShown, setPromoShown] = useState(false);
-  const [currentAdType, setCurrentAdType] = useState('tournament');
+  const [currentAdType, setCurrentAdType] = useState('vip'); // Set to VIP to show the VIP modal
 
   useEffect(() => {
     const savedAddress = localStorage.getItem('walletAddress');
