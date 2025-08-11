@@ -187,6 +187,16 @@ nav.overflow-y-auto::-webkit-scrollbar-thumb:hover {
   background: transparent !important;
 }
 
+/* Scrollbar hide utility class */
+.scrollbar-hide {
+  -ms-overflow-style: none !important;  /* IE and Edge */
+  scrollbar-width: none !important;  /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none !important;  /* Chrome, Safari, Opera */
+}
+
 /* Mobile-specific styles */
 @media (max-width: 768px) {
   /* Enhanced overflow control for mobile */

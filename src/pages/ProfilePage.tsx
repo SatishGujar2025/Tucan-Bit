@@ -411,7 +411,7 @@ const ProfilePage: React.FC = () => {
         </div>
 
         <div className="mb-8">
-          <div className="flex space-x-2 bg-black/20 p-2 rounded-xl overflow-x-auto">
+          <div className="flex space-x-2 bg-black/20 p-2 rounded-xl overflow-x-auto scrollbar-hide">
             {tabs.map((tab) => (
               <button key={tab.id} onClick={() => setActiveTab(tab.id)} className={`flex-1 flex items-center justify-center space-x-2 py-3 px-4 rounded-lg whitespace-nowrap ${activeTab === tab.id ? 'bg-purple-500' : 'text-gray-400'}`}>
                 <tab.icon className="w-5 h-5" /><span>{tab.label}</span>
@@ -427,7 +427,7 @@ const ProfilePage: React.FC = () => {
               {/* Recent Activity */}
               <div className="bg-black/20 rounded-2xl p-6">
                 <h2 className="text-2xl font-bold text-white mb-6">Recent Activity</h2>
-                <div className="overflow-x-auto">
+                <div className="overflow-x-auto scrollbar-hide">
                     <style>{`
                   @media (max-width: 767px) {
                     .responsive-table td[data-label]::before {
@@ -661,7 +661,7 @@ const ProfilePage: React.FC = () => {
         {/* Transaction History Modal */}
         {showTransactionHistory && (
           <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 ml-44 p-4">
-            <div className="bg-gray-900 rounded-2xl p-6 max-w-6xl w-full max-h-[80vh] overflow-y-auto">
+            <div className="bg-gray-900 rounded-2xl p-6 max-w-6xl w-full max-h-[80vh] overflow-y-auto scrollbar-hide">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-2xl font-bold text-white">Transaction History</h2>
                 <button
@@ -741,7 +741,7 @@ const ProfilePage: React.FC = () => {
                 </div>
               </div>
               
-              <div className="overflow-x-auto">
+                              <div className="overflow-x-auto scrollbar-hide">
                 <table className="w-full">
                   <thead>
                     <tr className="border-b border-gray-700">
@@ -866,7 +866,7 @@ const ProfilePage: React.FC = () => {
         {/* Login History Modal */}
         {showLoginHistory && (
           <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-            <div className="bg-gray-900 rounded-2xl p-6 max-w-4xl w-full max-h-[80vh] overflow-y-auto">
+            <div className="bg-gray-900 rounded-2xl p-6 max-w-4xl w-full max-h-[80vh] overflow-y-auto scrollbar-hide">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-2xl font-bold text-white">Login History</h2>
                 <button

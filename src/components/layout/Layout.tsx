@@ -275,7 +275,7 @@ const Layout: React.FC = () => {
                 </div>
               </>
             )}
-          <nav className={`flex-1 overflow-y-auto ${sidebarExpanded ? 'p-4' : 'p-2'} space-y-1 min-h-0 h-full`}>
+          <nav className={`flex-1 overflow-y-auto ${sidebarExpanded ? 'p-4' : 'p-2'} space-y-1 min-h-0 h-full scrollbar-hide`}>
             <NavLink to="/" onClick={handleLinkClick}   className={({ isActive }) => 
         `${sidebarExpanded ? 'w-full' : 'w-8'} flex items-center ${sidebarExpanded ? 'space-x-3' : 'justify-center'} p-3 rounded-lg transition-colors ${
           isActive 
@@ -519,7 +519,7 @@ const Layout: React.FC = () => {
         {/* 2. HEADER - The top bar with login/user info                         */}
         {/* ====================================================================== */}
       <nav className="sticky top-0 z-50 bg-black/20 backdrop-blur-md border-b border-[#3C1A4F]/20">
-            <div className={`max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 ${promotionalSidebarExpanded ? 'lg:pr-48' : 'lg:pr-8'}`}>
+            <div className={`max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 ${promotionalSidebarExpanded ? 'lg:pr-48' : 'lg:pr-8'} ${sidebarExpanded ? 'lg:ml-64' : 'lg:ml-8'} ${promotionalSidebarExpanded ? 'xl:pr-64' : 'xl:pr-12'}`}>
             <div className="flex items-center justify-between h-16">
                 {/* Mobile Hamburger Button */}
                 <button onClick={() => setSidebarOpen(!sidebarOpen)} className="lg:hidden text-white -ml-2">
@@ -545,11 +545,11 @@ const Layout: React.FC = () => {
                 </div>
                 
                 {/* Right Side: Login/User Info */}
-                <div className="flex items-center space-x-2">
+                <div className="flex items-center space-x-2 ">
                   {!isAuthenticated ? (
-                      <button onClick={() => openModal('login')} className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white rounded-lg font-semibold">
+                      <button onClick={() => openModal('login')} className="flex items-center sm:mr-28 mr-2 lg:mr-64 md:mr-40 space-x-2 px-4 py-2 bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white rounded-lg font-semibold">
                           <User className="w-5 h-5" />
-                          <span className="hidden sm:inline">Login / Sign Up</span>
+                          <span className="hidden sm:inline">Login/Sign Up</span>
                       </button>
                   ) : (
                     
@@ -656,7 +656,7 @@ const Layout: React.FC = () => {
         {/* ====================================================================== */}
         {/* 3. MAIN CONTENT and 4. FOOTER                                        */}
         {/* ====================================================================== */}
-        <main className="pb-16 md:pb-0 overflow-x-hidden max-w-full">
+        <main className={`pb-16 md:pb-0 overflow-x-hidden max-w-full ${promotionalSidebarExpanded ? 'lg:pr-48 xl:pr-64' : 'lg:pr-8 xl:pr-12'}`}>
             <Outlet />
             <div className="hidden md:block">
                 <Footer />

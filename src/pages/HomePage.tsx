@@ -62,7 +62,7 @@ const HomePage: React.FC = () => {
 
   return (
     <>
-       {/* Hero Section - Showcasing the background image */}
+       {/* Hero Section  */}
         <section className="relative overflow-hidden h-[40vh] sm:h-[55vh] min-h-[120px] sm:min-h-[150px] flex items-center">
           <div
             className="absolute inset-0 bg-[url('https://iili.io/FwSX1Xj.png')] bg-cover bg-center "
@@ -112,9 +112,9 @@ const HomePage: React.FC = () => {
               View All →
             </Link>
           </div>
-          <div className="flex overflow-x-auto gap-4 pb-4 sm:grid sm:grid-cols-3 lg:grid-cols-6 sm:overflow-x-visible">
+          <div className="flex overflow-x-auto gap-4 pb-4 scrollbar-hide">
             {featuredGames.slice(0, 6).map((game) => (
-              <div key={game.id} className="flex-shrink-0 w-48 sm:w-auto group relative rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-700 hover:border-green-500/30">
+              <div key={game.id} className="flex-shrink-0 w-48 group relative rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-700 hover:border-green-500/30">
                 <Link to={`/game/${game.id}`}>
                     <div className="relative aspect-[3/2] overflow-hidden">
                     <img src={game.image} alt={game.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
@@ -155,9 +155,9 @@ const HomePage: React.FC = () => {
               View All →
             </Link>
           </div>
-          <div className="flex overflow-x-auto gap-4 pb-4 sm:grid sm:grid-cols-3 lg:grid-cols-5 sm:overflow-x-visible">
+          <div className="flex overflow-x-auto gap-4 pb-4 scrollbar-hide">
             {featuredGames.slice(0, 10).map((game, index) => (
-              <div key={game.id} className="flex-shrink-0 w-48 sm:w-auto group relative rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-700 hover:border-yellow-500/30">
+              <div key={game.id} className="flex-shrink-0 w-48 group relative rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-700 hover:border-yellow-500/30">
                 <Link to={`/game/${game.id}`}>
                     <div className="relative aspect-[3/2] overflow-hidden">
                     <img src={game.image} alt={game.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
@@ -222,32 +222,32 @@ const HomePage: React.FC = () => {
             <p className="text-xl text-white mb-2 drop-shadow-md">Up to 20% Back. No BS. #SometimesLoseAlwaysWin</p>
             <p className="text-lg text-yellow-300 font-semibold drop-shadow-md">Your Next Cashback Drops In</p>
           </div>
-          <div className="flex justify-center items-center space-x-4 sm:space-x-8">
+          <div className="flex justify-center items-center space-x-2 sm:space-x-4 md:space-x-8">
             <div className="text-center">
-              <div className="bg-gray-800 rounded-lg p-4 border border-yellow-500/30">
-                <div className="text-3xl sm:text-4xl font-bold text-yellow-400">{countdown.days.toString().padStart(2, '0')}</div>
-                <div className="text-sm text-gray-300">Days</div>
+              <div className="bg-gray-800 rounded-lg p-2 sm:p-3 md:p-4 border border-yellow-500/30 min-w-[60px] sm:min-w-[80px] md:min-w-[100px]">
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-yellow-400 leading-none">{countdown.days.toString().padStart(2, '0')}</div>
+                <div className="text-xs sm:text-sm text-gray-300 mt-1">Days</div>
               </div>
             </div>
-            <div className="text-2xl sm:text-3xl text-yellow-400 font-bold">:</div>
+            <div className="text-xl sm:text-2xl md:text-3xl text-yellow-400 font-bold">:</div>
             <div className="text-center">
-              <div className="bg-gray-800 rounded-lg p-4 border border-yellow-500/30">
-                <div className="text-3xl sm:text-4xl font-bold text-yellow-400">{countdown.hours.toString().padStart(2, '0')}</div>
-                <div className="text-sm text-gray-300">Hours</div>
+              <div className="bg-gray-800 rounded-lg p-2 sm:p-3 md:p-4 border border-yellow-500/30 min-w-[60px] sm:min-w-[80px] md:min-w-[100px]">
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-yellow-400 leading-none">{countdown.hours.toString().padStart(2, '0')}</div>
+                <div className="text-xs sm:text-sm text-gray-300 mt-1">Hours</div>
               </div>
             </div>
-            <div className="text-2xl sm:text-3xl text-yellow-400 font-bold">:</div>
+            <div className="text-xl sm:text-2xl md:text-3xl text-yellow-400 font-bold">:</div>
             <div className="text-center">
-              <div className="bg-gray-800 rounded-lg p-4 border border-yellow-500/30">
-                <div className="text-3xl sm:text-4xl font-bold text-yellow-400">{countdown.minutes.toString().padStart(2, '0')}</div>
-                <div className="text-sm text-gray-300">Minutes</div>
+              <div className="bg-gray-800 rounded-lg p-2 sm:p-3 md:p-4 border border-yellow-500/30 min-w-[60px] sm:min-w-[80px] md:min-w-[100px]">
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-yellow-400 leading-none">{countdown.minutes.toString().padStart(2, '0')}</div>
+                <div className="text-xs sm:text-sm text-gray-300 mt-1">Minutes</div>
               </div>
             </div>
-            <div className="text-2xl sm:text-3xl text-yellow-400 font-bold">:</div>
+            <div className="text-xl sm:text-2xl md:text-3xl text-yellow-400 font-bold">:</div>
             <div className="text-center">
-              <div className="bg-gray-800 rounded-lg p-4 border border-yellow-500/30">
-                <div className="text-3xl sm:text-4xl font-bold text-yellow-400">{countdown.seconds.toString().padStart(2, '0')}</div>
-                <div className="text-sm text-gray-300">Seconds</div>
+              <div className="bg-gray-800 rounded-lg p-2 sm:p-3 md:p-4 border border-yellow-500/30 min-w-[60px] sm:min-w-[80px] md:min-w-[100px]">
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-yellow-400 leading-none">{countdown.seconds.toString().padStart(2, '0')}</div>
+                <div className="text-xs sm:text-sm text-gray-300 mt-1">Seconds</div>
               </div>
             </div>
           </div>
@@ -266,9 +266,9 @@ const HomePage: React.FC = () => {
               View All →
             </Link>
           </div>
-          <div className="flex overflow-x-auto gap-4 pb-4 sm:grid sm:grid-cols-3 lg:grid-cols-6 sm:overflow-x-visible">
+          <div className="flex overflow-x-auto gap-4 pb-4 scrollbar-hide">
             {featuredGames.slice(0, 6).map((game) => (
-              <div key={game.id} className="flex-shrink-0 w-48 sm:w-auto group relative rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-700 hover:border-yellow-500/30">
+              <div key={game.id} className="flex-shrink-0 w-48 group relative rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-700 hover:border-yellow-500/30">
                 <Link to={`/game/${game.id}`}>
                     <div className="relative aspect-[3/2] overflow-hidden">
                     <img src={game.image} alt={game.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
@@ -315,9 +315,9 @@ const HomePage: React.FC = () => {
               View All →
             </Link>
           </div>
-          <div className="flex overflow-x-auto gap-4 pb-4 sm:grid sm:grid-cols-3 lg:grid-cols-6 sm:overflow-x-visible">
+          <div className="flex overflow-x-auto gap-4 pb-4 scrollbar-hide">
             {featuredGames.slice(6, 12).map((game) => (
-              <div key={game.id} className="flex-shrink-0 w-48 sm:w-auto group relative rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-700 hover:border-yellow-500/30">
+              <div key={game.id} className="flex-shrink-0 w-48 group relative rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-700 hover:border-yellow-500/30">
                 <Link to={`/game/${game.id}`}>
                     <div className="relative aspect-[3/2] overflow-hidden">
                     <img src={game.image} alt={game.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
@@ -489,9 +489,9 @@ const HomePage: React.FC = () => {
               View All →
             </Link>
           </div>
-          <div className="flex overflow-x-auto gap-4 pb-4 sm:grid sm:grid-cols-3 lg:grid-cols-6 sm:overflow-x-visible">
+          <div className="flex overflow-x-auto gap-4 pb-4 scrollbar-hide">
             {featuredGames.slice(6, 12).map((game) => (
-              <div key={game.id} className="flex-shrink-0 w-48 sm:w-auto group relative rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-700 hover:border-yellow-500/30">
+              <div key={game.id} className="flex-shrink-0 w-48 group relative rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-700 hover:border-yellow-500/30">
                 <Link to={`/game/${game.id}`}>
                     <div className="relative aspect-[3/2] overflow-hidden">
                     <img src={game.image} alt={game.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
@@ -532,9 +532,9 @@ const HomePage: React.FC = () => {
               View All →
             </Link>
           </div>
-          <div className="flex overflow-x-auto gap-4 pb-4 sm:grid sm:grid-cols-3 lg:grid-cols-6 sm:overflow-x-visible">
+          <div className="flex overflow-x-auto gap-4 pb-4 scrollbar-hide">
             {featuredGames.slice(12, 18).map((game) => (
-              <div key={game.id} className="flex-shrink-0 w-48 sm:w-auto group relative rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-700 hover:border-yellow-500/30">
+              <div key={game.id} className="flex-shrink-0 w-48 group relative rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-700 hover:border-yellow-500/30">
                 <Link to={`/game/${game.id}`}>
                     <div className="relative aspect-[3/2] overflow-hidden">
                     <img src={game.image} alt={game.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
@@ -575,9 +575,9 @@ const HomePage: React.FC = () => {
               View All →
             </Link>
           </div>
-          <div className="flex overflow-x-auto gap-4 pb-4 sm:grid sm:grid-cols-3 lg:grid-cols-6 sm:overflow-x-visible">
+          <div className="flex overflow-x-auto gap-4 pb-4 scrollbar-hide">
             {featuredGames.slice(18, 24).map((game) => (
-              <div key={game.id} className="flex-shrink-0 w-48 sm:w-auto group relative rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-700 hover:border-yellow-500/30">
+              <div key={game.id} className="flex-shrink-0 w-48 group relative rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-700 hover:border-yellow-500/30">
                 <Link to={`/game/${game.id}`}>
                     <div className="relative aspect-[3/2] overflow-hidden">
                     <img src={game.image} alt={game.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />

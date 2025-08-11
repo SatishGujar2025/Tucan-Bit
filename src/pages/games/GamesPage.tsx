@@ -349,7 +349,8 @@ const GamesPage: React.FC<{ onBack: () => void }> = ({ onBack }) => {
           </div>
 
           {/* Hero Banner */}
-          <div className="relative mb-8 overflow-hidden rounded-xl bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-600 p-8">
+          <div className="relative mb-8 overflow-hidden rounded-xl bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-600 p-8" style={{ backgroundImage: `url(${g1})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+            <div className="absolute inset-0 bg-gradient-to-r from-purple-600/80 via-blue-600/80 to-cyan-600/80"></div>
             <div className="relative z-10">
               <h2 className="text-4xl font-bold mb-4">PLAY THE BEST GAMES</h2>
               <p className="text-xl text-gray-200 mb-6">
@@ -375,7 +376,7 @@ const GamesPage: React.FC<{ onBack: () => void }> = ({ onBack }) => {
           {/* Game Categories */}
           <div className="mb-8">
             <h3 className="text-2xl font-bold mb-6">Game Categories</h3>
-            <div className="flex overflow-x-auto gap-4 pb-4 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-6 md:overflow-x-visible">
+            <div className="flex overflow-x-auto gap-4 pb-4 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-6 md:overflow-x-visible scrollbar-hide">
               {gameCategories.map((category) => (
                 <div
                   key={category.id}
