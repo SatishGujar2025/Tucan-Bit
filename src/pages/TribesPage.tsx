@@ -245,7 +245,7 @@ const TribesPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900">
+    <div className="page-content min-h-screen bg-gray-900">
       {/* Hero Section */}
       <section className="relative overflow-hidden py-20 bg-gradient-to-br from-gray-800 to-gray-900">
         {/* Background Image */}

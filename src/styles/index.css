@@ -35,6 +35,164 @@ div, section, article, aside, nav, header, footer, main {
   overflow-x: hidden;
 }
 
+/* Enhanced responsive design for middle content pages */
+.page-content {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* Ensure game cards don't overflow when sidebar is collapsed */
+.flex.overflow-x-auto.gap-4 {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.flex.overflow-x-auto.gap-4 .flex-shrink-0 {
+  max-width: calc(100vw - 2rem);
+}
+
+/* Prevent horizontal overflow on all game sections */
+section .flex.overflow-x-auto {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+/* Ensure all game cards respect container width */
+.flex-shrink-0.w-48 {
+  max-width: calc(100vw - 2rem);
+  min-width: 192px; /* w-48 = 12rem = 192px */
+}
+
+/* Specific fixes for game card containers */
+.flex.overflow-x-auto.gap-4.pb-4 {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 1rem;
+}
+
+/* Ensure game cards don't cause horizontal overflow */
+.flex.overflow-x-auto.gap-4.pb-4 .flex-shrink-0 {
+  max-width: calc(100vw - 2rem);
+  min-width: 192px;
+}
+
+/* Additional fixes for sidebar collapsed state */
+@media (min-width: 1024px) {
+  /* When sidebar is collapsed, ensure content doesn't overflow */
+  .lg\:ml-8 ~ .page-content {
+    max-width: calc(100vw - 2rem);
+    overflow-x: hidden;
+  }
+  
+  /* Ensure game sections don't overflow when sidebar is collapsed */
+  .lg\:ml-8 ~ .page-content section {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  
+  /* Ensure game card containers don't overflow */
+  .lg\:ml-8 ~ .page-content .flex.overflow-x-auto {
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+}
+
+.page-content > * {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Specific fixes for homepage sections */
+.page-content section {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+.page-content section > div {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Countdown timer responsive fixes */
+.page-content .flex.justify-center.items-center {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.page-content .flex.justify-center.items-center > * {
+  flex-shrink: 0;
+}
+
+/* Ongoing tribes responsive fixes */
+.page-content .flex.flex-col.lg\\:flex-row {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.page-content .flex.flex-col.lg\\:flex-row > * {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Responsive container classes */
+.responsive-container {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.responsive-container > * {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Section responsive fixes */
+section {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+section > div {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Flex container responsive fixes */
+.flex {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.flex > * {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Grid container responsive fixes */
+.grid {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.grid > * {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 /* Allow horizontal scrolling for game containers on all screen sizes */
 .flex.overflow-x-auto {
   overflow-x: auto !important;
@@ -55,17 +213,29 @@ div, section, article, aside, nav, header, footer, main {
 #main-content {
   position: relative;
   z-index: 10;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 /* Additional spacing for collapsed sidebar state */
 @media (min-width: 1024px) {
   #main-content {
-    margin-left: 4rem !important; /* 64px when sidebar is collapsed */
+    margin-left: 2rem !important; /* 32px when sidebar is collapsed (w-8) */
   }
   
   /* When sidebar is expanded */
   #main-content.sidebar-expanded {
-    margin-left: 16rem !important; /* 256px when sidebar is expanded */
+    margin-left: 16rem !important; /* 256px when sidebar is expanded (w-64) */
+  }
+  
+  /* Ensure content doesn't overflow when sidebar is collapsed */
+  .lg\:ml-8 {
+    margin-left: 2rem !important;
+  }
+  
+  .lg\:ml-64 {
+    margin-left: 16rem !important;
   }
 }
 
@@ -204,6 +374,68 @@ nav.overflow-y-auto::-webkit-scrollbar-thumb:hover {
     overflow-x: hidden !important;
     max-width: 100vw !important;
     width: 100% !important;
+  }
+  
+  /* Enhanced responsive design for middle content pages on mobile */
+  .page-content {
+    width: 100% !important;
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  
+  .page-content > * {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+  }
+  
+  .responsive-container {
+    width: 100% !important;
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  
+  .responsive-container > * {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+  }
+  
+  /* Enhanced section responsive fixes for mobile */
+  section {
+    width: 100% !important;
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+  }
+  
+  section > div {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+  }
+  
+  /* Enhanced flex container responsive fixes for mobile */
+  .flex {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+  }
+  
+  .flex > * {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+  }
+  
+  /* Enhanced grid container responsive fixes for mobile */
+  .grid {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+  }
+  
+  .grid > * {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
   }
   
   /* Prevent any horizontal scrolling */

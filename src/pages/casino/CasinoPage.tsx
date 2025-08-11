@@ -14,7 +14,7 @@ const CasinoPage: React.FC = () => {
   return (
     // This div contains all the content unique to the casino page.
     // It will be placed inside the <main> tag of your Layout.
-    <div className="p-6 bg-gray-900">
+    <div className="page-content p-6 bg-gray-900">
       <Header />
       <SearchBar />
       

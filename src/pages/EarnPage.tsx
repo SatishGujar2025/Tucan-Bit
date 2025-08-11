@@ -334,7 +334,7 @@ const EarnPage: React.FC<EarnPageProps> = ({ onNavigate }) => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800">
+    <div className="page-content min-h-screen bg-gradient-to-b from-gray-900 to-gray-800">
    
 
  

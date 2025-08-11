@@ -105,7 +105,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ onClose, onVisaClick }) => 
                 <div className="relative">
                   <button
                     onClick={() => setIsCurrencyOpen(!isCurrencyOpen)}
-                    className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 text-left text-white flex items-center justify-between hover:border-gray-500 transition-colors duration-200"
+                    className="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-left text-white flex items-center justify-between hover:border-gray-500 transition-colors duration-200"
                   >
                     <div className="flex items-center gap-3">
                       <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-white text-xs font-bold">
@@ -146,7 +146,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ onClose, onVisaClick }) => 
                 <div className="relative">
                   <button
                     onClick={() => setIsNetworkOpen(!isNetworkOpen)}
-                    className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 text-left text-white flex items-center justify-between hover:border-gray-500 transition-colors duration-200"
+                    className="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-left text-white flex items-center justify-between hover:border-gray-500 transition-colors duration-200"
                   >
                     <span>{selectedNetwork}</span>
                     <ChevronDown size={16} className="text-gray-400" />
@@ -185,11 +185,11 @@ const DepositModal: React.FC<DepositModalProps> = ({ onClose, onVisaClick }) => 
                 </p>
 
                 {/* QR Code and Logo Overlay */}
-                <div className="relative bg-white p-4 rounded-lg w-fit mx-auto">
+                <div className="relative bg-white p-3 rounded-lg w-fit mx-auto">
                   {/* The QR Code itself */}
                   <QRCode
                     value={depositAddress}
-                    size={160}
+                    size={120}
                     bgColor="#FFFFFF"
                     fgColor="#000000"
                     level="H" // Set high error correction for better scannability with logo
@@ -198,14 +198,14 @@ const DepositModal: React.FC<DepositModalProps> = ({ onClose, onVisaClick }) => 
                   <img
                     src={logoUrl}
                     alt="logo"
-                    className="absolute top-1/2 left-1/2 h-10 w-10 -translate-x-1/2 -translate-y-1/2 bg-white p-1 rounded-md"
+                    className="absolute top-1/2 left-1/2 h-8 w-8 -translate-x-1/2 -translate-y-1/2 bg-white p-1 rounded-md"
                   />
                 </div>
 
                 {/* Warning */}
-                <div className="bg-yellow-500 bg-opacity-10 border border-yellow-500 border-opacity-30 rounded-lg p-4 flex items-start gap-3">
-                  <AlertTriangle size={16} className="text-yellow-500 mt-0.5 flex-shrink-0" />
-                  <p className="text-yellow-400 text-sm">
+                <div className="bg-yellow-500 bg-opacity-10 border border-yellow-500 border-opacity-30 rounded-lg p-3 flex items-start gap-2">
+                  <AlertTriangle size={14} className="text-yellow-500 mt-0.5 flex-shrink-0" />
+                  <p className="text-yellow-400 text-xs">
                     Please carefully check the deposit wallet address!
                   </p>
                 </div>
@@ -222,7 +222,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ onClose, onVisaClick }) => 
                 <div className="relative">
                   <button
                     onClick={() => setIsCurrencyOpen(!isCurrencyOpen)}
-                    className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 text-left text-white flex items-center justify-between hover:border-gray-500 transition-colors duration-200"
+                    className="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-left text-white flex items-center justify-between hover:border-gray-500 transition-colors duration-200"
                   >
                     <div className="flex items-center gap-3">
                       <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-white text-xs font-bold">
@@ -263,7 +263,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ onClose, onVisaClick }) => 
                 <div className="relative">
                   <button
                     onClick={() => setIsNetworkOpen(!isNetworkOpen)}
-                    className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 text-left text-white flex items-center justify-between hover:border-gray-500 transition-colors duration-200"
+                    className="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-left text-white flex items-center justify-between hover:border-gray-500 transition-colors duration-200"
                   >
                     <span>{selectedNetwork}</span>
                     <ChevronDown size={16} className="text-gray-400" />
@@ -311,7 +311,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ onClose, onVisaClick }) => 
                     value={withdrawAddress}
                     onChange={(e) => setWithdrawAddress(e.target.value)}
                     placeholder="Enter your address"
-                    className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-blue-500 focus:outline-none transition-colors duration-200"
+                    className="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white placeholder-gray-400 focus:border-blue-500 focus:outline-none transition-colors duration-200"
                   />
                 </div>
 
@@ -365,9 +365,9 @@ const DepositModal: React.FC<DepositModalProps> = ({ onClose, onVisaClick }) => 
                 </button>
 
                 {/* Warning */}
-                <div className="bg-yellow-500 bg-opacity-10 border border-yellow-500 border-opacity-30 rounded-lg p-4 flex items-start gap-3">
-                  <AlertTriangle size={16} className="text-yellow-500 mt-0.5 flex-shrink-0" />
-                  <p className="text-yellow-400 text-sm">
+                <div className="bg-yellow-500 bg-opacity-10 border border-yellow-500 border-opacity-30 rounded-lg p-3 flex items-start gap-2">
+                  <AlertTriangle size={14} className="text-yellow-500 mt-0.5 flex-shrink-0" />
+                  <p className="text-yellow-400 text-xs">
                     We are not supporting memo!
                   </p>
                 </div>

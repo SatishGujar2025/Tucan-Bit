@@ -396,7 +396,7 @@ const PromotionalSidebar: React.FC<PromotionalSidebarProps> = ({ isExpanded, set
       {/* Tournament Rules Modal - Mobile responsive */}
       {showTournamentRules && (
         <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-[100] p-2 sm:p-4">
-          <div className="bg-gray-800 border border-gray-700 rounded-xl p-4 sm:p-6 max-w-2xl w-full max-h-[80vh] overflow-y-auto">
+          <div className="bg-gray-800 border border-gray-700 rounded-xl p-4 sm:p-6 w-full max-w-md sm:max-w-2xl lg:max-w-4xl max-h-[80vh] overflow-y-auto">
             <div className="flex items-center justify-between mb-4 sm:mb-6">
               <h3 className="text-lg sm:text-xl font-bold text-white">Tournament Rules</h3>
               <button 

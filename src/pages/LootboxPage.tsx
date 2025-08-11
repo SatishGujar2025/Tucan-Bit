@@ -122,8 +122,7 @@ const LootboxPage: React.FC = () => {
   };
 
   return (
-    <>
-      <div className="text-white bg-gray-900">
+    <div className="page-content text-white bg-gray-900">
         {/* Main Content Area */}
         <div className="px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex items-center justify-between mb-6">
@@ -217,23 +216,18 @@ const LootboxPage: React.FC = () => {
           {showPreview && selectedLootbox && (
             <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
               <div className="bg-gray-800 border border-gray-700 rounded-xl p-6 max-w-md w-full">
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-xl font-bold">Preview: {selectedLootbox.name}</h3>
-                  <button onClick={() => setShowPreview(false)} className="text-gray-400 hover:text-white">✕</button>
+              <div className="text-center mb-4">
+                <div className="text-6xl mb-4">{selectedLootbox.image}</div>
+                <h3 className="text-xl font-bold text-white mb-2">{selectedLootbox.name}</h3>
+                <p className="text-gray-300 mb-4">{selectedLootbox.description}</p>
+                <div className="text-2xl font-bold text-yellow-400 mb-4">{selectedLootbox.currency} {selectedLootbox.price.toFixed(4)}</div>
                 </div>
-                <div className="text-center mb-6">
-                  <div className={`${selectedLootbox.color} rounded-xl p-8 mb-4`}>
-                    <div className="text-6xl mb-2">{selectedLootbox.image}</div>
-                    <h4 className="text-xl font-bold">{selectedLootbox.name}</h4>
-                    <p className="text-sm opacity-90">{selectedLootbox.description}</p>
-                  </div>
-                </div>
-                <div className="mb-6">
-                  <h4 className="font-bold mb-3">Possible Contents:</h4>
-                  <ul className="space-y-2">
+              <div className="mb-4">
+                <h4 className="text-sm font-semibold text-white mb-2">Contents:</h4>
+                <ul className="space-y-1">
                     {selectedLootbox.contents.map((content, index) => (
-                      <li key={index} className="flex items-center space-x-2 text-gray-300">
-                        <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                    <li key={index} className="text-sm text-gray-300 flex items-center">
+                      <span className="text-green-400 mr-2">✓</span>
                         <span>{content}</span>
                       </li>
                     ))}
@@ -246,7 +240,6 @@ const LootboxPage: React.FC = () => {
               </div>
             </div>
           )}
-        </div>
       </div>
 
       {/* FAQ Section */}
@@ -329,7 +322,7 @@ const LootboxPage: React.FC = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

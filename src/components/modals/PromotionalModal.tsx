@@ -186,7 +186,7 @@ const PromotionalModal: React.FC<PromotionalModalProps> = ({ isOpen, onClose, ad
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
-      <div className={`relative bg-gradient-to-br ${promotionData.bgGradient} rounded-2xl p-4 max-w-md w-full mx-4 border border-gray-600/30 shadow-2xl overflow-hidden`}>
+      <div className={`relative bg-gradient-to-br ${promotionData.bgGradient} rounded-xl p-3 max-w-xs w-full mx-4 border border-gray-600/30 shadow-2xl overflow-hidden`}>
         {/* Close button - Mobile responsive */}
         <button
           onClick={onClose}
@@ -197,8 +197,8 @@ const PromotionalModal: React.FC<PromotionalModalProps> = ({ isOpen, onClose, ad
         
         <div className="text-center relative">
           {/* Promotional Image - Reduced height */}
-          <div className="relative mb-4">
-            <div className="w-full h-32 rounded-xl overflow-hidden border border-gray-600/30">
+          <div className="relative mb-3">
+            <div className="w-full h-20 rounded-lg overflow-hidden border border-gray-600/30">
               <img 
                 src={sidebarPromo} 
                 alt="Promotion" 
@@ -223,28 +223,28 @@ const PromotionalModal: React.FC<PromotionalModalProps> = ({ isOpen, onClose, ad
           </div>
 
           {/* Title and Description - Simplified */}
-          <h2 className="text-xl font-bold text-white mb-2">
+          <h2 className="text-base font-bold text-white mb-2">
             {promotionData.title}
           </h2>
           
-          <div className="bg-white/10 rounded-xl p-3 mb-4 border border-white/20">
-            <h3 className="text-white text-base font-semibold mb-1">
+          <div className="bg-white/10 rounded-lg p-2 mb-3 border border-white/20">
+            <h3 className="text-white text-sm font-semibold mb-1">
               {promotionData.subtitle}
             </h3>
-            <p className="text-gray-200 text-sm">
+            <p className="text-gray-200 text-xs">
               {promotionData.description}
             </p>
           </div>
           
           {/* Benefits - Compact */}
-          <div className="space-y-2 mb-4">
+          <div className="space-y-1 mb-3">
             {promotionData.benefits.map((benefit, index) => (
-              <div key={index} className="flex items-center justify-between text-white bg-white/10 p-3 rounded-xl border border-white/20">
-                <span className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-400" />
-                  <span className="font-medium text-sm">{benefit.text}</span>
+              <div key={index} className="flex items-center justify-between text-white bg-white/10 p-2 rounded-lg border border-white/20">
+                <span className="flex items-center gap-1">
+                  <CheckCircle className="w-3 h-3 text-green-400" />
+                  <span className="font-medium text-xs">{benefit.text}</span>
                 </span>
-                <span className="font-bold text-base text-yellow-400">
+                <span className="font-bold text-sm text-yellow-400">
                   {benefit.value}
                 </span>
               </div>
@@ -252,8 +252,8 @@ const PromotionalModal: React.FC<PromotionalModalProps> = ({ isOpen, onClose, ad
           </div>
           
           {/* Limited time offer - Compact */}
-          <div className="bg-gradient-to-r from-red-600 to-red-500 p-3 rounded-xl mb-4 border border-red-500/30">
-            <p className="text-white font-bold text-sm mb-1">
+          <div className="bg-gradient-to-r from-red-600 to-red-500 p-2 rounded-lg mb-3 border border-red-500/30">
+            <p className="text-white font-bold text-xs mb-1">
               ⏰ LIMITED TIME OFFER
             </p>
             <p className="text-white/90 text-xs">
@@ -265,21 +265,21 @@ const PromotionalModal: React.FC<PromotionalModalProps> = ({ isOpen, onClose, ad
           <div className="flex gap-2">
             <button
               onClick={handleClaimNow}
-              className="flex-1 bg-gradient-to-r from-green-600 to-green-500 text-white py-3 px-4 rounded-xl font-bold hover:from-green-500 hover:to-green-400 transition-all duration-300 transform hover:scale-105 shadow-lg border-2 border-green-500/30 flex items-center justify-center space-x-2"
+              className="flex-1 bg-gradient-to-r from-green-600 to-green-500 text-white py-2 px-3 rounded-lg font-bold hover:from-green-500 hover:to-green-400 transition-all duration-300 transform hover:scale-105 shadow-lg border-2 border-green-500/30 flex items-center justify-center space-x-1"
             >
-              <CheckCircle className="w-4 h-4" />
-              <span className="text-sm">Claim Now!</span>
+              <CheckCircle className="w-3 h-3" />
+              <span className="text-xs">Claim Now!</span>
             </button>
             <button
               onClick={handleMaybeLater}
-              className="flex-1 bg-gradient-to-r from-gray-600 to-gray-700 text-white py-3 px-4 rounded-xl font-semibold hover:from-gray-500 hover:to-gray-600 transition-all duration-300 transform hover:scale-105 shadow-lg border-2 border-gray-500/30 flex items-center justify-center space-x-2"
+              className="flex-1 bg-gradient-to-r from-gray-600 to-gray-700 text-white py-2 px-3 rounded-lg font-semibold hover:from-gray-500 hover:to-gray-600 transition-all duration-300 transform hover:scale-105 shadow-lg border-2 border-gray-500/30 flex items-center justify-center space-x-1"
             >
-              <Clock className="w-4 h-4" />
-              <span className="text-sm">Later</span>
+              <Clock className="w-3 h-3" />
+              <span className="text-xs">Later</span>
             </button>
           </div>
           
-          <p className="text-gray-300 text-xs mt-3">
+          <p className="text-gray-300 text-xs mt-2">
             *Terms and conditions apply
           </p>
         </div>

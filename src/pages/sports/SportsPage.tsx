@@ -240,7 +240,7 @@ const SportsPage: React.FC<{ onBack: () => void }> = ({ onBack }) => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
+    <div className="page-content min-h-screen bg-gray-900 text-white">
     
       {/* className={`lg:ml-64 ${sidebarOpen ? 'ml-64' : ''} lg:mr-80`} */}
       {/* Main Content */}
@@ -255,7 +255,7 @@ const SportsPage: React.FC<{ onBack: () => void }> = ({ onBack }) => {
                 </span>
               )}
             </button> */}
-      <div  className='flex-1 lg:mr-64'>
+      <div className="responsive-container flex-1 lg:mr-64">
       
 
         {/* Featured Events Carousel */}

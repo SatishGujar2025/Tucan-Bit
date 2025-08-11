@@ -313,7 +313,7 @@ const GamesPage: React.FC<{ onBack: () => void }> = ({ onBack }) => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
+    <div className="page-content min-h-screen bg-gray-900 text-white">
   
 
       {/* Mobile Menu Button */}
@@ -327,7 +327,7 @@ const GamesPage: React.FC<{ onBack: () => void }> = ({ onBack }) => {
       </button> */}
 
       {/* Main Content */}
-      <div >
+      <div className="responsive-container">
         {/* Header */}
         <div className=" px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex items-center justify-between mb-6">

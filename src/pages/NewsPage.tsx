@@ -108,7 +108,7 @@ const NewsPage: React.FC = () => {
   const featuredArticles = newsArticles.filter(article => article.featured);
 
   return (
-    <div className="p-6 bg-gray-900">
+    <div className="page-content p-6 bg-gray-900">
       <div>
         {/* Back Button */}
         <button

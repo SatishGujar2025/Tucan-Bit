@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Play, Wallet, User, Gamepad2, ShieldCheck, Bitcoin, Gem, Zap, Star, Trophy, Gift, Crown } from 'lucide-react';
+import { Play, User, Gamepad2, ShieldCheck, Bitcoin, Gem, Zap, Star, Trophy, Gift, Crown } from 'lucide-react';
 import { useAppContext } from '../context/AppContext';
 import { getAllGames } from '../utils/gameUtils';
 import pokerTableBg from '../assets/group-young-players-are-posing-poker-table-casino.avif';
 import ongoingTribesBg from '../assets/ongoing_tribes.jpeg';
+import h1 from '../assets/h1.jpg';
+import h2 from '../assets/h2.jpg';
+import h3 from '../assets/h3.jpg';
+
+
 
 // This component is now only responsible for the home page content.
 const HomePage: React.FC = () => {
-  const { walletAddress, openModal } = useAppContext();
   
   // Countdown timer state
   const [countdown, setCountdown] = useState({
@@ -61,51 +65,135 @@ const HomePage: React.FC = () => {
   }, []);
 
   return (
-    <>
-       {/* Hero Section  */}
-        <section className="relative overflow-hidden h-[40vh] sm:h-[55vh] min-h-[120px] sm:min-h-[150px] flex items-center">
-          <div
-            className="absolute inset-0 bg-[url('https://iili.io/FwSX1Xj.png')] bg-cover bg-center "
-            style={{ backgroundPosition: 'center 30%' }}
-          >
-            <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/70 to-transparent"></div>
-            <div className="absolute inset-0 bg-gradient-to-r from-gray-900/80 to-gray-900/30"></div>
+    <div className="page-content max-w-full overflow-x-hidden">
+       {/* Hero Section - Three Promotional Banners */}
+      <section className="py-8 bg-gray-900 overflow-hidden">
+        <div className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 h-64">
+            {/* WELCOME GIFT - FREE Lootbox Banner */}
+            <div className="relative bg-gradient-to-br from-orange-500/20 to-red-500/20 rounded-xl p-6 border-none transition-all duration-300 max-w-full">
+            <div 
+  className="absolute inset-0 bg-cover bg-center rounded-xl" 
+  style={{ backgroundImage: `url(${h1})` }}
+>
+</div>
+              {/* <div className="absolute inset-0 bg-gradient-to-br from-orange-500/80 to-red-500/80 rounded-xl"></div> */}
+              <div className="absolute top-2 right-2 w-12 h-12 bg-gradient-to-br from-orange-400 to-red-500 rounded-full blur-lg opacity-30 group-hover:opacity-50 transition-opacity"></div>
+              {/* <div className="relative z-10">
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-sm font-semibold text-orange-400 uppercase tracking-wide">Welcome Gift</h3>
+                  <div className="w-8 h-8 bg-gradient-to-br from-orange-400 to-red-500 rounded-full flex items-center justify-center">
+                    <Gift className="w-4 h-4 text-white" />
+                  </div>
+                </div>
+                <h2 className="text-2xl font-bold text-white mb-2">FREE Lootbox</h2>
+                <p className="text-sm text-gray-300 mb-4">Unbox Your First Bonus. Start Strong!</p>
+                <div className="flex justify-center mb-4">
+                  <div className="relative">
+                    <div className="w-20 h-20 bg-gradient-to-br from-orange-400 to-red-500 rounded-lg flex items-center justify-center shadow-lg">
+                      <Gift className="w-10 h-10 text-white" />
+                    </div>
+                    <div className="absolute -top-2 -right-2 w-6 h-6 bg-yellow-400 rounded-full flex items-center justify-center">
+                      <span className="text-xs font-bold text-gray-900">$</span>
+                    </div>
+                  </div>
+                </div>
+                <Link
+                  to="/lootbox"
+                  className="block w-full bg-gradient-to-r from-orange-500 to-red-500 text-white text-center py-2 rounded-lg font-semibold hover:from-orange-600 hover:to-red-600 transition-all duration-200 text-sm"
+                >
+                  Claim Now
+                </Link>
+              </div> */}
           </div>
 
-          <div className="relative p-4 sm:p-6 w-full">
-            <div className="text-center md:text-left max-w-2xl mx-auto md:mx-0">
-              <h1 className="text-2xl sm:text-4xl md:text-6xl font-bold text-white mb-3 sm:mb-6 leading-tight">
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-orange-500">TucanBit</span> Crypto Casino
-              </h1>
-              <p className="text-sm sm:text-xl text-gray-300 mb-4 sm:mb-8">
-                The most thrilling crypto gambling experience with instant payouts, provably fair games, and exclusive bonuses.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start">
+            {/* DAILY REWARDS - UP TO 20% CASHBACK Banner */}
+            <div className="relative bg-gradient-to-br from-yellow-500/20 to-orange-500/20 rounded-xl p-6 border-none overflow-hidden group hover:border-yellow-400/50 transition-all duration-300 max-w-full">
+             <div 
+  className="absolute inset-0 bg-cover bg-center rounded-xl" 
+  style={{ backgroundImage: `url(${h2})` }}
+>
+</div>
+              {/* <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/80 to-orange-500/80 rounded-xl"></div> */}
+              <div className="absolute top-2 right-2 w-12 h-12 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full blur-lg opacity-30 group-hover:opacity-50 transition-opacity"></div>
+              {/* <div className="relative z-10">
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-sm font-semibold text-yellow-400 uppercase tracking-wide">Daily Rewards</h3>
+                  <div className="w-8 h-8 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center">
+                    <Zap className="w-4 h-4 text-white" />
+                  </div>
+                </div>
+                <div className="text-center mb-4">
+               
+                  <h2 className="text-lg font-bold text-white mb-1">UP TO 20% CASHBACK</h2>
+                  <p className="text-xs text-yellow-300 font-semibold">#SometimesLoseAlwaysWin</p>
+                </div>
+                <div className="flex justify-center mb-4">
+                  <div className="w-20 h-20 bg-gradient-to-br from-green-400 to-blue-500 rounded-full flex items-center justify-center shadow-lg">
+                    <div className="w-18 h-18 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center">
+                      <span className="text-lg font-bold text-white">20%</span>
+                    </div>
+                  </div>
+                </div>
                 <Link
-                  to="/game-lobby"
-                  className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-xl font-semibold text-sm sm:text-base hover:from-yellow-600 hover:to-orange-600 transform hover:scale-105 transition-all duration-200 flex items-center justify-center space-x-1 sm:space-x-2 shadow-lg w-40 sm:w-auto mx-auto sm:mx-0"
+                  to="/earn"
+                  className="block w-full bg-gradient-to-r from-yellow-500 to-orange-500 text-white text-center py-2 rounded-lg font-semibold hover:from-yellow-600 hover:to-orange-600 transition-all duration-200 text-sm"
                 >
-                  <Play className="w-4 h-4 sm:w-5 sm:h-5" />
-                  <span>Play Now</span>
+                  Get Cashback
                 </Link>
-                 <button
-                onClick={() => openModal('walletConnect')}
-                className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-xl font-semibold text-sm sm:text-base hover:bg-white/20 flex items-center justify-center space-x-1 sm:space-x-2 w-40 sm:w-auto mx-auto sm:mx-0"
-              >
-                <Wallet className="w-4 h-4 sm:w-5 sm:h-5" />
-                <span>{walletAddress ? `${walletAddress.slice(0, 6)}...` : 'Connect Wallet'}</span>
-              </button>
+              </div> */}
+            </div>
+
+            {/* WHALE TOURNAMENT - Live Stakes Banner */}
+            <div className="relative bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-xl p-6 border border-orange-500/30 overflow-hidden group hover:border-orange-400/50 transition-all duration-300 max-w-full">
+           <div 
+  className="absolute inset-0 bg-cover bg-center rounded-xl" 
+  style={{ backgroundImage: `url(${h3})` }}
+>
+</div>
+
+              <div className="absolute top-2 right-2 w-12 h-12 bg-gradient-to-br from-blue-400 to-purple-500 border border-orange-500/30 overflow-hidden group hover:border-orange-400/50 rounded-full blur-lg opacity-30 group-hover:opacity-50 transition-opacity"></div>
+              <div className="relative z-10">
+                <div className="flex items-center justify-between mb-4">
+                  {/* <h3 className="text-sm font-semibold text-blue-400 uppercase tracking-wide">Tournament</h3> */}
+                  {/* <div className="w-8 h-8 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center">
+                    <Trophy className="w-4 h-4 text-white" />
+                  </div> */}
+                </div>
+                {/* <h2 className="text-lg font-bold text-white mb-2">Live Stakes $10K Prize Pool</h2>
+                <p className="text-sm text-gray-300 mb-4">Go all in. You have 5 days to grab the bag.</p> */}
+                {/* <div className="flex justify-center mb-4">
+                  <div className="relative">
+                    <div className="w-20 h-16 bg-gradient-to-br from-blue-400 to-purple-500 rounded-lg flex items-center justify-center shadow-lg">
+                      <div className="flex space-x-1">
+                        <div className="w-6 h-8 bg-white rounded border-2 border-gray-800 flex items-center justify-center">
+                          <span className="text-xs font-bold text-gray-800">A</span>
+                        </div>
+                        <div className="w-6 h-8 bg-white rounded border-2 border-gray-800 flex items-center justify-center">
+                          <span className="text-xs font-bold text-gray-800">K</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div> */}
+                {/* <Link
+                  to="/tournaments"
+                  className="block w-full bg-gradient-to-r from-blue-500 to-purple-500 text-white text-center py-2 rounded-lg font-semibold hover:from-blue-600 hover:to-purple-600 transition-all duration-200 text-sm"
+                >
+                  Join Tournament
+                </Link> */}
+              </div>
               </div>
             </div>
           </div>
         </section>
 
       {/* Continue Playing Section */}
-      <section className="py-16 bg-gray-900">
+      <section className="py-8 bg-gray-900">
         <div className="px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="text-2xl font-bold text-white flex items-center">
-              <Play className="w-6 h-6 text-green-400 mr-3" />
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-lg font-bold text-white flex items-center">
+              <Play className="w-5 h-5 text-green-400 mr-2" />
               Continue Playing
             </h2>
             <Link to="/casino" className="text-yellow-400 hover:text-yellow-300 text-sm font-semibold">
@@ -144,12 +232,12 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Top 10 Games Section */}
-      <section className="py-16 bg-gradient-to-br from-gray-800 to-gray-900">
+      <section className="py-8 bg-gradient-to-br from-gray-800 to-gray-900">
         <div className="px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="text-2xl font-bold text-white flex items-center">
-              <Trophy className="w-6 h-6 text-yellow-400 mr-3" />
-              Top 10
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-lg font-bold text-white flex items-center">
+              <Trophy className="w-5 h-5 text-yellow-400 mr-2" />
+              TOP Top 10
             </h2>
             <Link to="/casino" className="text-yellow-400 hover:text-yellow-300 text-sm font-semibold">
               View All →
@@ -187,67 +275,67 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Cashback Countdown Section */}
-      <section className="py-12 relative border-y border-yellow-500/20">
+    <section className="py-12 relative border-y border-yellow-500/20">
         <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url(${pokerTableBg})` }}></div>
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/50"></div>
         
         {/* Animated Glowing Lights */}
-        <div className="absolute top-4 left-4 w-10 h-10 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm glow-pulse shadow-lg shadow-yellow-500/50"></div>
+        {/* <div className="absolute top-4 left-4 w-10 h-10 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm glow-pulse shadow-lg shadow-yellow-500/50"></div>
         <div className="absolute top-4 right-4 w-8 h-8 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm glow-pulse shadow-lg shadow-yellow-500/50" style={{ animationDelay: '0.5s' }}></div>
         <div className="absolute bottom-4 left-4 w-12 h-12 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm glow-pulse shadow-lg shadow-yellow-500/50" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute bottom-4 right-4 w-9 h-9 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm glow-pulse shadow-lg shadow-yellow-500/50" style={{ animationDelay: '1.5s' }}></div>
+        <div className="absolute bottom-4 right-4 w-9 h-9 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm glow-pulse shadow-lg shadow-yellow-500/50" style={{ animationDelay: '1.5s' }}></div> */}
         
         {/* Moving Glowing Lights - Circular Pattern */}
-        <div className="absolute top-1/4 left-1/4 w-6 h-6 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm move-circle shadow-lg shadow-yellow-500/50"></div>
+        {/* <div className="absolute top-1/4 left-1/4 w-6 h-6 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm move-circle shadow-lg shadow-yellow-500/50"></div>
         <div className="absolute top-1/4 right-1/4 w-8 h-8 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm move-circle2 shadow-lg shadow-yellow-500/50" style={{ animationDelay: '2s' }}></div>
         <div className="absolute bottom-1/4 left-1/4 w-7 h-7 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm move-circle shadow-lg shadow-yellow-500/50" style={{ animationDelay: '4s' }}></div>
-        <div className="absolute bottom-1/4 right-1/4 w-5 h-5 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm move-circle2 shadow-lg shadow-yellow-500/50" style={{ animationDelay: '6s' }}></div>
+        <div className="absolute bottom-1/4 right-1/4 w-5 h-5 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm move-circle2 shadow-lg shadow-yellow-500/50" style={{ animationDelay: '6s' }}></div> */}
         
         {/* Moving Glowing Lights - Rectangular Pattern */}
-        <div className="absolute top-1/3 left-0 w-4 h-4 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm move-rectangle shadow-lg shadow-yellow-500/50"></div>
+        {/* <div className="absolute top-1/3 left-0 w-4 h-4 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm move-rectangle shadow-lg shadow-yellow-500/50"></div>
         <div className="absolute top-1/3 right-0 w-6 h-6 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm move-rectangle shadow-lg shadow-yellow-500/50" style={{ animationDelay: '1s' }}></div>
         <div className="absolute bottom-1/3 left-0 w-5 h-5 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm move-rectangle shadow-lg shadow-yellow-500/50" style={{ animationDelay: '2s' }}></div>
         <div className="absolute bottom-1/3 right-0 w-4 h-4 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm move-rectangle shadow-lg shadow-yellow-500/50" style={{ animationDelay: '3s' }}></div>
-        
+         */}
         {/* Rotating Glowing Border */}
-        <div className="absolute inset-0 border-2 border-yellow-500/30 rounded-lg animate-pulse"></div>
+        {/* <div className="absolute inset-0 border-2 border-yellow-500/30 rounded-lg animate-pulse"></div>
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-500 via-orange-500 to-yellow-500 animate-pulse"></div>
         <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-500 via-orange-500 to-yellow-500 animate-pulse" style={{ animationDelay: '1s' }}></div>
         <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-yellow-500 via-orange-500 to-yellow-500 animate-pulse" style={{ animationDelay: '0.5s' }}></div>
         <div className="absolute top-0 right-0 w-1 h-full bg-gradient-to-b from-yellow-500 via-orange-500 to-yellow-500 animate-pulse" style={{ animationDelay: '1.5s' }}></div>
-        
+         */}
         <div className="relative px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-yellow-400 mb-4 drop-shadow-lg">Don't miss your Daily cashback</h2>
             <p className="text-xl text-white mb-2 drop-shadow-md">Up to 20% Back. No BS. #SometimesLoseAlwaysWin</p>
             <p className="text-lg text-yellow-300 font-semibold drop-shadow-md">Your Next Cashback Drops In</p>
           </div>
-          <div className="flex justify-center items-center space-x-2 sm:space-x-4 md:space-x-8">
+          <div className="flex justify-center items-center space-x-4 sm:space-x-8">
             <div className="text-center">
-              <div className="bg-gray-800 rounded-lg p-2 sm:p-3 md:p-4 border border-yellow-500/30 min-w-[60px] sm:min-w-[80px] md:min-w-[100px]">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-yellow-400 leading-none">{countdown.days.toString().padStart(2, '0')}</div>
-                <div className="text-xs sm:text-sm text-gray-300 mt-1">Days</div>
+              <div className="bg-gray-800 rounded-lg p-4 border border-yellow-500/30">
+                <div className="text-3xl sm:text-4xl font-bold text-yellow-400">{countdown.days.toString().padStart(2, '0')}</div>
+                <div className="text-sm text-gray-300">Days</div>
               </div>
             </div>
-            <div className="text-xl sm:text-2xl md:text-3xl text-yellow-400 font-bold">:</div>
+            <div className="text-2xl sm:text-3xl text-yellow-400 font-bold">:</div>
             <div className="text-center">
-              <div className="bg-gray-800 rounded-lg p-2 sm:p-3 md:p-4 border border-yellow-500/30 min-w-[60px] sm:min-w-[80px] md:min-w-[100px]">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-yellow-400 leading-none">{countdown.hours.toString().padStart(2, '0')}</div>
-                <div className="text-xs sm:text-sm text-gray-300 mt-1">Hours</div>
+              <div className="bg-gray-800 rounded-lg p-4 border border-yellow-500/30">
+                <div className="text-3xl sm:text-4xl font-bold text-yellow-400">{countdown.hours.toString().padStart(2, '0')}</div>
+                <div className="text-sm text-gray-300">Hours</div>
               </div>
             </div>
-            <div className="text-xl sm:text-2xl md:text-3xl text-yellow-400 font-bold">:</div>
+            <div className="text-2xl sm:text-3xl text-yellow-400 font-bold">:</div>
             <div className="text-center">
-              <div className="bg-gray-800 rounded-lg p-2 sm:p-3 md:p-4 border border-yellow-500/30 min-w-[60px] sm:min-w-[80px] md:min-w-[100px]">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-yellow-400 leading-none">{countdown.minutes.toString().padStart(2, '0')}</div>
-                <div className="text-xs sm:text-sm text-gray-300 mt-1">Minutes</div>
+              <div className="bg-gray-800 rounded-lg p-4 border border-yellow-500/30">
+                <div className="text-3xl sm:text-4xl font-bold text-yellow-400">{countdown.minutes.toString().padStart(2, '0')}</div>
+                <div className="text-sm text-gray-300">Minutes</div>
               </div>
             </div>
-            <div className="text-xl sm:text-2xl md:text-3xl text-yellow-400 font-bold">:</div>
+            <div className="text-2xl sm:text-3xl text-yellow-400 font-bold">:</div>
             <div className="text-center">
-              <div className="bg-gray-800 rounded-lg p-2 sm:p-3 md:p-4 border border-yellow-500/30 min-w-[60px] sm:min-w-[80px] md:min-w-[100px]">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-yellow-400 leading-none">{countdown.seconds.toString().padStart(2, '0')}</div>
-                <div className="text-xs sm:text-sm text-gray-300 mt-1">Seconds</div>
+              <div className="bg-gray-800 rounded-lg p-4 border border-yellow-500/30">
+                <div className="text-3xl sm:text-4xl font-bold text-yellow-400">{countdown.seconds.toString().padStart(2, '0')}</div>
+                <div className="text-sm text-gray-300">Seconds</div>
               </div>
             </div>
           </div>
@@ -255,11 +343,11 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* New Arrivals Section */}
-      <section className="py-16 bg-gray-900">
+      <section className="py-8 bg-gray-900">
         <div className="px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="text-2xl font-bold text-white flex items-center">
-              <Zap className="w-6 h-6 text-yellow-400 mr-3" />
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-lg font-bold text-white flex items-center">
+              <Zap className="w-5 h-5 text-yellow-400 mr-2" />
               New Arrivals
             </h2>
             <Link to="/casino" className="text-yellow-400 hover:text-yellow-300 text-sm font-semibold">
@@ -304,11 +392,11 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Crypto Games Section */}
-      <section className="py-16 bg-gradient-to-br from-gray-800 to-gray-900">
+      <section className="py-8 bg-gradient-to-br from-gray-800 to-gray-900">
         <div className="px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="text-2xl font-bold text-white flex items-center">
-              <Bitcoin className="w-6 h-6 text-yellow-400 mr-3" />
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-lg font-bold text-white flex items-center">
+              <Bitcoin className="w-5 h-5 text-yellow-400 mr-2" />
               Crypto Games
             </h2>
             <Link to="/casino" className="text-yellow-400 hover:text-yellow-300 text-sm font-semibold">
@@ -347,11 +435,11 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Buy Feature Section */}
-      <section className="py-16 bg-gray-900">
+      <section className="py-8 bg-gray-900">
         <div className="px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="text-2xl font-bold text-white flex items-center">
-              <Gift className="w-6 h-6 text-yellow-400 mr-3" />
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-lg font-bold text-white flex items-center">
+              <Gift className="w-5 h-5 text-yellow-400 mr-2" />
               Buy Feature
             </h2>
             <Link to="/casino" className="text-yellow-400 hover:text-yellow-300 text-sm font-semibold">
@@ -390,7 +478,7 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Ongoing Tribes Card with Glowing Animation */}
-      <section className="py-16 bg-gray-900">
+      <section className="py-8 bg-gray-900">
         <div className="px-4 sm:px-6 lg:px-8">
           <div className="relative">
             <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/20 via-orange-500/20 to-yellow-500/20 rounded-2xl blur-xl animate-pulse"></div>
@@ -424,48 +512,48 @@ const HomePage: React.FC = () => {
               <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-yellow-500 via-orange-500 to-yellow-500 animate-pulse" style={{ animationDelay: '0.5s' }}></div>
               <div className="absolute top-0 right-0 w-1 h-full bg-gradient-to-b from-yellow-500 via-orange-500 to-yellow-500 animate-pulse" style={{ animationDelay: '1.5s' }}></div>
               
-              <div className="relative z-10 flex flex-col lg:flex-row items-center">
-                <div className="lg:w-2/3 mb-6 lg:mb-0">
-                  <h2 className="text-3xl font-bold text-white mb-4 drop-shadow-lg">Ongoing Tribes</h2>
-                  <p className="text-base text-gray-300 mb-5 leading-relaxed">Join the ultimate gaming community and compete with players worldwide in our exclusive tribal tournaments.</p>
+              <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center max-w-full overflow-hidden">
+                <div className="lg:w-2/3 mb-6 lg:mb-0 lg:pr-4">
+                  <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4 drop-shadow-lg">Ongoing Tribes</h2>
+                  <p className="text-sm sm:text-base text-gray-300 mb-5 leading-relaxed">Join the ultimate gaming community and compete with players worldwide in our exclusive tribal tournaments.</p>
                   <div className="space-y-3">
                     <div className="flex items-center space-x-3">
-                      <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                      <span className="text-sm text-white">Live tournaments with massive prize pools</span>
+                      <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse flex-shrink-0"></div>
+                      <span className="text-xs sm:text-sm text-white">Live tournaments with massive prize pools</span>
                     </div>
                     <div className="flex items-center space-x-3">
-                      <div className="w-3 h-3 bg-blue-500 rounded-full animate-pulse"></div>
-                      <span className="text-sm text-white">Exclusive rewards and bonuses</span>
+                      <div className="w-3 h-3 bg-blue-500 rounded-full animate-pulse flex-shrink-0"></div>
+                      <span className="text-xs sm:text-sm text-white">Exclusive rewards and bonuses</span>
                     </div>
                     <div className="flex items-center space-x-3">
-                      <div className="w-3 h-3 bg-purple-500 rounded-full animate-pulse"></div>
-                      <span className="text-sm text-white">Real-time leaderboards and rankings</span>
+                      <div className="w-3 h-3 bg-purple-500 rounded-full animate-pulse flex-shrink-0"></div>
+                      <span className="text-xs sm:text-sm text-white">Real-time leaderboards and rankings</span>
                     </div>
                   </div>
-                  <Link to="/tribes" className="mt-5 bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-6 py-3 rounded-lg font-semibold hover:from-yellow-600 hover:to-orange-600 transition-all duration-200 inline-block text-base" onClick={() => window.scrollTo(0, 0)}>
+                  <Link to="/tribes" className="mt-5 bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold hover:from-yellow-600 hover:to-orange-600 transition-all duration-200 inline-block text-sm sm:text-base" onClick={() => window.scrollTo(0, 0)}>
                     Join Tribes Now
                   </Link>
                 </div>
-                <div className="w-full lg:w-1/3 lg:pl-12 lg:ml-auto mt-6 lg:mt-0">
+                <div className="w-full lg:w-1/3 lg:pl-4 lg:ml-auto mt-6 lg:mt-0 flex-shrink-0">
                   <div className="relative flex justify-center lg:justify-start">
-                    <div className="bg-gray-800/50 rounded-xl p-4 border border-yellow-500/30 max-w-xs w-full">
-                      <h3 className="text-sm font-bold text-white mb-3">Active Tribes</h3>
+                    <div className="bg-gray-800/50 rounded-xl p-3 sm:p-4 border border-yellow-500/30 w-full max-w-[200px] sm:max-w-xs">
+                      <h3 className="text-xs sm:text-sm font-bold text-white mb-3">Active Tribes</h3>
                       <div className="space-y-1.5">
                         <div className="flex justify-between items-center p-1.5 bg-gray-700/50 rounded">
-                          <span className="text-xs text-white">Dragon Warriors</span>
-                          <span className="text-xs text-yellow-400">1,247</span>
+                          <span className="text-xs text-white truncate mr-2">Dragon Warriors</span>
+                          <span className="text-xs text-yellow-400 flex-shrink-0">1,247</span>
                         </div>
                         <div className="flex justify-between items-center p-1.5 bg-gray-700/50 rounded">
-                          <span className="text-xs text-white">Phoenix Clan</span>
-                          <span className="text-xs text-yellow-400">892</span>
+                          <span className="text-xs text-white truncate mr-2">Phoenix Clan</span>
+                          <span className="text-xs text-yellow-400 flex-shrink-0">892</span>
                         </div>
                         <div className="flex justify-between items-center p-1.5 bg-gray-700/50 rounded">
-                          <span className="text-xs text-white">Shadow Hunters</span>
-                          <span className="text-xs text-yellow-400">654</span>
+                          <span className="text-xs text-white truncate mr-2">Shadow Hunters</span>
+                          <span className="text-xs text-yellow-400 flex-shrink-0">654</span>
                         </div>
                         <div className="flex justify-between items-center p-1.5 bg-gray-700/50 rounded">
-                          <span className="text-xs text-white">Golden Eagles</span>
-                          <span className="text-xs text-yellow-400">543</span>
+                          <span className="text-xs text-white truncate mr-2">Golden Eagles</span>
+                          <span className="text-xs text-yellow-400 flex-shrink-0">543</span>
                         </div>
                       </div>
                     </div>
@@ -478,11 +566,11 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Popular Games Section */}
-      <section className="py-16 bg-gradient-to-br from-gray-800 to-gray-900">
+      <section className="py-8 bg-gradient-to-br from-gray-800 to-gray-900">
         <div className="px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="text-2xl font-bold text-white flex items-center">
-              <Star className="w-6 h-6 text-yellow-400 mr-3" />
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-lg font-bold text-white flex items-center">
+              <Star className="w-5 h-5 text-yellow-400 mr-2" />
               Popular Games
             </h2>
             <Link to="/casino" className="text-yellow-400 hover:text-yellow-300 text-sm font-semibold">
@@ -521,11 +609,11 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Live Casino Section */}
-      <section className="py-16 bg-gray-900">
+      <section className="py-8 bg-gray-900">
         <div className="px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="text-2xl font-bold text-white flex items-center">
-              <div className="w-6 h-6 bg-red-500 rounded-full mr-3 animate-pulse"></div>
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-lg font-bold text-white flex items-center">
+              <div className="w-5 h-5 bg-red-500 rounded-full mr-2 animate-pulse"></div>
               Live Casino
             </h2>
             <Link to="/live-casino" className="text-yellow-400 hover:text-yellow-300 text-sm font-semibold">
@@ -564,11 +652,11 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Jackpot Games Section */}
-      <section className="py-16 bg-gradient-to-br from-gray-800 to-gray-900">
+      <section className="py-8 bg-gradient-to-br from-gray-800 to-gray-900">
         <div className="px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="text-2xl font-bold text-white flex items-center">
-              <Gem className="w-6 h-6 text-yellow-400 mr-3" />
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-lg font-bold text-white flex items-center">
+              <Gem className="w-5 h-5 text-yellow-400 mr-2" />
               Jackpot Games
             </h2>
             <Link to="/jackpots" className="text-yellow-400 hover:text-yellow-300 text-sm font-semibold">
@@ -606,9 +694,9 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      <section className="py-16 bg-gradient-to-br from-gray-800 to-gray-900">
+      <section className="py-8 bg-gradient-to-br from-gray-800 to-gray-900">
         <div className="p-6">
-          <h2 className="text-3xl font-bold text-white mb-12 text-center">Why Choose TucanBit?</h2>
+          <h2 className="text-2xl font-bold text-white mb-8 text-center">Why Choose TucanBit?</h2>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-gray-800/50 p-6 rounded-xl border border-gray-700 hover:border-yellow-500/30 transition-colors duration-300">
               <div className="w-12 h-12 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-lg flex items-center justify-center mb-4"><ShieldCheck className="w-6 h-6 text-white" /></div>
@@ -629,9 +717,9 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      <section className="py-20 bg-gradient-to-r from-gray-900 to-gray-800">
+      <section className="py-12 bg-gradient-to-r from-gray-900 to-gray-800">
         <div className="p-6 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Ready to Start Winning?</h2>
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-6">Ready to Start Winning?</h2>
           <p className="text-xl text-gray-300 mb-10">Join TucanBit now and get your 200% welcome bonus up to 5 BTC plus 200 free spins!</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/register" className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-6 py-3 rounded-xl font-semibold text-base hover:from-yellow-600 hover:to-orange-600 transform hover:scale-105 transition-all duration-200 flex items-center justify-center space-x-2 shadow-lg">
@@ -653,7 +741,7 @@ const HomePage: React.FC = () => {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 };
 

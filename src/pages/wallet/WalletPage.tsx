@@ -303,7 +303,7 @@ const WalletPage: React.FC<WalletPageProps> = ({ balance, onBalanceChange }) => 
   ];
 
   return (
-    <div className="min-h-screen p-6 bg-gray-900">
+    <div className="page-content min-h-screen p-6 bg-gray-900">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="mb-8">
@@ -385,7 +385,7 @@ const WalletPage: React.FC<WalletPageProps> = ({ balance, onBalanceChange }) => 
                       <div className={`font-semibold ${
                         tx.type === 'deposit' || tx.type === 'win' ? 'text-green-400' : 'text-red-400'
                       }`}>
-                        {tx.type === 'deposit' || tx.type === 'win' ? '+' : '-'}{tx.amount} {tx.crypto}
+                        {tx.type === 'deposit' || tx.type === 'win' ? '+' : '-'}{tx.amount} USDT
                       </div>
                       <div className={`text-sm px-2 py-1 rounded ${
                         tx.status === 'completed' ? 'bg-green-500/20 text-green-400' :
