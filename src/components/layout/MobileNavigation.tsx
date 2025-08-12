@@ -19,8 +19,8 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({ onMenuToggle }) => 
   ];
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-black/90 border-t border-[#3C1A4F]/50 z-50 md:hidden">
-      <div className="flex items-center justify-around py-2">
+    <div className="fixed bottom-0 left-0 right-0 bg-black/90 border-t border-[#3C1A4F]/50 z-50 md:hidden shadow-lg">
+      <div className="flex items-center justify-around py-2 px-2">
         {navItems.map((item) => (
           <Link
             key={item.path}

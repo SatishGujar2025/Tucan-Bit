@@ -13,6 +13,7 @@ import h3 from '../assets/h3.jpg';
 
 // This component is now only responsible for the home page content.
 const HomePage: React.FC = () => {
+  const { openModal } = useAppContext();
   
   // Countdown timer state
   const [countdown, setCountdown] = useState({
@@ -90,16 +91,35 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="page-content max-w-full overflow-x-hidden">
-       {/* Hero Section - Three Promotional Banners */}
+      {/* Hero Section - Three Promotional Banners */}
       <section className="py-8 bg-gray-900 overflow-hidden">
         <div className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
           <div 
             ref={bannerRef}
-            className="flex overflow-x-auto gap-4 h-64 snap-x snap-mandatory scrollbar-hide md:grid md:grid-cols-3 md:overflow-x-visible"
+            className="relative flex overflow-x-auto gap-4 h-64 snap-x snap-mandatory scrollbar-hide md:grid md:grid-cols-3 md:overflow-x-visible"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             {/* WELCOME GIFT - FREE Lootbox Banner */}
             <div className="relative bg-gradient-to-br from-orange-500/20 to-red-500/20 rounded-xl p-6 border-none transition-all duration-300 flex-shrink-0 w-[calc(100vw-2rem)] md:w-auto snap-start group hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/25">
+              {/* Play Now and Connect Wallet Buttons Overlay */}
+              <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
+                <div className="flex gap-3">
+                  <Link 
+                    to="/casino" 
+                    className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-6 py-2 rounded-lg font-bold text-sm hover:from-yellow-600 hover:to-orange-600 transform hover:scale-105 transition-all duration-200 flex items-center justify-center space-x-2 shadow-xl min-w-[120px]"
+                  >
+                    <Play className="w-4 h-4" />
+                    <span>Play Now</span>
+                  </Link>
+                  <button 
+                    onClick={() => openModal('walletConnect')}
+                    className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-6 py-2 rounded-lg font-bold text-sm hover:from-blue-600 hover:to-cyan-600 transform hover:scale-105 transition-all duration-200 flex items-center justify-center space-x-2 shadow-xl min-w-[160px]"
+                  >
+                    <User className="w-4 h-4" />
+                    <span>Connect Wallet</span>
+                  </button>
+                </div>
+              </div>
               {/* Glowing Border Animation */}
               <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-orange-400 via-red-500 to-orange-400 bg-[length:200%_200%] animate-pulse opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               <div className="absolute inset-[2px] bg-gray-900 rounded-xl"></div>

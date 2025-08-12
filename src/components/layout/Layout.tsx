@@ -656,7 +656,7 @@ const Layout: React.FC = () => {
         {/* ====================================================================== */}
         {/* 3. MAIN CONTENT and 4. FOOTER                                        */}
         {/* ====================================================================== */}
-        <main className={`pb-16 md:pb-0 overflow-x-hidden max-w-full ${promotionalSidebarExpanded ? 'lg:pr-48 xl:pr-64' : 'lg:pr-8 xl:pr-0'} ${sidebarExpanded ? 'lg:pl-52' : 'lg:pl-2'}`}>
+        <main className={`pb-20 md:pb-0 overflow-x-hidden max-w-full ${promotionalSidebarExpanded ? 'lg:pr-48 xl:pr-64' : 'lg:pr-8 xl:pr-0'} ${sidebarExpanded ? 'lg:pl-52' : 'lg:pl-2'}`}>
             <Outlet />
             <div className="hidden md:block">
                 <Footer />

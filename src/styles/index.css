@@ -400,6 +400,22 @@ nav.overflow-y-auto::-webkit-scrollbar-thumb:hover {
     width: 100% !important;
   }
   
+  /* Ensure mobile navigation stays fixed */
+  .fixed.bottom-0 {
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 50 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  
+  /* Prevent body scrolling from affecting fixed elements */
+  body {
+    position: relative !important;
+  }
+  
   /* Enhanced responsive design for middle content pages on mobile */
   .page-content {
     width: 100% !important;

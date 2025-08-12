@@ -347,57 +347,65 @@ const ProfilePage: React.FC = () => {
     setCurrentPage(1);
   };
   const ResponsiveTableRow: React.FC<{ transaction: typeof recentActivity[0] }> = ({ transaction }) => (
-    <tr className="block md:table-row border-b border-gray-800 last:border-b-0 md:border-b-0">
-      <td className="p-3 block md:table-cell md:py-4 md:px-4 text-right md:text-left border-b border-gray-800 md:border-none" data-label="Transaction ID">
+    <tr className="border-b border-gray-800 last:border-b-0 md:border-b-0">
+      <td className="py-3 px-3 md:py-4 md:px-4 text-right md:text-left" data-label="Transaction ID">
         <span className="text-sm font-mono text-blue-400">{transaction.id}</span>
       </td>
-      <td className="p-3 block md:table-cell md:py-4 md:px-4 text-right md:text-left border-b border-gray-800 md:border-none" data-label="Type">
-        <span className="text-sm font-medium text-white">{transaction.type}</span>
+      <td className="py-3 px-3 md:py-4 md:px-4 text-right md:text-left" data-label="Type">
+        <div className="flex items-center justify-end md:justify-start space-x-2">
+          <div className={`w-2 h-2 rounded-full ${
+            transaction.type === 'Game Win' ? 'bg-green-400' :
+            transaction.type === 'Game Loss' ? 'bg-red-400' :
+            transaction.type === 'Deposit' ? 'bg-blue-400' :
+            'bg-orange-400'
+          }`}></div>
+          <span className="text-sm font-medium text-white">{transaction.type}</span>
+        </div>
       </td>
-      <td className="p-3 block md:table-cell md:py-4 md:px-4 text-right md:text-left border-b border-gray-800 md:border-none" data-label="Game/Source">
+      <td className="py-3 px-3 md:py-4 md:px-4 text-right md:text-left" data-label="Game/Source">
         <span className="text-sm text-gray-300">{transaction.game}</span>
       </td>
-      <td className="p-3 block md:table-cell md:py-4 md:px-4 text-right md:text-left border-b border-gray-800 md:border-none" data-label="Amount (USD)">
+      <td className="py-3 px-3 md:py-4 md:px-4 text-right md:text-left" data-label="Amount (USD)">
         <span className={`text-sm font-semibold ${transaction.amount > 0 ? 'text-green-400' : 'text-red-400'}`}>
           {transaction.amount > 0 ? '+' : ''}${Math.abs(transaction.amount).toLocaleString()}
         </span>
       </td>
-      <td className="p-3 block md:table-cell md:py-4 md:px-4 text-right md:text-center border-b border-gray-800 md:border-none" data-label="Status">
+      <td className="py-3 px-3 md:py-4 md:px-4 text-right md:text-center" data-label="Status">
         <span className={`px-2 py-1 rounded-full text-xs font-semibold ${transaction.status === 'Completed' ? 'bg-green-500/20 text-green-400' : 'bg-yellow-500/20 text-yellow-400'}`}>
           {transaction.status}
         </span>
       </td>
-      <td className="p-3 block md:table-cell md:py-4 md:px-4 text-right md:text-left" data-label="Date">
+      <td className="py-3 px-3 md:py-4 md:px-4 text-right md:text-left" data-label="Date">
         <div className="text-sm text-gray-300">{transaction.time}</div>
       </td>
     </tr>
   );
   return (
-    <div className="min-h-screen p-4 md:p-6">
+    <div className="min-h-screen p-2 sm:p-4 md:p-6">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Profile</h1>
-          <p className="text-xl text-gray-300">Manage your account and view your gaming statistics</p>
+        <div className="mb-6 sm:mb-8">
+          <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold text-white mb-2 sm:mb-4">Profile</h1>
+          <p className="text-base sm:text-xl text-gray-300">Manage your account and view your gaming statistics</p>
         </div>
 
         {/* Profile Header */}
-        <div className="bg-gradient-to-br from-purple-900/50 to-blue-900/50 backdrop-blur-sm border border-purple-500/20 rounded-2xl p-6 md:p-8 mb-8">
-          <div className="flex flex-col sm:flex-row items-center space-x-6 sm:space-y-0 sm:space-x-6">
-            <div className="sm:w-24 sm:h-24 w-20 h-20 bg-gradient-to-br from-purple-500 to-blue-500 rounded-full flex items-center justify-center">
-              <User className="sm:w-12 sm:h-12 w-10 h-10 text-white" />
+        <div className="bg-gradient-to-br from-purple-900/50 to-blue-900/50 backdrop-blur-sm border border-purple-500/20 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 mb-6 sm:mb-8">
+          <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-6">
+            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-gradient-to-br from-purple-500 to-blue-500 rounded-full flex items-center justify-center">
+              <User className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-white" />
             </div>
             <div className="flex-1 text-center sm:text-left">
-              <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">CryptoPlayer_42</h2>
-              <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start space-y-2 sm:space-y-0 sm:space-x-4  text-gray-300">
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-2">CryptoPlayer_42</h2>
+              <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start space-y-1 sm:space-y-0 sm:space-x-4 text-gray-300 text-sm sm:text-base">
                 <span>Level {userStats.level}</span>
-                <span>•</span>
+                <span className="hidden sm:inline">•</span>
                 <span>Member since {userStats.memberSince}</span>
               </div>
-              <div className="mt-4">
-                <div className="flex items-center space-x-2 mb-2">
-                  <span className="text-sm text-gray-300">Experience</span>
-                  <span className="text-sm text-purple-400">{userStats.experience.toLocaleString()} XP</span>
+              <div className="mt-3 sm:mt-4">
+                <div className="flex items-center justify-center sm:justify-start space-x-2 mb-2">
+                  <span className="text-xs sm:text-sm text-gray-300">Experience</span>
+                  <span className="text-xs sm:text-sm text-purple-400">{userStats.experience.toLocaleString()} XP</span>
                 </div>
                 <div className="w-full bg-gray-700 rounded-full h-2">
                   <div 
@@ -410,32 +418,56 @@ const ProfilePage: React.FC = () => {
           </div>
         </div>
 
-        <div className="mb-8">
-          <div className="flex space-x-2 bg-black/20 p-2 rounded-xl overflow-x-auto scrollbar-hide">
+        <div className="mb-6 sm:mb-8">
+          <div className="flex space-x-1 sm:space-x-2 bg-black/20 p-1 sm:p-2 rounded-lg sm:rounded-xl overflow-x-auto scrollbar-hide">
             {tabs.map((tab) => (
-              <button key={tab.id} onClick={() => setActiveTab(tab.id)} className={`flex-1 flex items-center justify-center space-x-2 py-3 px-4 rounded-lg whitespace-nowrap ${activeTab === tab.id ? 'bg-purple-500' : 'text-gray-400'}`}>
-                <tab.icon className="w-5 h-5" /><span>{tab.label}</span>
+              <button key={tab.id} onClick={() => setActiveTab(tab.id)} className={`flex-1 flex items-center justify-center space-x-1 sm:space-x-2 py-2 sm:py-3 px-2 sm:px-4 rounded-md sm:rounded-lg whitespace-nowrap text-xs sm:text-sm ${activeTab === tab.id ? 'bg-purple-500' : 'text-gray-400'}`}>
+                <tab.icon className="w-4 h-4 sm:w-5 sm:h-5" /><span>{tab.label}</span>
               </button>
             ))}
           </div>
         </div>
         {/* Tab Content */}
         {activeTab === 'overview' && (
-          <div className="grid lg:grid-cols-3 gap-6">
+          <div className="grid lg:grid-cols-3 gap-4 sm:gap-6">
             {/* Stats */}
             <div className="lg:col-span-2">
               {/* Recent Activity */}
-              <div className="bg-black/20 rounded-2xl p-6">
-                <h2 className="text-2xl font-bold text-white mb-6">Recent Activity</h2>
+              <div className="bg-black/20 rounded-xl sm:rounded-2xl p-4 sm:p-6">
+                <h2 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6">Recent Activity</h2>
                 <div className="overflow-x-auto scrollbar-hide">
                     <style>{`
                   @media (max-width: 767px) {
+                    .responsive-table {
+                      border: 0;
+                    }
+                    .responsive-table thead {
+                      display: none;
+                    }
+                    .responsive-table tr {
+                      margin-bottom: 1rem;
+                      display: block;
+                      border: 1px solid #374151;
+                      border-radius: 0.5rem;
+                      background-color: rgba(0, 0, 0, 0.2);
+                    }
+                    .responsive-table td {
+                      display: block;
+                      text-align: right;
+                      padding: 0.75rem;
+                      border-bottom: 1px solid #374151;
+                    }
+                    .responsive-table td:last-child {
+                      border-bottom: 0;
+                    }
                     .responsive-table td[data-label]::before {
                       content: attr(data-label);
                       font-weight: 600;
-                      color: #9ca3af; /* text-gray-400 */
+                      color: #9ca3af;
                       float: left;
                       margin-right: 1rem;
+                      text-transform: uppercase;
+                      font-size: 0.75rem;
                     }
                   }
                 `}</style>
