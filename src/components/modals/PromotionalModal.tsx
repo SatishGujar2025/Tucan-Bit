@@ -218,7 +218,7 @@ const PromotionalModal: React.FC<PromotionalModalProps> = ({ isOpen, onClose, ad
             </div>
             
             {/* Time limit badge */}
-            <div className="absolute top-1 right-1 bg-red-600 text-white px-1.5 py-0.5 rounded-full text-[10px] font-semibold flex items-center space-x-0.5">
+            <div className="absolute top-1 right-1 bg-purple-950 text-white px-1.5 py-0.5 rounded-full text-[10px] font-semibold flex items-center space-x-0.5">
               <Clock className="w-2.5 h-2.5" />
               <span>{promotionData.timeLimit}</span>
             </div>
@@ -254,7 +254,7 @@ const PromotionalModal: React.FC<PromotionalModalProps> = ({ isOpen, onClose, ad
           </div>
           
           {/* Limited time offer - Compact */}
-          <div className="bg-gradient-to-r from-red-600 to-red-500 p-2 rounded-lg mb-3 border border-red-500/30">
+          <div className="bg-gradient-to-r from-purple-950 to-purple-900 p-2 rounded-lg mb-3 border border-purple-800/30">
             <p className="text-white font-bold text-xs mb-1">
               ⏰ LIMITED TIME OFFER
             </p>
@@ -267,7 +267,7 @@ const PromotionalModal: React.FC<PromotionalModalProps> = ({ isOpen, onClose, ad
           <div className="flex gap-1.5">
             <button
               onClick={handleClaimNow}
-              className="flex-1 bg-gradient-to-r from-green-600 to-green-500 text-white py-1.5 px-2 rounded-lg font-bold hover:from-green-500 hover:to-green-400 transition-all duration-300 transform hover:scale-105 shadow-lg border-2 border-green-500/30 flex items-center justify-center space-x-1"
+              className="flex-1 bg-gradient-to-r from-blue-600 to-cyan-500 text-white py-1.5 px-2 rounded-lg font-bold hover:from-blue-500 hover:to-cyan-400 transition-all duration-300 transform hover:scale-105 shadow-lg border-2 border-blue-500/30 flex items-center justify-center space-x-1"
             >
               <CheckCircle className="w-2.5 h-2.5" />
               <span className="text-xs">Claim Now!</span>

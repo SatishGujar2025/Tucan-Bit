@@ -232,12 +232,12 @@ const Layout: React.FC = () => {
               {/* Sidebar Toggle Button - Inside sidebar */}
               <button
                 onClick={() => setSidebarExpanded(!sidebarExpanded)}
-                className="bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white shadow-lg transition-all duration-300 border border-white/30 hover:border-white/50 p-2 rounded-lg hidden lg:block"
+                className="bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white shadow-lg transition-all duration-300 border border-white/30 hover:border-white/50 p-1.5 rounded-lg hidden lg:block ml-2"
               >
                 {sidebarExpanded ? (
-                  <ChevronLeft className="w-4 h-4 md:w-5 md:h-5" />
+                  <ChevronLeft className="w-3 h-3 md:w-4 md:h-4" />
                 ) : (
-                  <ChevronRight className="w-4 h-4 md:w-5 md:h-5" />
+                  <ChevronRight className="w-3 h-3 md:w-4 md:h-4" />
                 )}
               </button>
             </div>
@@ -527,7 +527,7 @@ const Layout: React.FC = () => {
                 </button>
 
                 {/*  Main Navigation Links for Desktop */}
-                <div className="hidden lg:flex items-center space-x-3">
+                <div className="hidden lg:flex items-center space-x-1">
                   {headerNavItems.map((item) => (
                     <Link
                         key={item.id}
@@ -542,18 +542,31 @@ const Layout: React.FC = () => {
                         <span className="whitespace-nowrap">{item.label}</span>
                     </Link>
                   ))}
+                  
+                  {/* Get Started Button - positioned next to VIP Club */}
+                  {!isAuthenticated && (
+                    <button onClick={() => openModal('login')} className="flex items-center space-x-1 px-2 py-2 bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white rounded-lg font-semibold text-sm">
+                        <User className="w-4 h-4" />
+                        <span className="whitespace-nowrap">Get Started</span>
+                    </button>
+                  )}
                 </div>
                 
-                {/* Right Side: Login/User Info */}
-                <div className="flex items-center space-x-2 ">
-                  {!isAuthenticated ? (
-                      <button onClick={() => openModal('login')} className="flex items-center sm:mr-28 mr-2  space-x-2 px-4 py-2 bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white rounded-lg font-semibold">
-                          <User className="w-5 h-5" />
-                          <span className="text-sm sm:text-base">Get Started</span>
+                                {/* Right Side: User Info and Mobile Get Started Button */}
+                <div className="flex items-center space-x-2">
+                  {/* Get Started Button for Mobile */}
+                  {!isAuthenticated && (
+                    <div className="lg:hidden">
+                      <button onClick={() => openModal('login')} className="flex items-center space-x-1 px-3 py-2 bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white rounded-lg font-semibold text-sm">
+                          <User className="w-4 h-4" />
+                          <span>Get Started</span>
                       </button>
-                  ) : (
-                    
-                      <div className="flex items-center space-x-2 sm:space-x-4">
+                    </div>
+                  )}
+                  
+                  {/* User Info (only for authenticated users) */}
+                  {isAuthenticated && (
+                    <div className="flex items-center space-x-2 sm:space-x-4">
 
                           {/* Balance Dropdown */}
                           <div className="relative balance-dropdown">

@@ -84,32 +84,32 @@ const WalletConnectModal: React.FC = () => {
   const connectCoinbaseWallet = async () => { alert("Connecting Coinbase Wallet..."); };
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black bg-opacity-70 backdrop-blur-sm">
-      <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-6 max-w-md w-full border border-gray-700 shadow-2xl">
-        <div className="flex justify-between items-center mb-6">
-          <h3 className="text-2xl font-bold text-white">Connect Wallet</h3>
+    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black bg-opacity-70 backdrop-blur-sm p-4">
+      <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-4 sm:p-6 w-[400px] max-w-full border border-gray-700 shadow-2xl">
+        <div className="flex justify-between items-center mb-4 sm:mb-6">
+          <h3 className="text-lg sm:text-xl font-bold text-white">Connect Wallet</h3>
           <button onClick={closeModal} className="text-gray-400 hover:text-white">
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
           </button>
         </div>
-        <div className="space-y-3 mb-6">
+        <div className="space-y-2 sm:space-y-3 mb-4 sm:mb-6">
           {walletProviders.map((wallet) => (
             <button 
               key={wallet.id} 
               onClick={() => connectWallet(wallet.id)} 
               disabled={isConnecting}
-              className="flex items-center w-full p-4 bg-gray-700 hover:bg-gray-600 rounded-xl transition-colors duration-200 disabled:opacity-50"
+              className="flex items-center w-full p-3 sm:p-4 bg-gray-700 hover:bg-gray-600 rounded-xl transition-colors duration-200 disabled:opacity-50"
             >
-              <img src={wallet.icon} alt={wallet.name} className="w-10 h-10 mr-4" />
-              <div className="text-left">
-                <div className="font-medium text-white">{wallet.name}</div>
-                <div className="text-sm text-gray-400">{wallet.description}</div>
+              <img src={wallet.icon} alt={wallet.name} className="w-8 h-8 sm:w-10 sm:h-10 mr-3 sm:mr-4" />
+              <div className="text-left flex-1">
+                <div className="font-medium text-white text-sm sm:text-base">{wallet.name}</div>
+                <div className="text-xs sm:text-sm text-gray-400">{wallet.description}</div>
               </div>
-              {isConnecting && <div className="ml-auto w-5 h-5 border-2 border-yellow-500 border-t-transparent rounded-full animate-spin"></div>}
+              {isConnecting && <div className="ml-auto w-4 h-4 sm:w-5 sm:h-5 border-2 border-yellow-500 border-t-transparent rounded-full animate-spin"></div>}
             </button>
           ))}
         </div>
-        <p className="text-center text-gray-400 text-sm">
+        <p className="text-center text-gray-400 text-xs sm:text-sm">
           By connecting, I accept TucanBit's <a href="#" className="text-blue-400 hover:underline">Terms of Service</a>
         </p>
       </div>

@@ -6,7 +6,7 @@ import { getAllGames } from '../utils/gameUtils';
 import pokerTableBg from '../assets/group-young-players-are-posing-poker-table-casino.avif';
 import ongoingTribesBg from '../assets/ongoing_tribes.jpeg';
 import h1 from '../assets/h1.jpg';
-import h2 from '../assets/h2.jpg';
+import h2 from '../assets/online-casino-purple-banner-with-offer-button.avif';
 import h3 from '../assets/h3.jpg';
 
 
