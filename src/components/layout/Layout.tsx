@@ -247,12 +247,12 @@ const Layout: React.FC = () => {
             {isSportsPage && (
               <>
                 <div className="p-4 border-b border-gray-800">
-                  <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg p-3">
-                    <div className="flex items-center space-x-2 mb-2"><span className="text-2xl"></span><div><p className="text-sm font-semibold text-white">Tucan Wallet</p><p className="text-xs text-gray-300">Coming soon</p></div></div>
+                  <div className="bg-gradient-to-r from-gray-700 to-gray-600 rounded-lg p-3">
+                    <div className="flex items-center space-x-2 mb-2"><span className="text-2xl">💳</span><div><p className="text-sm font-semibold text-white">Tucan Wallet</p><p className="text-xs text-gray-300">Coming soon</p></div></div>
                   </div>
                 </div>
                <div className="p-4 border-b border-gray-800">
-            <div className="bg-gradient-to-r from-yellow-500 to-orange-500 rounded-lg p-3 text-white">
+            <div className="bg-gradient-to-r from-purple-950 to-purple-900 rounded-lg p-3 text-white min-h-[140px]">
               <h3 className="font-bold text-sm mb-2">BATTLEPASS</h3>
               <p className="text-xs mb-3">Get amazing rewards with Battlepass.</p>
               <div className="flex items-center justify-between mb-3">
@@ -265,7 +265,7 @@ const Layout: React.FC = () => {
                   <p>Tucan Tokens</p>
                 </div>
               </div>
-              <button className="w-full bg-white text-orange-500 py-2 rounded text-sm font-semibold">
+              <button className="w-full bg-white text-purple-900 py-2 rounded text-sm font-semibold">
                 Get BattlePass
               </button>
             </div>
