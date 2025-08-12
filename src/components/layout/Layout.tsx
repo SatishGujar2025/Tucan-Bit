@@ -255,19 +255,16 @@ const Layout: React.FC = () => {
             <div className="bg-gradient-to-r from-purple-950 to-purple-900 rounded-lg p-3 text-white min-h-[140px]">
               <h3 className="font-bold text-sm mb-2">BATTLEPASS</h3>
               <p className="text-xs mb-3">Get amazing rewards with Battlepass.</p>
-              <div className="flex items-center justify-between mb-3">
-                <div className="flex items-center space-x-2">
-                  <span className="text-lg">🪙</span>
-                  <span className="text-lg">🏆</span>
-                </div>
-                <div className="text-xs">
-                  <p>Levelup Rewards</p>
-                  <p>Tucan Tokens</p>
-                </div>
-              </div>
-              <button className="w-full bg-white text-purple-900 py-2 rounded text-sm font-semibold">
-                Get BattlePass
-              </button>
+                             <div className="flex items-center justify-between">
+                 <div className="flex items-center space-x-2">
+                   <span className="text-lg">🪙</span>
+                   <span className="text-lg">🏆</span>
+                 </div>
+                 <div className="text-xs">
+                   <p>Levelup Rewards</p>
+                   <p>Tucan Tokens</p>
+                 </div>
+               </div>
             </div>
           </div>
                 <div className="p-4 border-b border-gray-800">
