@@ -527,12 +527,12 @@ const Layout: React.FC = () => {
                 </button>
 
                 {/*  Main Navigation Links for Desktop */}
-                <div className="hidden lg:flex items-center space-x-1">
+                <div className="hidden lg:flex items-center space-x-2">
                   {headerNavItems.map((item) => (
                     <Link
                         key={item.id}
                         to={item.path}
-                        className={`flex items-center space-x-1 px-2 py-2 rounded-lg transition-all text-sm ${
+                        className={`flex items-center space-x-1 px-3 py-2 rounded-lg transition-all text-sm ${
                         location.pathname === item.path
                             ? 'bg-[#3C1A4F]/20 text-[#F25287]'
                             : 'text-gray-400 hover:text-white'
