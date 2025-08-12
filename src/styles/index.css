@@ -10,6 +10,23 @@ html, body {
   width: 100% !important;
 }
 
+/* FORCE ELIMINATE ALL SCROLLBARS GLOBALLY - NO EXCEPTIONS */
+* {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+*::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+*::-webkit-scrollbar-track {
+  display: none !important;
+}
+*::-webkit-scrollbar-thumb {
+  display: none !important;
+}
+
 /* Ensure root element doesn't overflow */
 #root {
   overflow-x: hidden !important;
@@ -414,6 +431,440 @@ nav.overflow-y-auto::-webkit-scrollbar-thumb:hover {
   /* Prevent body scrolling from affecting fixed elements */
   body {
     position: relative !important;
+  }
+
+  /* Hide scrollbars in countdown timer sections - ALL DEVICES */
+  .bg-gray-800.rounded-lg {
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+    overflow: hidden !important;
+  }
+  .bg-gray-800.rounded-lg::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+  .bg-gray-800.rounded-lg::-webkit-scrollbar-track {
+    display: none !important;
+  }
+  .bg-gray-800.rounded-lg::-webkit-scrollbar-thumb {
+    display: none !important;
+  }
+
+  /* Hide scrollbars in countdown timer containers - ALL DEVICES */
+  .text-center .bg-gray-800 {
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+    overflow: hidden !important;
+  }
+  .text-center .bg-gray-800::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+  .text-center .bg-gray-800::-webkit-scrollbar-track {
+    display: none !important;
+  }
+  .text-center .bg-gray-800::-webkit-scrollbar-thumb {
+    display: none !important;
+  }
+
+  /* Hide scrollbars in countdown timer flex containers - ALL DEVICES */
+  .flex.justify-center.items-center.space-x-1 .text-center {
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+    overflow: hidden !important;
+  }
+  .flex.justify-center.items-center.space-x-1 .text-center::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+  .flex.justify-center.items-center.space-x-1 .text-center::-webkit-scrollbar-track {
+    display: none !important;
+  }
+  .flex.justify-center.items-center.space-x-1 .text-center::-webkit-scrollbar-thumb {
+    display: none !important;
+  }
+
+  /* Hide scrollbars in countdown timer main container - ALL DEVICES */
+  .flex.justify-center.items-center.space-x-1.sm\\:space-x-2.md\\:space-x-4.lg\\:space-x-8 {
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+    overflow: hidden !important;
+  }
+  .flex.justify-center.items-center.space-x-1.sm\\:space-x-2.md\\:space-x-4.lg\\:space-x-8::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+  .flex.justify-center.items-center.space-x-1.sm\\:space-x-2.md\\:space-x-4.lg\\:space-x-8::-webkit-scrollbar-track {
+    display: none !important;
+  }
+  .flex.justify-center.items-center.space-x-1.sm\\:space-x-2.md\\:space-x-4.lg\\:space-x-8::-webkit-scrollbar-thumb {
+    display: none !important;
+  }
+
+  /* Global countdown timer scrollbar hiding - ALL DEVICES */
+  [class*="countdown"], [class*="timer"] {
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+    overflow: hidden !important;
+  }
+  [class*="countdown"]::-webkit-scrollbar, [class*="timer"]::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+
+  /* Comprehensive countdown timer scrollbar hiding - ALL DEVICES */
+  .relative.px-4.sm\\:px-6.lg\\:px-8 {
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+    overflow: hidden !important;
+  }
+  .relative.px-4.sm\\:px-6.lg\\:px-8::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+  .relative.px-4.sm\\:px-6.lg\\:px-8::-webkit-scrollbar-track {
+    display: none !important;
+  }
+  .relative.px-4.sm\\:px-6.lg\\:px-8::-webkit-scrollbar-thumb {
+    display: none !important;
+  }
+
+  /* Force hide all scrollbars in countdown area - ALL DEVICES */
+  .text-center > div {
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+    overflow: hidden !important;
+  }
+  .text-center > div::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+  .text-center > div::-webkit-scrollbar-track {
+    display: none !important;
+  }
+  .text-center > div::-webkit-scrollbar-thumb {
+    display: none !important;
+  }
+
+  /* AGGRESSIVE scrollbar hiding for countdown timer - ALL DEVICES */
+  .bg-gray-800 {
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+    overflow: hidden !important;
+  }
+  .bg-gray-800::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+  .bg-gray-800::-webkit-scrollbar-track {
+    display: none !important;
+  }
+  .bg-gray-800::-webkit-scrollbar-thumb {
+    display: none !important;
+  }
+
+  /* AGGRESSIVE scrollbar hiding for countdown timer containers - ALL DEVICES */
+  .text-center {
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+    overflow: hidden !important;
+  }
+  .text-center::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+  .text-center::-webkit-scrollbar-track {
+    display: none !important;
+  }
+  .text-center::-webkit-scrollbar-thumb {
+    display: none !important;
+  }
+
+  /* AGGRESSIVE scrollbar hiding for countdown timer flex container - ALL DEVICES */
+  .flex.justify-center.items-center {
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+    overflow: hidden !important;
+  }
+  .flex.justify-center.items-center::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+  .flex.justify-center.items-center::-webkit-scrollbar-track {
+    display: none !important;
+  }
+  .flex.justify-center.items-center::-webkit-scrollbar-thumb {
+    display: none !important;
+  }
+
+  /* AGGRESSIVE scrollbar hiding for countdown timer section - ALL DEVICES */
+  .relative {
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+    overflow: hidden !important;
+  }
+  .relative::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+  .relative::-webkit-scrollbar-track {
+    display: none !important;
+  }
+  .relative::-webkit-scrollbar-thumb {
+    display: none !important;
+  }
+
+  /* AGGRESSIVE scrollbar hiding for ALL elements in countdown area - ALL DEVICES */
+  .relative * {
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+    overflow: hidden !important;
+  }
+  .relative *::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+  .relative *::-webkit-scrollbar-track {
+    display: none !important;
+  }
+  .relative *::-webkit-scrollbar-thumb {
+    display: none !important;
+  }
+
+  /* ULTIMATE scrollbar hiding for countdown timer section - ALL DEVICES */
+  .countdown-timer-section,
+  .countdown-timer-section *,
+  .countdown-timer-section > *,
+  .countdown-timer-section > * > * {
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+    overflow: hidden !important;
+  }
+  .countdown-timer-section::-webkit-scrollbar,
+  .countdown-timer-section *::-webkit-scrollbar,
+  .countdown-timer-section > *::-webkit-scrollbar,
+  .countdown-timer-section > * > *::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+  .countdown-timer-section::-webkit-scrollbar-track,
+  .countdown-timer-section *::-webkit-scrollbar-track,
+  .countdown-timer-section > *::-webkit-scrollbar-track,
+  .countdown-timer-section > * > *::-webkit-scrollbar-track {
+    display: none !important;
+  }
+  .countdown-timer-section::-webkit-scrollbar-thumb,
+  .countdown-timer-section *::-webkit-scrollbar-thumb,
+  .countdown-timer-section > *::-webkit-scrollbar-thumb,
+  .countdown-timer-section > * > *::-webkit-scrollbar-thumb {
+    display: none !important;
+  }
+
+  /* SPECIFIC scrollbar hiding for timer number and label containers - ALL DEVICES */
+  .text-lg.sm\\:text-2xl.md\\:text-3xl.lg\\:text-4xl,
+  .text-\\[10px\\].sm\\:text-xs.md\\:text-sm {
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+    overflow: hidden !important;
+  }
+  .text-lg.sm\\:text-2xl.md\\:text-3xl.lg\\:text-4xl::-webkit-scrollbar,
+  .text-\\[10px\\].sm\\:text-xs.md\\:text-sm::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+  .text-lg.sm\\:text-2xl.md\\:text-3xl.lg\\:text-4xl::-webkit-scrollbar-track,
+  .text-\\[10px\\].sm\\:text-xs.md\\:text-sm::-webkit-scrollbar-track {
+    display: none !important;
+  }
+  .text-lg.sm\\:text-2xl.md\\:text-3xl.lg\\:text-4xl::-webkit-scrollbar-thumb,
+  .text-\\[10px\\].sm\\:text-xs.md\\:text-sm::-webkit-scrollbar-thumb {
+    display: none !important;
+  }
+
+  /* SPECIFIC scrollbar hiding for timer number containers - ALL DEVICES */
+  .font-bold.text-yellow-400,
+  .text-gray-300 {
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+    overflow: hidden !important;
+  }
+  .font-bold.text-yellow-400::-webkit-scrollbar,
+  .text-gray-300::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+  .font-bold.text-yellow-400::-webkit-scrollbar-track,
+  .text-gray-300::-webkit-scrollbar-track {
+    display: none !important;
+  }
+  .font-bold.text-yellow-400::-webkit-scrollbar-thumb,
+  .text-gray-300::-webkit-scrollbar-thumb {
+    display: none !important;
+  }
+
+  /* SPECIFIC scrollbar hiding for timer box containers - ALL DEVICES */
+  .min-w-\\[50px\\].sm\\:min-w-\\[60px\\].md\\:min-w-\\[80px\\].lg\\:min-w-\\[100px\\] {
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+    overflow: hidden !important;
+  }
+  .min-w-\\[50px\\].sm\\:min-w-\\[60px\\].md\\:min-w-\\[80px\\].lg\\:min-w-\\[100px\\]::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+  .min-w-\\[50px\\].sm\\:min-w-\\[60px\\].md\\:min-w-\\[80px\\].lg\\:min-w-\\[100px\\]::-webkit-scrollbar-track {
+    display: none !important;
+  }
+  .min-w-\\[50px\\].sm\\:min-w-\\[60px\\].md\\:min-w-\\[80px\\].lg\\:min-w-\\[100px\\]::-webkit-scrollbar-thumb {
+    display: none !important;
+  }
+
+  /* FINAL scrollbar hiding for timer number and label elements - ALL DEVICES */
+  .timer-number,
+  .timer-label {
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+    overflow: hidden !important;
+  }
+  .timer-number::-webkit-scrollbar,
+  .timer-label::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+  .timer-number::-webkit-scrollbar-track,
+  .timer-label::-webkit-scrollbar-track {
+    display: none !important;
+  }
+  .timer-number::-webkit-scrollbar-thumb,
+  .timer-label::-webkit-scrollbar-thumb {
+    display: none !important;
+  }
+
+  /* FINAL scrollbar hiding for ALL timer elements - ALL DEVICES */
+  .timer-number *,
+  .timer-label * {
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+    overflow: hidden !important;
+  }
+  .timer-number *::-webkit-scrollbar,
+  .timer-label *::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+  .timer-number *::-webkit-scrollbar-track,
+  .timer-label *::-webkit-scrollbar-track {
+    display: none !important;
+  }
+  .timer-number *::-webkit-scrollbar-thumb,
+  .timer-label *::-webkit-scrollbar-thumb {
+    display: none !important;
+  }
+
+  /* FORCE ELIMINATE ALL SCROLLBARS IN COUNTDOWN TIMER - NO EXCEPTIONS */
+  .countdown-timer-section *,
+  .countdown-timer-section * *,
+  .countdown-timer-section * * *,
+  .countdown-timer-section * * * * {
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+    overflow: hidden !important;
+    overflow-x: hidden !important;
+    overflow-y: hidden !important;
+  }
+  .countdown-timer-section *::-webkit-scrollbar,
+  .countdown-timer-section * *::-webkit-scrollbar,
+  .countdown-timer-section * * *::-webkit-scrollbar,
+  .countdown-timer-section * * * *::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+  .countdown-timer-section *::-webkit-scrollbar-track,
+  .countdown-timer-section * *::-webkit-scrollbar-track,
+  .countdown-timer-section * * *::-webkit-scrollbar-track,
+  .countdown-timer-section * * * *::-webkit-scrollbar-track {
+    display: none !important;
+  }
+  .countdown-timer-section *::-webkit-scrollbar-thumb,
+  .countdown-timer-section * *::-webkit-scrollbar-thumb,
+  .countdown-timer-section * * *::-webkit-scrollbar-thumb,
+  .countdown-timer-section * * * *::-webkit-scrollbar-thumb {
+    display: none !important;
+  }
+
+  /* FORCE ELIMINATE ALL SCROLLBARS IN TIMER BOXES - NO EXCEPTIONS */
+  .bg-gray-800.rounded-lg *,
+  .bg-gray-800.rounded-lg * *,
+  .bg-gray-800.rounded-lg * * * {
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+    overflow: hidden !important;
+    overflow-x: hidden !important;
+    overflow-y: hidden !important;
+  }
+  .bg-gray-800.rounded-lg *::-webkit-scrollbar,
+  .bg-gray-800.rounded-lg * *::-webkit-scrollbar,
+  .bg-gray-800.rounded-lg * * *::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+  .bg-gray-800.rounded-lg *::-webkit-scrollbar-track,
+  .bg-gray-800.rounded-lg * *::-webkit-scrollbar-track,
+  .bg-gray-800.rounded-lg * * *::-webkit-scrollbar-track {
+    display: none !important;
+  }
+  .bg-gray-800.rounded-lg *::-webkit-scrollbar-thumb,
+  .bg-gray-800.rounded-lg * *::-webkit-scrollbar-thumb,
+  .bg-gray-800.rounded-lg * * *::-webkit-scrollbar-thumb {
+    display: none !important;
+  }
+
+  /* FORCE ELIMINATE ALL SCROLLBARS IN TEXT CENTER - NO EXCEPTIONS */
+  .text-center *,
+  .text-center * *,
+  .text-center * * * {
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+    overflow: hidden !important;
+    overflow-x: hidden !important;
+    overflow-y: hidden !important;
+  }
+  .text-center *::-webkit-scrollbar,
+  .text-center * *::-webkit-scrollbar,
+  .text-center * * *::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+  .text-center *::-webkit-scrollbar-track,
+  .text-center * *::-webkit-scrollbar-track,
+  .text-center * * *::-webkit-scrollbar-track {
+    display: none !important;
+  }
+  .text-center *::-webkit-scrollbar-thumb,
+  .text-center * *::-webkit-scrollbar-thumb,
+  .text-center * * *::-webkit-scrollbar-thumb {
+    display: none !important;
   }
   
   /* Enhanced responsive design for middle content pages on mobile */
