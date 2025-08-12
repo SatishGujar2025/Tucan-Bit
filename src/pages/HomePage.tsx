@@ -93,14 +93,14 @@ const HomePage: React.FC = () => {
     <div className="page-content max-w-full overflow-x-hidden">
       {/* Hero Section - Three Promotional Banners */}
       <section className="py-8 bg-gray-900 overflow-hidden">
-        <div className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div className="px-2 sm:px-4 md:px-6 lg:px-8 max-w-7xl mx-auto">
           <div 
             ref={bannerRef}
-            className="relative flex overflow-x-auto gap-4 h-64 snap-x snap-mandatory scrollbar-hide md:grid md:grid-cols-3 md:overflow-x-visible"
+            className="relative flex overflow-x-auto gap-2 sm:gap-3 md:gap-4 h-64 snap-x snap-mandatory scrollbar-hide md:grid md:grid-cols-3 md:overflow-x-visible"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             {/* WELCOME GIFT - FREE Lootbox Banner */}
-            <div className="relative bg-gradient-to-br from-orange-500/20 to-red-500/20 rounded-xl p-6 border-none transition-all duration-300 flex-shrink-0 w-[calc(100vw-2rem)] md:w-auto snap-start group hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/25">
+            <div className="relative bg-gradient-to-br from-orange-500/20 to-red-500/20 rounded-xl p-6 border-none transition-all duration-300 flex-shrink-0 w-[calc(100vw-3rem)] sm:w-[calc(100vw-4rem)] md:w-auto snap-start group hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/25 min-h-[256px]">
               {/* Play Now and Connect Wallet Buttons Overlay */}
               <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
                 <div className="flex gap-3">
@@ -125,7 +125,7 @@ const HomePage: React.FC = () => {
               <div className="absolute inset-[2px] bg-gray-900 rounded-xl"></div>
               
               <div 
-                className="absolute inset-0 bg-cover bg-center rounded-xl" 
+                className="absolute inset-0 bg-cover bg-center rounded-xl overflow-hidden" 
                 style={{ backgroundImage: `url(${h1})` }}
               >
               </div>
@@ -161,13 +161,13 @@ const HomePage: React.FC = () => {
             </div>
 
             {/* DAILY REWARDS - UP TO 20% CASHBACK Banner */}
-            <div className="relative bg-gradient-to-br from-yellow-500/20 to-orange-500/20 rounded-xl p-6 border-none overflow-hidden flex-shrink-0 w-[calc(100vw-2rem)] md:w-auto snap-start group hover:scale-105 hover:shadow-2xl hover:shadow-yellow-500/25 transition-all duration-300">
+            <div className="relative bg-gradient-to-br from-yellow-500/20 to-orange-500/20 rounded-xl p-6 border-none overflow-hidden flex-shrink-0 w-[calc(100vw-3rem)] sm:w-[calc(100vw-4rem)] md:w-auto snap-start group hover:scale-105 hover:shadow-2xl hover:shadow-yellow-500/25 transition-all duration-300 min-h-[256px]">
               {/* Glowing Border Animation */}
               <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-yellow-400 via-orange-500 to-yellow-400 bg-[length:200%_200%] animate-pulse opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               <div className="absolute inset-[2px] bg-gray-900 rounded-xl"></div>
               
               <div 
-                className="absolute inset-0 bg-cover bg-center rounded-xl" 
+                className="absolute inset-0 bg-cover bg-center rounded-xl overflow-hidden" 
                 style={{ backgroundImage: `url(${h2})` }}
               >
               </div>
@@ -203,13 +203,13 @@ const HomePage: React.FC = () => {
             </div>
 
             {/* WHALE TOURNAMENT - Live Stakes Banner */}
-            <div className="relative bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-xl p-6 border border-orange-500/30 overflow-hidden flex-shrink-0 w-[calc(100vw-2rem)] md:w-auto snap-start group hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 transition-all duration-300">
+            <div className="relative bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-xl p-6 border border-orange-500/30 overflow-hidden flex-shrink-0 w-[calc(100vw-3rem)] sm:w-[calc(100vw-4rem)] md:w-auto snap-start group hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 min-h-[256px]">
               {/* Glowing Border Animation */}
               <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-400 via-purple-500 to-blue-400 bg-[length:200%_200%] animate-pulse opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               <div className="absolute inset-[2px] bg-gray-900 rounded-xl"></div>
               
               <div 
-                className="absolute inset-0 bg-cover bg-center rounded-xl" 
+                className="absolute inset-0 bg-cover bg-center rounded-xl overflow-hidden" 
                 style={{ backgroundImage: `url(${h3})` }}
               >
               </div>
