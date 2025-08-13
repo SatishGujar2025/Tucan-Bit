@@ -488,15 +488,26 @@ const Layout: React.FC = () => {
         }`
       }><span className="text-xl">👥</span>{sidebarExpanded && <span>Community</span>}</NavLink>
              {!isAuthenticated ? (
-            null): <NavLink to="/profile" onClick={handleLinkClick}
+              <button 
+                onClick={() => openModal('login')}
+                className={`${sidebarExpanded ? 'w-full' : 'w-8'} flex items-center ${sidebarExpanded ? 'space-x-3' : 'justify-center'} p-3 rounded-lg transition-colors hover:bg-yellow-500/20 text-white`}
+              >
+                <span className="text-xl">👤</span>
+                {sidebarExpanded && <span>Profile</span>}
+              </button>
+            ) : (
+              <NavLink to="/profile" onClick={handleLinkClick}
                 className={({ isActive }) => 
-        `${sidebarExpanded ? 'w-full' : 'w-8'} flex items-center ${sidebarExpanded ? 'space-x-3' : 'justify-center'} p-3 rounded-lg transition-colors ${
-          isActive 
-            ? 'text-white bg-gray-800  font-semibold' 
-            : 'hover:bg-yellow-500/20 text-white'                  
-        }`
-      }><span className="text-xl">👤</span>
-               {sidebarExpanded && <span>Profile</span>}</NavLink>}
+          `${sidebarExpanded ? 'w-full' : 'w-8'} flex items-center ${sidebarExpanded ? 'space-x-3' : 'justify-center'} p-3 rounded-lg transition-colors ${
+            isActive 
+              ? 'text-white bg-gray-800  font-semibold' 
+              : 'hover:bg-yellow-500/20 text-white'                  
+          }`
+        }>
+                  <span className="text-xl">👤</span>
+                  {sidebarExpanded && <span>Profile</span>}
+                </NavLink>
+            )}
           </nav>
         </div>
       </div>
@@ -619,10 +630,21 @@ const Layout: React.FC = () => {
                                     <p className="text-gray-400 text-sm">user@example.com</p>
                                   </div>
                                   
-                                  <Link to="/profile" onClick={() => setIsUserDropdownOpen(false)} className="flex items-center space-x-3 p-2 hover:bg-gray-700 rounded-md text-gray-300 hover:text-white transition-colors">
+                                  <button 
+                                    onClick={() => {
+                                      setIsUserDropdownOpen(false);
+                                      if (!isAuthenticated) {
+                                        openModal('login');
+                                      } else {
+                                        // Navigate to profile if authenticated
+                                        window.location.href = '/profile';
+                                      }
+                                    }} 
+                                    className="flex items-center space-x-3 p-2 hover:bg-gray-700 rounded-md text-gray-300 hover:text-white transition-colors w-full"
+                                  >
                                     <User className="w-4 h-4" />
                                     <span>Profile</span>
-                                  </Link>
+                                  </button>
                                   
                                   <Link to="/transactions" onClick={() => setIsUserDropdownOpen(false)} className="flex items-center space-x-3 p-2 hover:bg-gray-700 rounded-md text-gray-300 hover:text-white transition-colors">
                                     <BarChart3 className="w-4 h-4" />
