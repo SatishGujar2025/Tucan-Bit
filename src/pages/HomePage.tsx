@@ -90,17 +90,17 @@ const HomePage: React.FC = () => {
   }, [currentBanner]);
 
   return (
-    <div className="page-content max-w-full overflow-x-hidden">
+    <div className="max-w-full overflow-x-hidden">
       {/* Hero Section - Three Promotional Banners */}
       <section className="py-8 bg-gray-900 overflow-hidden">
-        <div className="px-2 sm:px-4 md:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div className="px-0 sm:px-0 md:px-6 lg:px-8 max-w-7xl mx-auto">
           <div 
             ref={bannerRef}
             className="relative flex overflow-x-auto gap-2 sm:gap-3 md:gap-4 h-72 snap-x snap-mandatory scrollbar-hide md:grid md:grid-cols-3 md:overflow-x-visible"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             {/* WELCOME GIFT - FREE Lootbox Banner */}
-            <div className="relative bg-gradient-to-br from-orange-500/20 to-red-500/20 rounded-xl p-4 border-none transition-all duration-300 flex-shrink-0 w-[calc(100vw-3rem)] sm:w-[calc(100vw-4rem)] md:w-auto snap-start group hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/25 min-h-[280px]">
+            <div className="relative bg-gradient-to-br from-orange-500/20 to-red-500/20 rounded-xl p-4 border-none transition-all duration-300 flex-shrink-0 w-full md:w-auto snap-start group hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/25 min-h-[280px]">
               {/* Play Now and Connect Wallet Buttons Overlay */}
               <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
                 <div className="flex gap-3">
@@ -161,7 +161,7 @@ const HomePage: React.FC = () => {
             </div>
 
             {/* DAILY REWARDS - UP TO 20% CASHBACK Banner */}
-            <div className="relative bg-gradient-to-br from-yellow-500/20 to-orange-500/20 rounded-xl p-4 border-none overflow-hidden flex-shrink-0 w-[calc(100vw-3rem)] sm:w-[calc(100vw-4rem)] md:w-auto snap-start group hover:scale-105 hover:shadow-2xl hover:shadow-yellow-500/25 transition-all duration-300 min-h-[280px]">
+            <div className="relative bg-gradient-to-br from-yellow-500/20 to-orange-500/20 rounded-xl p-4 border-none overflow-hidden flex-shrink-0 w-full md:w-auto snap-start group hover:scale-105 hover:shadow-2xl hover:shadow-yellow-500/25 transition-all duration-300 min-h-[280px]">
               {/* Glowing Border Animation */}
               <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-yellow-400 via-orange-500 to-yellow-400 bg-[length:200%_200%] animate-pulse opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               <div className="absolute inset-[2px] bg-gray-900 rounded-xl"></div>
@@ -203,7 +203,7 @@ const HomePage: React.FC = () => {
             </div>
 
             {/* WHALE TOURNAMENT - Live Stakes Banner */}
-            <div className="relative bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-xl p-4 border border-orange-500/30 overflow-hidden flex-shrink-0 w-[calc(100vw-3rem)] sm:w-[calc(100vw-4rem)] md:w-auto snap-start group hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 min-h-[280px]">
+            <div className="relative bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-xl p-4 border border-orange-500/30 overflow-hidden flex-shrink-0 w-full md:w-auto snap-start group hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 min-h-[280px]">
               {/* Glowing Border Animation */}
               <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-400 via-purple-500 to-blue-400 bg-[length:200%_200%] animate-pulse opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               <div className="absolute inset-[2px] bg-gray-900 rounded-xl"></div>
@@ -269,7 +269,7 @@ const HomePage: React.FC = () => {
 
       {/* Continue Playing Section */}
       <section className="py-8 bg-gray-900">
-        <div className="px-4 sm:px-6 lg:px-8">
+        <div className="px-0 sm:px-0 lg:px-8">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-lg font-bold text-white flex items-center">
               <Play className="w-5 h-5 text-green-400 mr-2" />
@@ -312,7 +312,7 @@ const HomePage: React.FC = () => {
 
       {/* Top 10 Games Section */}
       <section className="py-8 bg-gradient-to-br from-gray-800 to-gray-900">
-        <div className="px-4 sm:px-6 lg:px-8">
+        <div className="px-0 sm:px-0 lg:px-8">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-lg font-bold text-white flex items-center">
               <Trophy className="w-5 h-5 text-yellow-400 mr-2" />
@@ -383,7 +383,7 @@ const HomePage: React.FC = () => {
         <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-yellow-500 via-orange-500 to-yellow-500 animate-pulse" style={{ animationDelay: '0.5s' }}></div>
         <div className="absolute top-0 right-0 w-1 h-full bg-gradient-to-b from-yellow-500 via-orange-500 to-yellow-500 animate-pulse" style={{ animationDelay: '1.5s' }}></div>
          */}
-        <div className="relative px-4 sm:px-6 lg:px-8 countdown-timer-section">
+        <div className="relative px-0 sm:px-0 lg:px-8 countdown-timer-section">
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-yellow-400 mb-4 drop-shadow-lg">Don't miss your Daily cashback</h2>
             <p className="text-xl text-white mb-2 drop-shadow-md">Up to 20% Back. No BS. #SometimesLoseAlwaysWin</p>
@@ -423,7 +423,7 @@ const HomePage: React.FC = () => {
 
       {/* New Arrivals Section */}
       <section className="py-8 bg-gray-900">
-        <div className="px-4 sm:px-6 lg:px-8">
+        <div className="px-0 sm:px-0 lg:px-8">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-lg font-bold text-white flex items-center">
               <Zap className="w-5 h-5 text-yellow-400 mr-2" />
@@ -472,7 +472,7 @@ const HomePage: React.FC = () => {
 
       {/* Crypto Games Section */}
       <section className="py-8 bg-gradient-to-br from-gray-800 to-gray-900">
-        <div className="px-4 sm:px-6 lg:px-8">
+        <div className="px-0 sm:px-0 lg:px-8">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-lg font-bold text-white flex items-center">
               <Bitcoin className="w-5 h-5 text-yellow-400 mr-2" />
@@ -515,7 +515,7 @@ const HomePage: React.FC = () => {
 
       {/* Buy Feature Section */}
       <section className="py-8 bg-gray-900">
-        <div className="px-4 sm:px-6 lg:px-8">
+        <div className="px-0 sm:px-0 lg:px-8">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-lg font-bold text-white flex items-center">
               <Gift className="w-5 h-5 text-yellow-400 mr-2" />
@@ -558,7 +558,7 @@ const HomePage: React.FC = () => {
 
       {/* Ongoing Tribes Card with Glowing Animation */}
       <section className="py-8 bg-gray-900">
-        <div className="px-4 sm:px-6 lg:px-8">
+        <div className="px-0 sm:px-0 lg:px-8">
           <div className="relative">
             <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/20 via-orange-500/20 to-yellow-500/20 rounded-2xl blur-xl animate-pulse"></div>
             <div className="relative bg-gray-800 rounded-2xl p-8 border border-yellow-500/30 overflow-hidden">
@@ -646,7 +646,7 @@ const HomePage: React.FC = () => {
 
       {/* Popular Games Section */}
       <section className="py-8 bg-gradient-to-br from-gray-800 to-gray-900">
-        <div className="px-4 sm:px-6 lg:px-8">
+        <div className="px-0 sm:px-0 lg:px-8">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-lg font-bold text-white flex items-center">
               <Star className="w-5 h-5 text-yellow-400 mr-2" />
@@ -689,7 +689,7 @@ const HomePage: React.FC = () => {
 
       {/* Live Casino Section */}
       <section className="py-8 bg-gray-900">
-        <div className="px-4 sm:px-6 lg:px-8">
+        <div className="px-0 sm:px-0 lg:px-8">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-lg font-bold text-white flex items-center">
               <div className="w-5 h-5 bg-red-500 rounded-full mr-2 animate-pulse"></div>
@@ -732,7 +732,7 @@ const HomePage: React.FC = () => {
 
       {/* Jackpot Games Section */}
       <section className="py-8 bg-gradient-to-br from-gray-800 to-gray-900">
-        <div className="px-4 sm:px-6 lg:px-8">
+        <div className="px-0 sm:px-0 lg:px-8">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-lg font-bold text-white flex items-center">
               <Gem className="w-5 h-5 text-yellow-400 mr-2" />

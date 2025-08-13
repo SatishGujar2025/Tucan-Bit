@@ -43,7 +43,7 @@ const PromotionsPage: React.FC = () => {
   const promotions = [
     { id: 1, title: 'Welcome Bonus', subtitle: 'New Player Special', description: 'Get 100% match on your first deposit up to 5 BTC plus 100 free spins on our most popular slots', image: 'https://cdn.midjourney.com/0ac3937e-6f1e-438c-b549-124318dd6b3f/0_2.png', bonus: '100% Match + 100 Spins', code: 'WELCOME100', category: 'welcome', featured: true, timeLeft: '6 days', requirements: ['Minimum deposit: 0.01 BTC', 'Wagering requirement: 35x'], maxBonus: '5 BTC', games: 'All slots' },
     { id: 2, title: 'Daily Cashback', subtitle: 'Every Day Rewards', description: 'Earn 10% cashback on all losses every day. No wagering requirements, instant credit.', image: 'https://iili.io/FwUxYcN.png', bonus: '10% Daily Cashback', code: 'DAILY10', category: 'daily', featured: true, timeLeft: 'Ongoing', requirements: ['Minimum loss: 0.001 BTC', 'No wagering'], maxBonus: '1 BTC per day', games: 'All games' },
-    { id: 3, title: 'VIP Rewards Program', subtitle: 'Exclusive Benefits', description: 'Join our VIP program for exclusive bonuses, faster withdrawals, and personal account manager.', image: 'https://cdn.midjourney.com/54d71f3e-7598-4f36-a850-d7dd929d5e7c/0_3.png', bonus: 'Up to 25% Cashback', code: 'VIPCLUB', category: 'vip', featured: true, timeLeft: 'Invitation Only', requirements: ['Invitation required', 'Exclusive benefits'], maxBonus: 'No limit', games: 'All games' },
+    { id: 3, title: 'Tucan Elite Rewards Program', subtitle: 'Exclusive Benefits', description: 'Join our Tucan Elite program for exclusive bonuses, faster withdrawals, and personal account manager.', image: 'https://cdn.midjourney.com/54d71f3e-7598-4f36-a850-d7dd929d5e7c/0_3.png', bonus: 'Up to 25% Cashback', code: 'TUCANELITE', category: 'vip', featured: true, timeLeft: 'Invitation Only', requirements: ['Invitation required', 'Exclusive benefits'], maxBonus: 'No limit', games: 'All games' },
     // Tournament Promotions
     { id: 4, title: 'SPIN WARS', subtitle: 'VOL 5', description: 'Same Battle. New Games.', image: 'https://iili.io/FwSX1Xj.png', bonus: '$30,000', code: 'SPINWARS30K', category: 'tournament', featured: true, timeLeft: '3 days', requirements: ['Minimum bet: $1', 'Tournament entry required'], maxBonus: '$30,000', games: 'All slots', promoId: 'spin-wars' },
     { id: 5, title: 'TucanBIT Tournament', subtitle: 'Break Live88', description: 'Bet on Live88 tables. Break the house. Win the bag.', image: 'https://iili.io/FwUxYcN.png', bonus: '$20,000', code: 'TUCANBIT20K', category: 'tournament', featured: true, timeLeft: '5 days', requirements: ['Live88 tables only', 'Minimum bet: $5'], maxBonus: '$20,000', games: 'Live88 tables', promoId: 'tucanbit-tournament' },
@@ -54,7 +54,7 @@ const PromotionsPage: React.FC = () => {
     { id: 'all', name: 'All Promotions', icon: Gift },
     { id: 'welcome', name: 'Welcome', icon: Star },
     { id: 'daily', name: 'Daily', icon: Clock },
-    { id: 'vip', name: 'VIP', icon: Crown },
+    { id: 'vip', name: 'Tucan Elite', icon: Crown },
     { id: 'tournament', name: 'Tournaments', icon: Trophy },
     { id: 'reload', name: 'Reload', icon: Zap },
     { id: 'freespins', name: 'Free Spins', icon: Target }
@@ -92,18 +92,18 @@ const PromotionsPage: React.FC = () => {
           </div>
         </section>
 
-        {/* Featured Promotions */}
+        {/* Trending Promotions */}
         <div className="mb-12">
           <h2 className="text-2xl font-bold text-white mb-6 flex items-center">
             <Crown className="w-7 h-7 text-yellow-400 mr-3" />
-            Featured Promotions
+            Trending Promotions
           </h2>
           <div className="grid lg:grid-cols-3 gap-6">
             {featuredPromotions.map((promo) => (
               <div key={promo.id} className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-yellow-900/30 to-orange-900/30 border border-yellow-500/30">
                 <div className="absolute top-4 left-4 z-10 bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-3 py-1 rounded-full text-sm font-bold flex items-center space-x-1">
                   <Star className="w-4 h-4 fill-current" />
-                  <span>FEATURED</span>
+                  <span>TRENDING</span>
                 </div>
                 <div className="aspect-[3/2] relative overflow-hidden">
                   <img src={promo.image} alt={promo.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform" />

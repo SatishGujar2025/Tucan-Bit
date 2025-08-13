@@ -343,7 +343,7 @@ type GameLobbyPageProps = {
                       {game.isFeatured && (
                         <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-2 py-1 rounded-full text-xs font-bold flex items-center">
                           <StarIcon className="w-3 h-3 mr-1" />
-                          <span>FEATURED</span>
+                          <span>TRENDING</span>
                         </div>
                       )}
                     </div>

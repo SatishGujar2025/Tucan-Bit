@@ -139,13 +139,13 @@ const PromotionalModal: React.FC<PromotionalModalProps> = ({ isOpen, onClose, ad
         };
       case 'vip':
         return {
-          title: '👑 VIP SPACES 👑',
-          subtitle: 'VIP Membership Package',
-          description: 'Unlock exclusive VIP benefits and rewards!',
+          title: '🦜 TUCAN ELITE SPACES 🦜',
+          subtitle: 'Tucan Elite Membership Package',
+          description: 'Unlock exclusive Tucan Elite benefits and rewards!',
           icon: <Crown className="w-6 h-6 text-yellow-400" />,
           benefits: [
-            { text: 'VIP Status Upgrade', value: 'GOLD' },
-            { text: 'Exclusive Bonuses', value: 'VIP ONLY' },
+            { text: 'Tucan Elite Status Upgrade', value: 'GOLD' },
+            { text: 'Exclusive Bonuses', value: 'ELITE ONLY' },
             { text: 'Personal Manager', value: 'ASSIGNED' }
           ],
           timeLimit: '30 days',
@@ -174,7 +174,7 @@ const PromotionalModal: React.FC<PromotionalModalProps> = ({ isOpen, onClose, ad
           benefits: [
             { text: 'Special Bonus', value: '150%' },
             { text: 'Free Spins', value: '75 SPINS' },
-            { text: 'VIP Access', value: 'UNLOCKED' }
+            { text: 'Tucan Elite Access', value: 'UNLOCKED' }
           ],
           timeLimit: '24 hours',
           bgGradient: 'from-gray-900 via-gray-800 to-gray-900'

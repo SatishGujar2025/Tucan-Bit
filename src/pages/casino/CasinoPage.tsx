@@ -1,8 +1,8 @@
 import React from 'react';
 
-
 import SearchBar from '../../components/ui/SearchBar';
 import GameSection from '../../components/ui/GameSection';
+import GameTabs from '../../components/ui/GameTabs';
 import { gameData } from '../../components/ui/data/games';
 import Header from '../../components/ui/Header'; // This is the header specific to the casino page, not the main layout header
 
@@ -17,6 +17,11 @@ const CasinoPage: React.FC = () => {
     <div className="page-content p-6 bg-gray-900">
       <Header />
       <SearchBar />
+      
+      {/* Trending Games Tabs */}
+      <div className="mt-8">
+        <GameTabs title="Trending Games" showViewAll={true} />
+      </div>
       
       <div className="mt-8 space-y-8">
         <GameSection 

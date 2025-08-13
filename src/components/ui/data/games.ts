@@ -139,6 +139,66 @@ export const gameData = {
       image: g16
     }
   ],
+  trending: [
+    {
+      id: '57',
+      title: 'Gates of Olympus 1000',
+      provider: 'Pragmatic Play',
+      image: g1,
+      badge: 'TRENDING'
+    },
+    {
+      id: '58',
+      title: 'Sweet Bonanza',
+      provider: 'Pragmatic Play',
+      image: g2,
+      badge: 'HOT'
+    },
+    {
+      id: '59',
+      title: 'Wolf Gold',
+      provider: 'Pragmatic Play',
+      image: g3,
+      badge: 'TRENDING'
+    },
+    {
+      id: '60',
+      title: 'Book of Dead',
+      provider: 'Play\'n GO',
+      image: g4,
+      badge: 'POPULAR'
+    },
+    {
+      id: '61',
+      title: 'Starburst',
+      provider: 'NetEnt',
+      image: g5,
+      badge: 'TRENDING'
+    },
+    {
+      id: '62',
+      title: 'Gonzo\'s Quest',
+      provider: 'NetEnt',
+      image: g6,
+      badge: 'HOT'
+    },
+    {
+      id: '63',
+      title: 'Crazy Time Live',
+      provider: 'Evolution Gaming',
+      image: crazyTimeLive,
+      isLive: true,
+      badge: 'TRENDING'
+    },
+    {
+      id: '64',
+      title: 'Lightning Roulette',
+      provider: 'Evolution Gaming',
+      image: g7,
+      isLive: true,
+      badge: 'HOT'
+    }
+  ],
 tucanbitSpecials:[
      {
       id: '17',

@@ -25,9 +25,9 @@ const LiveCasinoPage: React.FC = () => {
       <SearchBar />
       
       <div className="mt-8 space-y-8">
-        {/* Featured Live Games */}
+        {/* Trending Live Games */}
         <GameSection 
-          title="Featured Live Games" 
+          title="Trending Live Games" 
           games={gameData.liveCasino}
           showViewAll={true}
         />

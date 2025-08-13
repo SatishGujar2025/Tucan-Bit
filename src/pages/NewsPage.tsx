@@ -153,12 +153,12 @@ const NewsPage: React.FC = () => {
           </div>
         </div>
 
-        {/* Featured Articles */}
+        {/* Trending Articles */}
         {activeCategory === 'all' && featuredArticles.length > 0 && (
           <div className="mb-12">
             <h2 className="text-2xl font-bold text-white mb-6 flex items-center">
               <Star className="w-6 h-6 text-yellow-400 mr-3" />
-              Featured Articles
+              Trending Articles
             </h2>
             <div className="grid lg:grid-cols-2 gap-6">
               {featuredArticles.map((article) => (
@@ -168,7 +168,7 @@ const NewsPage: React.FC = () => {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
                     <div className="absolute top-4 left-4">
                       <span className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-3 py-1 rounded-full text-sm font-bold">
-                        FEATURED
+                        TRENDING
                       </span>
                     </div>
                   </div>

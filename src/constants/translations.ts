@@ -4,7 +4,7 @@ export const translations = {
     home: 'Home',
     games: 'Games',
     liveCasino: 'Live Casino',
-    vipClub: 'VIP Club',
+    vipClub: 'Tucan Elite',
     tournaments: 'Tournaments',
     profile: 'Profile',
     wallet: 'Wallet',

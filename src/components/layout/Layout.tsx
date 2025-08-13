@@ -191,7 +191,7 @@ const Layout: React.FC = () => {
     // { id: 'home', path: '/', label: 'Home', icon: '🏠' },
     { id: 'liveCasino', path: '/live-casino', label: 'Live Casino', icon: '🎲' },
     { id: 'games', path: '/games', label: 'Games', icon: '🎮' },
-    { id: 'vipClub', path: '/vip-club', label: 'VIP Club', icon: '💎' },
+    { id: 'vipClub', path: '/vip-club', label: 'Tucan Elite', icon: '💎' },
     // { id: 'tournaments', path: '/tournaments', label: 'Tournaments', icon: '⚡' },
   ];
 
@@ -382,7 +382,7 @@ const Layout: React.FC = () => {
             ? 'text-white bg-gray-800  font-semibold' 
             : 'hover:bg-yellow-500/20 text-white'                  
         }`
-      }><span className="text-xl">👑</span>{sidebarExpanded && <span>VIP Club</span>}</NavLink>
+      }><span className="text-xl">👑</span>{sidebarExpanded && <span>Tucan Elite</span>}</NavLink>
 
             <div> {/* Wallet Submenu */}
               <button onClick={() => toggleSubmenu('wallet')} className={`${sidebarExpanded ? 'w-full' : 'w-8'} flex items-center ${sidebarExpanded ? 'justify-between' : 'justify-center'} p-3 rounded-lg hover:bg-gray-800 text-white`}>
@@ -527,15 +527,29 @@ const Layout: React.FC = () => {
         {/* 2. HEADER - The top bar with login/user info                         */}
         {/* ====================================================================== */}
       <nav className="sticky top-0 z-50 bg-black/20 backdrop-blur-md border-b border-[#3C1A4F]/20">
-            <div className={`max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 ${promotionalSidebarExpanded ? 'lg:pr-48' : 'lg:pr-8'} ${promotionalSidebarExpanded ? 'xl:pr-64' : 'xl:pr-12'}`}>
-            <div className="flex items-center justify-between h-16">
-                {/* Mobile Hamburger Button */}
-                <button onClick={() => setSidebarOpen(!sidebarOpen)} className="lg:hidden text-white -ml-2">
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16m4 6H4"></path></svg>
-                </button>
+            <div className={`w-full px-0 sm:px-0 lg:px-8 lg:max-w-5xl lg:mx-auto ${promotionalSidebarExpanded ? 'lg:pr-48' : 'lg:pr-8'} ${promotionalSidebarExpanded ? 'xl:pr-64' : 'xl:pr-12'}`}>
+            <div className="flex items-center h-16">
+                {/* Left Side: Hamburger Menu */}
+                <div className="flex items-center">
+                  {/* Mobile Hamburger Button - Enhanced Design */}
+                  <button 
+                    onClick={() => setSidebarOpen(!sidebarOpen)} 
+                    className="lg:hidden relative p-2 rounded-lg bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-500/30 hover:from-purple-500/30 hover:to-pink-500/30 transition-all duration-300 group"
+                  >
+                    <div className="relative w-6 h-6 flex flex-col justify-center items-center">
+                      {/* Animated Hamburger Lines */}
+                      <span className={`absolute w-5 h-0.5 bg-white rounded-full transition-all duration-300 transform ${sidebarOpen ? 'rotate-45 translate-y-0' : '-translate-y-1.5'}`}></span>
+                      <span className={`absolute w-5 h-0.5 bg-white rounded-full transition-all duration-300 ${sidebarOpen ? 'opacity-0' : 'opacity-100'}`}></span>
+                      <span className={`absolute w-5 h-0.5 bg-white rounded-full transition-all duration-300 transform ${sidebarOpen ? '-rotate-45 translate-y-0' : 'translate-y-1.5'}`}></span>
+                      
+                      {/* Glowing effect on hover */}
+                      <div className="absolute inset-0 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full opacity-0 group-hover:opacity-20 blur-sm transition-opacity duration-300"></div>
+                    </div>
+                  </button>
+                </div>
 
-                {/*  Main Navigation Links for Desktop */}
-                <div className="hidden lg:flex items-center space-x-2">
+                {/* Center: Main Navigation Links for Desktop */}
+                <div className="hidden lg:flex items-center space-x-2 lg:ml-8">
                   {headerNavItems.map((item) => (
                     <Link
                         key={item.id}
@@ -550,26 +564,16 @@ const Layout: React.FC = () => {
                         <span className="whitespace-nowrap">{item.label}</span>
                     </Link>
                   ))}
-                  
-                  {/* Get Started Button - positioned next to VIP Club */}
-                  {!isAuthenticated && (
-                    <button onClick={() => openModal('login')} className="flex items-center space-x-1 px-2 py-2 bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white rounded-lg font-semibold text-sm">
-                        <User className="w-4 h-4" />
-                        <span className="whitespace-nowrap">Get Started</span>
-                    </button>
-                  )}
                 </div>
                 
-                                {/* Right Side: User Info and Mobile Get Started Button */}
-                <div className="flex items-center space-x-2">
-                  {/* Get Started Button for Mobile */}
+                {/* Right Side: Get Started Button and User Info */}
+                <div className="flex items-center space-x-2 ml-auto mr-4">
+                  {/* Get Started Button - Positioned more towards center */}
                   {!isAuthenticated && (
-                    <div className="lg:hidden">
-                      <button onClick={() => openModal('login')} className="flex items-center space-x-1 px-3 py-2 bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white rounded-lg font-semibold text-sm">
-                          <User className="w-4 h-4" />
-                          <span>Get Started</span>
-                      </button>
-                    </div>
+                    <button onClick={() => openModal('login')} className="flex items-center space-x-1 px-3 py-2 bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white rounded-lg font-semibold text-sm transition-all duration-200">
+                        <User className="w-4 h-4" />
+                        <span>Get Started</span>
+                    </button>
                   )}
                   
                   {/* User Info (only for authenticated users) */}
@@ -688,7 +692,7 @@ const Layout: React.FC = () => {
         {/* ====================================================================== */}
         {/* 3. MAIN CONTENT and 4. FOOTER                                        */}
         {/* ====================================================================== */}
-        <main className={`pb-20 md:pb-0 overflow-x-hidden max-w-full ${promotionalSidebarExpanded ? 'lg:pr-48 xl:pr-64' : 'lg:pr-8 xl:pr-0'} ${sidebarExpanded ? 'lg:pl-52' : 'lg:pl-2'}`}>
+        <main className={`pb-20 md:pb-0 overflow-x-hidden w-full ${promotionalSidebarExpanded ? 'lg:pr-48 xl:pr-64' : 'lg:pr-8 xl:pr-0'} ${sidebarExpanded ? 'lg:pl-52' : 'lg:pl-2'}`}>
             <Outlet />
             <div className="hidden md:block">
                 <Footer />

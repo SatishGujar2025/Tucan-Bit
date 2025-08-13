@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Crown, Star, Gift, Clock, Users, Trophy, Diamond, Zap, Shield, Percent, Award } from 'lucide-react';
 
-const VIPClubPage: React.FC = () => {
+const TucanElitePage: React.FC = () => {
   const navigate = useNavigate();
   const [selectedTier, setSelectedTier] = useState('bronze');
 
@@ -147,7 +147,7 @@ const VIPClubPage: React.FC = () => {
           </div>
           <div className="relative w-full px-4 sm:px-6 lg:px-8">
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-orange-500">VIP Club</span> Elite
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-orange-500">Tucan Elite</span> Club
             </h1>
             <p className="text-xl text-gray-300">Exclusive benefits and luxury experiences for our most valued players</p>
           </div>
@@ -155,7 +155,7 @@ const VIPClubPage: React.FC = () => {
 
         {/* VIP Tiers */}
         <section className="mb-12">
-          <h2 className="text-3xl font-bold text-white mb-8 text-center">VIP Tiers</h2>
+          <h2 className="text-3xl font-bold text-white mb-8 text-center">Tucan Elite Tiers</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {vipTiers.map((tier) => (
               <div
@@ -246,7 +246,7 @@ const VIPClubPage: React.FC = () => {
 
         {/* Exclusive Games */}
         <section className="mb-12">
-          <h2 className="text-3xl font-bold text-white mb-8 text-center">Exclusive VIP Games</h2>
+          <h2 className="text-3xl font-bold text-white mb-8 text-center">Exclusive Tucan Elite Games</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {exclusiveGames.map((game, index) => (
               <div key={index} className="bg-gray-800 rounded-xl p-6 border border-gray-700 hover:border-yellow-500/50 transition-all duration-300">
@@ -277,7 +277,7 @@ const VIPClubPage: React.FC = () => {
 
         {/* VIP Events */}
         <section className="mb-12">
-          <h2 className="text-3xl font-bold text-white mb-8 text-center">Exclusive VIP Events</h2>
+          <h2 className="text-3xl font-bold text-white mb-8 text-center">Exclusive Tucan Elite Events</h2>
           <div className="grid md:grid-cols-2 gap-6">
             {vipEvents.map((event, index) => (
               <div key={index} className="bg-gray-800 rounded-xl p-6 border border-gray-700 hover:border-yellow-500/50 transition-all duration-300">
@@ -311,10 +311,10 @@ const VIPClubPage: React.FC = () => {
         <section className="text-center">
           <div className="bg-gradient-to-r from-yellow-500/10 to-orange-500/10 border border-yellow-500/30 rounded-xl p-8">
             <Crown className="w-16 h-16 text-yellow-400 mx-auto mb-4" />
-            <h2 className="text-2xl font-bold text-white mb-4">Ready to Join the VIP Club?</h2>
+            <h2 className="text-2xl font-bold text-white mb-4">Ready to Join Tucan Elite?</h2>
             <p className="text-gray-300 mb-6">Start your journey to exclusive benefits and luxury experiences</p>
             <button className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-8 py-3 rounded-lg font-semibold hover:from-yellow-600 hover:to-orange-600 transition-all duration-200">
-              Apply for VIP Status
+              Apply for Tucan Elite Status
             </button>
           </div>
         </section>
@@ -323,4 +323,4 @@ const VIPClubPage: React.FC = () => {
   );
 };
 
-export default VIPClubPage; 
+export default TucanElitePage; 

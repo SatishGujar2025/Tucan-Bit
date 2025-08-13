@@ -258,7 +258,7 @@ const SportsPage: React.FC<{ onBack: () => void }> = ({ onBack }) => {
       <div className="responsive-container flex-1 lg:mr-64">
       
 
-        {/* Featured Events Carousel */}
+        {/* Trending Events Carousel */}
         <div className="p-4 border-b border-gray-700">
           <div className="flex space-x-4 overflow-x-auto pb-2">
             {featuredEvents.map((event) => (

@@ -147,7 +147,7 @@ const SlotsPage: React.FC = () => {
                   <div className="absolute top-2 left-2 flex flex-col space-y-1">
                     {game.isHot && <div className="bg-gradient-to-r from-red-500 to-orange-500 text-white px-2 py-1 rounded-full text-xs font-bold flex items-center"><Flame className="w-3 h-3 mr-1" /><span>HOT</span></div>}
                     {game.isNew && <div className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-2 py-1 rounded-full text-xs font-bold"><span>NEW</span></div>}
-                    {game.isFeatured && <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-2 py-1 rounded-full text-xs font-bold flex items-center"><StarIcon className="w-3 h-3 mr-1" /><span>FEATURED</span></div>}
+                    {game.isFeatured && <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-2 py-1 rounded-full text-xs font-bold flex items-center"><StarIcon className="w-3 h-3 mr-1" /><span>TRENDING</span></div>}
                     {game.isMegaways && <div className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-2 py-1 rounded-full text-xs font-bold flex items-center"><Zap className="w-3 h-3 mr-1" /><span>MEGAWAYS</span></div>}
                   </div>
 

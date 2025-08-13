@@ -19,6 +19,7 @@ export { default as SlotMachine } from './games/SlotMachine';
 // UI components
 export { default as GameCard } from './ui/GameCard';
 export { default as GameSection } from './ui/GameSection';
+export { default as GameTabs } from './ui/GameTabs';
 export { default as Header } from './ui/Header';
 export { default as PromotionalBanner } from './ui/PromotionalBanner';
 export { default as SearchBar } from './ui/SearchBar';
