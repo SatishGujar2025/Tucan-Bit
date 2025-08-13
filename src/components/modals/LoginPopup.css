@@ -20,7 +20,7 @@
 /* --- Popup Container --- */
 .popup-container {
   display: flex;
-  width: 480px;
+  width: 600px;
   height: 500px;
   background-color: #1a2035; /* Dark blue/purple background */
   border-radius: 20px;

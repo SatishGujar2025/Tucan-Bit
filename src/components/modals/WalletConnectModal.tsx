@@ -98,7 +98,7 @@ const WalletConnectModal: React.FC = () => {
               key={wallet.id} 
               onClick={() => connectWallet(wallet.id)} 
               disabled={isConnecting}
-              className="flex items-center w-full p-3 sm:p-4 bg-gray-700 hover:bg-gray-600 rounded-xl transition-colors duration-200 disabled:opacity-50"
+              className="flex items-center w-full p-3 sm:p-4 bg-purple-800 hover:bg-purple-700 rounded-xl transition-colors duration-200 disabled:opacity-50"
             >
               <img src={wallet.icon} alt={wallet.name} className="w-8 h-8 sm:w-10 sm:h-10 mr-3 sm:mr-4" />
               <div className="text-left flex-1">

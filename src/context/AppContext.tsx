@@ -86,7 +86,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     };
   }, [showPromoModal, modalView]);
 
-  // New promotional modal logic: show after 1 minute and every 1 minute
+  // Promotional modal logic: show after signup and then once a week
   useEffect(() => {
     const adTypes = ['tournament', 'welcome', 'deposit', 'vip', 'jackpot'];
     
@@ -97,21 +97,26 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
       console.log('Promotional modal showing with ad type:', randomAd);
     };
     
-    // Show first ad after 1 minute (60,000 ms)
-    const initialTimer = setTimeout(() => {
-      showRandomAd();
-    }, 60000); // 1 minute
-    
-    // Set up recurring timer for every 1 minute
-    const recurringTimer = setInterval(() => {
-      showRandomAd();
-    }, 60000); // 1 minute
-    
-    return () => {
-      clearTimeout(initialTimer);
-      clearInterval(recurringTimer);
-    };
-  }, []);
+    // Check if user is authenticated and show promo modal after signup
+    if (isAuthenticated) {
+      const lastPromoShown = localStorage.getItem('lastPromoShown');
+      const currentTime = new Date().getTime();
+      const oneWeek = 7 * 24 * 60 * 60 * 1000; // 7 days in milliseconds
+      
+      // Show promo modal if:
+      // 1. User just signed up (no lastPromoShown timestamp)
+      // 2. It's been more than a week since last shown
+      if (!lastPromoShown || (currentTime - parseInt(lastPromoShown)) > oneWeek) {
+        // Show after 2 seconds to let the signup process complete
+        const timer = setTimeout(() => {
+          showRandomAd();
+          localStorage.setItem('lastPromoShown', currentTime.toString());
+        }, 2000);
+        
+        return () => clearTimeout(timer);
+      }
+    }
+  }, [isAuthenticated]);
   
   // --- THIS IS THE CORRECTED LOGIN FUNCTION ---
   const login = (username: string) => {

@@ -113,7 +113,7 @@ const HomePage: React.FC = () => {
                   </Link>
                   <button 
                     onClick={() => openModal('walletConnect')}
-                    className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-6 py-2 rounded-lg font-bold text-sm hover:from-blue-600 hover:to-cyan-600 transform hover:scale-105 transition-all duration-200 flex items-center justify-center space-x-2 shadow-xl min-w-[160px]"
+                    className="bg-gradient-to-r from-purple-800 to-purple-700 text-white px-6 py-2 rounded-lg font-bold text-sm hover:from-purple-700 hover:to-purple-600 transform hover:scale-105 transition-all duration-200 flex items-center justify-center space-x-2 shadow-xl min-w-[160px]"
                   >
                     <User className="w-4 h-4" />
                     <span>Connect Wallet</span>

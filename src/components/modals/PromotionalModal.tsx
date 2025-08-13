@@ -253,13 +253,24 @@ const PromotionalModal: React.FC<PromotionalModalProps> = ({ isOpen, onClose, ad
             ))}
           </div>
           
-          {/* Limited time offer - Compact */}
+          {/* Weekly Streak - Compact */}
           <div className="bg-gradient-to-r from-purple-950 to-purple-900 p-2 rounded-lg mb-3 border border-purple-800/30">
             <p className="text-white font-bold text-xs mb-1">
-              ⏰ LIMITED TIME OFFER
+              🔥 WEEKLY STREAK
             </p>
+            <div className="flex items-center justify-center space-x-1 mb-1">
+              {[1, 2, 3, 4, 5, 6, 7].map((day) => (
+                <div
+                  key={day}
+                  className={`w-3 h-3 rounded-full border ${
+                    day <= 1 ? 'bg-yellow-400 border-yellow-300' : 'bg-gray-600 border-gray-500'
+                  }`}
+                  title={`Day ${day}`}
+                />
+              ))}
+            </div>
             <p className="text-white/90 text-xs">
-              Only available for {promotionData.timeLimit}!
+              Visit weekly for exclusive rewards!
             </p>
           </div>
           
