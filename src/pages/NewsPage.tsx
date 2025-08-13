@@ -23,7 +23,7 @@ const NewsPage: React.FC = () => {
   const newsArticles = [
     {
       id: 1,
-      title: "TucanBit Launches Revolutionary Provably Fair Gaming System",
+      title: "TucanBit Launches Revolutionary Fair Gaming System",
       excerpt: "We're excited to announce the launch of our new provably fair gaming system, ensuring complete transparency and fairness for all players.",
       content: "TucanBit has always been committed to providing the most transparent and fair gaming experience possible. Our new provably fair system uses advanced cryptographic algorithms to ensure that every game outcome is verifiable and cannot be manipulated. Players can now verify the fairness of every bet, spin, and hand in real-time.",
       category: 'updates',

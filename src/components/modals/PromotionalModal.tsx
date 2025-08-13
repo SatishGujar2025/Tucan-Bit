@@ -139,7 +139,7 @@ const PromotionalModal: React.FC<PromotionalModalProps> = ({ isOpen, onClose, ad
         };
       case 'vip':
         return {
-          title: '👑 VIP ACCESS 👑',
+          title: '👑 VIP SPACES 👑',
           subtitle: 'VIP Membership Package',
           description: 'Unlock exclusive VIP benefits and rewards!',
           icon: <Crown className="w-6 h-6 text-yellow-400" />,
