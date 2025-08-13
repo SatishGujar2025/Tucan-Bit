@@ -321,7 +321,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ onClose, onVisaClick }) => 
                     <label className="text-sm font-medium text-gray-300">
                       Withdrawal amount
                     </label>
-                    <span className="text-sm text-gray-400">Available: 0 USDT</span>
+                    <span className="text-sm text-gray-400">Available: $0</span>
                   </div>
                   
                   <div className="relative">
