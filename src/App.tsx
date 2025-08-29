@@ -1,4 +1,5 @@
 import React from 'react';
+import { lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import { AppProvider, useAppContext } from './context/AppContext';
 import Layout from './components/layout/Layout';
@@ -52,6 +53,10 @@ import TransactionsPage from './pages/payment/TransactionsPage';
 import SettingsPage from './pages/settings/SettingsPage';
 import GetPaidPage from './pages/payment/GetPaidPage';
 import PromotionDetailPage from './pages/PromotionDetailPage';
+import SocketProvider from './network/sockets/SocketProvider';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ToastContainer } from 'react-toastify';
+
 
 // Wrapper components to provide onBack function
 const SportsPageWrapper = () => {
@@ -103,6 +108,8 @@ const TermsOfServiceWrapper = () => {
   const navigate = useNavigate();
   return <TermsOfService onBack={() => navigate(-1)} />;
 };
+
+const CrashGamePage = lazy(() => import('./pages/games/CrashGamePage'));
 
 function AppContent() {
   const { showPromoModal, setShowPromoModal, currentAdType } = useAppContext();
@@ -158,6 +165,7 @@ function AppContent() {
             <Route path="settings" element={<SettingsPage />} />
             <Route path="withdraw" element={<GetPaidPage />} />
             <Route path="promotion/:id" element={<PromotionDetailPage />} />
+            <Route path="/games/crash" element={<Suspense fallback={<div>Loading…</div>}><CrashGamePage /></Suspense>}/>
             <Route path="*" element={<NotFoundPage />} />
           </Route>
         </Routes>
@@ -173,11 +181,18 @@ function AppContent() {
   );
 }
 
+const qc = new QueryClient();
+
 function App() {
   return (
-    <AppProvider>
-      <AppContent />
-    </AppProvider>
+    <QueryClientProvider client={qc}>
+      <AppProvider>
+        <SocketProvider>
+          <AppContent />
+          <ToastContainer />
+        </SocketProvider>
+      </AppProvider>
+    </QueryClientProvider>
   );
 }
 

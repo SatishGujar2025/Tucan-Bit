@@ -14,6 +14,7 @@ interface WithdrawDetails {
 // Define the full shape of our shared context
 type WalletCurrency = 'ETH' | 'SOL' | null;
 interface AppContextType {
+  accessToken: string;
   isAuthenticated: boolean;
   user: { username: string } | null;
   balance: number;
@@ -47,6 +48,7 @@ interface AppProviderProps {
 
 export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [accessToken, setAccessToken] = useState(null);
   const [modalView, setModalView] = useState<ModalView>(null);
   const [user, setUser] = useState<{ username: string } | null>(null);
   const [balance, setBalance] = useState(10000);
