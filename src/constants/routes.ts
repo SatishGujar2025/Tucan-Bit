@@ -46,7 +46,12 @@ export const ROUTES = {
   COOKIES: '/cookies',
   LICENSING: '/licensing',
   SECURITY: '/security',
+
+  // Games
+  CRASH: '/games/crash'
+
 } as const;
+
 
 // Navigation structure
 export const NAVIGATION = {
@@ -81,4 +86,7 @@ export const NAVIGATION = {
     { id: 'licensing', name: 'Licensing', path: ROUTES.LICENSING },
     { id: 'security', name: 'Security', path: ROUTES.SECURITY },
   ],
+  GAMES: [
+    { id: 'crash', name: 'Crash Game', path: ROUTES.CRASH },
+  ]
 } as const; 
