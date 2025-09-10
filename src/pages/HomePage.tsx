@@ -36,7 +36,7 @@ const HomePage: React.FC = () => {
     const timer = setInterval(() => {
       setCountdown(prev => {
         let { days, hours, minutes, seconds } = prev;
-        
+        //test
         if (seconds > 0) {
           seconds--;
         } else {
