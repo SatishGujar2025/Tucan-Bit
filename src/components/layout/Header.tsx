@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { User, ChevronDown, DollarSign, BarChart3, Settings, ArrowRightLeft, LogOut } from "lucide-react";
+import tucanLogo from "../../assets/tucan.png";
 
 interface Balance {
   id: string;
@@ -77,7 +78,7 @@ const Header: React.FC<HeaderProps> = ({
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#36CFC9]/20 to-transparent"></div>
       <div className="w-full px-4 sm:px-6 md:px-8 lg:px-8">
         <div className="flex items-center h-16">
-          <div className="flex items-center">
+          <div className="flex items-center space-x-4">
             <button
               onClick={() => setSidebarOpen(!sidebarOpen)}
               className="md:hidden relative p-2 rounded-lg bg-white border border-gray-300 hover:bg-gray-100 transition-all duration-300 group"
@@ -95,6 +96,10 @@ const Header: React.FC<HeaderProps> = ({
                 <div className="absolute inset-0 bg-gradient-to-r from-gray-400 to-gray-600 rounded-full opacity-0 group-hover:opacity-20 blur-sm transition-opacity duration-300"></div>
               </div>
             </button>
+            <Link to="/" className="flex items-center space-x-2">
+              <img src={tucanLogo} alt="TucanBIT" className="w-8 h-8" />
+              <span className="text-2xl font-bold text-white">TucanBIT</span>
+            </Link>
           </div>
           <div className="hidden md:flex items-center space-x-2">
             {headerNavItems.map((item) => (

@@ -1,7 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { ChevronDown, ChevronRight, ChevronLeft } from "lucide-react";
-import tucanLogo from "../../assets/tucan.png";
 import homeIcon from "../../assets/sidebar-logos/icons8-home-50.png";
 import sportsIcon from "../../assets/sidebar-logos/icons8-jersey-50.png";
 import lootboxIcon from "../../assets/sidebar-logos/icons8-open-delivered-box-50.png";
@@ -47,35 +46,13 @@ const Sidebar: React.FC<SidebarProps> = ({
     <div className={`fixed top-16 bottom-0 left-0 z-[60] bg-black shadow-2xl transform ${sidebarOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0 transition-all duration-300 border-r border-gray-800 ${sidebarOpen ? "w-64" : sidebarExpanded ? "w-64" : "w-16"} max-h-screen overflow-hidden`}>
       <div className="flex flex-col h-full max-h-screen">
         <div className={`border-b border-gray-800 ${sidebarOpen ? "p-6" : sidebarExpanded ? "p-6" : "p-4"} lg:p-4`}>
-          <div className={`flex items-center ${sidebarOpen ? "justify-between" : sidebarExpanded ? "justify-between" : "justify-center"}`}>
-            <div className={`flex items-center ${sidebarOpen ? "space-x-3" : sidebarExpanded ? "space-x-3" : "justify-center"}`}>
-              <div className="md:hidden">
-                <NavLink to="/" onClick={handleLinkClick}>
-                  <div className="flex items-center space-x-2">
-                    <img src={tucanLogo} alt="Tucan" className="w-8 h-8" />
-                    <span className="text-2xl font-bold text-white">TucanBIT</span>
-                  </div>
-                  <p className="text-xs text-gray-400 mt-1">Crypto Casino & Sportsbook</p>
-                </NavLink>
-              </div>
-              {sidebarExpanded && (
-                <div className="hidden md:block">
-                  <NavLink to="/" onClick={handleLinkClick}>
-                    <div className="flex items-center space-x-2">
-                      <img src={tucanLogo} alt="Tucan" className="w-8 h-8" />
-                      <span className="text-2xl font-bold text-white">TucanBIT</span>
-                    </div>
-                  </NavLink>
-                  <p className="text-xs text-gray-400 mt-1">Crypto Casino & Sportsbook</p>
-                </div>
-              )}
-            </div>
+          <div className={`flex items-center ${sidebarOpen ? "justify-end" : sidebarExpanded ? "justify-end" : "justify-center"}`}>
             <button
               onClick={() => {
                 setSidebarExpanded(!sidebarExpanded);
                 if (activeSubmenu) toggleSubmenu("");
               }}
-              className="bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white shadow-lg transition-all duration-300 border border-white/30 hover:border-white/50 p-1.5 rounded-lg hidden md:block ml-2"
+              className="bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white shadow-lg transition-all duration-300 border border-white/30 hover:border-white/50 p-1.5 rounded-lg hidden md:block"
             >
               {sidebarExpanded ? <ChevronLeft className="w-3 h-3 md:w-4 md:h-4" /> : <ChevronRight className="w-3 h-3 md:w-4 md:h-4" />}
             </button>
