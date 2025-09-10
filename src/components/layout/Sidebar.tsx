@@ -1,159 +1,316 @@
-import React from 'react';
-import {
-  Home, Wallet, Coins, Dice5, HelpCircle, Settings,
-  ChevronDown, ChevronRight, LogOut, User, CreditCard,
-  Trophy, Gift, Gamepad2, BarChart2, Users as UsersIcon, Video
-} from 'lucide-react';
-import tucanLogo from '../../assets/tucan.png';
+import React from "react";
+import { NavLink } from "react-router-dom";
+import { ChevronDown, ChevronRight, ChevronLeft } from "lucide-react";
+import tucanLogo from "../../assets/tucan.png";
+import homeIcon from "../../assets/sidebar-logos/icons8-home-50.png";
+import sportsIcon from "../../assets/sidebar-logos/icons8-jersey-50.png";
+import lootboxIcon from "../../assets/sidebar-logos/icons8-open-delivered-box-50.png";
+import gamesIcon from "../../assets/sidebar-logos/icons8-ps-controller-50.png";
+import slotsIcon from "../../assets/sidebar-logos/icons8-slot-machine-50.png";
+import rouletteIcon from "../../assets/sidebar-logos/icons8-roulette-50.png";
+import blackjackIcon from "../../assets/sidebar-logos/icons8-ace-of-spades-50.png";
+import liveCasinoIcon from "../../assets/sidebar-logos/icons8-video-call-50.png";
+import jackpotsIcon from "../../assets/sidebar-logos/icons8-win-50.png";
+import promotionsIcon from "../../assets/sidebar-logos/icons8-promotion-32.png";
+import tournamentsIcon from "../../assets/sidebar-logos/icons8-trophy-50.png";
+import vipIcon from "../../assets/sidebar-logos/icons8-battle-50.png";
+import walletIcon from "../../assets/sidebar-logos/icons8-wallet-50.png";
+import depositIcon from "../../assets/sidebar-logos/icons8-initiate-money-transfer-50.png";
+import withdrawIcon from "../../assets/sidebar-logos/icons8-request-money-50.png";
+import supportIcon from "../../assets/sidebar-logos/icons8-support-50.png";
+import helpIcon from "../../assets/sidebar-logos/icons8-support-help-center.png";
+import contactIcon from "../../assets/sidebar-logos/icons8-gmail-logo-50.png";
+import responsibleIcon from "../../assets/sidebar-logos/icons8-user-shield-50.png";
+import fairnessIcon from "../../assets/sidebar-logos/icons8-chessboard-50.png";
+import termsIcon from "../../assets/sidebar-logos/icons8-terms-and-conditions-50.png";
 
 interface SidebarProps {
   sidebarOpen: boolean;
+  sidebarExpanded: boolean;
+  setSidebarExpanded: (expanded: boolean) => void;
   activeSubmenu: string | null;
-  toggleSubmenu: (menu: string) => void;
-  onNavigate: (page: string) => void;
-  walletAddress?: string;
-  disconnectWallet?: () => void;
-  setShowWalletModal?: (show: boolean) => void;
-  currentPage?: string;
+  toggleSubmenu: (menu: string, event?: React.MouseEvent) => void;
+  handleLinkClick: () => void;
+  isSportsPage: boolean;
 }
 
 const Sidebar: React.FC<SidebarProps> = ({
   sidebarOpen,
+  sidebarExpanded,
+  setSidebarExpanded,
   activeSubmenu,
   toggleSubmenu,
-  onNavigate,
-  walletAddress,
-  disconnectWallet,
-  setShowWalletModal,
-  currentPage
+  handleLinkClick,
+  isSportsPage,
 }) => {
-  
-  // Helper function to determine button classes
-  const getButtonClass = (pageName: string) => {
-    const baseClass = "w-full flex items-center space-x-3 p-3 rounded-lg text-[15px] text-white";
-    if (currentPage === pageName) {
-      return `${baseClass} bg-gray-800`;
-    }
-    return `${baseClass} hover:bg-gray-800`;
-  };
-
   return (
-    <div className={`fixed inset-y-0 left-0 z-[60] w-64 bg-gray-900 shadow-2xl transform ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 transition-transform duration-300 border-r border-gray-800`}>
-      <div className="flex flex-col h-full">
-        {/* Logo */}
-        <div className="p-6 border-b border-gray-800 relative z-50 bg-gray-900">
-          <div className="flex items-center relative z-50">
-            <div className="relative z-50">
-              <div className="flex items-center mb-2">
-                <img src={tucanLogo} alt="TucanBIT" className="w-16 h-16 rounded-lg -mr-1" />
-                <span className="text-2xl font-bold text-white"><span className="text-[#36CFC9]">Tucan</span><span className="text-[#36CFC9]">Bit</span></span>
+    <div className={`fixed top-16 bottom-0 left-0 z-[60] bg-black shadow-2xl transform ${sidebarOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0 transition-all duration-300 border-r border-gray-800 ${sidebarOpen ? "w-64" : sidebarExpanded ? "w-64" : "w-16"} max-h-screen overflow-hidden`}>
+      <div className="flex flex-col h-full max-h-screen">
+        <div className={`border-b border-gray-800 ${sidebarOpen ? "p-6" : sidebarExpanded ? "p-6" : "p-4"} lg:p-4`}>
+          <div className={`flex items-center ${sidebarOpen ? "justify-between" : sidebarExpanded ? "justify-between" : "justify-center"}`}>
+            <div className={`flex items-center ${sidebarOpen ? "space-x-3" : sidebarExpanded ? "space-x-3" : "justify-center"}`}>
+              <div className="md:hidden">
+                <NavLink to="/" onClick={handleLinkClick}>
+                  <div className="flex items-center space-x-2">
+                    <img src={tucanLogo} alt="Tucan" className="w-8 h-8" />
+                    <span className="text-2xl font-bold text-white">TucanBIT</span>
+                  </div>
+                  <p className="text-xs text-gray-400 mt-1">Crypto Casino & Sportsbook</p>
+                </NavLink>
               </div>
-              <p className="text-xs text-gray-400 mt-1 relative z-50">Crypto Casino & Sportsbook</p>
+              {sidebarExpanded && (
+                <div className="hidden md:block">
+                  <NavLink to="/" onClick={handleLinkClick}>
+                    <div className="flex items-center space-x-2">
+                      <img src={tucanLogo} alt="Tucan" className="w-8 h-8" />
+                      <span className="text-2xl font-bold text-white">TucanBIT</span>
+                    </div>
+                  </NavLink>
+                  <p className="text-xs text-gray-400 mt-1">Crypto Casino & Sportsbook</p>
+                </div>
+              )}
             </div>
+            <button
+              onClick={() => {
+                setSidebarExpanded(!sidebarExpanded);
+                if (activeSubmenu) toggleSubmenu("");
+              }}
+              className="bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white shadow-lg transition-all duration-300 border border-white/30 hover:border-white/50 p-1.5 rounded-lg hidden md:block ml-2"
+            >
+              {sidebarExpanded ? <ChevronLeft className="w-3 h-3 md:w-4 md:h-4" /> : <ChevronRight className="w-3 h-3 md:w-4 md:h-4" />}
+            </button>
           </div>
         </div>
-
-        {/* Main Menu */}
-        <nav className="flex-1 overflow-y-auto p-4 space-y-1">
-          <button onClick={() => onNavigate('home')} className={getButtonClass('home')}>
-            <Home className="w-5 h-5" />
-            <span>Home</span>
-          </button>
-          <button onClick={() => onNavigate('casino')} className={getButtonClass('casino')}>
-            <Dice5 className="w-5 h-5" />
-            <span>Casino</span>
-          </button>
-          {/* <button onClick={() => onNavigate('live-casino')} className={getButtonClass('live-casino')}>
-            <Video className="w-5 h-5" />
-            <span>Live Casino</span>
-          </button> */}
-          <button onClick={() => onNavigate('sports')} className={getButtonClass('sports')}>
-            <Trophy className="w-5 h-5" />
-            <span>Sports</span>
-          </button>
-          <button onClick={() => onNavigate('lootboxes')} className={getButtonClass('lootboxes')}>
-            <Gift className="w-5 h-5" />
-            <span>Lootboxes</span>
-          </button>
-
-          {/* Games Submenu */}
-          <div>
-            <button onClick={() => toggleSubmenu('games')} className="w-full flex items-center justify-between p-3 rounded-lg hover:bg-[#2A1B4F] text-white">
-              <div className="flex items-center space-x-3"><Gamepad2 className="w-5 h-5" /><span>Games</span></div>
-              {activeSubmenu === 'games' ? <ChevronDown className="w-5 h-5" /> : <ChevronRight className="w-5 h-5" />}
-            </button>
-            {activeSubmenu === 'games' && (
-              <div className="pl-10 pt-2 space-y-2">
-                <button onClick={() => onNavigate('slots')} className="flex items-center space-x-2 p-2 text-sm text-gray-300 hover:text-white"><Dice5 className="w-4 h-4" /><span>Slots</span></button>
-                <button onClick={() => onNavigate('table-games')} className="flex items-center space-x-2 p-2 text-sm text-gray-300 hover:text-white"><BarChart2 className="w-4 h-4" /><span>Table Games</span></button>
-             
-             
+        
+        {isSportsPage && sidebarExpanded && (
+          <>
+            <div className="p-4 border-b border-gray-800">
+              <div className="bg-gradient-to-r from-gray-700 to-gray-600 rounded-lg p-3">
+                <div className="flex items-center space-x-2 mb-2">
+                  <span className="text-2xl">💳</span>
+                  <div>
+                    <p className="text-sm font-semibold text-white">Tucan Wallet</p>
+                    <p className="text-xs text-gray-300">Coming soon</p>
+                  </div>
+                </div>
               </div>
-            )}
-          </div>
-          <button onClick={() => onNavigate('promotions')} className={getButtonClass('promotions')}>
-            <Gift className="w-5 h-5" />
-            <span>Promotions</span>
-          </button>
-
-          {/* Wallet Submenu */}
-          <div>
-            <button onClick={() => toggleSubmenu('wallet')} className="w-full flex items-center justify-between p-3 rounded-lg hover:bg-[#2A1B4F] text-white">
-              <div className="flex items-center space-x-3"><Wallet className="w-5 h-5" /><span>Wallet</span></div>
-              {activeSubmenu === 'wallet' ? <ChevronDown className="w-5 h-5" /> : <ChevronRight className="w-5 h-5" />}
-            </button>
-            {activeSubmenu === 'wallet' && (
-              <div className="pl-10 pt-2 space-y-2">
-                <button onClick={() => onNavigate('deposit')} className="flex items-center space-x-2 p-2 text-sm text-gray-300 hover:text-white"><CreditCard className="w-4 h-4" /><span>Deposit</span></button>
-                <button onClick={() => onNavigate('withdraw')} className="flex items-center space-x-2 p-2 text-sm text-gray-300 hover:text-white"><Coins className="w-4 h-4" /><span>Withdraw</span></button>
+            </div>
+            <div className="p-4 border-b border-gray-800">
+              <div className="bg-gradient-to-r from-purple-950 to-purple-900 rounded-lg p-3 text-white min-h-[140px]">
+                <h3 className="font-bold text-sm mb-2">BATTLEPASS</h3>
+                <p className="text-xs mb-3">Get amazing rewards with Battlepass.</p>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-2">
+                    <span className="text-lg">🪙</span>
+                    <span className="text-lg">🏆</span>
+                  </div>
+                  <div className="text-xs">
+                    <p>Levelup Rewards</p>
+                    <p>Tucan Tokens</p>
+                  </div>
+                </div>
               </div>
-            )}
-          </div>
-
-
-
-          <button onClick={() => onNavigate('tournaments')} className={getButtonClass('tournaments')}>
-            <Trophy className="w-5 h-5" />
-            <span>Tournaments</span>
-          </button>
-          <button onClick={() => onNavigate('earn')} className={getButtonClass('earn')}>
-            <Coins className="w-5 h-5" />
-            <span>Earn</span>
-          </button>
-          <button onClick={() => onNavigate('task-dashboard')} className={getButtonClass('task-dashboard')}>
-            <BarChart2 className="w-5 h-5" />
-            <span>Task Dashboard</span>
-          </button>
-
-          <button onClick={() => onNavigate('support')} className={getButtonClass('support')}>
-            <HelpCircle className="w-5 h-5" />
-            <span>Support</span>
-          </button>
-          <button onClick={() => onNavigate('community')} className={getButtonClass('community')}>
-            <UsersIcon className="w-5 h-5" />
-            <span>Community</span>
-          </button>
-          <button onClick={() => onNavigate('settings')} className={getButtonClass('settings')}>
-            <Settings className="w-5 h-5" />
-            <span>Settings</span>
-          </button>
+            </div>
+          </>
+        )}
+        
+        <nav className={`flex-1 overflow-y-auto ${sidebarOpen ? "p-4" : sidebarExpanded ? "p-4" : "p-2"} space-y-1 min-h-0 h-full scrollbar-hide pb-20`}>
+          <NavLink to="/" onClick={handleLinkClick} className={({ isActive }) => `${sidebarOpen ? "w-full" : sidebarExpanded ? "w-full" : "w-16"} flex items-center ${sidebarOpen ? "space-x-3" : sidebarExpanded ? "space-x-3" : "justify-center"} p-3 rounded-lg transition-colors ${isActive ? "text-white bg-gray-800 font-semibold" : "hover:bg-gray-800 text-white"}`}>
+            <span className="text-xl w-6 text-center flex-shrink-0 z-10 relative">
+              <img src={homeIcon} alt="Home" className="w-5 h-5 flex-shrink-0 filter brightness-0 invert" />
+            </span>
+            <span className={`${sidebarOpen ? "block" : "hidden"} md:${sidebarExpanded ? "block" : "hidden"} flex-1 min-w-0 truncate`}>Home</span>
+          </NavLink>
           
-        </nav>
-
-        {/* User Profile / Wallet */}
-        <div className="p-4 border-t border-gray-800">
-          {walletAddress ? (
-            <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-r from-yellow-500 to-orange-500 flex items-center justify-center"><User className="w-5 h-5 text-white" /></div>
-              <div className="flex-1"><p className="text-sm font-medium text-white truncate">{walletAddress.slice(0, 6)}...{walletAddress.slice(-4)}</p><button onClick={() => disconnectWallet?.()} className="text-xs text-orange-400 hover:text-orange-300">Disconnect</button></div>
+          {sidebarExpanded && (
+            <div className="px-3 py-2">
+              <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">GAMING</span>
             </div>
-          ) : (
-            <button onClick={() => setShowWalletModal?.(true)} className="w-full bg-gradient-to-r from-[#3C1A4F] to-[#36CFC9] text-white py-2 rounded-lg font-semibold flex items-center justify-center space-x-2 hover:from-[#2d153f] hover:to-[#2bb8b2] transition-all">
-              <Wallet className="w-5 h-5" />
-              <span>Connect Wallet</span>
-            </button>
           )}
-        </div>
+          
+          <NavLink to="/sports" onClick={handleLinkClick} className={({ isActive }) => `${sidebarOpen ? "w-full" : sidebarExpanded ? "w-full" : "w-16"} flex items-center ${sidebarOpen ? "space-x-3" : sidebarExpanded ? "space-x-3" : "justify-center"} p-3 rounded-lg transition-colors ${isActive ? "text-white bg-gray-800 font-semibold" : "hover:bg-gray-800 text-white"}`}>
+            <span className="text-xl w-6 text-center flex-shrink-0 z-10 relative">
+              <img src={sportsIcon} alt="Sports" className="w-5 h-5 flex-shrink-0 filter brightness-0 invert" />
+            </span>
+            <span className={`${sidebarOpen ? "block" : "hidden"} lg:${sidebarExpanded ? "block" : "hidden"} flex-1 min-w-0 truncate`}>Sports</span>
+          </NavLink>
+          
+          <NavLink to="/lootboxes" onClick={handleLinkClick} className={({ isActive }) => `${sidebarOpen ? "w-full" : sidebarExpanded ? "w-full" : "w-16"} flex items-center ${sidebarOpen ? "space-x-3" : sidebarExpanded ? "space-x-3" : "justify-center"} p-3 rounded-lg transition-colors ${isActive ? "text-white bg-gray-800 font-semibold" : "hover:bg-gray-800 text-white"}`}>
+            <span className="text-xl w-6 text-center flex-shrink-0 z-10 relative">
+              <img src={lootboxIcon} alt="Lootboxes" className="w-5 h-5 flex-shrink-0 filter brightness-0 invert" />
+            </span>
+            <span className={`${sidebarOpen ? "block" : "hidden"} lg:${sidebarExpanded ? "block" : "hidden"} flex-1 min-w-0 truncate`}>Lootboxes</span>
+          </NavLink>
+          
+          <div>
+            <button onClick={(e) => toggleSubmenu("games", e)} className={`${sidebarOpen ? "w-full" : sidebarExpanded ? "w-full" : "w-16"} flex items-center ${sidebarOpen ? "justify-between" : sidebarExpanded ? "justify-between" : "justify-center"} p-3 rounded-lg hover:bg-gray-800 text-white`}>
+              <div className="flex items-center ${sidebarOpen ? 'space-x-3' : sidebarExpanded ? 'space-x-3' : 'justify-center'}">
+                <span className="text-xl w-6 text-center flex-shrink-0 z-10 relative">
+                  <img src={gamesIcon} alt="Games" className="w-5 h-5 flex-shrink-0 filter brightness-0 invert" />
+                </span>
+                <span className={`ml-3 ${sidebarOpen ? "block" : "hidden"} lg:${sidebarExpanded ? "block" : "hidden"} flex-1 min-w-0 truncate`}>Games</span>
+              </div>
+              <div className={`${sidebarOpen ? "block" : "hidden"} lg:${sidebarExpanded ? "block" : "hidden"}`}>
+                {activeSubmenu === "games" ? <ChevronDown className="w-5 h-5" /> : <ChevronRight className="w-5 h-5" />}
+              </div>
+            </button>
+            {activeSubmenu === "games" && (
+              <div className="pl-10 pt-2 space-y-2">
+                <NavLink to="/slots" onClick={handleLinkClick} className={({ isActive }) => `w-full flex items-center space-x-3 p-3 rounded-lg transition-colors ${isActive ? "text-white bg-gray-800 font-semibold" : "hover:bg-gray-800 text-white"}`}>
+                  <span className="text-lg w-6 text-center flex-shrink-0 z-10 relative">
+                    <img src={slotsIcon} alt="Slots" className="w-5 h-5 filter brightness-0 invert" />
+                  </span>
+                  <span>Slots</span>
+                </NavLink>
+                <NavLink to="/table-games" onClick={handleLinkClick} className={({ isActive }) => `w-full flex items-center space-x-3 p-3 rounded-lg transition-colors ${isActive ? "text-white bg-gray-800 font-semibold" : "hover:bg-gray-800 text-white"}`}>
+                  <span className="text-lg w-6 text-center flex-shrink-0 z-10 relative">
+                    <img src={fairnessIcon} alt="Table Games" className="w-5 h-5 filter brightness-0 invert" />
+                  </span>
+                  <span>Table Games</span>
+                </NavLink>
+                <NavLink to="/roulette" onClick={handleLinkClick} className={({ isActive }) => `w-full flex items-center space-x-3 p-3 rounded-lg transition-colors ${isActive ? "text-white bg-gray-800 font-semibold" : "hover:bg-gray-800 text-white"}`}>
+                  <span className="text-lg w-6 text-center flex-shrink-0 z-10 relative">
+                    <img src={rouletteIcon} alt="Roulette" className="w-5 h-5 filter brightness-0 invert" />
+                  </span>
+                  <span>Roulette</span>
+                </NavLink>
+                <NavLink to="/blackjacks" onClick={handleLinkClick} className={({ isActive }) => `w-full flex items-center space-x-3 p-3 rounded-lg transition-colors ${isActive ? "text-white bg-gray-800 font-semibold" : "hover:bg-gray-800 text-white"}`}>
+                  <span className="text-lg w-6 text-center flex-shrink-0 z-10 relative">
+                    <img src={blackjackIcon} alt="Blackjack" className="w-5 h-5 filter brightness-0 invert" />
+                  </span>
+                  <span>Blackjack</span>
+                </NavLink>
+                <NavLink to="/live-casino" onClick={handleLinkClick} className={({ isActive }) => `w-full flex items-center space-x-3 p-3 rounded-lg transition-colors ${isActive ? "text-white bg-gray-800 font-semibold" : "hover:bg-gray-800 text-white"}`}>
+                  <span className="text-lg w-6 text-center flex-shrink-0 z-10 relative">
+                    <img src={liveCasinoIcon} alt="Live Casino" className="w-5 h-5 filter brightness-0 invert" />
+                  </span>
+                  <span>Live Casino</span>
+                </NavLink>
+                <NavLink to="/jackpots" onClick={handleLinkClick} className={({ isActive }) => `w-full flex items-center space-x-3 p-3 rounded-lg transition-colors ${isActive ? "text-white bg-gray-800 font-semibold" : "hover:bg-gray-800 text-white"}`}>
+                  <span className="text-lg w-6 text-center flex-shrink-0 z-10 relative">
+                    <img src={jackpotsIcon} alt="Jackpots" className="w-5 h-5 filter brightness-0 invert" />
+                  </span>
+                  <span>Jackpots</span>
+                </NavLink>
+              </div>
+            )}
+          </div>
+          
+          {sidebarExpanded && (
+            <div className="px-3 py-2">
+              <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">COMMUNITY</span>
+            </div>
+          )}
+          
+          <NavLink to="/promotions" onClick={handleLinkClick} className={({ isActive }) => `${sidebarOpen ? "w-full" : sidebarExpanded ? "w-full" : "w-16"} flex items-center ${sidebarOpen ? "space-x-3" : sidebarExpanded ? "space-x-3" : "justify-center"} p-3 rounded-lg transition-colors ${isActive ? "text-white bg-gray-800 font-semibold" : "hover:bg-gray-800 text-white"}`}>
+            <span className="text-xl w-6 text-center flex-shrink-0 z-10 relative">
+              <img src={promotionsIcon} alt="Promotions" className="w-5 h-5 flex-shrink-0 filter brightness-0 invert" />
+            </span>
+            <span className={`${sidebarOpen ? "block" : "hidden"} lg:${sidebarExpanded ? "block" : "hidden"} flex-1 min-w-0 truncate`}>Promotions</span>
+          </NavLink>
+          
+          <NavLink to="/tournaments" onClick={handleLinkClick} className={({ isActive }) => `${sidebarOpen ? "w-full" : sidebarExpanded ? "w-full" : "w-16"} flex items-center ${sidebarOpen ? "space-x-3" : sidebarExpanded ? "space-x-3" : "justify-center"} p-3 rounded-lg transition-colors ${isActive ? "text-white bg-gray-800 font-semibold" : "hover:bg-gray-800 text-white"}`}>
+            <span className="text-xl w-6 text-center flex-shrink-0 z-10 relative">
+              <img src={tournamentsIcon} alt="Tournaments" className="w-5 h-5 flex-shrink-0 filter brightness-0 invert" />
+            </span>
+            <span className={`${sidebarOpen ? "block" : "hidden"} lg:${sidebarExpanded ? "block" : "hidden"} flex-1 min-w-0 truncate`}>Tournaments</span>
+          </NavLink>
+          
+          <NavLink to="/vip-club" onClick={handleLinkClick} className={({ isActive }) => `${sidebarOpen ? "w-full" : sidebarExpanded ? "w-full" : "w-16"} flex items-center ${sidebarOpen ? "space-x-3" : sidebarExpanded ? "space-x-3" : "justify-center"} p-3 rounded-lg transition-colors ${isActive ? "text-white bg-gray-800 font-semibold" : "hover:bg-gray-800 text-white"}`}>
+            <span className="text-xl w-6 text-center flex-shrink-0 z-10 relative">
+              <img src={vipIcon} alt="Tucan Elite" className="w-5 h-5 flex-shrink-0 filter brightness-0 invert" />
+            </span>
+            <span className={`${sidebarOpen ? "block" : "hidden"} lg:${sidebarExpanded ? "block" : "hidden"} flex-1 min-w-0 truncate`}>Tucan Elite</span>
+          </NavLink>
+          
+          {sidebarExpanded && (
+            <div className="px-3 py-2">
+              <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">WALLET & SUPPORT</span>
+            </div>
+          )}
+          
+          <div>
+            <button onClick={(e) => toggleSubmenu("wallet", e)} className={`${sidebarOpen ? "w-full" : sidebarExpanded ? "w-full" : "w-16"} flex items-center ${sidebarOpen ? "justify-between" : sidebarExpanded ? "justify-between" : "justify-center"} p-3 rounded-lg hover:bg-gray-800 text-white`}>
+              <div className="flex items-center ${sidebarOpen ? 'space-x-3' : sidebarExpanded ? 'space-x-3' : 'justify-center'}">
+                <span className="text-xl w-6 text-center flex-shrink-0 z-10 relative">
+                  <img src={walletIcon} alt="Wallet" className="w-5 h-5 flex-shrink-0 filter brightness-0 invert" />
+                </span>
+                <span className={`ml-3 ${sidebarOpen ? "block" : "hidden"} lg:${sidebarExpanded ? "block" : "hidden"} flex-1 min-w-0 truncate`}>Wallet</span>
+              </div>
+              <div className={`${sidebarOpen ? "block" : "hidden"} lg:${sidebarExpanded ? "block" : "hidden"}`}>
+                {activeSubmenu === "wallet" ? <ChevronDown className="w-5 h-5" /> : <ChevronRight className="w-5 h-5" />}
+              </div>
+            </button>
+            {activeSubmenu === "wallet" && (
+              <div className="pl-10 pt-1 space-y-1">
+                <NavLink to="/deposit" onClick={handleLinkClick} className={({ isActive }) => `w-full flex items-center space-x-3 p-3 rounded-lg transition-colors ${isActive ? "text-white bg-gray-800 font-semibold" : "hover:bg-gray-800 text-white"}`}>
+                  <span className="text-lg w-6 text-center">
+                    <img src={depositIcon} alt="Deposit" className="w-5 h-5 filter brightness-0 invert" />
+                  </span>
+                  <span>Deposit</span>
+                </NavLink>
+                <NavLink to="/withdraw" onClick={handleLinkClick} className={({ isActive }) => `w-full flex items-center space-x-3 p-3 rounded-lg transition-colors ${isActive ? "text-white bg-gray-800 font-semibold" : "hover:bg-gray-800 text-white"}`}>
+                  <span className="text-lg w-6 text-center">
+                    <img src={withdrawIcon} alt="Withdraw" className="w-5 h-5 filter brightness-0 invert" />
+                  </span>
+                  <span>Withdraw</span>
+                </NavLink>
+              </div>
+            )}
+          </div>
+          
+          <div>
+            <button onClick={(e) => toggleSubmenu("support", e)} className={`${sidebarOpen ? "w-full" : sidebarExpanded ? "w-full" : "w-16"} flex items-center ${sidebarOpen ? "justify-between" : sidebarExpanded ? "justify-between" : "justify-center"} p-3 rounded-lg hover:bg-gray-800 text-white`}>
+              <div className="flex items-center ${sidebarOpen ? 'space-x-3' : sidebarExpanded ? 'space-x-3' : 'justify-center'}">
+                <span className="text-xl w-6 text-center flex-shrink-0 z-10 relative">
+                  <img src={supportIcon} alt="Support" className="w-5 h-5 flex-shrink-0 filter brightness-0 invert" />
+                </span>
+                <span className={`ml-3 ${sidebarOpen ? "block" : "hidden"} lg:${sidebarExpanded ? "block" : "hidden"} flex-1 min-w-0 truncate`}>Support</span>
+              </div>
+              <div className={`${sidebarOpen ? "block" : "hidden"} lg:${sidebarExpanded ? "block" : "hidden"}`}>
+                {activeSubmenu === "support" ? <ChevronDown className="w-5 h-5" /> : <ChevronRight className="w-5 h-5" />}
+              </div>
+            </button>
+            {activeSubmenu === "support" && (
+              <div className="pl-10 pt-1 space-y-1">
+                <NavLink to="/help" onClick={handleLinkClick} className={({ isActive }) => `w-full flex items-center space-x-3 p-3 rounded-lg transition-colors ${isActive ? "text-white bg-gray-800 font-semibold" : "hover:bg-gray-800 text-white"}`}>
+                  <span className="text-lg w-6 text-center">
+                    <img src={helpIcon} alt="Help Center" className="w-5 h-5 filter brightness-0 invert" />
+                  </span>
+                  <span>Help Center</span>
+                </NavLink>
+                <NavLink to="/contact" onClick={handleLinkClick} className={({ isActive }) => `w-full flex items-center space-x-3 p-3 rounded-lg transition-colors ${isActive ? "text-white bg-gray-800 font-semibold" : "hover:bg-gray-800 text-white"}`}>
+                  <span className="text-lg w-6 text-center">
+                    <img src={contactIcon} alt="Contact Us" className="w-5 h-5 filter brightness-0 invert" />
+                  </span>
+                  <span>Contact Us</span>
+                </NavLink>
+                <NavLink to="/responsible-gaming" onClick={handleLinkClick} className={({ isActive }) => `w-full flex items-center space-x-3 p-3 rounded-lg transition-colors ${isActive ? "text-white bg-gray-800 font-semibold" : "hover:bg-gray-800 text-white"}`}>
+                  <span className="text-lg w-6 text-center">
+                    <img src={responsibleIcon} alt="Responsible Gaming" className="w-5 h-5 filter brightness-0 invert" />
+                  </span>
+                  <span>Responsible Gaming</span>
+                </NavLink>
+                <NavLink to="/fairness" onClick={handleLinkClick} className={({ isActive }) => `w-full flex items-center space-x-3 p-3 rounded-lg transition-colors ${isActive ? "text-white bg-gray-800 font-semibold" : "hover:bg-gray-800 text-white"}`}>
+                  <span className="text-lg w-6 text-center">
+                    <img src={fairnessIcon} alt="Fairness" className="w-5 h-5 filter brightness-0 invert" />
+                  </span>
+                  <span>Fairness</span>
+                </NavLink>
+                <NavLink to="/terms-of-service" onClick={handleLinkClick} className={({ isActive }) => `w-full flex items-center space-x-3 p-3 rounded-lg transition-colors ${isActive ? "text-white bg-gray-800 font-semibold" : "hover:bg-gray-800 text-white"}`}>
+                  <span className="text-lg w-6 text-center">
+                    <img src={termsIcon} alt="Terms of Service" className="w-5 h-5 filter brightness-0 invert" />
+                  </span>
+                  <span>Terms of Service</span>
+                </NavLink>
+                <NavLink to="/privacy-policy" onClick={handleLinkClick} className={({ isActive }) => `w-full flex items-center space-x-3 p-3 rounded-lg transition-colors ${isActive ? "text-white bg-gray-800 font-semibold" : "hover:bg-gray-800 text-white"}`}>
+                  <span className="text-lg w-6 text-center">🔒</span>
+                  <span>Privacy Policy</span>
+                </NavLink>
+              </div>
+            )}
+          </div>
+        </nav>
       </div>
     </div>
   );
