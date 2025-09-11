@@ -16,13 +16,13 @@ import zeusImage from '../assets/zeus-image-removebg-preview.png';
 // Tucan image for Tribes section
 import tucanImage from '../assets/tucan.png';
 import tucanIcon from '../assets/tucan.png';
-
+import bannerImage from "../assets/Home/first-sec.svg"
 
 713331703
 // This component is now only responsible for the home page content.
 const HomePage: React.FC = () => {
   const { openModal } = useAppContext();
-  
+
   // Countdown timer state
   const [countdown, setCountdown] = useState({
     days: 0,
@@ -34,7 +34,7 @@ const HomePage: React.FC = () => {
   // Banner carousel state
   const [currentBanner, setCurrentBanner] = useState(0);
   const bannerRef = useRef<HTMLDivElement>(null);
-  
+
   // Game sections scroll refs
   const continuePlayingRef = useRef<HTMLDivElement>(null);
   const topGamesRef = useRef<HTMLDivElement>(null);
@@ -44,11 +44,11 @@ const HomePage: React.FC = () => {
   const liveCasinoRef = useRef<HTMLDivElement>(null);
   const buyFeatureRef = useRef<HTMLDivElement>(null);
   const jackpotGamesRef = useRef<HTMLDivElement>(null);
-  
+
   // Filter and search state
   const [currentFilter, setCurrentFilter] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
-  
+
   // Use the centralized game data
   const allGames = getAllGames();
   const featuredGames = allGames.slice(0, 24); // Show first 24 games
@@ -78,10 +78,10 @@ const HomePage: React.FC = () => {
         filtered = filtered.filter(game => game.provider === 'Evolution' || game.title.toLowerCase().includes('show'));
         break;
       case 'table':
-        filtered = filtered.filter(game => game.title.toLowerCase().includes('blackjack') || 
-                                         game.title.toLowerCase().includes('roulette') || 
-                                         game.title.toLowerCase().includes('baccarat') ||
-                                         game.title.toLowerCase().includes('poker'));
+        filtered = filtered.filter(game => game.title.toLowerCase().includes('blackjack') ||
+          game.title.toLowerCase().includes('roulette') ||
+          game.title.toLowerCase().includes('baccarat') ||
+          game.title.toLowerCase().includes('poker'));
         break;
       default:
         // 'all' - no filtering
@@ -90,7 +90,7 @@ const HomePage: React.FC = () => {
 
     // Apply search term
     if (searchTerm.trim()) {
-      filtered = filtered.filter(game => 
+      filtered = filtered.filter(game =>
         game.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
         game.provider.toLowerCase().includes(searchTerm.toLowerCase())
       );
@@ -106,7 +106,7 @@ const HomePage: React.FC = () => {
     const timer = setInterval(() => {
       setCountdown(prev => {
         let { days, hours, minutes, seconds } = prev;
-        
+
         if (seconds > 0) {
           seconds--;
         } else {
@@ -131,7 +131,7 @@ const HomePage: React.FC = () => {
             }
           }
         }
-        
+
         return { days, hours, minutes, seconds };
       });
     }, 1000);
@@ -177,11 +177,29 @@ const HomePage: React.FC = () => {
   };
 
   return (
+
+
     <div className="max-w-full overflow-x-hidden ">
+<div className="relative w-full">
+  <img
+    className="w-full"
+    src={bannerImage}
+    alt="banner"
+  />
+  
+  {/* Button on top of image */}
+  <button
+    className="absolute top-[28rem] left-[10rem] -translate-x-1/2 -translate-y-1/2 
+               bg-blue-600 text-white px-10 py-4 rounded-lg shadow-lg hover:bg-blue-700"
+  >
+    Play Now
+  </button>
+</div>
+
       {/* Hero Section - Three Promotional Banners */}
       <section className="py-2 bg-black overflow-hidden">
         <div className="w-full px-2 sm:px-4 md:px-6 lg:px-8">
-          <div 
+          <div
             ref={bannerRef}
             className="relative flex overflow-x-auto gap-2 sm:gap-3 md:gap-4 h-52 md:h-60 snap-x snap-mandatory scrollbar-hide md:grid md:grid-cols-3 md:overflow-x-visible"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
@@ -190,14 +208,14 @@ const HomePage: React.FC = () => {
             <div className="relative bg-black rounded-xl p-4 border-none transition-all duration-300 flex-shrink-0 w-full md:w-auto snap-start group hover:scale-[1.015] hover:shadow-2xl hover:shadow-black/25 min-h-[208px] md:min-h-[240px]">
 
               {/* Glowing Border Animation */}
-              
-              <img 
-                src={h1} 
-                alt="Welcome Gift Banner" 
+
+              <img
+                src={h1}
+                alt="Welcome Gift Banner"
                 className="absolute inset-0 w-full h-full object-cover rounded-xl group-hover:scale-1015 transition-transform duration-300 opacity-100"
-                style={{ 
-                  width: '100%', 
-                  height: '100%', 
+                style={{
+                  width: '100%',
+                  height: '100%',
                   objectFit: 'cover',
                   position: 'absolute',
                   top: '0',
@@ -208,19 +226,19 @@ const HomePage: React.FC = () => {
               />
               {/* <div className="absolute inset-0 bg-gradient-to-br from-orange-500/80 to-red-500/80 rounded-xl"></div> */}
 
-             
+
               <Link to="/promotion/welcome-gift" className="absolute inset-0 z-10"></Link>
             </div>
 
             {/* DAILY REWARDS - UP TO 20% CASHBACK Banner */}
             <div className="relative bg-black rounded-xl p-4 border-none overflow-hidden flex-shrink-0 w-full md:w-auto snap-start group hover:scale-[1.015] hover:shadow-2xl hover:shadow-black/25 transition-all duration-300 min-h-[208px] md:min-h-[240px]">
-              <img 
-                src={h2} 
-                alt="Daily Rewards Banner" 
+              <img
+                src={h2}
+                alt="Daily Rewards Banner"
                 className="absolute inset-0 w-full h-full object-cover rounded-xl group-hover:scale-1015 transition-transform duration-300 opacity-100"
-                style={{ 
-                  width: '100%', 
-                  height: '100%', 
+                style={{
+                  width: '100%',
+                  height: '100%',
                   objectFit: 'cover',
                   position: 'absolute',
                   top: '0',
@@ -262,13 +280,13 @@ const HomePage: React.FC = () => {
 
             {/* WHALE TOURNAMENT - Live Stakes Banner */}
             <div className="relative bg-black rounded-xl p-4 border border-orange-500/30 overflow-hidden flex-shrink-0 w-full md:w-auto snap-start group hover:scale-[1.015] hover:shadow-2xl hover:shadow-black/25 transition-all duration-300 min-h-[208px] md:min-h-[240px]">
-              <img 
-                src={h3} 
-                alt="Whale Tournament Banner" 
+              <img
+                src={h3}
+                alt="Whale Tournament Banner"
                 className="absolute inset-0 w-full h-full object-cover rounded-xl group-hover:scale-1015 transition-transform duration-300 opacity-100"
-                style={{ 
-                  width: '100%', 
-                  height: '100%', 
+                style={{
+                  width: '100%',
+                  height: '100%',
                   objectFit: 'cover',
                   position: 'absolute',
                   top: '0',
@@ -315,15 +333,15 @@ const HomePage: React.FC = () => {
 
           {/* Banner Indicators */}
           <div className="flex justify-center space-x-1 mt-2 md:hidden">
+
             {[0, 1, 2].map((index) => (
               <button
                 key={index}
                 onClick={() => setCurrentBanner(index)}
-                className={`rounded-full transition-all duration-300 ${
-                  currentBanner === index 
-                    ? 'bg-white' 
+                className={`rounded-full transition-all duration-300 ${currentBanner === index
+                    ? 'bg-white'
                     : 'bg-white/30'
-                }`}
+                  }`}
                 style={{ width: '12px', height: '12px', minWidth: '12px', minHeight: '12px', maxWidth: '12px', maxHeight: '12px' }}
               />
             ))}
@@ -334,7 +352,7 @@ const HomePage: React.FC = () => {
       {/* Search Games Section */}
       <section className="py-0 bg-black">
         <div className="px-4 sm:px-6 lg:px-8">
-          <SearchBar 
+          <SearchBar
             currentFilter={currentFilter}
             onFilterChange={setCurrentFilter}
             onSearchChange={setSearchTerm}
@@ -345,12 +363,13 @@ const HomePage: React.FC = () => {
 
 
 
-        <section className="py-0 bg-black">
-       <div className="px-4 sm:px-6 lg:px-8">
+      <section className="py-0 bg-black">
+        <div className="px-4 sm:px-6 lg:px-8">
+
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg font-bold text-white flex items-center">
-                                   <img src={trendingIcon} alt="Trending" className="w-6 h-6 mr-1 filter brightness-0 invert" />
-           Trending Games
+              <img src={trendingIcon} alt="Trending" className="w-6 h-6 mr-1 filter brightness-0 invert" />
+              Trending Games
             </h2>
             <Link to="/casino" className="text-yellow-400 hover:text-yellow-300 text-sm font-semibold">
               View All →
@@ -358,39 +377,39 @@ const HomePage: React.FC = () => {
           </div>
           <div className="relative">
             {/* Left Arrow */}
-            <button 
+            <button
               onClick={() => scrollLeft(topGamesRef)}
               className="hidden md:inline-flex absolute left-2 top-1/2 transform -translate-y-1/2 z-10 bg-gray-800/80 hover:bg-gray-700/80 text-white p-2 rounded-full shadow-lg transition-all duration-200 hover:scale-110"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
-            
+
             {/* Right Arrow */}
-            <button 
+            <button
               onClick={() => scrollRight(topGamesRef)}
               className="hidden md:inline-flex absolute right-2 top-1/2 transform -translate-y-1/2 z-10 bg-gray-800/80 hover:bg-gray-700/80 text-white p-2 rounded-full shadow-lg transition-all duration-200 hover:scale-110"
             >
               <ChevronRight className="w-5 h-5" />
             </button>
-            
+
             <div ref={topGamesRef} className="flex overflow-x-auto pb-4 scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', WebkitOverflowScrolling: 'touch', scrollBehavior: 'smooth' }}>
-            {filteredGames.length > 0 ? (
-              filteredGames.slice(0, 12).map((game, index) => (
-                <div key={game.id} className="flex-shrink-0 w-48 group relative rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-700 hover:border-yellow-500/30 mr-4">
-                  <Link to={`/game/${game.id}`}>
+              {filteredGames.length > 0 ? (
+                filteredGames.slice(0, 12).map((game, index) => (
+                  <div key={game.id} className="flex-shrink-0 w-48 group relative rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-700 hover:border-yellow-500/30 mr-4">
+                    <Link to={`/game/${game.id}`}>
                       <div className="relative aspect-[3/2] overflow-hidden">
-                      <img src={game.image} alt={game.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                      <div className="absolute top-1 left-1 bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-1.5 py-0.5 rounded-full text-[10px] font-bold flex items-center"><span>#{index + 1}</span></div>
-                      {game.badge && <div className="absolute top-1 right-1 bg-gradient-to-r from-red-500 to-orange-500 text-white px-1.5 py-0.5 rounded-full text-[10px] font-bold flex items-center"><Zap className="w-2 h-2 mr-0.5" /><span>{game.badge}</span></div>}
+                        <img src={game.image} alt={game.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                        <div className="absolute top-1 left-1 bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-1.5 py-0.5 rounded-full text-[10px] font-bold flex items-center"><span>#{index + 1}</span></div>
+                        {game.badge && <div className="absolute top-1 right-1 bg-gradient-to-r from-red-500 to-orange-500 text-white px-1.5 py-0.5 rounded-full text-[10px] font-bold flex items-center"><Zap className="w-2 h-2 mr-0.5" /><span>{game.badge}</span></div>}
                       </div>
                       <div className="p-3">
-                      <h3 className="text-sm font-bold text-white mb-1 truncate">{game.title}</h3>
-                      <div className="flex justify-between items-center mb-2"><span className="text-white text-xs">{game.provider}</span><span className="text-white text-xs">{game.isLive ? 'Live' : 'Slot'}</span></div>
-                      <div className="flex justify-between items-center">
+                        <h3 className="text-sm font-bold text-white mb-1 truncate">{game.title}</h3>
+                        <div className="flex justify-between items-center mb-2"><span className="text-white text-xs">{game.provider}</span><span className="text-white text-xs">{game.isLive ? 'Live' : 'Slot'}</span></div>
+                        <div className="flex justify-between items-center">
                           <div className="flex items-center space-x-1 text-white"><svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg><span className="text-xs">x5000</span></div>
                           <span className="text-xs px-1 py-0.5 rounded bg-gray-500/10 text-white">High</span>
-                      </div>
+                        </div>
                       </div>
                       <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         <button className="bg-white text-black px-3 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-all duration-200 flex items-center space-x-2 transform scale-90 group-hover:scale-100 text-sm">
@@ -398,15 +417,15 @@ const HomePage: React.FC = () => {
                           <span>Play</span>
                         </button>
                       </div>
-                  </Link>
+                    </Link>
+                  </div>
+                ))
+              ) : (
+                <div className="flex-shrink-0 w-full text-center py-8">
+                  <p className="text-gray-400 text-lg">No games found matching your criteria</p>
+                  <p className="text-gray-500 text-sm mt-2">Try adjusting your search or filter</p>
                 </div>
-              ))
-            ) : (
-              <div className="flex-shrink-0 w-full text-center py-8">
-                <p className="text-gray-400 text-lg">No games found matching your criteria</p>
-                <p className="text-gray-500 text-sm mt-2">Try adjusting your search or filter</p>
-              </div>
-            )}
+              )}
             </div>
           </div>
         </div>
@@ -417,7 +436,7 @@ const HomePage: React.FC = () => {
         <div className="px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg font-bold text-white flex items-center">
-                                  <Play className="w-5 h-5 text-white mr-1" />
+              <Play className="w-5 h-5 text-white mr-1" />
               Continue Playing
             </h2>
             <Link to="/casino" className="text-yellow-400 hover:text-yellow-300 text-sm font-semibold">
@@ -426,38 +445,38 @@ const HomePage: React.FC = () => {
           </div>
           <div className="relative">
             {/* Left Arrow */}
-            <button 
+            <button
               onClick={() => scrollLeft(continuePlayingRef)}
               className="hidden md:inline-flex absolute left-2 top-1/2 transform -translate-y-1/2 z-10 bg-gray-800/80 hover:bg-gray-700/80 text-white p-2 rounded-full shadow-lg transition-all duration-200 hover:scale-110"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
-            
+
             {/* Right Arrow */}
-            <button 
+            <button
               onClick={() => scrollRight(continuePlayingRef)}
               className="hidden md:inline-flex absolute right-2 top-1/2 transform -translate-y-1/2 z-10 bg-gray-800/80 hover:bg-gray-700/80 text-white p-2 rounded-full shadow-lg transition-all duration-200 hover:scale-110"
             >
               <ChevronRight className="w-5 h-5" />
             </button>
-            
+
             <div ref={continuePlayingRef} className="flex overflow-x-auto pb-4 scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', WebkitOverflowScrolling: 'touch', scrollBehavior: 'smooth' }}>
-            {featuredGames.slice(0, 8).map((game) => (
-              <div key={game.id} className="flex-shrink-0 w-48 group relative rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-700 hover:border-green-500/30 mr-4">
-                <Link to={`/game/${game.id}`}>
+              {featuredGames.slice(0, 8).map((game) => (
+                <div key={game.id} className="flex-shrink-0 w-48 group relative rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-700 hover:border-green-500/30 mr-4">
+                  <Link to={`/game/${game.id}`}>
                     <div className="relative aspect-[3/2] overflow-hidden">
-                    <img src={game.image} alt={game.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                    <div className="absolute top-1 left-1 bg-gradient-to-r from-green-500 to-blue-500 text-white px-1.5 py-0.5 rounded-full text-[10px] font-bold flex items-center"><Play className="w-2 h-2 mr-0.5" /><span>RESUME</span></div>
-                    {game.badge && <div className="absolute top-1 right-1 bg-gradient-to-r from-red-500 to-orange-500 text-white px-1.5 py-0.5 rounded-full text-[10px] font-bold flex items-center"><Zap className="w-2 h-2 mr-0.5" /><span>{game.badge}</span></div>}
+                      <img src={game.image} alt={game.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                      <div className="absolute top-1 left-1 bg-gradient-to-r from-green-500 to-blue-500 text-white px-1.5 py-0.5 rounded-full text-[10px] font-bold flex items-center"><Play className="w-2 h-2 mr-0.5" /><span>RESUME</span></div>
+                      {game.badge && <div className="absolute top-1 right-1 bg-gradient-to-r from-red-500 to-orange-500 text-white px-1.5 py-0.5 rounded-full text-[10px] font-bold flex items-center"><Zap className="w-2 h-2 mr-0.5" /><span>{game.badge}</span></div>}
                     </div>
                     <div className="p-3">
-                    <h3 className="text-sm font-bold text-white mb-1 truncate">{game.title}</h3>
-                    <div className="flex justify-between items-center mb-2"><span className="text-white text-xs">{game.provider}</span><span className="text-white text-xs">{game.isLive ? 'Live' : 'Slot'}</span></div>
-                    <div className="flex justify-between items-center">
+                      <h3 className="text-sm font-bold text-white mb-1 truncate">{game.title}</h3>
+                      <div className="flex justify-between items-center mb-2"><span className="text-white text-xs">{game.provider}</span><span className="text-white text-xs">{game.isLive ? 'Live' : 'Slot'}</span></div>
+                      <div className="flex justify-between items-center">
                         <div className="flex items-center space-x-1 text-white"><svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg><span className="text-xs">x5000</span></div>
                         <span className="text-xs px-1 py-0.5 rounded bg-gray-500/10 text-white">High</span>
-                    </div>
+                      </div>
                     </div>
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       <button className="bg-white text-black px-3 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-all duration-200 flex items-center space-x-2 transform scale-90 group-hover:scale-100 text-sm">
@@ -465,20 +484,20 @@ const HomePage: React.FC = () => {
                         <span>Continue</span>
                       </button>
                     </div>
-                </Link>
-              </div>
-            ))}
+                  </Link>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-{/* Top 10 */}
- <section className="py-1 bg-black">
+      {/* Top 10 */}
+      <section className="py-1 bg-black">
         <div className="px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg font-bold text-white flex items-center">
-                                  <Star className="w-5 h-5 text-white mr-1" />
+              <Star className="w-5 h-5 text-white mr-1" />
               Top 10
             </h2>
             <Link to="/casino" className="text-yellow-400 hover:text-yellow-300 text-sm font-semibold">
@@ -487,38 +506,38 @@ const HomePage: React.FC = () => {
           </div>
           <div className="relative">
             {/* Left Arrow */}
-            <button 
+            <button
               onClick={() => scrollLeft(continuePlayingRef)}
               className="hidden md:inline-flex absolute left-2 top-1/2 transform -translate-y-1/2 z-10 bg-gray-800/80 hover:bg-gray-700/80 text-white p-2 rounded-full shadow-lg transition-all duration-200 hover:scale-110"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
-            
+
             {/* Right Arrow */}
-            <button 
+            <button
               onClick={() => scrollRight(continuePlayingRef)}
               className="hidden md:inline-flex absolute right-2 top-1/2 transform -translate-y-1/2 z-10 bg-gray-800/80 hover:bg-gray-700/80 text-white p-2 rounded-full shadow-lg transition-all duration-200 hover:scale-110"
             >
               <ChevronRight className="w-5 h-5" />
             </button>
-            
+
             <div ref={continuePlayingRef} className="flex overflow-x-auto pb-4 scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', WebkitOverflowScrolling: 'touch', scrollBehavior: 'smooth' }}>
-            {featuredGames.slice(0, 8).map((game) => (
-              <div key={game.id} className="flex-shrink-0 w-48 group relative rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-700 hover:border-green-500/30 mr-4">
-                <Link to={`/game/${game.id}`}>
+              {featuredGames.slice(0, 8).map((game) => (
+                <div key={game.id} className="flex-shrink-0 w-48 group relative rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-700 hover:border-green-500/30 mr-4">
+                  <Link to={`/game/${game.id}`}>
                     <div className="relative aspect-[3/2] overflow-hidden">
-                    <img src={game.image} alt={game.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                    <div className="absolute top-1 left-1 bg-gradient-to-r from-green-500 to-blue-500 text-white px-1.5 py-0.5 rounded-full text-[10px] font-bold flex items-center"><Play className="w-2 h-2 mr-0.5" /><span>RESUME</span></div>
-                    {game.badge && <div className="absolute top-1 right-1 bg-gradient-to-r from-red-500 to-orange-500 text-white px-1.5 py-0.5 rounded-full text-[10px] font-bold flex items-center"><Zap className="w-2 h-2 mr-0.5" /><span>{game.badge}</span></div>}
+                      <img src={game.image} alt={game.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                      <div className="absolute top-1 left-1 bg-gradient-to-r from-green-500 to-blue-500 text-white px-1.5 py-0.5 rounded-full text-[10px] font-bold flex items-center"><Play className="w-2 h-2 mr-0.5" /><span>RESUME</span></div>
+                      {game.badge && <div className="absolute top-1 right-1 bg-gradient-to-r from-red-500 to-orange-500 text-white px-1.5 py-0.5 rounded-full text-[10px] font-bold flex items-center"><Zap className="w-2 h-2 mr-0.5" /><span>{game.badge}</span></div>}
                     </div>
                     <div className="p-3">
-                    <h3 className="text-sm font-bold text-white mb-1 truncate">{game.title}</h3>
-                    <div className="flex justify-between items-center mb-2"><span className="text-white text-xs">{game.provider}</span><span className="text-white text-xs">{game.isLive ? 'Live' : 'Slot'}</span></div>
-                    <div className="flex justify-between items-center">
+                      <h3 className="text-sm font-bold text-white mb-1 truncate">{game.title}</h3>
+                      <div className="flex justify-between items-center mb-2"><span className="text-white text-xs">{game.provider}</span><span className="text-white text-xs">{game.isLive ? 'Live' : 'Slot'}</span></div>
+                      <div className="flex justify-between items-center">
                         <div className="flex items-center space-x-1 text-white"><svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg><span className="text-xs">x5000</span></div>
                         <span className="text-xs px-1 py-0.5 rounded bg-gray-500/10 text-white">High</span>
-                    </div>
+                      </div>
                     </div>
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       <button className="bg-white text-black px-3 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-all duration-200 flex items-center space-x-2 transform scale-90 group-hover:scale-100 text-sm">
@@ -526,9 +545,9 @@ const HomePage: React.FC = () => {
                         <span>Continue</span>
                       </button>
                     </div>
-                </Link>
-              </div>
-            ))}
+                  </Link>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -543,39 +562,39 @@ const HomePage: React.FC = () => {
           <div className="relative h-80 w-full">
             {/* Zeus Image in the center */}
             <div className="absolute inset-0 flex items-center justify-center">
-              <img 
-                src={zeusImage} 
-                alt="Zeus with Lightning" 
+              <img
+                src={zeusImage}
+                alt="Zeus with Lightning"
                 className="h-full object-contain opacity-60"
               />
             </div>
-            
+
             {/* Moving Border Light Lines */}
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-500 via-orange-500 to-yellow-500 animate-pulse"></div>
             <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-500 via-orange-500 to-yellow-500 animate-pulse" style={{ animationDelay: '1s' }}></div>
             <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-yellow-500 via-orange-500 to-yellow-500 animate-pulse" style={{ animationDelay: '0.5s' }}></div>
             <div className="absolute top-0 right-0 w-1 h-full bg-gradient-to-b from-yellow-500 via-orange-500 to-yellow-500 animate-pulse" style={{ animationDelay: '1.5s' }}></div>
-        
-        {/* Animated Glowing Lights */}
-        {/* <div className="absolute top-4 left-4 w-10 h-10 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm glow-pulse shadow-lg shadow-yellow-500/50"></div>
+
+            {/* Animated Glowing Lights */}
+            {/* <div className="absolute top-4 left-4 w-10 h-10 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm glow-pulse shadow-lg shadow-yellow-500/50"></div>
         <div className="absolute top-4 right-4 w-8 h-8 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm glow-pulse shadow-lg shadow-yellow-500/50" style={{ animationDelay: '0.5s' }}></div>
         <div className="absolute bottom-4 left-4 w-12 h-12 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm glow-pulse shadow-lg shadow-yellow-500/50" style={{ animationDelay: '1s' }}></div>
         <div className="absolute bottom-4 right-4 w-9 h-9 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm glow-pulse shadow-lg shadow-yellow-500/50" style={{ animationDelay: '1.5s' }}></div> */}
-        
-        {/* Moving Glowing Lights - Circular Pattern */}
-        {/* <div className="absolute top-1/4 left-1/4 w-6 h-6 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm move-circle shadow-lg shadow-yellow-500/50"></div>
+
+            {/* Moving Glowing Lights - Circular Pattern */}
+            {/* <div className="absolute top-1/4 left-1/4 w-6 h-6 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm move-circle shadow-lg shadow-yellow-500/50"></div>
         <div className="absolute top-1/4 right-1/4 w-8 h-8 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm move-circle2 shadow-lg shadow-yellow-500/50" style={{ animationDelay: '2s' }}></div>
         <div className="absolute bottom-1/4 left-1/4 w-7 h-7 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm move-circle shadow-lg shadow-yellow-500/50" style={{ animationDelay: '4s' }}></div>
         <div className="absolute bottom-1/4 right-1/4 w-5 h-5 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm move-circle2 shadow-lg shadow-yellow-500/50" style={{ animationDelay: '6s' }}></div> */}
-        
-        {/* Moving Glowing Lights - Rectangular Pattern */}
-        {/* <div className="absolute top-1/3 left-0 w-4 h-4 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm move-rectangle shadow-lg shadow-yellow-500/50"></div>
+
+            {/* Moving Glowing Lights - Rectangular Pattern */}
+            {/* <div className="absolute top-1/3 left-0 w-4 h-4 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm move-rectangle shadow-lg shadow-yellow-500/50"></div>
         <div className="absolute top-1/3 right-0 w-6 h-6 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm move-rectangle shadow-lg shadow-yellow-500/50" style={{ animationDelay: '1s' }}></div>
         <div className="absolute bottom-1/3 left-0 w-5 h-5 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm move-rectangle shadow-lg shadow-yellow-500/50" style={{ animationDelay: '2s' }}></div>
         <div className="absolute bottom-1/3 right-0 w-4 h-4 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm move-rectangle shadow-lg shadow-yellow-500/50" style={{ animationDelay: '3s' }}></div>
          */}
-        {/* Rotating Glowing Border */}
-        {/* <div className="absolute inset-0 border-2 border-yellow-500/30 rounded-lg animate-pulse"></div>
+            {/* Rotating Glowing Border */}
+            {/* <div className="absolute inset-0 border-2 border-yellow-500/30 rounded-lg animate-pulse"></div>
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-500 via-orange-500 to-yellow-500 animate-pulse"></div>
         <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-500 via-orange-500 to-yellow-500 animate-pulse" style={{ animationDelay: '1s' }}></div>
         <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-yellow-500 via-orange-500 to-yellow-500 animate-pulse" style={{ animationDelay: '0.5s' }}></div>
@@ -588,7 +607,7 @@ const HomePage: React.FC = () => {
                   <h2 className="text-3xl font-bold text-white mb-4 drop-shadow-lg">DON'T MISS YOUR<br />DAILY CASHBACK</h2>
                   <p className="text-xl text-white mb-2 drop-shadow-md">Up to 20% Back. No BS. #SometimesLoseAlwaysWin</p>
                 </div>
-                
+
                 {/* Right Side - Timer */}
                 <div className="lg:w-auto text-center lg:pr-0 lg:mr-0 lg:-mr-4">
                   <div className="bg-amber-500 text-black px-4 py-2 rounded mb-4 inline-block">
@@ -632,10 +651,10 @@ const HomePage: React.FC = () => {
 
       {/* New Arrivals Section */}
       <section className="py-4 bg-black">
-      <div className="px-4 sm:px-6 lg:px-8">
+        <div className="px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg font-bold text-white flex items-center">
-                                  <Gift className="w-5 h-5 text-white mr-1" />
+              <Gift className="w-5 h-5 text-white mr-1" />
               New Arrivals
             </h2>
             <Link to="/casino" className="text-yellow-400 hover:text-yellow-300 text-sm font-semibold">
@@ -646,33 +665,33 @@ const HomePage: React.FC = () => {
             {featuredGames.slice(0, 8).map((game) => (
               <div key={game.id} className="flex-shrink-0 w-48 group relative rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-700 hover:border-yellow-500/30 mr-4">
                 <Link to={`/game/${game.id}`}>
-                    <div className="relative aspect-[3/2] overflow-hidden">
+                  <div className="relative aspect-[3/2] overflow-hidden">
                     <img src={game.image} alt={game.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" style={{ display: 'block' }} />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
                     {game.badge && <div className="absolute top-1 left-1 bg-gradient-to-r from-red-500 to-orange-500 text-white px-1.5 py-0.5 rounded-full text-[10px] font-bold flex items-center"><Zap className="w-2 h-2 mr-0.5" /><span>{game.badge}</span></div>}
                     {game.isLive && <div className="absolute top-1 right-1 bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-1.5 py-0.5 rounded-full text-[10px] font-bold flex items-center"><span>LIVE</span></div>}
-                    </div>
-                    <div className="p-3">
+                  </div>
+                  <div className="p-3">
                     <h3 className="text-sm font-bold text-white mb-1 truncate">{game.title}</h3>
                     <div className="flex justify-between items-center mb-2"><span className="text-white text-xs">{game.provider}</span><span className="text-white text-xs">{game.isLive ? 'Live' : 'Slot'}</span></div>
                     <div className="flex justify-between items-center">
-                        <div className="flex items-center space-x-1 text-white"><svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg><span className="text-xs">x5000</span></div>
-                        <span className="text-xs px-1 py-0.5 rounded bg-gray-500/10 text-white">High</span>
+                      <div className="flex items-center space-x-1 text-white"><svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg><span className="text-xs">x5000</span></div>
+                      <span className="text-xs px-1 py-0.5 rounded bg-gray-500/10 text-white">High</span>
                     </div>
-                    </div>
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <button className="bg-white text-black px-3 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-all duration-200 flex items-center space-x-2 transform scale-90 group-hover:scale-100 text-sm">
-                        <Play className="w-4 h-4" />
-                        <span>Play</span>
-                      </button>
-                    </div>
+                  </div>
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <button className="bg-white text-black px-3 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-all duration-200 flex items-center space-x-2 transform scale-90 group-hover:scale-100 text-sm">
+                      <Play className="w-4 h-4" />
+                      <span>Play</span>
+                    </button>
+                  </div>
                 </Link>
               </div>
             ))}
           </div>
           <div className="mt-10 text-center">
             <Link to="/casino" className="bg-white text-black px-6 py-2 rounded-lg font-semibold text-sm hover:bg-gray-100 transition-all duration-200 inline-flex items-center space-x-2"
-           >
+            >
               <Gamepad2 className="w-4 h-4" />
               <span>See over 4,000+ games</span>
             </Link>
@@ -682,10 +701,10 @@ const HomePage: React.FC = () => {
 
       {/* Crypto Games Section */}
       <section className="py-4 bg-black">
-   <div className="px-4 sm:px-6 lg:px-8">
+        <div className="px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg font-bold text-white flex items-center">
-                                  <Bitcoin className="w-5 h-5 text-white mr-1" />
+              <Bitcoin className="w-5 h-5 text-white mr-1" />
               Crypto Games
             </h2>
             <Link to="/casino" className="text-yellow-400 hover:text-yellow-300 text-sm font-semibold">
@@ -696,26 +715,26 @@ const HomePage: React.FC = () => {
             {featuredGames.slice(6, 14).map((game) => (
               <div key={game.id} className="flex-shrink-0 w-48 group relative rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-700 hover:border-yellow-500/30">
                 <Link to={`/game/${game.id}`}>
-                    <div className="relative aspect-[3/2] overflow-hidden">
+                  <div className="relative aspect-[3/2] overflow-hidden">
                     <img src={game.image} alt={game.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
                     <div className="absolute top-1 left-1 bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-1.5 py-0.5 rounded-full text-[10px] font-bold flex items-center"><Bitcoin className="w-2 h-2 mr-0.5" /><span>CRYPTO</span></div>
                     {game.badge && <div className="absolute top-1 right-1 bg-gradient-to-r from-red-500 to-orange-500 text-white px-1.5 py-0.5 rounded-full text-[10px] font-bold flex items-center"><Zap className="w-2 h-2 mr-0.5" /><span>{game.badge}</span></div>}
-                    </div>
-                    <div className="p-3">
+                  </div>
+                  <div className="p-3">
                     <h3 className="text-sm font-bold text-white mb-1 truncate">{game.title}</h3>
                     <div className="flex justify-between items-center mb-2"><span className="text-white text-xs">{game.provider}</span><span className="text-white text-xs">{game.isLive ? 'Live' : 'Slot'}</span></div>
                     <div className="flex justify-between items-center">
-                        <div className="flex items-center space-x-1 text-white"><svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg><span className="text-xs">x5000</span></div>
-                        <span className="text-xs px-1 py-0.5 rounded bg-gray-500/10 text-white">High</span>
+                      <div className="flex items-center space-x-1 text-white"><svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg><span className="text-xs">x5000</span></div>
+                      <span className="text-xs px-1 py-0.5 rounded bg-gray-500/10 text-white">High</span>
                     </div>
-                    </div>
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <button className="bg-white text-black px-3 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-all duration-200 flex items-center space-x-2 transform scale-90 group-hover:scale-100 text-sm">
-                        <Play className="w-4 h-4" />
-                        <span>Play</span>
-                      </button>
-                    </div>
+                  </div>
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <button className="bg-white text-black px-3 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-all duration-200 flex items-center space-x-2 transform scale-90 group-hover:scale-100 text-sm">
+                      <Play className="w-4 h-4" />
+                      <span>Play</span>
+                    </button>
+                  </div>
                 </Link>
               </div>
             ))}
@@ -725,10 +744,10 @@ const HomePage: React.FC = () => {
 
       {/* Buy Feature Section */}
       <section className="py-0 bg-black">
-       <div className="px-4 sm:px-6 lg:px-8">
+        <div className="px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg font-bold text-white flex items-center">
-                                  <Trophy className="w-5 h-5 text-white mr-1" />
+              <Trophy className="w-5 h-5 text-white mr-1" />
               Buy Feature
             </h2>
             <Link to="/casino" className="text-yellow-400 hover:text-yellow-300 text-sm font-semibold">
@@ -739,26 +758,26 @@ const HomePage: React.FC = () => {
             {featuredGames.slice(0, 6).map((game) => (
               <div key={game.id} className="group relative rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-700 hover:border-yellow-500/30">
                 <Link to={`/game/${game.id}`}>
-                    <div className="relative aspect-[3/2] overflow-hidden">
+                  <div className="relative aspect-[3/2] overflow-hidden">
                     <img src={game.image} alt={game.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
                     <div className="absolute top-1 left-1 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-1.5 py-0.5 rounded-full text-[10px] font-bold flex items-center"><Gift className="w-2 h-2 mr-0.5" /><span>BUY</span></div>
                     {game.badge && <div className="absolute top-1 right-1 bg-gradient-to-r from-red-500 to-orange-500 text-white px-1.5 py-0.5 rounded-full text-[10px] font-bold flex items-center"><Zap className="w-2 h-2 mr-0.5" /><span>{game.badge}</span></div>}
-                    </div>
-                    <div className="p-3">
+                  </div>
+                  <div className="p-3">
                     <h3 className="text-sm font-bold text-white mb-1 truncate">{game.title}</h3>
                     <div className="flex justify-between items-center mb-2"><span className="text-white text-xs">{game.provider}</span><span className="text-white text-xs">{game.isLive ? 'Live' : 'Slot'}</span></div>
                     <div className="flex justify-between items-center">
-                        <div className="flex items-center space-x-1 text-white"><svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg><span className="text-xs">x5000</span></div>
-                        <span className="text-xs px-1 py-0.5 rounded bg-gray-500/10 text-white">High</span>
+                      <div className="flex items-center space-x-1 text-white"><svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg><span className="text-xs">x5000</span></div>
+                      <span className="text-xs px-1 py-0.5 rounded bg-gray-500/10 text-white">High</span>
                     </div>
-                    </div>
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <button className="bg-white text-black px-3 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-all duration-200 flex items-center space-x-2 transform scale-90 group-hover:scale-100 text-sm">
-                        <Play className="w-4 h-4" />
-                        <span>Buy Feature</span>
-                      </button>
-                    </div>
+                  </div>
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <button className="bg-white text-black px-3 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-all duration-200 flex items-center space-x-2 transform scale-90 group-hover:scale-100 text-sm">
+                      <Play className="w-4 h-4" />
+                      <span>Buy Feature</span>
+                    </button>
+                  </div>
                 </Link>
               </div>
             ))}
@@ -788,7 +807,7 @@ const HomePage: React.FC = () => {
         <div className="px-0 sm:px-0 lg:px-8">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg font-bold text-white flex items-center">
-                                  <Crown className="w-5 h-5 text-white mr-1" />
+              <Crown className="w-5 h-5 text-white mr-1" />
               Popular Games
             </h2>
             <Link to="/casino" className="text-yellow-400 hover:text-yellow-300 text-sm font-semibold">
@@ -799,26 +818,26 @@ const HomePage: React.FC = () => {
             {featuredGames.slice(14, 22).map((game) => (
               <div key={game.id} className="flex-shrink-0 w-48 group relative rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-700 hover:border-yellow-500/30">
                 <Link to={`/game/${game.id}`}>
-                    <div className="relative aspect-[3/2] overflow-hidden">
+                  <div className="relative aspect-[3/2] overflow-hidden">
                     <img src={game.image} alt={game.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
                     {game.badge && <div className="absolute top-1 left-1 bg-gradient-to-r from-red-500 to-orange-500 text-white px-1.5 py-0.5 rounded-full text-[10px] font-bold flex items-center"><Zap className="w-2 h-2 mr-0.5" /><span>{game.badge}</span></div>}
                     {game.isLive && <div className="absolute top-1 right-1 bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-1.5 py-0.5 rounded-full text-[10px] font-bold flex items-center"><span>LIVE</span></div>}
-                    </div>
-                    <div className="p-3">
+                  </div>
+                  <div className="p-3">
                     <h3 className="text-sm font-bold text-white mb-1 truncate">{game.title}</h3>
                     <div className="flex justify-between items-center mb-2"><span className="text-white text-xs">{game.provider}</span><span className="text-white text-xs">{game.isLive ? 'Live' : 'Slot'}</span></div>
                     <div className="flex justify-between items-center">
-                        <div className="flex items-center space-x-1 text-white"><svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg><span className="text-xs">x5000</span></div>
-                        <span className="text-xs px-1 py-0.5 rounded bg-gray-500/10 text-white">High</span>
+                      <div className="flex items-center space-x-1 text-white"><svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg><span className="text-xs">x5000</span></div>
+                      <span className="text-xs px-1 py-0.5 rounded bg-gray-500/10 text-white">High</span>
                     </div>
-                    </div>
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <button className="bg-white text-black px-3 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-all duration-200 flex items-center space-x-2 transform scale-90 group-hover:scale-100 text-sm">
-                        <Play className="w-4 h-4" />
-                        <span>Play</span>
-                      </button>
-                    </div>
+                  </div>
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <button className="bg-white text-black px-3 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-all duration-200 flex items-center space-x-2 transform scale-90 group-hover:scale-100 text-sm">
+                      <Play className="w-4 h-4" />
+                      <span>Play</span>
+                    </button>
+                  </div>
                 </Link>
               </div>
             ))}
@@ -842,26 +861,26 @@ const HomePage: React.FC = () => {
             {featuredGames.slice(22, 30).map((game) => (
               <div key={game.id} className="flex-shrink-0 w-48 group relative rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-700 hover:border-yellow-500/30">
                 <Link to={`/game/${game.id}`}>
-                    <div className="relative aspect-[3/2] overflow-hidden">
+                  <div className="relative aspect-[3/2] overflow-hidden">
                     <img src={game.image} alt={game.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
                     {game.badge && <div className="absolute top-1 left-1 bg-gradient-to-r from-red-500 to-orange-500 text-white px-1.5 py-0.5 rounded-full text-[10px] font-bold flex items-center"><Zap className="w-2 h-2 mr-0.5" /><span>{game.badge}</span></div>}
                     <div className="absolute top-1 right-1 bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-1.5 py-0.5 rounded-full text-[10px] font-bold flex items-center"><span>LIVE</span></div>
-                    </div>
-                    <div className="p-3">
+                  </div>
+                  <div className="p-3">
                     <h3 className="text-sm font-bold text-white mb-1 truncate">{game.title}</h3>
                     <div className="flex justify-between items-center mb-2"><span className="text-white text-xs">{game.provider}</span><span className="text-gray-400 text-xs">Live</span></div>
                     <div className="flex justify-between items-center">
-                        <div className="flex items-center space-x-1 text-white"><svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg><span className="text-xs">x5000</span></div>
-                        <span className="text-xs px-1 py-0.5 rounded bg-gray-500/10 text-white">High</span>
+                      <div className="flex items-center space-x-1 text-white"><svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg><span className="text-xs">x5000</span></div>
+                      <span className="text-xs px-1 py-0.5 rounded bg-gray-500/10 text-white">High</span>
                     </div>
-                    </div>
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <button className="bg-white text-black px-3 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-all duration-200 flex items-center space-x-2 transform scale-90 group-hover:scale-100 text-sm">
-                        <Play className="w-4 h-4" />
-                        <span>Play</span>
-                      </button>
-                    </div>
+                  </div>
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <button className="bg-white text-black px-3 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-all duration-200 flex items-center space-x-2 transform scale-90 group-hover:scale-100 text-sm">
+                      <Play className="w-4 h-4" />
+                      <span>Play</span>
+                    </button>
+                  </div>
                 </Link>
               </div>
             ))}
@@ -874,7 +893,7 @@ const HomePage: React.FC = () => {
         <div className="px-0 sm:px-0 lg:px-8">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg font-bold text-white flex items-center">
-                                  <Gem className="w-5 h-5 text-white mr-1" />
+              <Gem className="w-5 h-5 text-white mr-1" />
               Jackpot Games
             </h2>
             <Link to="/jackpots" className="text-yellow-400 hover:text-yellow-300 text-sm font-semibold">
@@ -885,26 +904,26 @@ const HomePage: React.FC = () => {
             {featuredGames.slice(30, 38).map((game) => (
               <div key={game.id} className="flex-shrink-0 w-48 group relative rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-700 hover:border-yellow-500/30">
                 <Link to={`/game/${game.id}`}>
-                    <div className="relative aspect-[3/2] overflow-hidden">
+                  <div className="relative aspect-[3/2] overflow-hidden">
                     <img src={game.image} alt={game.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
                     <div className="absolute top-1 left-1 bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-1.5 py-0.5 rounded-full text-[10px] font-bold flex items-center"><Gem className="w-2 h-2 mr-0.5" /><span>JACKPOT</span></div>
                     {game.isLive && <div className="absolute top-1 right-1 bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-1.5 py-0.5 rounded-full text-[10px] font-bold flex items-center"><span>LIVE</span></div>}
-                    </div>
-                    <div className="p-3">
+                  </div>
+                  <div className="p-3">
                     <h3 className="text-sm font-bold text-white mb-1 truncate">{game.title}</h3>
                     <div className="flex justify-between items-center mb-2"><span className="text-white text-xs">{game.provider}</span><span className="text-white text-xs">{game.isLive ? 'Live' : 'Slot'}</span></div>
                     <div className="flex justify-between items-center">
-                        <div className="flex items-center space-x-1 text-white"><svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg><span className="text-xs">x5000</span></div>
-                        <span className="text-xs px-1 py-0.5 rounded bg-gray-500/10 text-white">High</span>
+                      <div className="flex items-center space-x-1 text-white"><svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg><span className="text-xs">x5000</span></div>
+                      <span className="text-xs px-1 py-0.5 rounded bg-gray-500/10 text-white">High</span>
                     </div>
-                    </div>
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <button className="bg-white text-black px-3 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-all duration-200 flex items-center space-x-2 transform scale-90 group-hover:scale-100 text-sm">
-                        <Play className="w-4 h-4" />
-                        <span>Play</span>
-                      </button>
-                    </div>
+                  </div>
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <button className="bg-white text-black px-3 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-all duration-200 flex items-center space-x-2 transform scale-90 group-hover:scale-100 text-sm">
+                      <Play className="w-4 h-4" />
+                      <span>Play</span>
+                    </button>
+                  </div>
                 </Link>
               </div>
             ))}
@@ -941,21 +960,21 @@ const HomePage: React.FC = () => {
           <p className="text-xl text-gray-300 mb-8">Join TucanBit now and get your 200% welcome bonus up to 5 BTC plus 200 free spins!</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/register" className="bg-white text-black px-6 py-3 rounded-xl font-semibold text-base hover:bg-gray-100 transform hover:scale-105 transition-all duration-200 flex items-center justify-center space-x-2 shadow-lg">
-                <User className="w-5 h-5" />
-                <span>Join Now</span>
-              </Link>
-              <Link to="/casino" className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-6 py-3 rounded-xl font-semibold text-base hover:bg-white/20 transition-all duration-200 flex items-center justify-center space-x-2 shadow-lg">
-                <Play className="w-5 h-5" />
-                <span>Start Playing</span>
-              </Link>
-              <Link to="/leaderboards" className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-6 py-3 rounded-xl font-semibold text-base hover:bg-white/20 transition-all duration-200 flex items-center justify-center space-x-2 shadow-lg">
-                <Crown className="w-5 h-5" />
-                <span>View Leaderboards</span>
-              </Link>
-              <Link to="/achievements" className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-6 py-3 rounded-xl font-semibold text-base hover:bg-white/20 transition-all duration-200 flex items-center justify-center space-x-2 shadow-lg">
-                <Star className="w-5 h-5" />
-                <span>View Achievements</span>
-              </Link>
+              <User className="w-5 h-5" />
+              <span>Join Now</span>
+            </Link>
+            <Link to="/casino" className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-6 py-3 rounded-xl font-semibold text-base hover:bg-white/20 transition-all duration-200 flex items-center justify-center space-x-2 shadow-lg">
+              <Play className="w-5 h-5" />
+              <span>Start Playing</span>
+            </Link>
+            <Link to="/leaderboards" className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-6 py-3 rounded-xl font-semibold text-base hover:bg-white/20 transition-all duration-200 flex items-center justify-center space-x-2 shadow-lg">
+              <Crown className="w-5 h-5" />
+              <span>View Leaderboards</span>
+            </Link>
+            <Link to="/achievements" className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-6 py-3 rounded-xl font-semibold text-base hover:bg-white/20 transition-all duration-200 flex items-center justify-center space-x-2 shadow-lg">
+              <Star className="w-5 h-5" />
+              <span>View Achievements</span>
+            </Link>
           </div>
         </div>
       </section>
