@@ -5,20 +5,14 @@
     "module": "ESNext",
     "skipLibCheck": true,
 
-<<<<<<< HEAD
-=======
     /* Bundler mode */
->>>>>>> 85f70d7afd0f3aef29eea3e0162201894209f029
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "isolatedModules": true,
     "moduleDetection": "force",
     "noEmit": true,
 
-<<<<<<< HEAD
-=======
     /* Linting */
->>>>>>> 85f70d7afd0f3aef29eea3e0162201894209f029
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
