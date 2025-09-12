@@ -457,6 +457,15 @@ section > div {
   #main-content.sidebar-expanded {
     /* This is the margin when the sidebar is EXPANDED */
     /* w-64 in Tailwind is 16rem */
-    margin-left: 16rem;
+    margin-left: 216px;
   }
+}
+
+/* Scrollbar hide globally */
+.scrollbar-none {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
 }

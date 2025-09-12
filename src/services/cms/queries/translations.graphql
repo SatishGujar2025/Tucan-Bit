@@ -1,0 +1,16 @@
+query TranslationsGet($language: String!) {
+  translations(
+    filter: {
+      translations: {
+        languages_language_code: { language_code: { _eq: $language } }
+      }
+    }
+  ) {
+    translations_key
+    translations(
+      filter: { languages_language_code: { language_code: { _eq: $language } } }
+    ) {
+      content
+    }
+  }
+}

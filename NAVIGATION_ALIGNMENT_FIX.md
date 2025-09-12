@@ -41,6 +41,7 @@ The issue was caused by inconsistent class structures across different navigatio
 ### **2. Updated Navigation Links**
 
 #### **Fixed Links:**
+<<<<<<< HEAD
 - **Sports** - Added responsive classes and mobile text visibility
 - **Lootboxes** - Added responsive classes and mobile text visibility  
 - **Games Submenu Button** - Added responsive classes and mobile text visibility
@@ -54,6 +55,21 @@ The issue was caused by inconsistent class structures across different navigatio
 - **Support Submenu Button** - Added responsive classes and mobile text visibility
 - **Community** - Added responsive classes and mobile text visibility
 - **Profile** - Added responsive classes and mobile text visibility
+=======
+- ✅ **Sports** - Added responsive classes and mobile text visibility
+- ✅ **Lootboxes** - Added responsive classes and mobile text visibility  
+- ✅ **Games Submenu Button** - Added responsive classes and mobile text visibility
+- ✅ **Promotions** - Added responsive classes and mobile text visibility
+- ✅ **News** - Added responsive classes and mobile text visibility
+- ✅ **VIP Club** - Added responsive classes and mobile text visibility
+- ✅ **Wallet Submenu Button** - Added responsive classes and mobile text visibility
+- ✅ **Tournaments** - Added responsive classes and mobile text visibility
+- ✅ **Earn** - Added responsive classes and mobile text visibility
+- ✅ **Token Dashboard** - Added responsive classes and mobile text visibility
+- ✅ **Support Submenu Button** - Added responsive classes and mobile text visibility
+- ✅ **Community** - Added responsive classes and mobile text visibility
+- ✅ **Profile** - Added responsive classes and mobile text visibility
+>>>>>>> 85f70d7afd0f3aef29eea3e0162201894209f029
 
 ### **3. Consistent Class Structure**
 
@@ -74,6 +90,7 @@ className={`w-full flex items-center ${sidebarExpanded ? 'space-x-3' : 'justify-
 ## 📱 Expected Behavior After Fix
 
 ### **Mobile (< 1024px):**
+<<<<<<< HEAD
 - **All links aligned** - Consistent spacing and positioning
 - **All text visible** - `lg:hidden` ensures text shows on mobile
 - **Proper spacing** - `space-x-3` when expanded, `justify-center` when collapsed
@@ -84,6 +101,18 @@ className={`w-full flex items-center ${sidebarExpanded ? 'space-x-3' : 'justify-
 - **Conditional text** - `hidden lg:inline` shows text only when sidebar is expanded
 - **Expand/collapse functionality** - All links respond to `sidebarExpanded` state
 - **Consistent behavior** - All navigation items behave uniformly
+=======
+- ✅ **All links aligned** - Consistent spacing and positioning
+- ✅ **All text visible** - `lg:hidden` ensures text shows on mobile
+- ✅ **Proper spacing** - `space-x-3` when expanded, `justify-center` when collapsed
+- ✅ **Consistent layout** - All navigation items follow the same structure
+
+### **Desktop (≥ 1024px):**
+- ✅ **Responsive alignment** - `lg:justify-center` ensures proper desktop alignment
+- ✅ **Conditional text** - `hidden lg:inline` shows text only when sidebar is expanded
+- ✅ **Expand/collapse functionality** - All links respond to `sidebarExpanded` state
+- ✅ **Consistent behavior** - All navigation items behave uniformly
+>>>>>>> 85f70d7afd0f3aef29eea3e0162201894209f029
 
 ## 🎯 Key Improvements
 

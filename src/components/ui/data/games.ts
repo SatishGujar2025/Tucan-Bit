@@ -8,7 +8,6 @@ import g7 from '../../../assets/g7.jpg'
 import g8 from '../../../assets/g8.jpg'
 import g9 from '../../../assets/g9.jpg'
 import g10 from '../../../assets/g10.jpg'
-
 import g11 from '../../../assets/g11.jpg'
 import g12 from '../../../assets/g12.jpg'
 import g13 from '../../../assets/g13.jpg'

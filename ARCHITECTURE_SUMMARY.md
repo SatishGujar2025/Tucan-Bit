@@ -111,6 +111,7 @@ import { HomePage, CasinoPage } from './pages';
 
 ## 📋 Migration Checklist
 
+<<<<<<< HEAD
 - Moved all page components to `pages/` directory
 - Organized components by purpose (layout, ui, modals, games)
 - Created index files for clean imports
@@ -119,6 +120,16 @@ import { HomePage, CasinoPage } from './pages';
 - Centralized route definitions
 - Updated import paths in App.tsx
 - Created comprehensive documentation
+=======
+- ✅ Moved all page components to `pages/` directory
+- ✅ Organized components by purpose (layout, ui, modals, games)
+- ✅ Created index files for clean imports
+- ✅ Moved context to root level
+- ✅ Created utility functions and types
+- ✅ Centralized route definitions
+- ✅ Updated import paths in App.tsx
+- ✅ Created comprehensive documentation
+>>>>>>> 85f70d7afd0f3aef29eea3e0162201894209f029
 
 ## 🚀 Next Steps
 

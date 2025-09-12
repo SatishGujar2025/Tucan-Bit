@@ -1,27 +1,52 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import App from './App.tsx';
 import './styles/index.css';
+import { fetcher } from './services/cms/fetcher';
+import { TranslationsGetDocument, useTranslationsGetQuery } from './services/cms/__generated__/hooks.ts';
 
-
-// Fix for MacBook Pro 14 white space issue - set viewport height
+// --- Viewport helper (keep your existing logic) ---
 const setViewportHeight = () => {
   const vh = window.innerHeight * 0.01;
   document.documentElement.style.setProperty('--vh', `${vh}px`);
 };
 
-// Set initial viewport height
-setViewportHeight();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 5 * 60 * 1000, // 10m cache
+      refetchOnWindowFocus: false,
+      refetchOnMount: false,
+      retryOnMount: false,
+    },
+  },
+});
 
-// Update viewport height on resize and orientation change
-window.addEventListener('resize', setViewportHeight);
-window.addEventListener('orientationchange', setViewportHeight);
+async function bootstrap() {
+  // Set initial viewport height + listeners
+  setViewportHeight();
+  window.addEventListener('resize', setViewportHeight);
+  window.addEventListener('orientationchange', setViewportHeight);
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <BrowserRouter> {/* We Wrap our App component here */}
-      <App />
-    </BrowserRouter>
-  </React.StrictMode>
-);
+  const language = import.meta.env.VITE_DEFAULT_LANGUAGE;
+  await queryClient.prefetchQuery({
+    queryKey: useTranslationsGetQuery.getKey({ language }),
+    queryFn: fetcher(TranslationsGetDocument, { language }),
+    staleTime: 5 * 60 * 1000, 
+  });
+
+  // Render the app
+  ReactDOM.createRoot(document.getElementById('root')!).render(
+    <React.StrictMode>
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </QueryClientProvider>
+    </React.StrictMode>
+  );
+}
+
+bootstrap();

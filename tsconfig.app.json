@@ -6,6 +6,10 @@
     "module": "ESNext",
     "skipLibCheck": true,
 
+<<<<<<< HEAD
+=======
+    /* Bundler mode */
+>>>>>>> 85f70d7afd0f3aef29eea3e0162201894209f029
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "isolatedModules": true,
@@ -13,10 +17,24 @@
     "noEmit": true,
     "jsx": "react-jsx",
 
+<<<<<<< HEAD
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
+=======
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+
+    /* * Resolver */
+    "baseUrl": "src",
+    "paths": {
+      "@/*": ["*"]
+    }
+>>>>>>> 85f70d7afd0f3aef29eea3e0162201894209f029
   },
   "include": ["src"]
 }
