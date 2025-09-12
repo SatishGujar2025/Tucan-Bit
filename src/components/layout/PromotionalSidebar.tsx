@@ -52,14 +52,14 @@ const PromotionalSidebar: React.FC<PromotionalSidebarProps> = ({ isExpanded, set
       {!isExpanded && (
         <button
           onClick={() => setIsExpanded(!isExpanded)}
-          className="fixed z-[9999999] bg-transparent hover:bg-white/10 text-white shadow-lg transition-all duration-300 border border-white/20 hover:border-white/40 top-20 right-4 p-2 rounded-lg hidden lg:block modal-open:hidden"
+          className="fixed z-[9999999] bg-transparent hover:bg-white/10 text-white shadow-lg transition-all duration-300 border border-white/20 hover:border-white/40 top-4 right-4 p-2 rounded-lg hidden lg:block modal-open:hidden"
         >
           <ChevronLeft className="w-4 h-4 md:w-5 md:h-5" />
         </button>
       )}
 
       {/* Live Chat Sidebar */}
-      <div className={`fixed z-[9999998] top-16 bottom-0 right-0 bg-gray-900 shadow-2xl border-l border-gray-800 overflow-y-auto scrollbar-hide transition-all duration-300 hidden lg:block ${
+      <div className={`fixed z-[9999998] inset-y-0 right-0 bg-gray-900 shadow-2xl border-l border-gray-800 overflow-y-auto scrollbar-hide transition-all duration-300 hidden lg:block ${
         isExpanded ? 'w-80 translate-x-0' : 'w-0 translate-x-full'
       }`}>
         <div className="flex flex-col h-full">

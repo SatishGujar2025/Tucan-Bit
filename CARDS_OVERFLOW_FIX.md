@@ -8,7 +8,11 @@ The cards were overflowing to the right when the right sidebar was closed. This 
 2. **Inconsistent sidebar width calculations** when collapsed
 3. **Missing overflow control** for game card containers
 
+<<<<<<< HEAD
 ## Fixes Implemented
+=======
+## ✅ Fixes Implemented
+>>>>>>> 85f70d7afd0f3aef29eea3e0162201894209f029
 
 ### **1. Layout Component Margin Fixes** (`src/components/layout/Layout.tsx`)
 
@@ -142,6 +146,7 @@ section .flex.overflow-x-auto {
 - **Mobile**: Unchanged, already working correctly
 - **Cross-browser**: Consistent behavior across all browsers
 
+<<<<<<< HEAD
 ## Result
 
 - **Cards no longer overflow** when sidebar is collapsed
@@ -149,6 +154,15 @@ section .flex.overflow-x-auto {
 - **Horizontal scrolling** works correctly for game cards
 - **Responsive design** preserved across all screen sizes
 - **Performance** maintained with efficient CSS selectors
+=======
+## ✅ Result
+
+- ✅ **Cards no longer overflow** when sidebar is collapsed
+- ✅ **Proper spacing** maintained in both sidebar states
+- ✅ **Horizontal scrolling** works correctly for game cards
+- ✅ **Responsive design** preserved across all screen sizes
+- ✅ **Performance** maintained with efficient CSS selectors
+>>>>>>> 85f70d7afd0f3aef29eea3e0162201894209f029
 
 ## 🔧 Technical Details
 

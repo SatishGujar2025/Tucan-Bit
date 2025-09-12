@@ -1,4 +1,4 @@
-import { buildStartGameUrl, inferDeviceType, StartGameParams, LaunchGameOptions } from '../utils/groove';
+import { buildStartGameUrl, inferDeviceType, type StartGameParams, type LaunchGameOptions } from '../utils/groove';
 
 type Deps = {
   grooveDomain: string;
@@ -28,11 +28,11 @@ export function initGameLauncher(deps: Deps) {
   } = deps;
 
   return function launchGame(opts: LaunchGameOptions) {
-    // Enforce login for real money play
-    // if (!isAuthenticated && opts.nogsmode === 'real') {
-    //   openLoginModal();
-    //   return;
-    // }
+    //Enforce login for real money play
+    if (!isAuthenticated && opts.nogsmode === 'real') {
+      openLoginModal();
+      return;
+    }
 
     const accountid = opts.accountid ?? username ?? 'guest';
     const session = opts.session;

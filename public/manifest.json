@@ -1,6 +1,11 @@
 {
+<<<<<<< HEAD
   "name": "TucanBIT",
   "short_name": "TucanBIT",
+=======
+  "name": "TucanBit - Online Casino & Gaming",
+  "short_name": "TucanBit",
+>>>>>>> 85f70d7afd0f3aef29eea3e0162201894209f029
   "description": "Premium online casino with live games, slots, and sports betting",
   "start_url": "/",
   "display": "standalone",
@@ -12,13 +17,21 @@
   "categories": ["entertainment", "games", "casino"],
   "icons": [
     {
+<<<<<<< HEAD
       "src": "/tucan.png",
+=======
+      "src": "/TB.png",
+>>>>>>> 85f70d7afd0f3aef29eea3e0162201894209f029
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
+<<<<<<< HEAD
       "src": "/tucan.png",
+=======
+      "src": "/TB.png",
+>>>>>>> 85f70d7afd0f3aef29eea3e0162201894209f029
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
@@ -46,7 +59,11 @@
       "url": "/games/slots",
       "icons": [
         {
+<<<<<<< HEAD
           "src": "/tucan.png",
+=======
+          "src": "/TB.png",
+>>>>>>> 85f70d7afd0f3aef29eea3e0162201894209f029
           "sizes": "96x96"
         }
       ]
@@ -58,7 +75,11 @@
       "url": "/casino/live",
       "icons": [
         {
+<<<<<<< HEAD
           "src": "/tucan.png",
+=======
+          "src": "/TB.png",
+>>>>>>> 85f70d7afd0f3aef29eea3e0162201894209f029
           "sizes": "96x96"
         }
       ]
@@ -70,7 +91,11 @@
       "url": "/sports",
       "icons": [
         {
+<<<<<<< HEAD
           "src": "/tucan.png",
+=======
+          "src": "/TB.png",
+>>>>>>> 85f70d7afd0f3aef29eea3e0162201894209f029
           "sizes": "96x96"
         }
       ]

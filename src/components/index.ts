@@ -23,6 +23,10 @@ export { default as GameTabs } from './ui/GameTabs';
 export { default as Header } from './ui/Header';
 export { default as PromotionalBanner } from './ui/PromotionalBanner';
 export { default as SearchBar } from './ui/SearchBar';
+export { default as HeroBanner } from './ui/HeroBanner';
+export { default as CashbackCountdown } from './ui/CashbackCountdown';
+export { default as FeatureSection } from './ui/FeatureSection';
+export { default as CallToAction } from './ui/CallToAction';
 
 // Optimized Image components
 export { OptimizedImage, GameImage, PromoImage, AvatarImage } from './ui/OptimizedImage'; 

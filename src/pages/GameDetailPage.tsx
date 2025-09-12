@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Play, Star, Zap, Clock, DollarSign } from 'lucide-react';
 import { ROUTES } from '../constants/routes';
@@ -7,19 +7,41 @@ import { findGameById, getSimilarGames } from '../utils/gameUtils';
 import { useAppContext } from '../context/AppContext';
 
 const GameDetailPage: React.FC = () => {
-  const { launchGame, user } = useAppContext();
+  const { launchGame, user, modalView, gameUrl} = useAppContext();
+  const hasAutoLaunchedRef = useRef(false);
   const { gameId } = useParams<{ gameId: string }>();
 
   // Find the game using the utility function
   const game = gameId ? findGameById(gameId) : undefined;
+
+  // Get similar games
+  const similarGames = getSimilarGames(gameId!, 3);
+
+  const accessToken = localStorage.getItem("access_token");
+  const shouldAutoplay = import.meta.env.VITE_AUTO_LAUNCH_GAMES == "true";
+
+  useEffect(() => {
+    if (!shouldAutoplay) return;
+    if (hasAutoLaunchedRef.current) return;
+    if (modalView === 'gameLaunch' || !!gameUrl) return;
+    handlePlay();
+    hasAutoLaunchedRef.current = true;
+  }, [shouldAutoplay, user?.user_id, modalView, gameUrl]);
+
+  const handlePlay = () => {
+    launchGame({ 
+      nogsgameid: 130300129, 
+      nogsmode: 'real', 
+      accountid: user?.user_id, 
+      session: accessToken ? String(accessToken) : '',
+    });
+  };
 
   // If game is not found, show NotFoundPage
   if (!game) {
     return <NotFoundPage />;
   }
 
-  // Get similar games
-  const similarGames = getSimilarGames(gameId!, 3);
 
 
   return (
@@ -102,8 +124,7 @@ const GameDetailPage: React.FC = () => {
 
               {/* Play Button */}
               <button className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white py-2 px-4 rounded-lg font-semibold hover:from-yellow-600 hover:to-orange-600 transition-all duration-200 flex items-center justify-center space-x-2 text-sm"
-                 onClick={() => launchGame({ nogsgameid: 130300129, nogsmode: 'real', accountid: user?.user_id, session: "/todo get session id"   })}
-              >
+                 onClick={handlePlay}>
                 <Play className="w-4 h-4"/>
                 <span>Play Now</span>
               </button>

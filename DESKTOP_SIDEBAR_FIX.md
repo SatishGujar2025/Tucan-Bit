@@ -34,6 +34,7 @@ The issue was caused by overly complex responsive classes that were interfering 
 ### **2. Removed Problematic Classes**
 
 #### **Removed Classes:**
+<<<<<<< HEAD
 -  `lg:justify-center` - Was forcing center alignment on desktop
 -  `lg:hidden` - Was hiding text on mobile when it should be visible
 -  `hidden lg:inline` - Was causing complex conditional rendering
@@ -42,6 +43,16 @@ The issue was caused by overly complex responsive classes that were interfering 
 #### **Kept Classes:**
 - `${sidebarExpanded ? 'space-x-3' : 'justify-center'}` - Proper responsive spacing
 - `{sidebarExpanded && <span>Text</span>}` - Simple conditional text rendering
+=======
+- ❌ `lg:justify-center` - Was forcing center alignment on desktop
+- ❌ `lg:hidden` - Was hiding text on mobile when it should be visible
+- ❌ `hidden lg:inline` - Was causing complex conditional rendering
+- ❌ `lg:block` - Was interfering with sidebar container
+
+#### **Kept Classes:**
+- ✅ `${sidebarExpanded ? 'space-x-3' : 'justify-center'}` - Proper responsive spacing
+- ✅ `{sidebarExpanded && <span>Text</span>}` - Simple conditional text rendering
+>>>>>>> 85f70d7afd0f3aef29eea3e0162201894209f029
 
 ### **3. Fixed Sidebar Container**
 
@@ -62,6 +73,7 @@ The issue was caused by overly complex responsive classes that were interfering 
 ### **4. Updated All Navigation Links**
 
 #### **Fixed Links:**
+<<<<<<< HEAD
 - **Home** - Simplified responsive classes
 - **Casino** - Simplified responsive classes
 - **Live Casino** - Simplified responsive classes
@@ -78,10 +90,29 @@ The issue was caused by overly complex responsive classes that were interfering 
 - **Support Submenu Button** - Simplified responsive classes
 - **Community** - Simplified responsive classes
 - **Profile** - Simplified responsive classes
+=======
+- ✅ **Home** - Simplified responsive classes
+- ✅ **Casino** - Simplified responsive classes
+- ✅ **Live Casino** - Simplified responsive classes
+- ✅ **Sports** - Simplified responsive classes
+- ✅ **Lootboxes** - Simplified responsive classes
+- ✅ **Games Submenu Button** - Simplified responsive classes
+- ✅ **Promotions** - Simplified responsive classes
+- ✅ **News** - Simplified responsive classes
+- ✅ **VIP Club** - Simplified responsive classes
+- ✅ **Wallet Submenu Button** - Simplified responsive classes
+- ✅ **Tournaments** - Simplified responsive classes
+- ✅ **Earn** - Simplified responsive classes
+- ✅ **Token Dashboard** - Simplified responsive classes
+- ✅ **Support Submenu Button** - Simplified responsive classes
+- ✅ **Community** - Simplified responsive classes
+- ✅ **Profile** - Simplified responsive classes
+>>>>>>> 85f70d7afd0f3aef29eea3e0162201894209f029
 
 ## 📱 Expected Behavior After Fix
 
 ### **Mobile (< 1024px):**
+<<<<<<< HEAD
 - **Full width sidebar** - `w-64` ensures full width on mobile
 - **All text visible** - Simple conditional rendering shows text when sidebar is open
 - **Proper spacing** - `space-x-3` when expanded, `justify-center` when collapsed
@@ -93,6 +124,19 @@ The issue was caused by overly complex responsive classes that were interfering 
 - **Conditional text** - Text shows only when sidebar is expanded
 - **Proper alignment** - Icons and text align correctly
 - **Smooth animations** - Transitions work smoothly
+=======
+- ✅ **Full width sidebar** - `w-64` ensures full width on mobile
+- ✅ **All text visible** - Simple conditional rendering shows text when sidebar is open
+- ✅ **Proper spacing** - `space-x-3` when expanded, `justify-center` when collapsed
+- ✅ **Smooth transitions** - Proper expand/collapse animations
+
+### **Desktop (≥ 1024px):**
+- ✅ **Expand/collapse functionality** - Toggle button works properly
+- ✅ **Responsive width** - `w-16` when collapsed, `w-64` when expanded
+- ✅ **Conditional text** - Text shows only when sidebar is expanded
+- ✅ **Proper alignment** - Icons and text align correctly
+- ✅ **Smooth animations** - Transitions work smoothly
+>>>>>>> 85f70d7afd0f3aef29eea3e0162201894209f029
 
 ## 🎯 Key Improvements
 
